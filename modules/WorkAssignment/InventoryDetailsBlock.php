@@ -181,6 +181,37 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		return self::$tax_blocks;
 	}
 
+	private static function getAvailableTaxes() {
+		require_once 'include/utils/InventoryUtils.php';
+		require_once 'include/fields/CurrencyField.php';
+		$taxes = array('tax' => array(), 'shtax' => array());
+		foreach (getAllTaxes('all', 'sh') as $shtax) {
+			$taxes['shtax'][] = array(
+				'amount' => 0,
+				'percent' => CurrencyField::convertToUserFormat($shtax['percentage']),
+				'taxlabel' => $shtax['taxlabel'],
+				'taxname' => $shtax['taxname'],
+			);
+		}
+		foreach (getAllTaxes() as $tax) {
+			$taxes['tax'][] = array(
+				'amount' => 0,
+				'percent' => CurrencyField::convertToUserFormat($tax['percentage']),
+				'taxlabel' => $tax['taxlabel'],
+				'taxname' => $tax['taxname'],
+			);
+		}
+		return $taxes;
+	}
+
+	private static function getTaxBlockLabels() {
+		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
+		return array(
+			'tax' => $tax_block_label,
+			'shtax' => $shtax_block_label,
+		);
+	}
+
 	private static function getMode() {
 		$mode = '';
 		if ($_REQUEST['action'] == 'EditView' && !isset($_REQUEST['record'])) {
@@ -193,27 +224,6 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			$mode = 'detail';
 		}
 		return $mode;
-	}
-
-	private static function getAvailableTaxes() {
-		require_once 'include/utils/InventoryUtils.php';
-		foreach (getAllTaxes('all', 'sh') as $shtax) {
-			self::$tax_blocks['LBL_BLOCK_SH_TAXES'][] = array(
-				'amount' => 0,
-				'percent' => $shtax['percentage'],
-				'taxlabel' => $shtax['taxlabel'],
-				'taxname' => $shtax['taxname'],
-			);
-		}
-		foreach (getAllTaxes() as $tax) {
-			self::$tax_blocks['LBL_BLOCK_TAXES'][] = array(
-				'amount' => 0,
-				'percent' => $tax['percentage'],
-				'taxlabel' => $tax['taxlabel'],
-				'taxname' => $tax['taxname'],
-			);
-		}
-		return self::$tax_blocks;
 	}
 
 	/**
@@ -299,7 +309,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 				'qtyindemand' => 0,
 				'usageunit' => '',
 			),
-			'taxes' => self::$tax_blocks['LBL_BLOCK_TAXES'],
+			'taxes' => self::getAvailableTaxes()['tax'],
 			'custom' => array(
 				// Filled by the MasterDetail mapping's 'fields' directive
 			),
