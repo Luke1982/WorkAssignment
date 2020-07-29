@@ -14,6 +14,8 @@ window.addEventListener("load", function(){
 });
 </script>
 
+{* <pre>{$inventoryblock|print_r}</pre> *}
+
 {include file='Components/Components.tpl'}
 <!-- Detail block -->
 <div class="cbds-detail-block cbds-inventory-block">
@@ -155,143 +157,199 @@ window.addEventListener("load", function(){
 			</div>
 		</div>
 		<div class="slds-card__body cbds-inventoryaggr">
-			<ul class="slds-card__body_inner slds-grid slds-wrap slds-grid_pull-padded">
-				<li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-5">
-					<article class="slds-tile slds-tile_board">
-						<h3 class="slds-tile__title slds-truncate slds-text-heading_small" title="Gross total">Gross total</h3>
-						<div class="slds-tile__detail">
-							<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-								<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--grosstotal" value="{$inventoryblock.aggr.grosstotal}" />
-								<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-									<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-								</span>
+			<div class="slds-grid">
+				<div class="slds-col slds-size_3-of-12">
+					<div class="slds-panel">
+						<div class="slds-panel__header">
+							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Group Taxes">Group Taxes</h2>
+						</div>
+						<div class="slds-panel__body slds-p-around_none">
+							<div class="slds-panel__section slds-p-around_none">
+								<!-- Group aggregation taxes -->
+								<div class="slds-form slds-p-around_small cbds-inventoryaggr__taxes--group{if $inventoryblock.taxtype == 'group'} active{/if}">
+									<div class="slds-form-element__row slds-wrap">
+										{foreach from=$inventoryblock.grouptaxes item=tax key=key name=name}
+										<div class="slds-form-element__group">
+											<fieldset class="slds-form-element">
+												<legend class="slds-form-element__label slds-text-title_caps">{$tax.taxlabel}</legend>
+												<div class="slds-grid">
+												<div class="slds-col slds-form-element slds-size_5-of-12">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input class="slds-input cbds-inventoryaggr__input--tax{$key}" value="{$tax.percent}" type="text" data-type="number" data-taxname="tax{$key}" data-error-mess="Please insert a valid number">
+														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">%</div>
+														</span>
+													</div>
+													<div class="slds-form-element__help"></div>
+												</div>
+												<div class="slds-col slds-form-element slds-size_7-of-12">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input class="slds-input cbds-inventoryaggr__input--tax{$key}-amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
+														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+														</span>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+										{/foreach}
+									</div>
+								</div>
+								<!-- // Group aggregation taxes -->
 							</div>
 						</div>
-					</article>
-				</li>
-				<li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-5">
-					<article class="slds-tile slds-tile_board">
-						<h3 class="slds-tile__title slds-truncate slds-text-heading_small" title="Total discount">Total discount</h3>
-						<div class="slds-tile__detail">
-							<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-								<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--totaldiscount" value="{$inventoryblock.aggr.totaldiscount}" />
-								<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-									<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-								</span>
+					</div>
+				</div>
+				<div class="slds-col slds-size_3-of-12">
+					<div class="slds-panel">
+						<div class="slds-panel__header">
+							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Sales & Handling Taxes">Sales & Handling Taxes</h2>
+						</div>
+						<div class="slds-panel__body slds-p-around_none">
+							<div class="slds-panel__section slds-p-around_none">
+								<!-- Shipping and handling aggregation -->
+								<div class="slds-form slds-p-around_small slds-p-around_medium cbds-inventoryaggr__taxes--sh">
+									<div class="slds-form-element__row slds-wrap">
+										<div class="slds-form-element__group">
+											<fieldset class="slds-form-element">
+												<legend class="slds-form-element__label slds-text-title_caps">Shipping & Handling amount</legend>
+												<div class="slds-grid">
+												<div class="slds-col slds-form-element slds-size_5-of-12">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input class="slds-input cbds-inventoryaggr__input--shamount" value="{$inventoryblock.aggr.shtotal}" type="text" data-type="currency" data-error-mess="Please insert a valid currency">
+														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+														</span>
+													</div>
+													<div class="slds-form-element__help"></div>
+												</div>
+											</fieldset>
+										</div>
+										{foreach from=$inventoryblock.shtaxes item=shtax key=key name=name}
+										<div class="slds-form-element__group">
+											<fieldset class="slds-form-element">
+												<legend class="slds-form-element__label slds-text-title_caps">{$shtax.taxlabel}</legend>
+												<div class="slds-grid">
+												<div class="slds-col slds-form-element slds-size_5-of-12">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input class="slds-input cbds-inventoryaggr__input--shtax{$key}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="shtax{$key}" data-error-mess="Please insert a valid number">
+														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">%</div>
+														</span>
+													</div>
+													<div class="slds-form-element__help"></div>
+												</div>
+												<div class="slds-col slds-form-element slds-size_7-of-12">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input class="slds-input cbds-inventoryaggr__input--shtax{$key}-amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
+														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+														</span>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+										{/foreach}
+									</div>
+								</div>
+								<!-- // Shipping and handling aggregation -->
 							</div>
 						</div>
-					</article>
-				</li>
-				<li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-5">
-					<article class="slds-tile slds-tile_board">
-						<h3 class="slds-tile__title slds-truncate slds-text-heading_small" title="Total taxes">Total taxes</h3>
-						<div class="slds-tile__detail">
-							<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-								<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--taxtotal" value="{$inventoryblock.aggr.taxtotal}" />
-								<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-									<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-								</span>
+					</div>
+				</div>
+				<div class="slds-col">
+					<div class="slds-panel">
+						<div class="slds-panel__header">
+							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate slds-text-align_right" title="Totals">Totals</h2>
+						</div>
+						<div class="slds-panel__body slds-p-around_none">
+							<div class="slds-panel__section slds-p-around_none">
+								<!-- Totals -->
+								<div class="slds-form slds-p-around_small slds-p-around_medium cbds-inventoryaggr__taxes--sh">
+									<div class="slds-form-element__row slds-wrap">
+										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
+											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
+												<legend class="slds-form-element__label slds-text-title_caps">Gross total</legend>
+												<div class="slds-col slds-form-element">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--grosstotal" value="{$inventoryblock.aggr.grosstotal}" />
+														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+														</span>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+									<div class="slds-form-element__row slds-wrap">
+										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
+											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
+												<legend class="slds-form-element__label slds-text-title_caps">Total discount</legend>
+												<div class="slds-col slds-form-element">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--totaldiscount" value="{$inventoryblock.aggr.totaldiscount}" />
+														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+														</span>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+									<div class="slds-form-element__row slds-wrap">
+										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
+											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
+												<legend class="slds-form-element__label slds-text-title_caps">Total taxes</legend>
+												<div class="slds-col slds-form-element">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--taxtotal" value="{$inventoryblock.aggr.taxtotal}" />
+														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+														</span>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+									<div class="slds-form-element__row slds-wrap">
+										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
+											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
+												<legend class="slds-form-element__label slds-text-title_caps">Net total</legend>
+												<div class="slds-col slds-form-element">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--subtotal" value="{$inventoryblock.aggr.subtotal}" />
+														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+														</span>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+									<div class="slds-form-element__row slds-wrap">
+										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
+											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
+												<legend class="slds-form-element__label slds-text-title_caps">Total</legend>
+												<div class="slds-col slds-form-element">
+													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--total" value="{$inventoryblock.aggr.total}" />
+														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
+															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+														</span>
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</div>
+								</div>
+								<!-- // Totals -->
 							</div>
 						</div>
-					</article>
-				</li>
-				<li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-5">
-					<article class="slds-tile slds-tile_board">
-						<h3 class="slds-tile__title slds-truncate slds-text-heading_small" title="Net total">Net total</h3>
-						<div class="slds-tile__detail">
-							<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-								<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--subtotal" value="{$inventoryblock.aggr.subtotal}" />
-								<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-									<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-								</span>
-							</div>
-						</div>
-					</article>
-				</li>
-				<li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-5">
-					<article class="slds-tile slds-tile_board">
-						<h3 class="slds-tile__title slds-truncate slds-text-heading_small" title="Total">Total</h3>
-						<div class="slds-tile__detail">
-							<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-								<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--total" value="{$inventoryblock.aggr.total}" />
-								<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-									<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-								</span>
-							</div>
-						</div>
-					</article>
-				</li>
-			</ul>
+					</div>
+				</div>
+			</div>
 			<!-- Aggregation tax block -->
 			<div class="cbds-inventoryaggr__taxes">
-				<!-- Group aggregation taxes -->
-				<div class="slds-form slds-form_compound slds-p-around_medium cbds-inventoryaggr__taxes--group{if $inventoryblock.taxtype == 'group'} active{/if}">
-					<div class="slds-form-element__row">
-						<div class="slds-text-heading_medium">Group Taxes</div>
-					</div>
-					<div class="slds-form-element__row slds-wrap">
-						{foreach from=$inventoryblock.grouptaxes item=tax key=key name=name}
-						<div class="slds-form-element__group slds-size_1-of-4">
-							<fieldset class="slds-form-element">
-								<legend class="slds-form-element__label slds-text-title_caps">{$tax.taxname}</legend>
-								<div class="slds-grid">
-								<div class="slds-col slds-form-element slds-size_5-of-12">
-									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-										<input class="slds-input cbds-inventoryaggr__input--tax{$key}" value="{$tax.percent}" type="text" data-type="number" data-taxname="tax{$key}" data-error-mess="Please insert a valid number">
-										<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-											<div class="slds-text-body_regular slds-text-color_weak">%</div>
-										</span>
-									</div>
-									<div class="slds-form-element__help"></div>
-								</div>
-								<div class="slds-col slds-form-element slds-size_7-of-12">
-									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-										<input class="slds-input cbds-inventoryaggr__input--tax{$key}-amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
-										<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-											<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-										</span>
-									</div>
-								</div>
-							</fieldset>
-						</div>
-						{/foreach}
-					</div>
-				</div>
-				<!-- // Group aggregation taxes -->
-				<!-- Shipping and handling aggregation taxes -->
-				<div class="slds-form slds-form_compound slds-p-around_medium cbds-inventoryaggr__taxes--sh">
-					<div class="slds-form-element__row">
-						<div class="slds-text-heading_medium">Sales and Handling Taxes</div>
-					</div>
-					<div class="slds-form-element__row slds-wrap">
-						{foreach from=$inventoryblock.shtaxes item=shtax key=key name=name}
-						<div class="slds-form-element__group slds-size_1-of-4">
-							<fieldset class="slds-form-element">
-								<legend class="slds-form-element__label slds-text-title_caps">{$shtax.taxname}</legend>
-								<div class="slds-grid">
-								<div class="slds-col slds-form-element slds-size_5-of-12">
-									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-										<input class="slds-input cbds-inventoryaggr__input--shtax{$key}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="shtax{$key}" data-error-mess="Please insert a valid number">
-										<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-											<div class="slds-text-body_regular slds-text-color_weak">%</div>
-										</span>
-									</div>
-									<div class="slds-form-element__help"></div>
-								</div>
-								<div class="slds-col slds-form-element slds-size_7-of-12">
-									<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-										<input class="slds-input cbds-inventoryaggr__input--shtax{$key}-amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
-										<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-											<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-										</span>
-									</div>
-								</div>
-							</fieldset>
-						</div>
-						{/foreach}
-					</div>
-				</div>
-				<!-- // Shipping and handling aggregation taxes -->
 			</div>
 			<!-- // Aggregation tax block -->
 		</div>
