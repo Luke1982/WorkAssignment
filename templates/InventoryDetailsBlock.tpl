@@ -109,7 +109,7 @@ window.addEventListener("load", function(){
 		{/foreach}
 	</div>
 	<!-- LDS Aggregations block -->
-	<article class="slds-card">
+	<article class="slds-card slds-theme_shade">
 		<div class="slds-card__header slds-grid">
 			<header class="slds-media slds-media_center slds-has-flexi-truncate">
 				<div class="slds-media__figure">
@@ -128,7 +128,7 @@ window.addEventListener("load", function(){
 				</div>
 			</header>
 			<div class="slds-no-flex">
-				<div class="slds-button-group">
+				<div class="slds-button-group slds-theme_default">
 					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-toolbox__tool" data-clickfunction="expandAllLines" title="Expand all lines" aria-pressed="false">
 						<svg class="slds-button__icon" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#expand_all"></use>
@@ -158,40 +158,46 @@ window.addEventListener("load", function(){
 		</div>
 		<div class="slds-card__body cbds-inventoryaggr">
 			<div class="slds-grid">
-				<div class="slds-col slds-size_3-of-12">
-					<div class="slds-panel">
+				<div class="slds-col slds-size_4-of-12">
+					<div class="slds-panel slds-m-around_small slds-theme_shade slds-theme_alert-texture slds-box">
 						<div class="slds-panel__header">
 							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Group Taxes">Group Taxes</h2>
 						</div>
 						<div class="slds-panel__body slds-p-around_none">
 							<div class="slds-panel__section slds-p-around_none">
 								<!-- Group aggregation taxes -->
-								<div class="slds-form slds-p-around_small cbds-inventoryaggr__taxes--group{if $inventoryblock.taxtype == 'group'} active{/if}">
+								<div class="slds-text-color_default slds-form slds-p-around_small cbds-inventoryaggr__taxes--group{if $inventoryblock.taxtype == 'group'} active{/if}">
 									<div class="slds-form-element__row slds-wrap">
 										{foreach from=$inventoryblock.grouptaxes item=tax key=key name=name}
-										<div class="slds-form-element__group">
-											<fieldset class="slds-form-element">
-												<legend class="slds-form-element__label slds-text-title_caps">{$tax.taxlabel}</legend>
-												<div class="slds-grid">
-												<div class="slds-col slds-form-element slds-size_5-of-12">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input class="slds-input cbds-inventoryaggr__input--tax{$key}" value="{$tax.percent}" type="text" data-type="number" data-taxname="tax{$key}" data-error-mess="Please insert a valid number">
-														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">%</div>
-														</span>
+										<fieldset class="slds-form-element slds-form-element_compound slds-is-editing slds-form-element_horizontal">
+											<legend class="slds-form-element__legend slds-form-element__label">{$tax.taxlabel}</legend>
+											<div class="slds-form-element__control">
+												<div class="slds-form-element__row slds-wrap">
+													<div class="slds-size_1-of-1 slds-large-size_1-of-2">
+														<div class="slds-form-element">
+															<label class="slds-form-element__label">Percentage</label>
+															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+																<input class="slds-input cbds-inventoryaggr__input--tax{$key}" value="{$tax.percent}" type="text" data-type="number" data-taxname="tax{$key}" data-error-mess="Please insert a valid number">
+																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
+																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
+																</span>
+															</div>
+														</div>
 													</div>
-													<div class="slds-form-element__help"></div>
-												</div>
-												<div class="slds-col slds-form-element slds-size_7-of-12">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input class="slds-input cbds-inventoryaggr__input--tax{$key}-amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
-														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-														</span>
+													<div class="slds-size_1-of-1 slds-large-size_1-of-2">
+														<div class="slds-form-element">
+															<label class="slds-form-element__label">Amount</label>
+															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+																<input class="slds-input cbds-inventoryaggr__input--tax{$key}-amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
+																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
+																	<div class="slds-text-body_regular">&euro;</div>
+																</span>
+															</div>
+														</div>
 													</div>
 												</div>
-											</fieldset>
-										</div>
+											</div>
+										</fieldset>
 										{/foreach}
 									</div>
 								</div>
@@ -200,55 +206,63 @@ window.addEventListener("load", function(){
 						</div>
 					</div>
 				</div>
-				<div class="slds-col slds-size_3-of-12">
-					<div class="slds-panel">
+				<div class="slds-col slds-size_4-of-12">
+					<div class="slds-panel slds-m-around_small slds-theme_shade slds-theme_alert-texture slds-box">
 						<div class="slds-panel__header">
-							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Sales & Handling Taxes">Sales & Handling Taxes</h2>
+							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Sales & Handling">Sales & Handling</h2>
 						</div>
 						<div class="slds-panel__body slds-p-around_none">
 							<div class="slds-panel__section slds-p-around_none">
 								<!-- Shipping and handling aggregation -->
-								<div class="slds-form slds-p-around_small slds-p-around_medium cbds-inventoryaggr__taxes--sh">
+								<div class="slds-text-color_default slds-form slds-p-around_small slds-p-around_medium cbds-inventoryaggr__taxes--sh">
 									<div class="slds-form-element__row slds-wrap">
-										<div class="slds-form-element__group">
-											<fieldset class="slds-form-element">
-												<legend class="slds-form-element__label slds-text-title_caps">Shipping & Handling amount</legend>
-												<div class="slds-grid">
-												<div class="slds-col slds-form-element slds-size_5-of-12">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input class="slds-input cbds-inventoryaggr__input--shamount" value="{$inventoryblock.aggr.shtotal}" type="text" data-type="currency" data-error-mess="Please insert a valid currency">
-														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-														</span>
+										<fieldset class="slds-form-element slds-form-element_compound slds-is-editing slds-form-element_horizontal">
+											<legend class="slds-form-element__legend slds-form-element__label">S&H amount</legend>
+											<div class="slds-form-element__control">
+												<div class="slds-form-element__row">
+													<div class="slds-size_1-of-1">
+														<div class="slds-form-element">
+															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+																<input class="slds-input cbds-inventoryaggr__input--shamount" value="{$inventoryblock.aggr.shtotal}" type="text" data-type="currency" data-error-mess="Please insert a valid currency">
+																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
+																	<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+																</span>
+															</div>
+														</div>
 													</div>
-													<div class="slds-form-element__help"></div>
 												</div>
-											</fieldset>
-										</div>
+											</div>
+										</fieldset>
 										{foreach from=$inventoryblock.shtaxes item=shtax key=key name=name}
-										<div class="slds-form-element__group">
-											<fieldset class="slds-form-element">
-												<legend class="slds-form-element__label slds-text-title_caps">{$shtax.taxlabel}</legend>
-												<div class="slds-grid">
-												<div class="slds-col slds-form-element slds-size_5-of-12">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input class="slds-input cbds-inventoryaggr__input--shtax{$key}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="shtax{$key}" data-error-mess="Please insert a valid number">
-														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">%</div>
-														</span>
+										<fieldset class="slds-form-element slds-form-element_compound slds-is-editing slds-form-element_horizontal">
+											<legend class="slds-form-element__legend slds-form-element__label">{$shtax.taxlabel}</legend>
+											<div class="slds-form-element__control">
+												<div class="slds-form-element__row slds-wrap">
+													<div class="slds-size_1-of-1 slds-large-size_1-of-2">
+														<div class="slds-form-element">
+															<label class="slds-form-element__label">Percentage</label>
+															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+																<input class="slds-input cbds-inventoryaggr__input--shtax{$key}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="shtax{$key}" data-error-mess="Please insert a valid number">
+																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
+																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
+																</span>
+															</div>
+														</div>
 													</div>
-													<div class="slds-form-element__help"></div>
-												</div>
-												<div class="slds-col slds-form-element slds-size_7-of-12">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input class="slds-input cbds-inventoryaggr__input--shtax{$key}-amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
-														<span class="slds-icon_container slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-														</span>
+													<div class="slds-size_1-of-1 slds-large-size_1-of-2">
+														<div class="slds-form-element">
+															<label class="slds-form-element__label">Amount</label>
+															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+																<input class="slds-input cbds-inventoryaggr__input--shtax{$key}-amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
+																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
+																	<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
+																</span>
+															</div>
+														</div>
 													</div>
 												</div>
-											</fieldset>
-										</div>
+											</div>
+										</fieldset>
 										{/foreach}
 									</div>
 								</div>
@@ -257,88 +271,76 @@ window.addEventListener("load", function(){
 						</div>
 					</div>
 				</div>
-				<div class="slds-col">
-					<div class="slds-panel">
+				<div class="slds-col slds-size_4-of-12">
+					<div class="slds-panel slds-m-around_small slds-box slds-theme_shade">
 						<div class="slds-panel__header">
 							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate slds-text-align_right" title="Totals">Totals</h2>
 						</div>
-						<div class="slds-panel__body slds-p-around_none">
-							<div class="slds-panel__section slds-p-around_none">
+						<div class="slds-panel__body">
+							<div class="slds-panel__section slds-p-right_none">
 								<!-- Totals -->
-								<div class="slds-form slds-p-around_small slds-p-around_medium cbds-inventoryaggr__taxes--sh">
-									<div class="slds-form-element__row slds-wrap">
-										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
-											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
-												<legend class="slds-form-element__label slds-text-title_caps">Gross total</legend>
-												<div class="slds-col slds-form-element">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--grosstotal" value="{$inventoryblock.aggr.grosstotal}" />
-														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-														</span>
-													</div>
-												</div>
-											</fieldset>
+								<div class="slds-grid">
+									<div class="slds-col slds-size_7-of-12">
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Gross total</div>
+									</div>
+									<div class="slds-col slds-size_5-of-12">
+										<div class="slds-grid">
+											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+											<div class="slds-col slds-size_10-of-12">
+												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--grosstotal" value="{$inventoryblock.aggr.grosstotal}" />
+											</div>
 										</div>
 									</div>
-									<div class="slds-form-element__row slds-wrap">
-										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
-											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
-												<legend class="slds-form-element__label slds-text-title_caps">Total discount</legend>
-												<div class="slds-col slds-form-element">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--totaldiscount" value="{$inventoryblock.aggr.totaldiscount}" />
-														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-														</span>
-													</div>
-												</div>
-											</fieldset>
+								</div>
+								<div class="slds-grid">
+									<div class="slds-col slds-size_7-of-12">
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total discount</div>
+									</div>
+									<div class="slds-col slds-size_5-of-12">
+										<div class="slds-grid">
+											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+											<div class="slds-col slds-size_10-of-12">
+												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--totaldiscount" value="{$inventoryblock.aggr.totaldiscount}" />
+											</div>
 										</div>
 									</div>
-									<div class="slds-form-element__row slds-wrap">
-										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
-											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
-												<legend class="slds-form-element__label slds-text-title_caps">Total taxes</legend>
-												<div class="slds-col slds-form-element">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--taxtotal" value="{$inventoryblock.aggr.taxtotal}" />
-														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-														</span>
-													</div>
-												</div>
-											</fieldset>
+								</div>
+								<div class="slds-grid">
+									<div class="slds-col slds-size_7-of-12">
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total taxes</div>
+									</div>
+									<div class="slds-col slds-size_5-of-12">
+										<div class="slds-grid">
+											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+											<div class="slds-col slds-size_10-of-12">
+												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--taxtotal" value="{$inventoryblock.aggr.taxtotal}" />
+											</div>
 										</div>
 									</div>
-									<div class="slds-form-element__row slds-wrap">
-										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
-											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
-												<legend class="slds-form-element__label slds-text-title_caps">Net total</legend>
-												<div class="slds-col slds-form-element">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--subtotal" value="{$inventoryblock.aggr.subtotal}" />
-														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-														</span>
-													</div>
-												</div>
-											</fieldset>
+								</div>
+								<div class="slds-grid">
+									<div class="slds-col slds-size_7-of-12">
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Net total</div>
+									</div>
+									<div class="slds-col slds-size_5-of-12">
+										<div class="slds-grid">
+											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+											<div class="slds-col slds-size_10-of-12">
+												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--subtotal" value="{$inventoryblock.aggr.subtotal}" />
+											</div>
 										</div>
 									</div>
-									<div class="slds-form-element__row slds-wrap">
-										<div class="slds-form-element__group slds-float_right" style="min-width:25rem; clear: both;">
-											<fieldset class="slds-form-element slds-form-element_horizontal slds-m-bottom_none">
-												<legend class="slds-form-element__label slds-text-title_caps">Total</legend>
-												<div class="slds-col slds-form-element">
-													<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-														<input type="text" readonly="readonly" data-type="currency" class="slds-input cbds-inventoryaggr__input--total" value="{$inventoryblock.aggr.total}" />
-														<span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_left">
-															<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
-														</span>
-													</div>
-												</div>
-											</fieldset>
+								</div>
+								<div class="slds-grid">
+									<div class="slds-col slds-size_7-of-12">
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total</div>
+									</div>
+									<div class="slds-col slds-size_5-of-12">
+										<div class="slds-grid">
+											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+											<div class="slds-col slds-size_10-of-12">
+												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--total" value="{$inventoryblock.aggr.total}" />
+											</div>
 										</div>
 									</div>
 								</div>
