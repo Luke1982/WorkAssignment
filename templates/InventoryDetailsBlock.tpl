@@ -159,14 +159,14 @@ window.addEventListener("load", function(){
 		<div class="slds-card__body cbds-inventoryaggr">
 			<div class="slds-grid">
 				<div class="slds-col slds-size_4-of-12">
-					<div class="slds-panel slds-m-around_small slds-theme_shade slds-theme_alert-texture slds-box">
+					<div class="slds-panel slds-m-around_small slds-theme_shade slds-theme_alert-texture slds-box cbds-inventoryaggr__taxes--group{if $inventoryblock.taxtype == 'group'} active{/if}">
 						<div class="slds-panel__header">
-							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Group Taxes">Group Taxes</h2>
+							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate slds-text-color_default" title="Group Taxes">Group Taxes</h2>
 						</div>
 						<div class="slds-panel__body slds-p-around_none">
 							<div class="slds-panel__section slds-p-around_none">
 								<!-- Group aggregation taxes -->
-								<div class="slds-text-color_default slds-form slds-p-around_small cbds-inventoryaggr__taxes--group{if $inventoryblock.taxtype == 'group'} active{/if}">
+								<div class="slds-text-color_default slds-form slds-p-around_small">
 									<div class="slds-form-element__row slds-wrap">
 										{foreach from=$inventoryblock.grouptaxes item=tax key=key name=name}
 										<fieldset class="slds-form-element slds-form-element_compound slds-is-editing slds-form-element_horizontal">
