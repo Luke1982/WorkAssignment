@@ -20,7 +20,7 @@ window.addEventListener("load", function(){
 <!-- Detail block -->
 <div class="cbds-detail-block cbds-inventory-block">
 	<!-- Detail line preheader -->
-	<div class="slds-grid slds-p-vertical_medium cbds-detail-line-preheader">
+	<div class="slds-grid slds-p-vertical_medium slds-theme_alt-inverse" style="border-radius: 0.25rem 0.25rem 0 0;">
 		<div class="slds-col slds-size_8-of-12 slds-p-left_medium">
 			<span class="slds-icon_container slds-icon-utility-picklist-type" title="">
 				<svg class="slds-icon slds-icon_small" aria-hidden="true">
@@ -30,7 +30,7 @@ window.addEventListener("load", function(){
 			</span>
 		</div>
 		<div class="slds-col slds-size_4-of-12 slds-grid">
-			<div class="slds-col">
+			<div class="slds-col slds-text-color_default">
 				<!-- Group/individual dropdown -->
 				{$taxtypes[] = ['val' => 'individual', 'label' => $APP.LBL_INDIVIDUAL]}
 				{$taxtypes[] = ['val' => 'group', 'label' => $APP.LBL_GROUP]}
@@ -70,7 +70,7 @@ window.addEventListener("load", function(){
 	</div>
 	<!-- // Detail line preheader -->
 	<!-- LDS Detail line header -->
-	<div class="slds-grid slds-border_bottom slds-p-vertical_small cbds-detail-line-header">
+	<div class="slds-grid slds-border_bottom slds-p-vertical_small slds-theme_inverse" style="border-radius: 0 0 0.25rem 0.25rem;">
 		<div class="slds-col slds-size_1-of-12 slds-p-left_x-small">
 			<div class="slds-text-title_caps slds-text-color_inverse">Image</div>
 		</div>
@@ -82,7 +82,7 @@ window.addEventListener("load", function(){
 				<div class="slds-col slds-size_1-of-12 slds-p-left_xx-small">
 					<div class="slds-text-title_caps slds-text-color_inverse">Quantity</div>
 				</div>
-				<div class="slds-grid slds-size_3-of-12 slds-p-left_medium">
+				<div class="slds-grid slds-size_3-of-12">
 					<div class="slds-col slds-size_5-of-12">
 						<div class="slds-text-title_caps slds-text-color_inverse">Discount type</div>
 					</div>
@@ -90,16 +90,16 @@ window.addEventListener("load", function(){
 						<div class="slds-text-title_caps slds-text-color_inverse">Discount</div>
 					</div>
 				</div>
-				<div class="slds-col slds-size_2-of-12 slds-p-left_large">
+				<div class="slds-col slds-size_2-of-12">
 					<div class="slds-text-title_caps slds-text-color_inverse">Discount amount</div>
 				</div>
-				<div class="slds-col slds-size_2-of-12 slds-p-left_x-large">
+				<div class="slds-col slds-size_2-of-12">
 					<div class="slds-text-title_caps slds-text-color_inverse">Line total</div>
 				</div>
 			</div>
 		</div>
 		<div class="slds-col slds-size_2-of-12">
-			<div class="slds-text-title_caps slds-p-left_large slds-text-color_inverse">Line tools</div>
+			<div class="slds-text-title_caps slds-p-right_small slds-text-color_inverse slds-text-align_right">Line tools</div>
 		</div>
 	</div>
 	<!-- // LDS Detail line header -->
