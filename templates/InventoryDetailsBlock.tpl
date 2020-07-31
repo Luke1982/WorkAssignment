@@ -35,7 +35,7 @@ window.addEventListener("load", function(){
 				{$taxtypes[] = ['val' => 'individual', 'label' => $APP.LBL_INDIVIDUAL]}
 				{$taxtypes[] = ['val' => 'group', 'label' => $APP.LBL_GROUP]}
 				{if $inventoryblock.taxtype == 'group'}{$curtaxtype = $APP.LBL_GROUP}{else}{$curtaxtype = $APP.LBL_INDIVIDUAL}{/if}
-				{call name=ProductDropdownFormElement size='1-of-1' fieldname='taxtype' value=$curtaxtype placeholder='Tax type' options=$taxtypes prefix='cbds-inventory-block__input'}
+				{call name=ProductDropdownFormElement size='1-of-1' fieldname='taxtype' value=$inventoryblock.taxtype placeholder='Tax type' options=$taxtypes prefix='cbds-inventory-block__input' valuelabel=$curtaxtype}
 				<!-- // Group/individual dropdown -->
 			</div>
 			<div class="slds-col slds-p-right_medium">
