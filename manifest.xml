@@ -46,8 +46,8 @@
           `workassignmentname` VARCHAR(100) NOT NULL,
           `startdate` DATE NOT NULL,
           `enddate` DATE DEFAULT NULL,
-          `account` INT(11) NOT NULL,
-          `contact` INT(11) DEFAULT NULL,
+          `account_id` INT(11) NOT NULL,
+          `contact_id` INT(11) DEFAULT NULL,
           `salesorder` INT(11) NOT NULL,
           `wastatus` VARCHAR(100) DEFAULT NULL,
           `pl_gross_total` DECIMAL(25,6),
@@ -161,12 +161,12 @@
                 <masseditable>0</masseditable>
               </field>
               <field>
-                <fieldname>account</fieldname>
+                <fieldname>account_id</fieldname>
                 <uitype>10</uitype>
-                <columnname>account</columnname>
+                <columnname>account_id</columnname>
                 <tablename>vtiger_workassignment</tablename>
                 <generatedtype>1</generatedtype>
-                <fieldlabel>account</fieldlabel>
+                <fieldlabel>account_id</fieldlabel>
                 <readonly>1</readonly>
                 <presence>0</presence>
                 <selected>0</selected>
@@ -183,12 +183,12 @@
                 </relatedmodules>
               </field>
               <field>
-                <fieldname>contact</fieldname>
+                <fieldname>contact_id</fieldname>
                 <uitype>10</uitype>
-                <columnname>contact</columnname>
+                <columnname>contact_id</columnname>
                 <tablename>vtiger_workassignment</tablename>
                 <generatedtype>1</generatedtype>
-                <fieldlabel>contact</fieldlabel>
+                <fieldlabel>contact_id</fieldlabel>
                 <readonly>1</readonly>
                 <presence>0</presence>
                 <selected>0</selected>
