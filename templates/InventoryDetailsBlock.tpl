@@ -177,7 +177,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">Percentage</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--tax{$key}" value="{$tax.percent}" type="text" data-type="number" data-taxname="tax{$key}" data-error-mess="Please insert a valid number">
+																<input class="slds-input cbds-inventoryaggr__input--{$tax.taxname}" value="{$tax.percent}" type="text" data-type="number" data-taxname="{$tax.taxname}" data-error-mess="Please insert a valid number">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
 																</span>
@@ -188,7 +188,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">Amount</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--tax{$key}-amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
+																<input class="slds-input cbds-inventoryaggr__input--{$tax.taxname}-amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
 																	<div class="slds-text-body_regular">&euro;</div>
 																</span>
@@ -242,7 +242,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">Percentage</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--shtax{$key}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="shtax{$key}" data-error-mess="Please insert a valid number">
+																<input class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="{$shtax.taxname}" data-error-mess="Please insert a valid number">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
 																</span>
@@ -253,7 +253,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">Amount</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--shtax{$key}-amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
+																<input class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}-amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
 																</span>
