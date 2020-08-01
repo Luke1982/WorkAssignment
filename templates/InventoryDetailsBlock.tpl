@@ -177,7 +177,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">Percentage</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--{$tax.taxname}" value="{$tax.percent}" type="text" data-type="number" data-taxname="{$tax.taxname}" data-error-mess="Please insert a valid number">
+																<input data-savefield="{$tax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$tax.taxname}" value="{$tax.percent}" type="text" data-type="number" data-taxname="{$tax.taxname}" data-error-mess="Please insert a valid number">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
 																</span>
@@ -188,7 +188,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">Amount</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--{$tax.taxname}-amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
+																<input data-savefield="{$tax.taxname}_amount" class="slds-input cbds-inventoryaggr__input--{$tax.taxname}-amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
 																	<div class="slds-text-body_regular">&euro;</div>
 																</span>
@@ -223,7 +223,7 @@ window.addEventListener("load", function(){
 													<div class="slds-size_1-of-1">
 														<div class="slds-form-element">
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--shamount" value="{$inventoryblock.aggr.shtotal}" type="text" data-type="currency" data-error-mess="Please insert a valid currency">
+																<input class="slds-input cbds-inventoryaggr__input--pl_sh_total" value="{$inventoryblock.aggr.pl_sh_total}" type="text" data-type="currency" data-error-mess="Please insert a valid currency">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
 																</span>
@@ -242,7 +242,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">Percentage</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="{$shtax.taxname}" data-error-mess="Please insert a valid number">
+																<input data-savefield="{$shtax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="{$shtax.taxname}" data-error-mess="Please insert a valid number">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
 																</span>
@@ -253,7 +253,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">Amount</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}-amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
+																<input data-savefield="{$shtax.taxname}_amount" class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}-amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
 																</span>
@@ -287,7 +287,7 @@ window.addEventListener("load", function(){
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 											<div class="slds-col slds-size_10-of-12">
-												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--grosstotal" value="{$inventoryblock.aggr.grosstotal}" />
+												<input data-savefield="pl_gross_total" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--grosstotal" value="{$inventoryblock.aggr.grosstotal}" />
 											</div>
 										</div>
 									</div>
@@ -300,7 +300,7 @@ window.addEventListener("load", function(){
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 											<div class="slds-col slds-size_10-of-12">
-												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--totaldiscount" value="{$inventoryblock.aggr.totaldiscount}" />
+												<input data-savefield="pl_dto_total" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--totaldiscount" value="{$inventoryblock.aggr.totaldiscount}" />
 											</div>
 										</div>
 									</div>
@@ -313,7 +313,7 @@ window.addEventListener("load", function(){
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 											<div class="slds-col slds-size_10-of-12">
-												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--taxtotal" value="{$inventoryblock.aggr.taxtotal}" />
+												<input data-savefield="sum_taxtotal" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--taxtotal" value="{$inventoryblock.aggr.taxtotal}" />
 											</div>
 										</div>
 									</div>
@@ -326,7 +326,7 @@ window.addEventListener("load", function(){
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 											<div class="slds-col slds-size_10-of-12">
-												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--subtotal" value="{$inventoryblock.aggr.subtotal}" />
+												<input data-savefield="sum_nettotal" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--subtotal" value="{$inventoryblock.aggr.subtotal}" />
 											</div>
 										</div>
 									</div>
@@ -339,7 +339,7 @@ window.addEventListener("load", function(){
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 											<div class="slds-col slds-size_10-of-12">
-												<input type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--total" value="{$inventoryblock.aggr.total}" />
+												<input data-savefield="pl_grand_total" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--total" value="{$inventoryblock.aggr.total}" />
 											</div>
 										</div>
 									</div>
