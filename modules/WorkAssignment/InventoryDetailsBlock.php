@@ -60,6 +60,8 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
 
 		self::$mod_info['taxtype'] = strtolower($fields['taxtype']);
+		self::$mod_info['aggr']['shtotal'] = $fields['pl_sh_total'];
+		self::$mod_info['aggr']['shtaxtotal'] = $fields['pl_sh_tax'];
 		self::$mod_info['aggr']['grosstotal'] = $fields['pl_gross_total'];
 		self::$mod_info['aggr']['totaldiscount'] = $fields['pl_dto_total'];
 		self::$mod_info['aggr']['taxtotal'] = $fields['sum_taxtotal'];
