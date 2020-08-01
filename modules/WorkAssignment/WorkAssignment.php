@@ -7,314 +7,208 @@
  * Portions created by vtiger are Copyright (C) vtiger.
  * All Rights Reserved.
  ************************************************************************************/
+require_once 'data/CRMEntity.php';
+require_once 'data/Tracker.php';
 
-class InventoryDetailsBlock {
-	public static function getWidget($name) {
-		return (new InventoryDetailsBlock_RenderBlock());
-	}
-}
+class WorkAssignment extends CRMEntity {
+	public $db;
 
-class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
+	public $table_name = 'vtiger_workassignment';
+	public $table_index= 'workassignmentid';
+	public $column_fields = array();
 
-	private static $modname = '';
-	private static $tax_blocks = array(
-		'LBL_BLOCK_TAXES' => array(),
-		'LBL_BLOCK_SH_TAXES' => array(),
+	/** Indicator if this is a custom module or standard module */
+	public $IsCustomModule = true;
+	public $HasDirectImageField = false;
+	public $moduleIcon = array('library' => 'standard', 'containerClass' => 'slds-icon_container slds-icon-standard-work-order', 'class' => 'slds-icon', 'icon'=>'work_order');
+	/**
+	 * Mandatory table for supporting custom fields.
+	 */
+	public $customFieldTable = array('vtiger_workassignmentcf', 'workassignmentid');
+	// related_tables variable should define the association (relation) between dependent tables
+	// FORMAT: related_tablename => array(related_tablename_column[, base_tablename, base_tablename_column[, related_module]] )
+	// Here base_tablename_column should establish relation with related_tablename_column
+	// NOTE: If base_tablename and base_tablename_column are not specified, it will default to modules (table_name, related_tablename_column)
+	// Uncomment the line below to support custom field columns on related lists
+	// public $related_tables = array('vtiger_workassignmentcf' => array('workassignmentid', 'vtiger_workassignment', 'workassignmentid', 'workassignment'));
+
+	/**
+	 * Mandatory for Saving, Include tables related to this module.
+	 */
+	public $tab_name = array('vtiger_crmentity', 'vtiger_workassignment', 'vtiger_workassignmentcf');
+
+	/**
+	 * Mandatory for Saving, Include tablename and tablekey columnname here.
+	 */
+	public $tab_name_index = array(
+		'vtiger_crmentity' => 'crmid',
+		'vtiger_workassignment' => 'workassignmentid',
+		'vtiger_workassignmentcf' => 'workassignmentid',
 	);
-	private static $mod_info = array(
-		'taxtype' => 'group',
-		'aggr' => array(
-			'grosstotal' => 0,
-			'totaldiscount' => 0,
-			'taxtotal' => 0,
-			'subtotal' => 0,
-			'total' => 0,
-		),
-		'grouptaxes' => array(),
-		'shtaxes' => array(),
-		'lines' => array(),
+
+	/**
+	 * Mandatory for Listing (Related listview)
+	 */
+	public $list_fields = array(
+		/* Format: Field Label => array(tablename => columnname) */
+		// tablename should not have prefix 'vtiger_'
+		'workassignment_no'=> array('workassignment' => 'workassignment_no'),
+		'workassignmentname'=> array('workassignment' => 'workassignmentname'),
+		'Assigned To' => array('crmentity' => 'smownerid')
+	);
+	public $list_fields_name = array(
+		/* Format: Field Label => fieldname */
+		'workassignment_no'=> 'workassignment_no',
+		'workassignmentname'=> 'workassignmentname',
+		'Assigned To' => 'assigned_user_id'
 	);
 
-	public static function title() {
-		return getTranslatedString('LBL_INVENTORYDETAILS_BLOCK', self::$modname);
-	}
+	// Make the field link to detail view from list view (Fieldname)
+	public $list_link_field = 'workassignment_no';
 
-	private static function setModuleNameFromContext($context) {
-		self::$modname = $context['MODULE']->value;
-	}
+	// For Popup listview and UI type support
+	public $search_fields = array(
+		/* Format: Field Label => array(tablename => columnname) */
+		// tablename should not have prefix 'vtiger_'
+		'workassignment_no'=> array('workassignment' => 'workassignment_no'),
+		'workassignmentname'=> array('workassignment' => 'workassignmentname'),
+	);
+	public $search_fields_name = array(
+		/* Format: Field Label => fieldname */
+		'workassignment_no'=> 'workassignment_no',
+		'workassignmentname'=> 'workassignmentname',
+	);
 
-	/**
-	 * Get the parent (or 'master') module context and get relevant
-	 * information for the block from it. Save that on the class
-	 * property $mod_info
-	 *
-	 * @param Array $context  Context array about the parent
-	 *
-	 * @throws None
-	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return None
-	 */
-	private static function setModInfoFromContext($context) {
-		$fields = $context['FIELDS']->value;
-		$taxes = self::getTaxes($context);
-		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
+	// For Popup window record selection
+	public $popup_fields = array('workassignment_no','workassignmentname');
 
-		self::$mod_info['taxtype'] = strtolower($fields['taxtype']);
-		self::$mod_info['aggr']['shtotal'] = $fields['pl_sh_total'];
-		self::$mod_info['aggr']['shtaxtotal'] = $fields['pl_sh_tax'];
-		self::$mod_info['aggr']['grosstotal'] = $fields['pl_gross_total'];
-		self::$mod_info['aggr']['totaldiscount'] = $fields['pl_dto_total'];
-		self::$mod_info['aggr']['taxtotal'] = $fields['sum_taxtotal'];
-		self::$mod_info['aggr']['subtotal'] = $fields['pl_net_total'];
-		self::$mod_info['aggr']['total'] = $fields['pl_grand_total'];
-		self::$mod_info['grouptaxes'] = $taxes[$tax_block_label];
-		self::$mod_info['shtaxes'] = $taxes[$shtax_block_label];
-	}
+	// Placeholder for sort fields - All the fields will be initialized for Sorting through initSortFields
+	public $sortby_fields = array();
 
-	/**
-	 * Interface implementation method that should return
-	 * the HTML rendered on screen
-	 *
-	 * @param Array $context  Context array about the parent
-	 *
-	 * @throws None
-	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return String HTML that renders on screen
-	 */
-	public function process($context = false) {
-		// $context contains the WorkAssignment ID
-		// in $context['ID']
-		self::setModuleNameFromContext($context);
-		self::setModInfoFromContext($context);
-		self::$mod_info['lines'] = self::getLinesFromId((int)$context['ID']->value);
-		$smarty = $this->setupRenderer();
-		$smarty->assign('inventoryblock', self::$mod_info);
-		$smarty->assign('context', $context);
-		return $smarty->fetch('modules/' . self::$modname . '/InventoryDetailsBlock.tpl');
-	}
+	// For Alphabetical search
+	public $def_basicsearch_col = 'workassignment_no';
 
-	/**
-	 * Get the Smarty renderer and retrieves some language
-	 * strings from both the global app as the module.
-	 *
-	 * @param None
-	 *
-	 * @throws None
-	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return Object Smarty instance with language arrays preloaded
-	 */
-	private function setupRenderer() {
-		global $app_strings;
-		require_once 'Smarty_setup.php';
-		$smarty = new vtigerCRM_Smarty();
-		$smarty->assign('APP', $app_strings);
-		$smarty->assign('MOD', return_module_language($current_language, self::$modname));
-		return $smarty;
-	}
+	// Column value to use on detail view record text display
+	public $def_detailview_recname = 'workassignmentname';
 
-	/**
-	 * Get the array-representation of the businessmap
-	 * for the parent (or 'master') module
-	 *
-	 * @param None
-	 *
-	 * @throws None
-	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return Array
-	 */
-	private static function getBusinessMapLayout() {
-		require_once 'modules/cbMap/cbMap.php';
-		return cbMap::getMapByName(self::$modname . 'InventoryDetails')->MasterDetailLayout();
-	}
+	// Required Information for enabling Import feature
+	public $required_fields = array('workassignmentname'=>1);
 
-	private static function getTaxes($context) {
-		$mode = self::getMode();
-		switch ($mode) {
-			case 'create':
-				return self::getAvailableTaxes();
-				break;
-			case 'detail':
-			case 'edit':
-				return self::getTaxesFromContext($context, $mode);
-				break;
+	// Callback function list during Importing
+	public $special_functions = array('set_import_assigned_user');
+
+	public $default_order_by = 'workassignment_no';
+	public $default_sort_order='ASC';
+	// Used when enabling/disabling the mandatory fields for the module.
+	// Refers to vtiger_field.fieldname values.
+	public $mandatory_fields = array('createdtime', 'modifiedtime', 'workassignmentname');
+
+	public function save_module($module) {
+		if ($this->HasDirectImageField) {
+			$this->insertIntoAttachment($this->id, $module);
 		}
 	}
 
 	/**
-	 * Retrieve the current taxes (percentage and amount)
-	 * for both regular and SH grouptaxes. These are the
-	 * taxes that apply to the parent ('master') record,
-	 * not the individual lines
-	 *
-	 * @param Array $context  Context array about the parent
-	 *
-	 * @throws None
-	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return Array self::$tax_blocks  Array that uses the keys in
-	 *                                  $tax_blocks and fills them with
-	 *                                  tax information
+	 * Invoked when special actions are performed on the module.
+	 * @param String Module name
+	 * @param String Event Type (module.postinstall, module.disabled, module.enabled, module.preuninstall)
 	 */
-	private static function getTaxesFromContext($context, $mode) {
-		foreach (self::$tax_blocks as $label => &$taxinfo) {
-			$taxesnum = count($context['BLOCKS']->value[$label]);
-			for ($i = 0; $i < $taxesnum; $i++) {
-				$taxrow = &$context['BLOCKS']->value[$label][$i];
-				if ($mode == 'detail') {
-					$taxlabel = array_keys($taxrow)[0];
-					$taxfields = array_values($taxrow);
-				} elseif ($mode == 'edit') {
-					$taxlabel = $taxrow[0][1][0];
-					$taxfields = array(
-						array(
-							'value' => $taxrow[0][3][0],
-							'fldname' => $taxrow[0][2][0],
-						),
-						array('value' => $taxrow[1][3][0]),
-					);
-				}
-				$taxinfo[] = array(
-					'amount' => $taxfields[0]['value'],
-					'percent' => $taxfields[1]['value'],
-					'taxlabel' => $taxlabel,
-					'taxname' => str_replace('_amount', '', $taxfields[0]['fldname']),
-				);
-			}
+	public function vtlib_handler($modulename, $event_type) {
+		if ($event_type == 'module.postinstall') {
+			// Handle post installation actions
+			$this->setModuleSeqNumber('configure', $modulename, 'WA', '0000001');
+			$this->installTaxFields();
+		} elseif ($event_type == 'module.disabled') {
+			// Handle actions when this module is disabled.
+		} elseif ($event_type == 'module.enabled') {
+			// Handle actions when this module is enabled.
+		} elseif ($event_type == 'module.preuninstall') {
+			// Handle actions when this module is about to be deleted.
+		} elseif ($event_type == 'module.preupdate') {
+			// Handle actions before this module is updated.
+		} elseif ($event_type == 'module.postupdate') {
+			// Handle actions after this module is updated.
 		}
-		return self::$tax_blocks;
 	}
 
-	private static function getAvailableTaxes() {
-		require_once 'include/utils/InventoryUtils.php';
-		require_once 'include/fields/CurrencyField.php';
-		$taxes = array('tax' => array(), 'shtax' => array());
-		foreach (getAllTaxes('all', 'sh') as $shtax) {
-			$taxes['shtax'][] = array(
-				'amount' => 0,
-				'percent' => CurrencyField::convertToUserFormat($shtax['percentage']),
-				'taxlabel' => $shtax['taxlabel'],
-				'taxname' => $shtax['taxname'],
-			);
-		}
-		foreach (getAllTaxes() as $tax) {
-			$taxes['tax'][] = array(
-				'amount' => 0,
-				'percent' => CurrencyField::convertToUserFormat($tax['percentage']),
-				'taxlabel' => $tax['taxlabel'],
-				'taxname' => $tax['taxname'],
-			);
-		}
-		return $taxes;
-	}
-
-	private static function getTaxBlockLabels() {
-		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
-		return array(
-			'tax' => $tax_block_label,
-			'shtax' => $shtax_block_label,
+	private function installTaxFields() {
+		$blocks = array(
+			array(
+				'name' => 'LBL_BLOCK_TAXES',
+				'table' => 'vtiger_inventorytaxinfo',
+				'labelprefix' => '',
+			),
+			array(
+				'name' => 'LBL_BLOCK_SH_TAXES',
+				'table' => 'vtiger_shippingtaxinfo',
+				'labelprefix' => 'SH ',
+			),
 		);
-	}
-
-	private static function getMode() {
-		$mode = '';
-		if ($_REQUEST['action'] == 'EditView' && !isset($_REQUEST['record'])) {
-			$mode = 'create';
-		} elseif ($_REQUEST['action'] == 'EditView' && isset($_REQUEST['record'])) {
-			$mode = 'edit';
-		} elseif ($_REQUEST['action'] == 'EditView' && $_REQUEST['isDuplicate'] == 'true') {
-			$mode = 'duplication';
-		} elseif ($_REQUEST['action'] == 'DetailView') {
-			$mode = 'detail';
+		foreach ($blocks as $block) {
+			$this->createTaxFields($block['name'], $block['table'], $block['labelprefix']);
 		}
-		return $mode;
 	}
 
-	/**
-	 * Check if the parent ('master') has any InventoryDetails
-	 * records associated with it. No records should mean we're
-	 * creating a new record.
-	 *
-	 * @param Int The crmid of the parent ('master') record
-	 *
-	 * @throws None
-	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return Bool true is underlying lines are there, false if
-	 *              there are no underlying records.
-	 */
-	private static function hasInventoryLines($id) {
+	private function createTaxFields($blocklabel, $tablename, $labelprefix = '') {
 		global $adb;
-		$r = $adb->query("SELECT COUNT(*) AS cnt FROM `vtiger_inventorydetails` WHERE related_to = {$id}");
-		return (int)$adb->query_result($r, 0, 'cnt') !== 0;
-	}
+		require_once 'vtlib/Vtiger/Module.php';
 
-	/**
-	 * Gets either the existing lines that reference this
-	 * parent ('master') record, or sets up an empty startline
-	 * when the parent is in createmode.
-	 *
-	 * @param Int $id  crmid of the parent ('master')
-	 *
-	 * @throws None
-	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return Array Array of lines
-	 */
-	private static function getLinesFromId($id) {
-		if (self::hasInventoryLines($id)) {
-			// Get existing lines
-		} else {
-			return array(
-				self::getSkeletonLine()
-			);
+		$module = VTiger_Module::getInstance(get_class($this));
+		$block = Vtiger_Block::getInstance($blocklabel, $module);
+
+		$rstax=$adb->query('SELECT `taxname`, `taxlabel`, `percentage` FROM ' . $tablename . ' WHERE deleted = 0');
+		while ($tx = $adb->fetch_array($rstax)) {
+			$field = new Vtiger_Field();
+			$field->name = $tx['taxname'] . '_amount';
+			$field->label= $labelprefix . $tx['taxlabel'];
+			$field->column = $tx['taxname'] . '_amount';
+			$field->columntype = 'DECIMAL(25,6)';
+			$field->uitype = 7;
+			$field->typeofdata = 'NN~O';
+			$field->displaytype = 2;
+			$field->presence = 0;
+			$block->addField($field);
+
+			$field = new Vtiger_Field();
+			$field->name = $tx['taxname'] . '_perc';
+			$field->label= $labelprefix . $tx['taxlabel'] . ' (%)';
+			$field->column = $tx['taxname'] . '_perc';
+			$field->columntype = 'DECIMAL(7,3)';
+			$field->uitype = 7;
+			$field->typeofdata = 'N~O';
+			$field->displaytype = 2;
+			$field->presence = 0;
+			$block->addField($field);
 		}
 	}
 
 	/**
-	 * Gets an empty skeleton line. Also serves as documentation
-	 * on how the line is structured. Will be used as the first
-	 * empty line when no previous lines were there (e.g., the
-	 * parent/master record is in createmode).
-	 *
-	 * The 'custom' arraykey should be filled by fields as
-	 * defined in the MasterDetail businessmap for the parent
-	 * ('master') record that targets InventoryDetails
-	 *
-	 * @param None
-	 *
-	 * @throws None
-	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return Array Empty skeleton line
+	 * Handle saving related module information.
+	 * NOTE: This function has been added to CRMEntity (base class).
+	 * You can override the behavior by re-defining it here.
 	 */
-	private static function getSkeletonLine() {
-		return array(
-			'meta' => array(
-				'crmid' => 0,
-				'image' => '',
-				'name' => '',
-				'product_id' => 0,
-				'quantity' => 1,
-				'discount_type' => 'p',
-				'discount_amount' => 0,
-				'discount_percent' => 0,
-				'linetotal' => 0,
-				'divisible' => true,
-				'description' => '',
-			),
-			'pricing' => array(
-				'cost_price' => 0,
-				'cost_gross' => 0,
-				'unit_price' => 0,
-				'extgross' => 0,
-				'extnet' => 0,
-			),
-			'logistics' => array(
-				'units_delivered_received' => 0,
-				'qtyinstock' => 0,
-				'qtyindemand' => 0,
-				'usageunit' => '',
-			),
-			'taxes' => self::getAvailableTaxes()['tax'],
-			'custom' => array(
-				// Filled by the MasterDetail mapping's 'fields' directive
-			),
-		);
-	}
+	// public function save_related_module($module, $crmid, $with_module, $with_crmid) { }
+
+	/**
+	 * Handle deleting related module information.
+	 * NOTE: This function has been added to CRMEntity (base class).
+	 * You can override the behavior by re-defining it here.
+	 */
+	//public function delete_related_module($module, $crmid, $with_module, $with_crmid) { }
+
+	/**
+	 * Handle getting related list information.
+	 * NOTE: This function has been added to CRMEntity (base class).
+	 * You can override the behavior by re-defining it here.
+	 */
+	//public function get_related_list($id, $cur_tab_id, $rel_tab_id, $actions=false) { }
+
+	/**
+	 * Handle getting dependents list information.
+	 * NOTE: This function has been added to CRMEntity (base class).
+	 * You can override the behavior by re-defining it here.
+	 */
+	//public function get_dependents_list($id, $cur_tab_id, $rel_tab_id, $actions=false) { }
 }
+?>
