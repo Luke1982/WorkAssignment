@@ -223,7 +223,7 @@ window.addEventListener("load", function(){
 													<div class="slds-size_1-of-1">
 														<div class="slds-form-element">
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input class="slds-input cbds-inventoryaggr__input--pl_sh_total" value="{$inventoryblock.aggr.pl_sh_total}" type="text" data-type="currency" data-error-mess="Please insert a valid currency">
+																<input data-savefield="pl_sh_total" class="slds-input cbds-inventoryaggr__input--pl_sh_total" value="{$inventoryblock.aggr.pl_sh_total}" type="text" data-type="currency" data-error-mess="Please insert a valid currency">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
 																</span>
