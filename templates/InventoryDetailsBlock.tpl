@@ -232,6 +232,7 @@ window.addEventListener("load", function(){
 													</div>
 												</div>
 											</div>
+											<div class="slds-form-element__help"></div>
 										</fieldset>
 										{foreach from=$inventoryblock.shtaxes item=shtax key=key name=name}
 										<fieldset class="slds-form-element slds-form-element_compound slds-is-editing slds-form-element_horizontal">
@@ -286,60 +287,109 @@ window.addEventListener("load", function(){
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
+											<div class="slds-col slds-size_10-of-12 slds-form-element">
 												<input data-savefield="pl_gross_total" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--grosstotal" value="{$inventoryblock.aggr.grosstotal}" />
+												<div class="slds-form-element__help"></div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="slds-grid">
-									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Line discounts</div>
-									</div>
-									<div class="slds-col slds-size_5-of-12">
+								<div class="slds-section slds-is-open">
+									<h3 class="slds-section__title">
+										<button aria-controls="cbds-inventoryaggr__discounts"
+												aria-expanded="true"
+												class="slds-button slds-section__title-action"
+												onclick="document.getElementById('cbds-inventoryaggr__discounts').parentElement.classList.toggle('slds-is-open')">
+											<svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+												<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+											</svg>
+											<span class="slds-truncate" title="Discounts">Discounts</span>
+										</button>
+									</h3>
+									<div aria-hidden="false" class="slds-section__content slds-theme_default slds-box slds-p-vertical_none" id="cbds-inventoryaggr__discounts">
 										<div class="slds-grid">
-											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
-												<input data-savefield="pl_dto_line" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_dto_line" value="{$inventoryblock.aggr.pl_dto_line}" />
+											<div class="slds-col slds-size_7-of-12">
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Line discounts</div>
+											</div>
+											<div class="slds-col slds-size_5-of-12">
+												<div class="slds-grid">
+													<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+													<div class="slds-col slds-size_10-of-12 slds-form-element">
+														<input data-savefield="pl_dto_line" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_dto_line" value="{$inventoryblock.aggr.pl_dto_line}" />
+														<div class="slds-form-element__help"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="slds-grid">
+											<div class="slds-col slds-size_7-of-12">
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Global discount</div>
+											</div>
+											<div class="slds-col slds-size_5-of-12">
+												<div class="slds-grid">
+													<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+													<div class="slds-col slds-size_10-of-12 slds-form-element">
+														<input data-savefield="pl_dto_global" type="text" data-type="number" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_dto_global" value="{$inventoryblock.aggr.pl_dto_global}" />
+														<div class="slds-form-element__help"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="slds-grid">
+											<div class="slds-col slds-size_7-of-12">
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total discount</div>
+											</div>
+											<div class="slds-col slds-size_5-of-12">
+												<div class="slds-grid">
+													<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+													<div class="slds-col slds-size_10-of-12 slds-form-element">
+														<input data-savefield="pl_dto_total" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--totaldiscount" value="{$inventoryblock.aggr.totaldiscount}" />
+														<div class="slds-form-element__help"></div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="slds-grid">
-									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Global discount</div>
-									</div>
-									<div class="slds-col slds-size_5-of-12">
+								<div class="slds-section slds-is-open">
+									<h3 class="slds-section__title">
+										<button aria-controls="cbds-inventoryaggr__taxes"
+												aria-expanded="true"
+												class="slds-button slds-section__title-action"
+												onclick="document.getElementById('cbds-inventoryaggr__taxes').parentElement.classList.toggle('slds-is-open')">
+											<svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+												<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+											</svg>
+											<span class="slds-truncate" title="Taxes">Taxes</span>
+										</button>
+									</h3>
+									<div aria-hidden="false" class="slds-section__content slds-theme_default slds-box slds-p-vertical_none" id="cbds-inventoryaggr__taxes">								
 										<div class="slds-grid">
-											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
-												<input data-savefield="pl_dto_global" type="text" data-type="number" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_dto_global" value="{$inventoryblock.aggr.pl_dto_global}" />
+											<div class="slds-col slds-size_7-of-12">
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total taxes</div>
+											</div>
+											<div class="slds-col slds-size_5-of-12">
+												<div class="slds-grid">
+													<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+													<div class="slds-col slds-size_10-of-12 slds-form-element">
+														<input data-savefield="sum_taxtotal" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--taxtotal" value="{$inventoryblock.aggr.taxtotal}" />
+														<div class="slds-form-element__help"></div>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="slds-grid">
-									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total discount</div>
-									</div>
-									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
-											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
-												<input data-savefield="pl_dto_total" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--totaldiscount" value="{$inventoryblock.aggr.totaldiscount}" />
+											<div class="slds-col slds-size_7-of-12">
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">S&H Tax</div>
 											</div>
-										</div>
-									</div>
-								</div>
-								<div class="slds-grid">
-									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total taxes</div>
-									</div>
-									<div class="slds-col slds-size_5-of-12">
-										<div class="slds-grid">
-											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
-												<input data-savefield="sum_taxtotal" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--taxtotal" value="{$inventoryblock.aggr.taxtotal}" />
+											<div class="slds-col slds-size_5-of-12">
+												<div class="slds-grid">
+													<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
+													<div class="slds-col slds-size_10-of-12 slds-form-element">
+														<input data-savefield="pl_sh_tax" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--shtaxtotal" value="{$inventoryblock.aggr.shtaxtotal}" />
+														<div class="slds-form-element__help"></div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -351,8 +401,9 @@ window.addEventListener("load", function(){
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
+											<div class="slds-col slds-size_10-of-12 slds-form-element">
 												<input data-savefield="sum_nettotal" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--sum_nettotal" value="{$inventoryblock.aggr.sum_nettotal}" />
+												<div class="slds-form-element__help"></div>
 											</div>
 										</div>
 									</div>
@@ -364,25 +415,14 @@ window.addEventListener("load", function(){
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
+											<div class="slds-col slds-size_10-of-12 slds-form-element">
 												<input data-savefield="pl_net_total" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--subtotal" value="{$inventoryblock.aggr.subtotal}" />
+												<div class="slds-form-element__help"></div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="slds-grid">
-									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">S&H Tax</div>
-									</div>
-									<div class="slds-col slds-size_5-of-12">
-										<div class="slds-grid">
-											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
-												<input data-savefield="pl_sh_tax" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--shtaxtotal" value="{$inventoryblock.aggr.shtaxtotal}" />
-											</div>
-										</div>
-									</div>
-								</div>
+
 								<div class="slds-grid">
 									<div class="slds-col slds-size_7-of-12">
 										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Adjustment</div>
@@ -390,8 +430,9 @@ window.addEventListener("load", function(){
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
+											<div class="slds-col slds-size_10-of-12 slds-form-element">
 												<input data-savefield="pl_adjustment" type="text" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_adjustment" value="{$inventoryblock.aggr.pl_adjustment}" />
+												<div class="slds-form-element__help"></div>
 											</div>
 										</div>
 									</div>
@@ -403,8 +444,9 @@ window.addEventListener("load", function(){
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
-											<div class="slds-col slds-size_10-of-12">
+											<div class="slds-col slds-size_10-of-12 slds-form-element">
 												<input data-savefield="pl_grand_total" type="text" readonly="readonly" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--total" value="{$inventoryblock.aggr.total}" />
+												<div class="slds-form-element__help"></div>
 											</div>
 										</div>
 									</div>
