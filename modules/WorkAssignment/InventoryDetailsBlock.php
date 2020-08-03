@@ -55,6 +55,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 * @return None
 	 */
 	private static function setModInfoFromContext($context) {
+		require_once 'include/fields/CurrencyField.php';
 		$fields = $context['FIELDS']->value;
 		$taxes = self::getTaxes($context);
 		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
@@ -73,6 +74,10 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		self::$mod_info['aggr']['total'] = $fields['pl_grand_total'];
 		self::$mod_info['grouptaxes'] = $taxes[$tax_block_label];
 		self::$mod_info['shtaxes'] = $taxes[$shtax_block_label];
+
+		foreach (self::$mod_info['aggr'] as &$aggr_field) {
+			$aggr_field = CurrencyField::convertToUserFormat($aggr_field);
+		}
 	}
 
 	/**
