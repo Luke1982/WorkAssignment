@@ -14,7 +14,7 @@ window.addEventListener("load", function(){
 });
 </script>
 
-{* <pre>{$inventoryblock|print_r}</pre> *}
+{* <pre>{$context|print_r}</pre> *}
 
 {include file='Components/Components.tpl'}
 <!-- Detail block -->
@@ -279,6 +279,7 @@ window.addEventListener("load", function(){
 								<div class="slds-section">
 									<h3 class="slds-section__title">
 										<button aria-controls="cbds-inventoryaggr__discounts"
+												type="button"
 												aria-expanded="true"
 												class="slds-button slds-section__title-action"
 												onclick="document.getElementById('cbds-inventoryaggr__discounts').parentElement.classList.toggle('slds-is-open')">
@@ -336,6 +337,7 @@ window.addEventListener("load", function(){
 								<div class="slds-section">
 									<h3 class="slds-section__title">
 										<button aria-controls="cbds-inventoryaggr__sh"
+												type="button"
 												aria-expanded="true"
 												class="slds-button slds-section__title-action"
 												onclick="document.getElementById('cbds-inventoryaggr__sh').parentElement.classList.toggle('slds-is-open')">
