@@ -195,9 +195,9 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	private static function getAvailableTaxes() {
 		require_once 'include/utils/InventoryUtils.php';
 		require_once 'include/fields/CurrencyField.php';
-		$taxes = array('tax' => array(), 'shtax' => array());
+		$taxes = array('LBL_BLOCK_TAXES' => array(), 'LBL_BLOCK_SH_TAXES' => array());
 		foreach (getAllTaxes('all', 'sh') as $shtax) {
-			$taxes['shtax'][] = array(
+			$taxes['LBL_BLOCK_TAXES'][] = array(
 				'amount' => 0,
 				'percent' => CurrencyField::convertToUserFormat($shtax['percentage']),
 				'taxlabel' => $shtax['taxlabel'],
@@ -205,7 +205,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			);
 		}
 		foreach (getAllTaxes() as $tax) {
-			$taxes['tax'][] = array(
+			$taxes['LBL_BLOCK_SH_TAXES'][] = array(
 				'amount' => 0,
 				'percent' => CurrencyField::convertToUserFormat($tax['percentage']),
 				'taxlabel' => $tax['taxlabel'],
