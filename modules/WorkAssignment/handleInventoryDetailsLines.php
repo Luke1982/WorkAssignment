@@ -13,6 +13,45 @@ class handleInventoryDetailsLines extends VTEventHandler {
 		// We don't check the modulename since this
 		// event is limited to WorkAssignment already.
 		self::saveAggregation($entityData);
+
+		require_once 'modules/InventoryDetails/InventoryDetails.php';
+		$idfocus = new InventoryDetails();
+		$lineseq = 1;
+		foreach ($_REQUEST['idlines'] as $line) {
+			if ((int)$line['crmid'] == 0) {
+				self::saveNewIDLine($entityData, $line, $idfocus, $lineseq);
+			} else {
+				self::saveExistingIDLine($entityData, $line, $idfocus, $lineseq);
+			}
+			$lineseq++;
+		}
+	}
+
+	private static function saveNewIDLine($entityData, $line, $idfocus, $lineseq) {
+		$idfocus->mode = 'create';
+		$acc_con_fldnames = self::getAccConFieldNames();
+		foreach ($line as $fldname => $fldval) {
+			$idfocus->column_fields[$fldname] = $fldval;
+		}
+		$idfocus->column_fields['related_to'] = $entityData->getId();
+		$idfocus->column_fields['account_id'] = $_REQUEST[$acc_con_fldnames['a']];
+		$idfocus->column_fields['contact_id'] = $_REQUEST[$acc_con_fldnames['c']];
+		$idfocus->column_fields['vendor_id'] = $_REQUEST['vendor_id'];
+		$idfocus->column_fields['sequence_no'] = $lineseq;
+		$idfocus->column_fields['discount_percent'] = $line['discount_type'] == 'p' ? $line['discount_amount'] : 0;
+		$idfocus->column_fields['discount_amount'] = $line['discount_type'] == 'd' ? $line['discount_amount'] : 0;
+		$idfocus->column_fields['total_stock'] = $line['qtyinstock'];
+
+		self::sanitizeAndSaveIdLine($idfocus);
+	}
+
+	private static function sanitizeAndSaveIdLine($focus) {
+		global $current_user;
+		$handler = vtws_getModuleHandlerFromName('InventoryDetails', $current_user);
+		$meta = $handler->getMeta();
+		$focus->column_fields = DataTransform::sanitizeRetrieveEntityInfo($focus->column_fields, $meta);
+		$focus->save('InventoryDetails');
+		return $focus;
 	}
 
 	private static function saveAggregation($entityData) {
@@ -29,5 +68,13 @@ class handleInventoryDetailsLines extends VTEventHandler {
 		$q = rtrim($q, ',');
 		$q .= "WHERE {$focus->table_index} = {$modid}";
 		$adb->query($q);
+	}
+
+	private static function getAccConFieldNames() {
+		if (!isset($_REQUEST['account_id'])) {
+			return array('a' => 'accid', 'c' => 'ctoid');
+		} else {
+			return array('a' => 'account_id', 'c' => 'contact_id');
+		}
 	}
 }

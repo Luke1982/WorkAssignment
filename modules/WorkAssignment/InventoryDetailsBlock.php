@@ -258,11 +258,59 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	private static function getLinesFromId($id) {
 		if (self::hasInventoryLines($id)) {
 			// Get existing lines
+			return self::getInventoryLines($id);
 		} else {
 			return array(
 				self::getSkeletonLine()
 			);
 		}
+	}
+
+	private static function getInventoryLines($id) {
+		require_once 'include/fields/CurrencyField.php';
+		global $adb, $current_user;
+		$skeleton = self::getSkeletonLine();
+		$lines = array();
+		$q = "SELECT *,
+					id.cost_price AS id_cost_price
+			  FROM vtiger_inventorydetails AS id
+			  LEFT JOIN vtiger_products AS p ON id.productid = p.productid
+			  INNER JOIN vtiger_crmentity AS c ON id.inventorydetailsid = c.crmid
+			  WHERE c.deleted = 0
+			  AND id.related_to = {$id}
+			  ORDER BY id.sequence_no ASC";
+		$r = $adb->query($q);
+
+		while ($line = $adb->fetch_array($r)) {
+			$newskel = $skeleton;
+			$newskel['meta']['crmid'] = $line['inventorydetailsid'];
+			$newskel['meta']['name'] = $line['productname'];
+			$newskel['meta']['product_id'] = $line['product_id'];
+			$newskel['meta']['quantity'] = CurrencyField::convertToUserFormat($line['quantity'], $current_user);
+			$newskel['meta']['discount_type'] = (float)$line['discount_percent'] > 0 ? 'p' : 'd';
+			$newskel['meta']['discount_amount'] = CurrencyField::convertToUserFormat($line['discount_amount'], $current_user);
+			$newskel['meta']['discount_percent'] = CurrencyField::convertToUserFormat($line['discount_percent'], $current_user);
+			$newskel['meta']['linetotal'] = CurrencyField::convertToUserFormat($line['linetotal'], $current_user);
+			$newskel['meta']['divisible'] = (int)$line['divisible'] == 1 ? true : false;
+			$newskel['meta']['description'] = $line['description'];
+
+			$newskel['pricing']['cost_price'] = CurrencyField::convertToUserFormat($line['id_cost_price'], $current_user);
+			$newskel['pricing']['cost_gross'] = CurrencyField::convertToUserFormat($line['cost_gross'], $current_user);
+			$newskel['pricing']['unit_price'] = CurrencyField::convertToUserFormat($line['listprice'], $current_user);
+			$newskel['pricing']['extnet'] = CurrencyField::convertToUserFormat($line['extnet'], $current_user);
+			$newskel['pricing']['extgross'] = CurrencyField::convertToUserFormat($line['extgross'], $current_user);
+
+			$newskel['logistics']['units_delivered_received'] = CurrencyField::convertToUserFormat($line['units_delivered_received'], $current_user);
+			$newskel['logistics']['qtyinstock'] = CurrencyField::convertToUserFormat($line['total_stock'], $current_user);
+			$newskel['logistics']['qtyindemand'] = CurrencyField::convertToUserFormat($line['qtyindemand'], $current_user);
+			$newskel['logistics']['usageunit'] = $line['usageunit'];
+
+			foreach ($newskel['taxes'] as &$tax) {
+				$tax['percent'] = CurrencyField::convertToUserFormat($line['id_' . $tax['taxname'] . '_perc'], $current_user);
+			}
+			$lines[] = $newskel;
+		}
+		return $lines;
 	}
 
 	/**
