@@ -12,7 +12,22 @@ class handleInventoryDetailsLines extends VTEventHandler {
 	public function handleEvent($eventName, $entityData) {
 		// We don't check the modulename since this
 		// event is limited to WorkAssignment already.
-		global $log;
-		$log->fatal("This handler has been called for the $name event and prints this message to the log file.");
+		self::saveAggregation();
+	}
+
+	private static function saveAggregation() {
+		global $adb;
+		$modname = $entityData->getModuleName();
+		$modid = $entityData->getId();
+		include_once 'modules/' . $modname . '/' . $modname . '.php';
+		$focus = new $modname();
+		$q = "UPDATE {$focus->table_name} SET ";
+
+		foreach ($_REQUEST['aggr_fields'] as $fldname => $fldval) {
+			$q .= "{$fldname} = '{$fldval}',";
+		}
+		$q = rtrim($q, ',');
+		$q .= "WHERE {$focus->table_index} = {$modid}";
+		$adb->query($q);
 	}
 }
