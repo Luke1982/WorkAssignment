@@ -309,7 +309,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 				'qtyindemand' => 0,
 				'usageunit' => '',
 			),
-			'taxes' => self::getAvailableTaxes()['tax'],
+			'taxes' => self::getAvailableTaxes()['LBL_BLOCK_TAXES'],
 			'custom' => array(
 				// Filled by the MasterDetail mapping's 'fields' directive
 			),
