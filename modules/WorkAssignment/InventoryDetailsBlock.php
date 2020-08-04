@@ -144,7 +144,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 				break;
 			case 'detail':
 			case 'edit':
-				return self::getTaxesFromContext($context, $mode);
+				return self::getTaxesFromContext($context);
 				break;
 		}
 	}
@@ -163,30 +163,19 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 *                                  $tax_blocks and fills them with
 	 *                                  tax information
 	 */
-	private static function getTaxesFromContext($context, $mode) {
-		foreach (self::$tax_blocks as $label => &$taxinfo) {
-			$taxesnum = count($context['BLOCKS']->value[$label]);
-			for ($i = 0; $i < $taxesnum; $i++) {
-				$taxrow = &$context['BLOCKS']->value[$label][$i];
-				if ($mode == 'detail') {
-					$taxlabel = array_keys($taxrow)[0];
-					$taxfields = array_values($taxrow);
-				} elseif ($mode == 'edit') {
-					$taxlabel = $taxrow[0][1][0];
-					$taxfields = array(
-						array(
-							'value' => $taxrow[0][3][0],
-							'fldname' => $taxrow[0][2][0],
-						),
-						array('value' => $taxrow[1][3][0]),
-					);
-				}
-				$taxinfo[] = array(
-					'amount' => $taxfields[0]['value'],
-					'percent' => $taxfields[1]['value'],
-					'taxlabel' => $taxlabel,
-					'taxname' => str_replace('_amount', '', $taxfields[0]['fldname']),
-				);
+	private static function getTaxesFromContext($context) {
+		require_once 'include/fields/CurrencyField.php';
+
+		$fields = $context['FIELDS']->value;
+		self::$tax_blocks = self::getAvailableTaxes();
+		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
+
+		foreach (self::$tax_blocks as $label => &$taxes) {
+			$taxcount = count($taxes);
+			$taxtype = $label == $tax_block_label ? 'tax' : 'shtax';
+			for ($i = 0; $i < $taxcount; $i++) {
+				$taxes[$i]['amount'] = CurrencyField::convertToUserFormat($fields[$taxtype . ($i + 1) . '_amount']);
+				$taxes[$i]['percent'] = CurrencyField::convertToUserFormat($fields[$taxtype . ($i + 1) . '_perc']);
 			}
 		}
 		return self::$tax_blocks;
