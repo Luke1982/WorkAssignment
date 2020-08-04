@@ -647,11 +647,11 @@
                 <columnindex>3</columnindex>
               </field>
               <field>
-                <fieldname>account</fieldname>
+                <fieldname>account_id</fieldname>
                 <columnindex>4</columnindex>
               </field>
               <field>
-                <fieldname>contact</fieldname>
+                <fieldname>contact_id</fieldname>
                 <columnindex>5</columnindex>
               </field>
               <field>
