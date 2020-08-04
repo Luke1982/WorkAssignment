@@ -12,10 +12,10 @@ class handleInventoryDetailsLines extends VTEventHandler {
 	public function handleEvent($eventName, $entityData) {
 		// We don't check the modulename since this
 		// event is limited to WorkAssignment already.
-		self::saveAggregation();
+		self::saveAggregation($entityData);
 	}
 
-	private static function saveAggregation() {
+	private static function saveAggregation($entityData) {
 		global $adb;
 		$modname = $entityData->getModuleName();
 		$modid = $entityData->getId();
