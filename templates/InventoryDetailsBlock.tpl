@@ -16,7 +16,7 @@ window.addEventListener("load", function(){
 
 {* <pre>{$context|print_r}</pre> *}
 
-{include file='Components/Components.tpl'}
+{include file='modules/WorkAssignment/Components.tpl'}
 <!-- Detail block -->
 <div class="cbds-detail-block cbds-inventory-block">
 	<!-- Detail line preheader -->

@@ -17,6 +17,8 @@ class InventoryDetailsBlock {
 class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 
 	private static $modname = '';
+	private static $permitted_fields = array();
+	private static $permitted_bmfields = array();
 	private static $tax_blocks = array(
 		'LBL_BLOCK_TAXES' => array(),
 		'LBL_BLOCK_SH_TAXES' => array(),
@@ -33,6 +35,21 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		'grouptaxes' => array(),
 		'shtaxes' => array(),
 		'lines' => array(),
+	);
+	// These fields are always shown, no
+	// matter what the system permissions
+	// for this user are
+	private static $always_active = array(
+		'inventorydetails||quantity' => '',
+		'inventorydetails||listprice' => '',
+		'inventorydetails||extgross' => '',
+		'inventorydetails||discount_amount' => '',
+		'inventorydetails||inventorydetailsid' => '',
+		'inventorydetails||description' => '',
+		'inventorydetails||discount_type' => '',
+		'inventorydetails||extnet' => '',
+		'inventorydetails||linetotal' => '',
+		'inventorydetails||description' => '',
 	);
 
 	public static function title() {
@@ -93,8 +110,12 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	public function process($context = false) {
 		// $context contains the WorkAssignment ID
 		// in $context['ID']
+		// ini_set('display_errors', 1);
+		// error_reporting(E_ALL);
 		self::setModuleNameFromContext($context);
 		self::setModInfoFromContext($context);
+		self::$permitted_fields = self::getPermittedFields();
+		self::$permitted_bmfields = self::getPermittedBmFields();
 		self::$mod_info['lines'] = self::getLinesFromId((int)$context['ID']->value);
 		$smarty = $this->setupRenderer();
 		$smarty->assign('inventoryblock', self::$mod_info);
@@ -113,7 +134,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 * @return Object Smarty instance with language arrays preloaded
 	 */
 	private function setupRenderer() {
-		global $app_strings;
+		global $app_strings, $current_language;
 		require_once 'Smarty_setup.php';
 		$smarty = new vtigerCRM_Smarty();
 		$smarty->assign('APP', $app_strings);
@@ -134,6 +155,20 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	private static function getBusinessMapLayout() {
 		require_once 'modules/cbMap/cbMap.php';
 		return cbMap::getMapByName(self::$modname . 'InventoryDetails')->MasterDetailLayout();
+	}
+
+	private static function getPermittedBmFields() {
+		$bmap  = self::getBusinessMapLayout();
+		$ret = array();
+		foreach ($bmap['detailview']['fields'] as $fld) {
+			$ret[] = array(
+				'uitype' => isset($fld['fieldinfo']['uitype']) ? $fld['fieldinfo']['uitype'] : '',
+				'fldname' => $fld['fieldinfo']['name'],
+				'label' => $fld['fieldinfo']['label'],
+				'val' => 'THISISTODO',
+			);
+		}
+		return $ret;
 	}
 
 	private static function getTaxes($context) {
@@ -266,13 +301,116 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		}
 	}
 
+	/**
+	 * Get the fields from inventorydetails that this
+	 * user is allowed to see, taking into account that
+	 * there are certain fields that always need to be active.
+	 *
+	 * @param None
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array Array of permitted field in the
+	 * 				 form of 'fieldname' => 'fieldinfo' except
+	 * 				 for the 'always_active' fields, those
+	 * 				 only have an empty label
+	 */
+	private static function getPermittedFields() {
+		$permitted_ids = self::getPermittedFieldsFor('InventoryDetails');
+		$permitted_prod = self::getPermittedFieldsFor('Products');
+		return array_merge(self::$always_active, $permitted_ids, $permitted_prod);
+	}
+
+	private static function getPermittedFieldsFor($modname) {
+		require_once 'include/utils/CommonUtils.php';
+		require_once 'modules/' . $modname . '/' . $modname . '.php';
+		$f = new $modname();
+		$blocks = getBlocks($modname, 'edit_view', '', $f->column_fields);
+		$permitted_fields = array();
+
+		foreach ($blocks as $block) {
+			foreach ($block as $row) {
+				if ($row[0][2][0] != '') {
+					$permitted_fields[strtolower($modname) . '||' . $row[0][2][0]] = self::getFieldDescription($row[0]);
+				}
+				if (isset($row[1][2]) && $row[1][2][0] != '') {
+					$permitted_fields[strtolower($modname) . '||' . $row[1][2][0]] = self::getFieldDescription($row[1]);
+				}
+			}
+		}
+		return $permitted_fields;
+	}
+
+	private static function getFieldDescription($fld) {
+		if ($fld[2][0] != '') {
+			$retfld = array(
+				'uitype' => $fld[0][0],
+				'fldname' => $fld[2][0],
+				'label' => is_array($fld[1][0]) ? $fld[1][0]['displaylabel'] : $fld[1][0],
+				'val' => $fld[3],
+			);
+			switch ($retfld['uitype']) {
+				case '15':
+				case '16':
+					$opts = array();
+					foreach ($retfld['val'][0] as $opt) {
+						$opts[] = $opt[0];
+					}
+					$retfld['val'] = $opts;
+					break;
+				case '5':
+					$retfld['val'] = array_keys($retfld['val'][1])[0];
+					break;
+				case '56':
+				case '17':
+				case '72':
+				case '9':
+				case '83':
+				case '71':
+				case '4':
+				case '2':
+				case '19':
+				case '7':
+					$retfld['val'] = $retfld['val'][0];
+					break;
+			}
+			return $retfld;
+		}
+	}
+
 	private static function getInventoryLines($id) {
 		require_once 'include/fields/CurrencyField.php';
 		global $adb, $current_user;
 		$skeleton = self::getSkeletonLine();
 		$lines = array();
-		$q = "SELECT *,
-					id.cost_price AS id_cost_price
+		$taxquery = '';
+		for ($i = 1; $i <= count($skeleton['taxes']); $i++) {
+			$taxquery .= "id.id_tax{$i}_perc AS 'inventorydetails||id_tax{$i}_perc',";
+		}
+		$q = "SELECT id.inventorydetailsid AS 'inventorydetails||inventorydetailsid',
+					 p.productname AS 'products||productname',
+					 id.productid AS 'inventorydetails||productid',
+					 id.quantity AS 'inventorydetails||quantity',
+					 CASE
+					 	WHEN id.discount_percent > 0 THEN 'p'
+						ELSE 'd'
+					 END AS 'inventorydetails||discount_type',
+					 id.discount_amount AS 'inventorydetails||discount_amount',
+					 id.discount_percent AS 'inventorydetails||discount_percent',
+					 id.linetotal AS 'inventorydetails||linetotal',
+					 p.divisible AS 'products||divisible',
+					 c.description AS 'inventorydetails||description',
+					 id.cost_price AS 'inventorydetails||cost_price',
+					 id.cost_gross AS 'inventorydetails||cost_gross',
+					 id.listprice AS 'inventorydetails||listprice',
+					 id.extgross AS 'inventorydetails||extgross',
+					 id.extnet AS 'inventorydetails||extnet',
+					 id.units_delivered_received AS 'inventorydetails||units_delivered_received',
+					 id.total_stock AS 'inventorydetails||total_stock',
+					 {$taxquery}
+					 p.qtyinstock AS 'products||qtyinstock',
+					 p.qtyindemand AS 'products||qtyindemand',
+					 p.usageunit AS 'products||usageunit'
 			  FROM vtiger_inventorydetails AS id
 			  LEFT JOIN vtiger_products AS p ON id.productid = p.productid
 			  INNER JOIN vtiger_crmentity AS c ON id.inventorydetailsid = c.crmid
@@ -283,34 +421,50 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 
 		while ($line = $adb->fetch_array($r)) {
 			$newskel = $skeleton;
-			$newskel['meta']['crmid'] = $line['inventorydetailsid'];
-			$newskel['meta']['name'] = $line['productname'];
-			$newskel['meta']['product_id'] = $line['product_id'];
-			$newskel['meta']['quantity'] = CurrencyField::convertToUserFormat($line['quantity'], $current_user);
-			$newskel['meta']['discount_type'] = (float)$line['discount_percent'] > 0 ? 'p' : 'd';
-			$newskel['meta']['discount_amount'] = CurrencyField::convertToUserFormat($line['discount_amount'], $current_user);
-			$newskel['meta']['discount_percent'] = CurrencyField::convertToUserFormat($line['discount_percent'], $current_user);
-			$newskel['meta']['linetotal'] = CurrencyField::convertToUserFormat($line['linetotal'], $current_user);
-			$newskel['meta']['divisible'] = (int)$line['divisible'] == 1 ? true : false;
-			$newskel['meta']['description'] = $line['description'];
 
-			$newskel['pricing']['cost_price'] = CurrencyField::convertToUserFormat($line['id_cost_price'], $current_user);
-			$newskel['pricing']['cost_gross'] = CurrencyField::convertToUserFormat($line['cost_gross'], $current_user);
-			$newskel['pricing']['unit_price'] = CurrencyField::convertToUserFormat($line['listprice'], $current_user);
-			$newskel['pricing']['extnet'] = CurrencyField::convertToUserFormat($line['extnet'], $current_user);
-			$newskel['pricing']['extgross'] = CurrencyField::convertToUserFormat($line['extgross'], $current_user);
-
-			$newskel['logistics']['units_delivered_received'] = CurrencyField::convertToUserFormat($line['units_delivered_received'], $current_user);
-			$newskel['logistics']['qtyinstock'] = CurrencyField::convertToUserFormat($line['total_stock'], $current_user);
-			$newskel['logistics']['qtyindemand'] = CurrencyField::convertToUserFormat($line['qtyindemand'], $current_user);
-			$newskel['logistics']['usageunit'] = $line['usageunit'];
+			$newskel['meta'] = self::getFieldsForGroup($line, $newskel, 'meta');
+			$newskel['pricing'] = self::getFieldsForGroup($line, $newskel, 'pricing');
+			$newskel['logistics'] = self::getFieldsForGroup($line, $newskel, 'logistics');
 
 			foreach ($newskel['taxes'] as &$tax) {
-				$tax['percent'] = CurrencyField::convertToUserFormat($line['id_' . $tax['taxname'] . '_perc'], $current_user);
+				$tax['percent'] = CurrencyField::convertToUserFormat($line['inventorydetails||id_' . $tax['taxname'] . '_perc'], $current_user);
 			}
 			$lines[] = $newskel;
 		}
 		return $lines;
+	}
+
+	private static function getFieldsForGroup($line, $skeleton, $group) {
+		foreach ($line as $modandcolumnname => $grp) {
+			if (!is_int($modandcolumnname)) {
+				list($modname, $columnname) = explode('||', $modandcolumnname);
+				if (array_key_exists($modandcolumnname, self::$permitted_fields) &&
+					array_key_exists($columnname, $skeleton[$group])) {
+					$skeleton[$group][$columnname] = self::getFielddataFromLine($modandcolumnname, $line);
+				}
+			}
+		}
+		return $skeleton[$group];
+	}
+
+	private static function getFielddataFromLine($modandcolumnname, $line) {
+		require_once 'include/fields/CurrencyField.php';
+		global $current_user;
+		$retval = '';
+		$flddata = &self::$permitted_fields[$modandcolumnname];
+		if ($flddata != '') {
+			switch ($flddata['uitype']) {
+				case '7':
+				case '71':
+				case '9':
+					$retval = CurrencyField::convertToUserFormat($line[$modandcolumnname], $current_user);
+					break;
+				default:
+					$retval = $line[$modandcolumnname];
+					break;
+			}
+		}
+		return $retval;
 	}
 
 	/**
@@ -332,10 +486,10 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	private static function getSkeletonLine() {
 		return array(
 			'meta' => array(
-				'crmid' => 0,
+				'inventorydetailsid' => 0,
 				'image' => '',
-				'name' => '',
-				'product_id' => 0,
+				'productname' => '',
+				'productid' => 0,
 				'quantity' => 1,
 				'discount_type' => 'p',
 				'discount_amount' => 0,
@@ -347,13 +501,14 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			'pricing' => array(
 				'cost_price' => 0,
 				'cost_gross' => 0,
-				'unit_price' => 0,
+				'listprice' => 0,
 				'extgross' => 0,
 				'extnet' => 0,
 			),
 			'logistics' => array(
 				'units_delivered_received' => 0,
 				'qtyinstock' => 0,
+				'total_stock' => 0,
 				'qtyindemand' => 0,
 				'usageunit' => '',
 			),
