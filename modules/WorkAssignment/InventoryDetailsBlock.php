@@ -155,7 +155,8 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 */
 	private static function getBusinessMapLayout($modname) {
 		require_once 'modules/cbMap/cbMap.php';
-		return cbMap::getMapByName(self::$modname . $modname)->MasterDetailLayout();
+		$map = cbMap::getMapByName(self::$modname . $modname);
+		return $map != null ? $map->MasterDetailLayout() : array();
 	}
 
 	/**
@@ -173,14 +174,18 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 *               of the functions.
 	 */
 	private static function getRequestedBmFields() {
-		$idfields = self::getBusinessMapLayout('InventoryDetails')['detailview']['fieldnames'];
-		$pfields = self::getBusinessMapLayout('Products')['detailview']['fieldnames'];
+		$idfields = self::getBusinessMapLayout('InventoryDetails');
+		$pfields = self::getBusinessMapLayout('Products');
 		$ret = array();
-		foreach ($idfields as $fldname) {
-			$ret['inventorydetails||' . $fldname] = $fldname;
+		if (array_key_exists('detailview', $idfields)) {
+			foreach ($idfields['detailview']['fieldnames'] as $fldname) {
+				$ret['inventorydetails||' . $fldname] = $fldname;
+			}
 		}
-		foreach ($pfields as $fldname) {
-			$ret['products||' . $fldname] = $fldname;
+		if (array_key_exists('detailview', $pfields)) {
+			foreach ($pfields['detailview']['fieldnames'] as $fldname) {
+				$ret['products||' . $fldname] = $fldname;
+			}
 		}
 		return $ret;
 	}
