@@ -96,7 +96,8 @@
 				newNode = original.cloneNode(true);
 
 			this.u.insertAfter(original, newNode);
-			new InventoryLine(newNode, this.root);
+			let line = new InventoryLine(newNode, this.root);
+			line.crmid = 0;
 			this.root.updateCount();
 			this.root.updateAggr();
 			this.root.updateHiddenDomFields();
