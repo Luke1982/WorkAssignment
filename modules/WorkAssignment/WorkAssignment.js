@@ -800,6 +800,12 @@
 		this.taxTypeCombo = new ldsCombobox(this.utils.findUp(taxtypeInput, ".slds-combobox-picklist"), {
 			"onSelect" : this.changeTaxType.bind(this)
 		});
+
+		var ttCom = this.taxTypeCombo;
+		this.fields.taxtype = {
+			'getValue': function() {return ttCom._val},
+			'getSaveName': function(){return 'taxtype'}
+		}
 		this.updateAggr();
 	}
 
@@ -1038,7 +1044,7 @@
 					this.inventoryLines[line].setTotal();
 				}
 			}
-
+			this.fields.taxtype._val = val;
 			this.updateAggr();
 		},
 
