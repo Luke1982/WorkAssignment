@@ -16,14 +16,12 @@ class handleInventoryDetailsLines extends VTEventHandler {
 
 		require_once 'modules/InventoryDetails/InventoryDetails.php';
 		$idfocus = new InventoryDetails();
-		$lineseq = 1;
-		foreach ($_REQUEST['idlines'] as $line) {
+		foreach ($_REQUEST['idlines'] as $lineseq => $line) {
 			if ((int)$line['crmid'] == 0) {
 				self::saveNewIDLine($entityData, $line, $idfocus, $lineseq);
 			} else {
 				self::saveExistingIDLine($entityData, $line, $idfocus, $lineseq);
 			}
-			$lineseq++;
 		}
 	}
 
