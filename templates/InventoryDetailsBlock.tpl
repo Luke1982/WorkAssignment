@@ -1,4 +1,5 @@
 <script src="include/js/Inventory.js"></script>
+<script src="modules/WorkAssignment/WorkAssignment.js"></script>
 <script src="include/js/Sortable.min.js"></script>
 <script>
 window.addEventListener("load", function(){
