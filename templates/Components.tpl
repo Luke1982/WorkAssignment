@@ -11,12 +11,12 @@
 	{$data.meta.linetotal = 0}
 	{$data.meta.quantity = 1}
 	{$data.meta.description = ''}
-	{$data.meta.crmid = '0'}
+	{$data.meta.inventorydetailsid = '0'}
 
 	{$data.pricing = []}
 	{$data.pricing.cost_price = 0}
 	{$data.pricing.cost_gross = 0}
-	{$data.pricing.unit_price = 0}
+	{$data.pricing.listprice = 0}
 	{$data.pricing.extgross = 0}
 	{$data.pricing.extnet = 0}
 
@@ -43,7 +43,7 @@
 	{$data.custom = $custom}
 {/if}
 <!-- LDS Detail line for inventorydetails -->
-<div class="{$productline_classprefix} slds-card slds-m-vertical_x-small slds-p-around_none{if $template} {$productline_classprefix}--template{/if}" data-crmid="{$data.meta.crmid}">
+<div class="{$productline_classprefix} slds-card slds-m-vertical_x-small slds-p-around_none{if $template} {$productline_classprefix}--template{/if}" data-crmid="{$data.meta.inventorydetailsid}">
 	<!-- Main LDS inventory details line -->
 	<div class="slds-is-relative slds-p-vertical_none slds-m-bottom_x-small cbds-inventoryline__headingswrapper">
 		<div class="slds-grid slds-border_bottom slds-p-vertical_x-small slds-theme_info slds-theme_alert-texture slds-is-absolute cbds-inventoryline__headings">
@@ -96,7 +96,7 @@
 							<div class="slds-combobox_container slds-has-inline-listbox cbds-product-search--hasroot">
 								<div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-combobox-lookup" aria-expanded="false" aria-haspopup="listbox" role="combobox">
 									<div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
-										<input class="slds-input slds-combobox__input {$productline_inputprefix}--name" aria-autocomplete="list" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" placeholder="Search Products and services" type="text" value="{if !$template}{$data.meta.name}{/if}" />
+										<input class="slds-input slds-combobox__input {$productline_inputprefix}--productname" aria-autocomplete="list" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" placeholder="Search Products and services" type="text" value="{if !$template}{$data.meta.productname}{/if}" />
 										{call name=LDSIcon lib='utility' icon='search' align='right' size='x-small'}
 									</div>
 								</div>
@@ -161,19 +161,29 @@
 				<div class="slds-form slds-form_compound slds-grow">
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-form-element__row cbds-m-bottom_none">
-						{call name=ProductInputFormElement size='1-of-2' label='Unit cost price' fieldname='cost_price' value=$data.pricing.cost_price iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false}
-						{call name=ProductInputFormElement size='1-of-2' label='Line cost price' fieldname='cost_gross' value=$data.pricing.cost_gross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
+						{if isset($data.pricing.cost_price)}
+							{call name=ProductInputFormElement size='1-of-2' label='Unit cost price' fieldname='cost_price' value=$data.pricing.cost_price iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false}
+						{/if}
+						{if isset($data.pricing.cost_gross)}
+							{call name=ProductInputFormElement size='1-of-2' label='Line cost price' fieldname='cost_gross' value=$data.pricing.cost_gross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
+						{/if}
 						</div>
 					</div>
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-form-element__row cbds-m-bottom_none">
-						{call name=ProductInputFormElement size='1-of-2' label='Gross line price' fieldname='extgross' value=$data.pricing.extgross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
+						{if isset($data.pricing.extgross)}
+							{call name=ProductInputFormElement size='1-of-2' label='Gross line price' fieldname='extgross' value=$data.pricing.extgross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
+						{/if}
+						{if isset($data.pricing.extnet)}
 						{call name=ProductInputFormElement size='1-of-2' label='Net line price' fieldname='extnet' value=$data.pricing.extnet iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
+						{/if}
 						</div>
 					</div>
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-form-element__row cbds-m-bottom_none">
-						{call name=ProductInputFormElement size='1-of-2' label='Unit price' fieldname='unit_price' value=$data.pricing.unit_price iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false savefield='listprice'}
+						{if isset($data.pricing.listprice)}
+							{call name=ProductInputFormElement size='1-of-2' label='Unit price' fieldname='listprice' value=$data.pricing.listprice iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false savefield='listprice'}
+						{/if}
 						</div>
 					</div>
 				</div>
@@ -189,15 +199,21 @@
 				<div class="slds-form slds-form_stacked slds-grow">
 					{$usageunitspan = ' (<span class="'|cat:$productline_classprefix|cat:'--usageunit">'|cat:$data.logistics.usageunit|cat:'</span>)'}
 					<div class="slds-panel__section slds-p-bottom_none">
-					{call name=ProductInputFormElement size='1-of-1' label='Units del. / rec. '|cat:$usageunitspan fieldname='units_delivered_received' value=$data.logistics.units_delivered_received iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=false}
+					{if isset($data.logistics.units_delivered_received)}
+						{call name=ProductInputFormElement size='1-of-1' label='Units del. / rec. '|cat:$usageunitspan fieldname='units_delivered_received' value=$data.logistics.units_delivered_received iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=false}
+					{/if}
 					</div>
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-grid">
 							<div class="slds-col">
+							{if isset($data.logistics.qtyinstock)}
 								{call name=ProductInputFormElement size='1-of-1' label='Qty in stock'|cat:$usageunitspan fieldname='qtyinstock' value=$data.logistics.qtyinstock iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=true}
+							{/if}
 							</div>
 							<div class="slds-col">
-							{call name=ProductInputFormElement size='1-of-1' label='Currently ordered'|cat:$usageunitspan fieldname='qtyindemand' value=$data.logistics.qtyindemand iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=true}
+							{if isset($data.logistics.qtyindemand)}
+								{call name=ProductInputFormElement size='1-of-1' label='Currently ordered'|cat:$usageunitspan fieldname='qtyindemand' value=$data.logistics.qtyindemand iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=true}
+							{/if}
 							</div>
 						</div>
 					</div>
@@ -221,6 +237,7 @@
 		<!-- // LDS extra inventoryline column -->
 		<!-- LDS extra inventoryline column -->
 		<div class="slds-col slds-size_3-of-12 {$productline_classprefix}--commentcol{if $inventoryblock.taxtype == 'group'} slds-size_6-of-12{/if}">
+			{if isset($data.meta.description)}
 			<div class="slds-panel">
 				<div class="slds-panel__header">
 					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Comments">Comments</h2>
@@ -235,6 +252,7 @@
 					</div>
 				</div>
 			</div>
+			{/if}
 		</div>
 		<!-- // LDS extra inventoryline column -->
 		<!-- Customfields LDS inventory line -->

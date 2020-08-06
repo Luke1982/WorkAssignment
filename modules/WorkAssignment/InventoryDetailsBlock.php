@@ -52,6 +52,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		'inventorydetails||linetotal' => '',
 		'inventorydetails||description' => '',
 		'products||productname' => '',
+		'products||usageunit' => '',
 	);
 
 	public static function title() {
@@ -146,15 +147,15 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 * Get the array-representation of the businessmap
 	 * for the parent (or 'master') module
 	 *
-	 * @param None
+	 * @param String The detail module you want to target
 	 *
 	 * @throws None
 	 * @author MajorLabel <info@majorlabel.nl>
 	 * @return Array
 	 */
-	private static function getBusinessMapLayout() {
+	private static function getBusinessMapLayout($modname) {
 		require_once 'modules/cbMap/cbMap.php';
-		return cbMap::getMapByName(self::$modname . 'InventoryDetails')->MasterDetailLayout();
+		return cbMap::getMapByName(self::$modname . $modname)->MasterDetailLayout();
 	}
 
 	/**
@@ -172,10 +173,14 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 *               of the functions.
 	 */
 	private static function getRequestedBmFields() {
-		$bmap  = self::getBusinessMapLayout();
+		$idfields = self::getBusinessMapLayout('InventoryDetails')['detailview']['fieldnames'];
+		$pfields = self::getBusinessMapLayout('Products')['detailview']['fieldnames'];
 		$ret = array();
-		foreach ($bmap['detailview']['fields'] as $fld) {
-			$ret['inventorydetails||' . $fld['fieldinfo']['name']] = $fld['fieldinfo']['name'];
+		foreach ($idfields as $fldname) {
+			$ret['inventorydetails||' . $fldname] = $fldname;
+		}
+		foreach ($pfields as $fldname) {
+			$ret['products||' . $fldname] = $fldname;
 		}
 		return $ret;
 	}
@@ -356,7 +361,9 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		self::$permitted_fields = array_merge(self::$always_active, $permitted_ids, $permitted_prod);
 		self::$requested_bmfields = self::getRequestedBmFields();
 		foreach (self::$permitted_fields as $fldname => $fld) {
-			if (array_key_exists($fldname, self::$requested_bmfields) || array_key_exists($fldname, self::$always_active)) {
+			if (array_key_exists($fldname, self::$requested_bmfields)
+			   || array_key_exists($fldname, self::$always_active)
+			) {
 				self::$selected_fields[$fldname] = $fld;
 			}
 		}
@@ -484,8 +491,13 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			if (!is_int($modandcolumnname)) {
 				list($modname, $columnname) = explode('||', $modandcolumnname);
 				if (array_key_exists($modandcolumnname, self::$selected_fields) &&
-					array_key_exists($columnname, $skeleton[$group])) {
+					array_key_exists($columnname, $skeleton[$group])
+				) {
 					$skeleton[$group][$columnname] = self::getFielddataFromLine($modandcolumnname, $line);
+				} elseif (!array_key_exists($modandcolumnname, self::$selected_fields) &&
+						  array_key_exists($columnname, $skeleton[$group])
+				) {
+					unset($skeleton[$group][$columnname]);
 				}
 			}
 		}
