@@ -43,6 +43,24 @@ class handleInventoryDetailsLines extends VTEventHandler {
 		self::sanitizeAndSaveIdLine($idfocus);
 	}
 
+	private static function saveExistingIDLine($entityData, $line, $idfocus, $lineseq) {
+		$idfocus->retrieve_entity_info($line['crmid'], 'InventoryDetails');
+		$idfocus->mode = 'edit';
+		$idfocus->id = $line['crmid'];
+		$acc_con_fldnames = self::getAccConFieldNames();
+		foreach ($line as $fldname => $fldval) {
+			$idfocus->column_fields[$fldname] = $fldval;
+		}
+		$idfocus->column_fields['account_id'] = $_REQUEST[$acc_con_fldnames['a']];
+		$idfocus->column_fields['contact_id'] = $_REQUEST[$acc_con_fldnames['c']];
+		$idfocus->column_fields['vendor_id'] = $_REQUEST['vendor_id'];
+		$idfocus->column_fields['sequence_no'] = $lineseq;
+		$idfocus->column_fields['discount_percent'] = $line['discount_type'] == 'p' ? $line['discount_amount'] : 0;
+		$idfocus->column_fields['discount_amount'] = $line['discount_type'] == 'd' ? $line['discount_amount'] : 0;
+
+		self::sanitizeAndSaveIdLine($idfocus);
+	}
+
 	private static function sanitizeAndSaveIdLine($focus) {
 		global $current_user;
 		$handler = vtws_getModuleHandlerFromName('InventoryDetails', $current_user);
