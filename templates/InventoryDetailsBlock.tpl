@@ -463,6 +463,7 @@ window.addEventListener("load", function(){
 	</article>
 	<!-- // LDS Aggregations block -->
 	<div style="display: none;" class="cbds-inventorylines__domfields"></div>
+	<div style="display: none;" class="cbds-inventorylines__todelete"></div>
 	<div style="display: none;" class="cbds-inventoryaggr__domfields"></div>
 </div>
 

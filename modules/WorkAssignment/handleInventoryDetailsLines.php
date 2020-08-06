@@ -23,6 +23,9 @@ class handleInventoryDetailsLines extends VTEventHandler {
 				self::saveExistingIDLine($entityData, $line, $idfocus, $lineseq);
 			}
 		}
+		foreach ($_REQUEST['deletelines'] as $linecrmid => $crmid) {
+			$idfocus->trash('InventoryDetails', $linecrmid);
+		}
 	}
 
 	private static function saveNewIDLine($entityData, $line, $idfocus, $lineseq) {

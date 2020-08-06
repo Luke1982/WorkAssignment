@@ -103,6 +103,9 @@
 		},
 
 		delete: function() {
+			let cont = this.root.el.getElementsByClassName(this.root.linesContClass + '__todelete')[0],
+				input = _getHiddenInputForField(this.crmid, this.crmid, 'deletelines');
+			cont.appendChild(input);
 			this.el.parentNode.removeChild(this.el);
 			this.u.off(this.extraTool, "click", this.toggleExtra);
 			delete this.root.inventoryLines[this.id];
@@ -299,14 +302,14 @@
 			for (field in this.fields) {
 				if (this.fields[field].active === true) {
 					let saveName = this.fields[field].getSaveName(),
-						input = _getHiddenInputForField(seq, saveName);
+						input = _getHiddenInputForField(seq, saveName, 'idlines');
 					cont.appendChild(input);
 					input.value = this.fields[field].getValue();
 				}
 			}
 			if (this.root.taxTypeCombo._val === 'individual') {
 				for (var i = 1; i <= this.noOfLineTaxes(); i++) {
-					let input = _getHiddenInputForField(seq, `id_tax${i}_percent`),
+					let input = _getHiddenInputForField(seq, `id_tax${i}_percent`, 'idlines'),
 						p_val = this.fields[`tax${i}`].active ? this.fields[`tax${i}`].getValue() : 0,
 						a_val = this.fields[`tax${i}`].active ? this.fields[`tax${i}_amount`].getValue() : 0;
 
@@ -316,7 +319,7 @@
 				}
 			}
 			for (field in extraFields) {
-					let input = _getHiddenInputForField(seq, field);
+					let input = _getHiddenInputForField(seq, field, 'idlines');
 					cont.appendChild(input);
 					input.value = extraFields[field];
 			}
@@ -368,9 +371,9 @@
 		return base * (percentage / 100);
 	}
 
-	function _getHiddenInputForField(seq, fieldName) {
+	function _getHiddenInputForField(seq, fieldName, groupName) {
 		let input = document.createElement('INPUT');
-		input.name = `idlines[${seq}][${fieldName}]`,
+		input.name = `${groupName}[${seq}][${fieldName}]`,
 		input.type = 'hidden';
 		return input;
 	}
