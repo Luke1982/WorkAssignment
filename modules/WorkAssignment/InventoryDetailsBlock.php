@@ -18,7 +18,8 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 
 	private static $modname = '';
 	private static $permitted_fields = array();
-	private static $permitted_bmfields = array();
+	private static $requested_bmfields = array();
+	private static $selected_fields = array();
 	private static $tax_blocks = array(
 		'LBL_BLOCK_TAXES' => array(),
 		'LBL_BLOCK_SH_TAXES' => array(),
@@ -50,6 +51,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		'inventorydetails||extnet' => '',
 		'inventorydetails||linetotal' => '',
 		'inventorydetails||description' => '',
+		'products||productname' => '',
 	);
 
 	public static function title() {
@@ -113,13 +115,11 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		// ini_set('display_errors', 1);
 		// error_reporting(E_ALL);
 		self::setModuleNameFromContext($context);
+		self::getSelectedFields();
 		self::setModInfoFromContext($context);
-		self::$permitted_fields = self::getPermittedFields();
-		self::$permitted_bmfields = self::getPermittedBmFields();
 		self::$mod_info['lines'] = self::getLinesFromId((int)$context['ID']->value);
 		$smarty = $this->setupRenderer();
 		$smarty->assign('inventoryblock', self::$mod_info);
-		$smarty->assign('context', $context);
 		return $smarty->fetch('modules/' . self::$modname . '/InventoryDetailsBlock.tpl');
 	}
 
@@ -157,20 +157,42 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		return cbMap::getMapByName(self::$modname . 'InventoryDetails')->MasterDetailLayout();
 	}
 
-	private static function getPermittedBmFields() {
+	/**
+	 * Gets a list of fields that is requested by a businessmap
+	 * that has the name 'ParentModuleNameInventoryDetails'.
+	 *
+	 * @param None
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array Array of fields where the key is a
+	 *               contraction of lowercase 'inventorydetails',
+	 *               two bars (||) and the fieldname so that
+	 *               it follows the structure of the rest
+	 *               of the functions.
+	 */
+	private static function getRequestedBmFields() {
 		$bmap  = self::getBusinessMapLayout();
 		$ret = array();
 		foreach ($bmap['detailview']['fields'] as $fld) {
-			$ret[] = array(
-				'uitype' => isset($fld['fieldinfo']['uitype']) ? $fld['fieldinfo']['uitype'] : '',
-				'fldname' => $fld['fieldinfo']['name'],
-				'label' => $fld['fieldinfo']['label'],
-				'val' => 'THISISTODO',
-			);
+			$ret['inventorydetails||' . $fld['fieldinfo']['name']] = $fld['fieldinfo']['name'];
 		}
 		return $ret;
 	}
 
+	/**
+	 * Gets the taxes that should be used on the parent ('master')
+	 * module (so the aggregations block). This happends based
+	 * on the mode we're in (create, edit, and so on)
+	 *
+	 * @param Array $context is the parent ('master') context
+	 *              representation
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array Taxes from either the system or
+	 *               the existing parent record.
+	 */
 	private static function getTaxes($context) {
 		$mode = self::getMode();
 		switch ($mode) {
@@ -188,7 +210,8 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 * Retrieve the current taxes (percentage and amount)
 	 * for both regular and SH grouptaxes. These are the
 	 * taxes that apply to the parent ('master') record,
-	 * not the individual lines
+	 * not the individual lines. These taxes come from
+	 * existing parent records.
 	 *
 	 * @param Array $context  Context array about the parent
 	 *
@@ -216,6 +239,18 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		return self::$tax_blocks;
 	}
 
+	/**
+	 * Retrieve all the existing system taxes, both sales
+	 * tax and shipping and handling tax.
+	 *
+	 * @param None
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array $taxes  Array that uses the keys in
+	 *                       $tax_blocks and fills them with
+	 *                       tax information
+	 */
 	private static function getAvailableTaxes() {
 		require_once 'include/utils/InventoryUtils.php';
 		require_once 'include/fields/CurrencyField.php';
@@ -239,14 +274,15 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		return $taxes;
 	}
 
-	private static function getTaxBlockLabels() {
-		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
-		return array(
-			'tax' => $tax_block_label,
-			'shtax' => $shtax_block_label,
-		);
-	}
-
+	/**
+	 * Get the mode the parent ('master') record is in
+	 *
+	 * @param None
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return String $mode represents the mode
+	 */
 	private static function getMode() {
 		$mode = '';
 		if ($_REQUEST['action'] == 'EditView' && !isset($_REQUEST['record'])) {
@@ -302,82 +338,72 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	}
 
 	/**
-	 * Get the fields from inventorydetails that this
-	 * user is allowed to see, taking into account that
-	 * there are certain fields that always need to be active.
+	 * Gets all the selected fields. Those are:
+	 * - The 'fixed' always active fields
+	 * - The fields selected through a business
+	 *   map, but only if the user is allowed
+	 *   to see those.
 	 *
 	 * @param None
 	 *
 	 * @throws None
 	 * @author MajorLabel <info@majorlabel.nl>
-	 * @return Array Array of permitted field in the
-	 * 				 form of 'fieldname' => 'fieldinfo' except
-	 * 				 for the 'always_active' fields, those
-	 * 				 only have an empty label
+	 * @return None
 	 */
-	private static function getPermittedFields() {
+	private static function getSelectedFields() {
 		$permitted_ids = self::getPermittedFieldsFor('InventoryDetails');
 		$permitted_prod = self::getPermittedFieldsFor('Products');
-		return array_merge(self::$always_active, $permitted_ids, $permitted_prod);
+		self::$permitted_fields = array_merge(self::$always_active, $permitted_ids, $permitted_prod);
+		self::$requested_bmfields = self::getRequestedBmFields();
+		foreach (self::$permitted_fields as $fldname => $fld) {
+			if (array_key_exists($fldname, self::$requested_bmfields) || array_key_exists($fldname, self::$always_active)) {
+				self::$selected_fields[$fldname] = $fld;
+			}
+		}
 	}
 
+	/**
+	 * Gets all the fields a user is permitted to see
+	 * for a specific modulename
+	 *
+	 * @param String The module name
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array Array of fields where the key
+	 *               is a contraction of the lowercase
+	 *               modulename, two bars (||) and the
+	 *               fieldname. Value is the fieldinfo
+	 */
 	private static function getPermittedFieldsFor($modname) {
-		require_once 'include/utils/CommonUtils.php';
-		require_once 'modules/' . $modname . '/' . $modname . '.php';
-		$f = new $modname();
-		$blocks = getBlocks($modname, 'edit_view', '', $f->column_fields);
-		$permitted_fields = array();
+		global $current_user, $adb, $log;
+		$ret = array();
+		$webserviceObject = VtigerWebserviceObject::fromName($adb, $modname);
+		$handlerPath = $webserviceObject->getHandlerPath();
+		$handlerClass = $webserviceObject->getHandlerClass();
+		require_once $handlerPath;
+		$handler = new $handlerClass($webserviceObject, $current_user, $adb, $log);
+		$fields = $handler->describe($modname)['fields'];
 
-		foreach ($blocks as $block) {
-			foreach ($block as $row) {
-				if ($row[0][2][0] != '') {
-					$permitted_fields[strtolower($modname) . '||' . $row[0][2][0]] = self::getFieldDescription($row[0]);
-				}
-				if (isset($row[1][2]) && $row[1][2][0] != '') {
-					$permitted_fields[strtolower($modname) . '||' . $row[1][2][0]] = self::getFieldDescription($row[1]);
-				}
-			}
+		foreach ($fields as $field) {
+			$ret[strtolower($modname) . '||' . $field['name']] = $field;
 		}
-		return $permitted_fields;
+		return $ret;
 	}
 
-	private static function getFieldDescription($fld) {
-		if ($fld[2][0] != '') {
-			$retfld = array(
-				'uitype' => $fld[0][0],
-				'fldname' => $fld[2][0],
-				'label' => is_array($fld[1][0]) ? $fld[1][0]['displaylabel'] : $fld[1][0],
-				'val' => $fld[3],
-			);
-			switch ($retfld['uitype']) {
-				case '15':
-				case '16':
-					$opts = array();
-					foreach ($retfld['val'][0] as $opt) {
-						$opts[] = $opt[0];
-					}
-					$retfld['val'] = $opts;
-					break;
-				case '5':
-					$retfld['val'] = array_keys($retfld['val'][1])[0];
-					break;
-				case '56':
-				case '17':
-				case '72':
-				case '9':
-				case '83':
-				case '71':
-				case '4':
-				case '2':
-				case '19':
-				case '7':
-					$retfld['val'] = $retfld['val'][0];
-					break;
-			}
-			return $retfld;
-		}
-	}
-
+	/**
+	 * Gets the existing inventorylines for a specific parent
+	 * ('master') ID. Orders by sequence no., joins on products
+	 * and (soon) services.
+	 *
+	 * @param Int The parent module ID
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array $lines is an array that follows the model
+	 *               as can be seen in 'getSkeletonLine'. Field
+	 *               values are converted to user format.
+	 */
 	private static function getInventoryLines($id) {
 		require_once 'include/fields/CurrencyField.php';
 		global $adb, $current_user;
@@ -434,11 +460,30 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		return $lines;
 	}
 
+	/**
+	 * Helper that takes a 'group' from the skeleton
+	 * line (like 'logistics') and fills it with the
+	 * data, only if the fieldname is present in the
+	 * skeleton model for that group and if the field
+	 * is selected (which can only happen through
+	 * businessmaps and field permissions)
+	 *
+	 * @param Array  The line as retrieved from the
+	 *               database in 'getInventoryLines'
+	 * @param Array  The skeleton copy we're filling
+	 *               with the retrieved line
+	 * @param String The groupname (i.e. 'logistics')
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array The skeleton group filled with
+	 *               formatted fielddata
+	 */
 	private static function getFieldsForGroup($line, $skeleton, $group) {
 		foreach ($line as $modandcolumnname => $grp) {
 			if (!is_int($modandcolumnname)) {
 				list($modname, $columnname) = explode('||', $modandcolumnname);
-				if (array_key_exists($modandcolumnname, self::$permitted_fields) &&
+				if (array_key_exists($modandcolumnname, self::$selected_fields) &&
 					array_key_exists($columnname, $skeleton[$group])) {
 					$skeleton[$group][$columnname] = self::getFielddataFromLine($modandcolumnname, $line);
 				}
@@ -447,7 +492,18 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		return $skeleton[$group];
 	}
 
-	private static function getFielddataFromLine($modandcolumnname, $line) {
+	/**
+	 * Formats the field when necessary
+	 *
+	 * @param String The contraction of lowercase modname,
+	 *               two bars (||) and the columnname
+	 * @param Array  The line as retrieved from the database
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return String The formatted field value
+	 */
+	private static function getFielddataFromLine($modandcolumnname, &$line) {
 		require_once 'include/fields/CurrencyField.php';
 		global $current_user;
 		$retval = '';
