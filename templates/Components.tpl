@@ -249,7 +249,7 @@
 					<div class="slds-panel__section slds-p-horizontal_none">
 						<div class="slds-form-element">
 							<div class="slds-form-element__control">
-								<textarea rows="10" class="slds-textarea {$productline_classprefix}--comments" placeholder="Type a comment">{if $data.meta.description != ''}{$data.meta.description}{/if}</textarea>
+								<textarea rows="10" class="slds-textarea {$productline_inputprefix}--description" placeholder="Type a comment">{if $data.meta.description != ''}{$data.meta.description}{/if}</textarea>
 							</div>
 						</div>
 					</div>
