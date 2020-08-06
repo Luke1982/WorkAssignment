@@ -310,7 +310,7 @@
 			}
 			if (this.root.taxTypeCombo._val === 'individual') {
 				for (var i = 1; i <= this.noOfLineTaxes(); i++) {
-					let input = _getHiddenInputForField(seq, `id_tax${i}_percent`, 'idlines'),
+					let input = _getHiddenInputForField(seq, `id_tax${i}_perc`, 'idlines'),
 						p_val = this.fields[`tax${i}`].active ? this.fields[`tax${i}`].getValue() : 0,
 						a_val = this.fields[`tax${i}`].active ? this.fields[`tax${i}_amount`].getValue() : 0;
 
