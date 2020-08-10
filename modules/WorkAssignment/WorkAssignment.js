@@ -139,13 +139,15 @@
 
 		handleInput: function(e) {
 			var input = this.getInputObj(e.target);
-			input.format(e);
-			var validated = input.validate();
+			if (input !== undefined) {
+				input.format(e);
+				var validated = input.validate();
 
-			if (!validated) {
-				input.setState("error");
-			} else {
-				this.calcLine();
+				if (!validated) {
+					input.setState("error");
+				} else {
+					this.calcLine();
+				}
 			}
 		},
 
@@ -836,11 +838,13 @@
 		handleAggrInput: function(e) {
 			var validated = true;
 			for (field in this.fields) {
-				this.fields[field].setNormal();
-				if (!this.fields[field].validate()) {
-					validated = false;
-					this.fields[field].setError();
-					break;
+				if (_isTrueField(this.fields[field])) {
+					this.fields[field].setNormal();
+					if (!this.fields[field].validate()) {
+						validated = false;
+						this.fields[field].setError();
+						break;
+					}
 				}
 			}
 
@@ -1147,6 +1151,10 @@
 		input.name = fieldName,
 		input.type = 'hidden';
 		return input;
+	}
+
+	function _isTrueField(field) {
+		return field.constructor.name === 'InventoryField';
 	}
 
 	/*
