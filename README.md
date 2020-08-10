@@ -11,3 +11,5 @@ A corebos module that lets you create Work Assignments (on location) for users
 ## Todo
 - Create event listener for the deletion or creation of taxes
 - Create address fields
+- Handle conversion from other records
+- handle duplication
