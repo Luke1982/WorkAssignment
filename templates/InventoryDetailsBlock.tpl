@@ -15,7 +15,7 @@ window.addEventListener("load", function(){
 });
 </script>
 
-{* <pre>{$context|print_r}</pre> *}
+{* <pre>{$APP|print_r}</pre> *}
 
 {include file='modules/WorkAssignment/Components.tpl'}
 <!-- Detail block -->
@@ -27,7 +27,6 @@ window.addEventListener("load", function(){
 				<svg class="slds-icon slds-icon_small" aria-hidden="true">
 					<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#picklist_type" xmlns:xlink="http://www.w3.org/1999/xlink" />
 				</svg>
-				<span class="slds-assistive-text">Description of icon when needed</span>
 			</span>
 		</div>
 		<div class="slds-col slds-size_4-of-12 slds-grid">
@@ -78,29 +77,29 @@ window.addEventListener("load", function(){
 		<div class="slds-col slds-size-9-of-12">
 			<div class="slds-grid">
 				<div class="slds-col slds-size_3-of-12">
-					<div class="slds-text-title_caps slds-text-color_inverse">Product name</div>
+					<div class="slds-text-title_caps slds-text-color_inverse slds-truncate">{'LBL_LIST_PRODUCT_NAME'|@getTranslatedString:'Products'}</div>
 				</div>
 				<div class="slds-col slds-size_1-of-12 slds-p-left_xx-small">
-					<div class="slds-text-title_caps slds-text-color_inverse">Quantity</div>
+					<div class="slds-text-title_caps slds-text-color_inverse slds-truncate">{'Quantity'|@getTranslatedString:'InventoryDetails'}</div>
 				</div>
 				<div class="slds-grid slds-size_3-of-12">
 					<div class="slds-col slds-size_5-of-12">
-						<div class="slds-text-title_caps slds-text-color_inverse">Discount type</div>
+						<div class="slds-text-title_caps slds-text-color_inverse slds-truncate">{$MOD.LBL_DISCOUNT_TYPE}</div>
 					</div>
 					<div class="slds-col slds-size_6-of-12 slds-p-left_small">
-						<div class="slds-text-title_caps slds-text-color_inverse">Discount</div>
+						<div class="slds-text-title_caps slds-text-color_inverse slds-truncate">{$MOD.LBL_DISCOUNT}</div>
 					</div>
 				</div>
 				<div class="slds-col slds-size_2-of-12">
-					<div class="slds-text-title_caps slds-text-color_inverse">Discount amount</div>
+					<div class="slds-text-title_caps slds-text-color_inverse slds-truncate">{'Discount Amount'|@getTranslatedString:'InventoryDetails'}</div>
 				</div>
 				<div class="slds-col slds-size_2-of-12">
-					<div class="slds-text-title_caps slds-text-color_inverse">Line total</div>
+					<div class="slds-text-title_caps slds-text-color_inverse slds-truncate">{'Line Total'|@getTranslatedString:'InventoryDetails'}</div>
 				</div>
 			</div>
 		</div>
 		<div class="slds-col slds-size_2-of-12">
-			<div class="slds-text-title_caps slds-p-right_small slds-text-color_inverse slds-text-align_right">Line tools</div>
+			<div class="slds-text-title_caps slds-p-right_small slds-text-color_inverse slds-text-align_right">{$MOD.LBL_LINE_TOOLS}</div>
 		</div>
 	</div>
 	<!-- // LDS Detail line header -->
@@ -114,7 +113,7 @@ window.addEventListener("load", function(){
 		<div class="slds-card__header slds-grid">
 			<header class="slds-media slds-media_center slds-has-flexi-truncate">
 				<div class="slds-media__figure">
-					<span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+					<span class="slds-icon_container slds-icon-standard-contact">
 						<svg class="slds-icon slds-icon_small" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/standard-sprite/svg/symbols.svg#product_required" xmlns:xlink="http://www.w3.org/1999/xlink" />
 						</svg>
@@ -123,36 +122,36 @@ window.addEventListener("load", function(){
 				<div class="slds-media__body">
 					<h2>
 						<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Total number of lines">
-							<span class="slds-text-heading_small">Lines (<span class="cbds-inventoryaggr--linecount">{count($inventoryblock.lines)}</span>)</span>
+							<span class="slds-text-heading_small">{$MOD.LBL_LINES} (<span class="cbds-inventoryaggr--linecount">{count($inventoryblock.lines)}</span>)</span>
 						</a>
 					</h2>
 				</div>
 			</header>
 			<div class="slds-no-flex">
 				<div class="slds-button-group slds-theme_default">
-					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-toolbox__tool" data-clickfunction="expandAllLines" title="Expand all lines" aria-pressed="false">
+					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-toolbox__tool" data-clickfunction="expandAllLines" title="{$MOD.LBL_EXPAND_ALL_LINES}" aria-pressed="false">
 						<svg class="slds-button__icon" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#expand_all"></use>
 						</svg>
-						<span class="slds-assistive-text">Expand all lines</span>
+						<span class="slds-assistive-text">{$MOD.LBL_EXPAND_ALL_LINES}</span>
 					</button>
-					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-toolbox__tool" data-clickfunction="collAllLines" title="Collapse all lines" aria-pressed="false">
+					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-toolbox__tool" data-clickfunction="collAllLines" title="{$MOD.LBL_COLL_ALL_LINES}" aria-pressed="false">
 						<svg class="slds-button__icon" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#collapse_all"></use>
 						</svg>
-						<span class="slds-assistive-text">Collapse all lines</span>
+						<span class="slds-assistive-text">{$MOD.LBL_COLL_ALL_LINES}</span>
 					</button>
-					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-toolbox__tool" data-clickfunction="insertNewLine" title="Add line" aria-pressed="false">
+					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-toolbox__tool" data-clickfunction="insertNewLine" title="{$MOD.LBL_INSERT_LINE}" aria-pressed="false">
 						<svg class="slds-button__icon" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
 						</svg>
-						<span class="slds-assistive-text">Insert a new line</span>
+						<span class="slds-assistive-text">{$MOD.LBL_INSERT_LINE}</span>
 					</button>
-					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-button--delete cbds-toolbox__tool" data-clickfunction="deleteAllLines" title="Delete all lines" aria-pressed="false">
+					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-button--delete cbds-toolbox__tool" data-clickfunction="deleteAllLines" title="{$MOD.LBL_DEL_ALL_LINES}" aria-pressed="false">
 						<svg class="slds-button__icon" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#delete"></use>
 						</svg>
-						<span class="slds-assistive-text">Delete all lines</span>
+						<span class="slds-assistive-text">{$MOD.LBL_DEL_ALL_LINES}</span>
 					</button>
 				</div>
 			</div>
@@ -162,7 +161,7 @@ window.addEventListener("load", function(){
 				<div class="slds-col slds-size_4-of-12">
 					<div class="slds-panel slds-m-around_small slds-theme_shade slds-theme_alert-texture slds-box cbds-inventoryaggr__taxes--group{if $inventoryblock.taxtype == 'group'} active{/if}">
 						<div class="slds-panel__header">
-							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate slds-text-color_default" title="Group Taxes">Group Taxes</h2>
+							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate slds-text-color_default" title="{$APP.LBL_TAX}">{$APP.LBL_TAX}</h2>
 						</div>
 						<div class="slds-panel__body slds-p-around_none">
 							<div class="slds-panel__section slds-p-around_none">
@@ -176,9 +175,9 @@ window.addEventListener("load", function(){
 												<div class="slds-form-element__row slds-wrap">
 													<div class="slds-size_1-of-1 slds-large-size_1-of-2">
 														<div class="slds-form-element">
-															<label class="slds-form-element__label">Percentage</label>
+															<label class="slds-form-element__label">{$MOD.LBL_PERC}</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input data-savefield="{$tax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$tax.taxname}" value="{$tax.percent}" type="text" data-type="number" data-taxname="{$tax.taxname}" data-error-mess="Please insert a valid number">
+																<input data-savefield="{$tax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$tax.taxname}" value="{$tax.percent}" type="text" data-type="number" data-taxname="{$tax.taxname}" data-error-mess="{$MOD.LBL_VALID_NUM}">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
 																</span>
@@ -187,7 +186,7 @@ window.addEventListener("load", function(){
 													</div>
 													<div class="slds-size_1-of-1 slds-large-size_1-of-2">
 														<div class="slds-form-element">
-															<label class="slds-form-element__label">Amount</label>
+															<label class="slds-form-element__label">{$MOD.LBL_AMOUNT}</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
 																<input data-savefield="{$tax.taxname}_amount" class="slds-input cbds-inventoryaggr__input--{$tax.taxname}_amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
@@ -210,7 +209,7 @@ window.addEventListener("load", function(){
 				<div class="slds-col slds-size_4-of-12">
 					<div class="slds-panel slds-m-around_small slds-theme_shade slds-theme_alert-texture slds-box">
 						<div class="slds-panel__header">
-							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Shipping &amp; Handling taxes">Shipping &amp; Handling taxes</h2>
+							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="{$APP.{'Shipping & Handling Tax:'}}">{$APP.{'Shipping & Handling Tax:'}}</h2>
 						</div>
 						<div class="slds-panel__body slds-p-around_none">
 							<div class="slds-panel__section slds-p-around_none">
@@ -224,9 +223,9 @@ window.addEventListener("load", function(){
 												<div class="slds-form-element__row slds-wrap">
 													<div class="slds-size_1-of-1 slds-large-size_1-of-2">
 														<div class="slds-form-element">
-															<label class="slds-form-element__label">Percentage</label>
+															<label class="slds-form-element__label">{$MOD.LBL_PERC}</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input data-savefield="{$shtax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="{$shtax.taxname}" data-error-mess="Please insert a valid number">
+																<input data-savefield="{$shtax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="{$shtax.taxname}" data-error-mess="{$MOD.LBL_VALID_NUM}">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
 																</span>
@@ -235,7 +234,7 @@ window.addEventListener("load", function(){
 													</div>
 													<div class="slds-size_1-of-1 slds-large-size_1-of-2">
 														<div class="slds-form-element">
-															<label class="slds-form-element__label">Amount</label>
+															<label class="slds-form-element__label">{$MOD.LBL_AMOUNT}</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
 																<input data-savefield="{$shtax.taxname}_amount" class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}_amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
@@ -258,14 +257,14 @@ window.addEventListener("load", function(){
 				<div class="slds-col slds-size_4-of-12">
 					<div class="slds-panel slds-m-around_small slds-box slds-theme_shade">
 						<div class="slds-panel__header">
-							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate slds-text-align_right" title="Totals">Totals</h2>
+							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate slds-text-align_right" title="{$APP.LBL_TOTAL}">{$APP.LBL_TOTAL}</h2>
 						</div>
 						<div class="slds-panel__body">
 							<div class="slds-panel__section slds-p-right_none">
 								<!-- Totals -->
 								<div class="slds-grid">
 									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Gross total</div>
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$APP.{'Gross Total'}}</div>
 									</div>
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
@@ -287,13 +286,13 @@ window.addEventListener("load", function(){
 											<svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
 												<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
 											</svg>
-											<span class="slds-truncate" title="Discounts">Discounts</span>
+											<span class="slds-truncate" title="{$APP.Discount}">{$APP.Discount}</span>
 										</button>
 									</h3>
 									<div aria-hidden="false" class="slds-section__content slds-theme_default slds-box slds-p-vertical_none" id="cbds-inventoryaggr__discounts">
 										<div class="slds-grid">
 											<div class="slds-col slds-size_7-of-12">
-												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Line discounts</div>
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$MOD.LBL_LINEDISCOUNTS}</div>
 											</div>
 											<div class="slds-col slds-size_5-of-12">
 												<div class="slds-grid">
@@ -307,7 +306,7 @@ window.addEventListener("load", function(){
 										</div>
 										<div class="slds-grid">
 											<div class="slds-col slds-size_7-of-12">
-												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Global discount</div>
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$MOD.LBL_GLBL_DISCOUNT}</div>
 											</div>
 											<div class="slds-col slds-size_5-of-12">
 												<div class="slds-grid">
@@ -321,7 +320,7 @@ window.addEventListener("load", function(){
 										</div>
 										<div class="slds-grid">
 											<div class="slds-col slds-size_7-of-12">
-												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total discount</div>
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$MOD.LBL_TOTAL_DISCOUNT}</div>
 											</div>
 											<div class="slds-col slds-size_5-of-12">
 												<div class="slds-grid">
@@ -345,19 +344,19 @@ window.addEventListener("load", function(){
 											<svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
 												<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
 											</svg>
-											<span class="slds-truncate" title="Shipping &amp; Handling">Shipping &amp; Handling</span>
+											<span class="slds-truncate" title="{$APP.LBL_SHIPPING_AND_HANDLING_CHARGES}">{$APP.LBL_SHIPPING_AND_HANDLING_CHARGES}</span>
 										</button>
 									</h3>
 									<div aria-hidden="false" class="slds-section__content slds-theme_default slds-box slds-p-vertical_none" id="cbds-inventoryaggr__sh">
 										<div class="slds-grid">
 											<div class="slds-col slds-size_7-of-12">
-												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">S&H Amount</div>
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$APP.LBL_SHIPPING_AND_HANDLING_CHARGES}</div>
 											</div>
 											<div class="slds-col slds-size_5-of-12">
 												<div class="slds-grid">
 													<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 													<div class="slds-col slds-size_10-of-12 slds-form-element">
-														<input data-savefield="pl_sh_total" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_sh_total" value="{$inventoryblock.aggr.pl_sh_total}" type="text" data-type="currency" data-error-mess="Please insert a valid currency">
+														<input data-savefield="pl_sh_total" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_sh_total" value="{$inventoryblock.aggr.pl_sh_total}" type="text" data-type="currency" data-error-mess="{$MOD.LBL_VALID_CURR}">
 														<div class="slds-form-element__help"></div>
 													</div>
 												</div>
@@ -365,7 +364,7 @@ window.addEventListener("load", function(){
 										</div>
 										<div class="slds-grid">
 											<div class="slds-col slds-size_7-of-12">
-												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">S&H Tax</div>
+												<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$APP.{'Shipping & Handling Tax:'}}</div>
 											</div>
 											<div class="slds-col slds-size_5-of-12">
 												<div class="slds-grid">
@@ -381,7 +380,7 @@ window.addEventListener("load", function(){
 								</div>
 								<div class="slds-grid">
 									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Net total BGD</div>
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$APP.{'Net Total (bGD)'}}</div>
 									</div>
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
@@ -395,7 +394,7 @@ window.addEventListener("load", function(){
 								</div>
 								<div class="slds-grid">
 									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Net total AGD</div>
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$APP.{'Net Total (aGD)'}}</div>
 									</div>
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
@@ -409,7 +408,7 @@ window.addEventListener("load", function(){
 								</div>
 								<div class="slds-grid">
 									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total taxes</div>
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$MOD.LBL_TOTAL_TAX}</div>
 									</div>
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
@@ -423,7 +422,7 @@ window.addEventListener("load", function(){
 								</div>
 								<div class="slds-grid">
 									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Adjustment</div>
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$APP.LBL_ADJUSTMENT}</div>
 									</div>
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">
@@ -437,7 +436,7 @@ window.addEventListener("load", function(){
 								</div>
 								<div class="slds-grid">
 									<div class="slds-col slds-size_7-of-12">
-										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">Total</div>
+										<div class="slds-text-title_caps slds-text-align_right slds-p-top_x-small slds-m-right_small">{$APP.LBL_TOTAL}</div>
 									</div>
 									<div class="slds-col slds-size_5-of-12">
 										<div class="slds-grid">

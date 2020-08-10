@@ -51,34 +51,34 @@
 	<div class="slds-is-relative slds-p-vertical_none slds-m-bottom_x-small cbds-inventoryline__headingswrapper">
 		<div class="slds-grid slds-border_bottom slds-p-vertical_x-small slds-theme_info slds-theme_alert-texture slds-is-absolute cbds-inventoryline__headings">
 			<div class="slds-col slds-size_1-of-12 slds-p-left_x-small">
-				<div class="slds-text-title slds-text-color_inverse">Image</div>
+				<div class="slds-text-title slds-text-color_inverse">{$MOD.LBL_IMAGE}</div>
 			</div>
 			<div class="slds-col slds-size-9-of-12">
 				<div class="slds-grid">
 					<div class="slds-col slds-size_3-of-12">
-						<div class="slds-text-title slds-text-color_inverse">Product name</div>
+						<div class="slds-text-title slds-text-color_inverse">{'LBL_LIST_PRODUCT_NAME'|@getTranslatedString:'Products'}</div>
 					</div>
 					<div class="slds-col slds-size_1-of-12 slds-p-left_xx-small">
-						<div class="slds-text-title slds-text-color_inverse">Quantity</div>
+						<div class="slds-text-title slds-text-color_inverse">{'Quantity'|@getTranslatedString:'InventoryDetails'}</div>
 					</div>
 					<div class="slds-grid slds-size_3-of-12">
 						<div class="slds-col slds-size_5-of-12">
-							<div class="slds-text-title slds-text-color_inverse">Discount type</div>
+							<div class="slds-text-title slds-text-color_inverse">{$MOD.LBL_DISCOUNT_TYPE}</div>
 						</div>
 						<div class="slds-col slds-size_6-of-12 slds-p-left_small">
-							<div class="slds-text-title slds-text-color_inverse">Discount</div>
+							<div class="slds-text-title slds-text-color_inverse">{$MOD.LBL_DISCOUNT}</div>
 						</div>
 					</div>
 					<div class="slds-col slds-size_2-of-12">
-						<div class="slds-text-title slds-text-color_inverse">Discount amount</div>
+						<div class="slds-text-title slds-text-color_inverse">{'Discount Amount'|@getTranslatedString:'InventoryDetails'}</div>
 					</div>
 					<div class="slds-col slds-size_2-of-12">
-						<div class="slds-text-title slds-text-color_inverse">Line total</div>
+						<div class="slds-text-title slds-text-color_inverse">{'Line Total'|@getTranslatedString:'InventoryDetails'}</div>
 					</div>
 				</div>
 			</div>
 			<div class="slds-col slds-size_2-of-12">
-				<div class="sslds-text-title slds-p-right_small slds-text-align_right">Line tools</div>
+				<div class="sslds-text-title slds-p-right_small slds-text-align_right">{$MOD.LBL_LINE_TOOLS}</div>
 			</div>
 		</div>
 	</div>
@@ -144,10 +144,10 @@
 		<!-- LDS Line tools column -->
 		<div class="slds-col slds-size_2-of-12 slds-align-middle">
 			<div class="slds-button-group slds-float_right">
-				{call name=LDSButton el='div' iconlib='utility' icon='move' iconsize='x-small' extraclass='cbds-detail-line-dragtool' title='Drag this line'}
-				{call name=LDSButton el='button' iconlib='utility' icon='copy' iconsize='x-small' extraclass='cbds-detail-line-copytool' title='Copy this line'}
-				{call name=LDSButton el='button' iconlib='utility' icon='delete' iconsize='x-small' extraclass='cbds-button--delete cbds-detail-line-deletetool' title='Delete this line'}
-				{call name=LDSButton el='button' iconlib='utility' icon='switch' iconsize='x-small' extraclass='cbds-detail-line-extratool' title='Expand or collapse this line'}
+				{call name=LDSButton el='div' iconlib='utility' icon='move' iconsize='x-small' extraclass='cbds-detail-line-dragtool' title=$MOD.LBL_DRAG_LINE}
+				{call name=LDSButton el='button' iconlib='utility' icon='copy' iconsize='x-small' extraclass='cbds-detail-line-copytool' title=$MOD.LBL_COPY_LINE}
+				{call name=LDSButton el='button' iconlib='utility' icon='delete' iconsize='x-small' extraclass='cbds-button--delete cbds-detail-line-deletetool' title=$MOD.LBL_DELETE_LINE}
+				{call name=LDSButton el='button' iconlib='utility' icon='switch' iconsize='x-small' extraclass='cbds-detail-line-extratool' title=$MOD.LBL_EXPAND_COLL_LINE}
 			</div>
 		</div>
 		<!-- // LDS Line tools column -->
@@ -159,33 +159,33 @@
 		<div class="slds-col slds-size_3-of-12">
 			<div class="slds-panel">
 				<div class="slds-panel__header">
-					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Pricing">Pricing</h2>
+					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="{$MOD.LBL_PRICING}">{$MOD.LBL_PRICING}</h2>
 				</div>
 				<div class="slds-form slds-form_compound slds-grow">
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-form-element__row cbds-m-bottom_none">
 						{if isset($data.pricing.cost_price)}
-							{call name=ProductInputFormElement size='1-of-2' label='Unit cost price' fieldname='cost_price' value=$data.pricing.cost_price iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false}
+							{call name=ProductInputFormElement size='1-of-2' label='Cost Price'|@getTranslatedString:'Products' fieldname='cost_price' value=$data.pricing.cost_price iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false}
 						{/if}
 						{if isset($data.pricing.cost_gross)}
-							{call name=ProductInputFormElement size='1-of-2' label='Line cost price' fieldname='cost_gross' value=$data.pricing.cost_gross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
+							{call name=ProductInputFormElement size='1-of-2' label='Cost Total'|@getTranslatedString:'InventoryDetails' fieldname='cost_gross' value=$data.pricing.cost_gross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
 						{/if}
 						</div>
 					</div>
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-form-element__row cbds-m-bottom_none">
 						{if isset($data.pricing.extgross)}
-							{call name=ProductInputFormElement size='1-of-2' label='Gross line price' fieldname='extgross' value=$data.pricing.extgross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
+							{call name=ProductInputFormElement size='1-of-2' label='Extgross'|@getTranslatedString:'InventoryDetails' fieldname='extgross' value=$data.pricing.extgross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
 						{/if}
 						{if isset($data.pricing.extnet)}
-						{call name=ProductInputFormElement size='1-of-2' label='Net line price' fieldname='extnet' value=$data.pricing.extnet iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
+						{call name=ProductInputFormElement size='1-of-2' label='Extnet'|@getTranslatedString:'InventoryDetails' fieldname='extnet' value=$data.pricing.extnet iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
 						{/if}
 						</div>
 					</div>
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-form-element__row cbds-m-bottom_none">
 						{if isset($data.pricing.listprice)}
-							{call name=ProductInputFormElement size='1-of-2' label='Unit price' fieldname='listprice' value=$data.pricing.listprice iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false savefield='listprice'}
+							{call name=ProductInputFormElement size='1-of-2' label='Listprice'|@getTranslatedString:'InventoryDetails' fieldname='listprice' value=$data.pricing.listprice iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false savefield='listprice'}
 						{/if}
 						</div>
 					</div>
@@ -197,25 +197,25 @@
 		<div class="slds-col slds-size_3-of-12">
 			<div class="slds-panel">
 				<div class="slds-panel__header">
-					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Logistics">Logistics</h2>
+					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title={$MOD.LBL_LOGISTICS}>{$MOD.LBL_LOGISTICS}</h2>
 				</div>
 				<div class="slds-form slds-form_stacked slds-grow">
 					{$usageunitspan = ' (<span class="'|cat:$productline_classprefix|cat:'--usageunit">'|cat:$data.logistics.usageunit|cat:'</span>)'}
 					<div class="slds-panel__section slds-p-bottom_none">
 					{if isset($data.logistics.units_delivered_received)}
-						{call name=ProductInputFormElement size='1-of-1' label='Units del. / rec. '|cat:$usageunitspan fieldname='units_delivered_received' value=$data.logistics.units_delivered_received iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=false}
+						{call name=ProductInputFormElement size='1-of-1' label='Units Delivered Received'|@getTranslatedString:'InventoryDetails'|cat:$usageunitspan fieldname='units_delivered_received' value=$data.logistics.units_delivered_received iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=false}
 					{/if}
 					</div>
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-grid">
 							<div class="slds-col">
 							{if isset($data.logistics.qtyinstock)}
-								{call name=ProductInputFormElement size='1-of-1' label='Qty in stock'|cat:$usageunitspan fieldname='qtyinstock' value=$data.logistics.qtyinstock iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=true}
+								{call name=ProductInputFormElement size='1-of-1' label='Qty In Stock'|@getTranslatedString:'Products'|cat:$usageunitspan fieldname='qtyinstock' value=$data.logistics.qtyinstock iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=true}
 							{/if}
 							</div>
 							<div class="slds-col">
 							{if isset($data.logistics.qtyindemand)}
-								{call name=ProductInputFormElement size='1-of-1' label='Currently ordered'|cat:$usageunitspan fieldname='qtyindemand' value=$data.logistics.qtyindemand iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=true}
+								{call name=ProductInputFormElement size='1-of-1' label='Qty In Demand'|@getTranslatedString:'Products'|cat:$usageunitspan fieldname='qtyindemand' value=$data.logistics.qtyindemand iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=true}
 							{/if}
 							</div>
 						</div>
@@ -228,7 +228,7 @@
 		<div class="slds-col slds-size_3-of-12 {$productline_classprefix}--taxcol{if $inventoryblock.taxtype == 'group'} {$productline_classprefix}--taxcol-hidden{/if}">
 			<div class="slds-panel">
 				<div class="slds-panel__header">
-					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Taxes">Taxes</h2>
+					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="{'InventoryDetailsTaxBlock'|@getTranslatedString:'InventoryDetails'}">{'InventoryDetailsTaxBlock'|@getTranslatedString:'InventoryDetails'}</h2>
 				</div>
 				<div class="slds-form slds-form_compound slds-grow">
 					{foreach from=$data.taxes item=tax key=key}
@@ -243,13 +243,13 @@
 			{if isset($data.meta.description)}
 			<div class="slds-panel">
 				<div class="slds-panel__header">
-					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="Comments">Comments</h2>
+					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="{$APP.description}">{$APP.description}</h2>
 				</div>
 				<div class="slds-form slds-form_stacked slds-grow">
 					<div class="slds-panel__section slds-p-horizontal_none">
 						<div class="slds-form-element">
 							<div class="slds-form-element__control">
-								<textarea rows="10" class="slds-textarea {$productline_inputprefix}--description" placeholder="Type a comment">{if $data.meta.description != ''}{$data.meta.description}{/if}</textarea>
+								<textarea rows="10" class="slds-textarea {$productline_inputprefix}--description" placeholder="{$APP.description}">{if $data.meta.description != ''}{$data.meta.description}{/if}</textarea>
 							</div>
 						</div>
 					</div>
