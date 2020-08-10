@@ -13,3 +13,4 @@ A corebos module that lets you create Work Assignments (on location) for users
 - Create address fields
 - Handle conversion from other records
 - handle duplication
+- Join retrieving existing inventorylines on services as well, right now it's only products
