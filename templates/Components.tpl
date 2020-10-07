@@ -144,7 +144,7 @@
 		<!-- // Nested column with input fields -->
 		<!-- LDS Line tools column -->
 		<div class="slds-col slds-size_2-of-12 slds-align-middle">
-			<div class="slds-button-group slds-float_right">
+			<div class="slds-button-group slds-float_right slds-m-right_small">
 				{if !$readonly}
 					{call name=LDSButton el='div' iconlib='utility' icon='move' iconsize='x-small' extraclass='cbds-detail-line-dragtool' title=$MOD.LBL_DRAG_LINE}
 					{call name=LDSButton el='button' iconlib='utility' icon='copy' iconsize='x-small' extraclass='cbds-detail-line-copytool' title=$MOD.LBL_COPY_LINE}
