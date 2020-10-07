@@ -119,6 +119,7 @@ class WorkAssignment extends CRMEntity {
 			// Handle post installation actions
 			$this->setModuleSeqNumber('configure', $modulename, 'WA', '0000001');
 			$this->installTaxFields();
+			$this->installTaxHandlers();
 		} elseif ($event_type == 'module.disabled') {
 			// Handle actions when this module is disabled.
 		} elseif ($event_type == 'module.enabled') {
@@ -181,6 +182,16 @@ class WorkAssignment extends CRMEntity {
 			$field->presence = 0;
 			$block->addField($field);
 		}
+	}
+
+	private function installTaxHandlers() {
+		global $adb;
+		require 'include/events/include.inc';
+		$em = new VTEventsManager($adb);
+
+		$em->registerHandler('corebos.add.tax', 'modules/WorkAssignment/handlers/handleNewTax.php', 'NewTaxHandler');
+		$em->registerHandler('corebos.changestatus.tax', 'modules/WorkAssignment/handlers/handleChangedTax.php', 'ChangeTaxHandler');
+		$em->registerHandler('corebos.changelabel.tax', 'modules/WorkAssignment/handlers/handleChangedTax.php', 'ChangeTaxHandler');
 	}
 
 	/**
