@@ -54,6 +54,14 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		'inventorydetails||description' => '',
 		'products||productname' => '',
 		'products||usageunit' => '',
+		'products||lineproducttype' => '',
+	);
+
+	// Array of properties that aren't
+	// fields, but need to mimic them to
+	// pass some info on to the line array
+	private static $nonfield_lineprops = array(
+		'products||lineproducttype' => '',
 	);
 
 	public static function title() {
@@ -428,7 +436,10 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			$taxquery .= "id.id_tax{$i}_perc AS 'inventorydetails||id_tax{$i}_perc',";
 		}
 		$q = "SELECT id.inventorydetailsid AS 'inventorydetails||inventorydetailsid',
-					 p.productname AS 'products||productname',
+					 CASE
+					 	WHEN p.productname IS NULL THEN s.servicename
+						ELSE p.productname
+					 END AS 'products||productname',
 					 id.productid AS 'inventorydetails||productid',
 					 id.quantity AS 'inventorydetails||quantity',
 					 CASE
@@ -438,7 +449,10 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 					 id.discount_amount AS 'inventorydetails||discount_amount',
 					 id.discount_percent AS 'inventorydetails||discount_percent',
 					 id.linetotal AS 'inventorydetails||linetotal',
-					 p.divisible AS 'products||divisible',
+					 CASE
+					 	WHEN p.productname IS NULL THEN s.divisible
+						ELSE p.divisible
+					 END AS 'products||divisible',
 					 c.description AS 'inventorydetails||description',
 					 id.cost_price AS 'inventorydetails||cost_price',
 					 id.cost_gross AS 'inventorydetails||cost_gross',
@@ -450,9 +464,17 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 					 {$taxquery}
 					 p.qtyinstock AS 'products||qtyinstock',
 					 p.qtyindemand AS 'products||qtyindemand',
-					 p.usageunit AS 'products||usageunit'
+					 CASE
+					 	WHEN p.productname IS NULL THEN s.service_usageunit
+						ELSE p.usageunit
+					 END AS 'products||usageunit',
+					 CASE
+					 	WHEN p.productname IS NULL THEN 'service'
+						ELSE 'product'
+					 END AS 'products||lineproducttype'
 			  FROM vtiger_inventorydetails AS id
 			  LEFT JOIN vtiger_products AS p ON id.productid = p.productid
+			  LEFT JOIN vtiger_service AS s ON id.productid = s.serviceid
 			  INNER JOIN vtiger_crmentity AS c ON id.inventorydetailsid = c.crmid
 			  WHERE c.deleted = 0
 			  AND id.related_to = {$id}
@@ -527,7 +549,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		global $current_user;
 		$retval = '';
 		$flddata = &self::$permitted_fields[$modandcolumnname];
-		if ($flddata != '') {
+		if ($flddata != '' || array_key_exists($modandcolumnname, self::$nonfield_lineprops)) {
 			switch ($flddata['uitype']) {
 				case '7':
 				case '71':
@@ -572,6 +594,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 				'linetotal' => 0,
 				'divisible' => true,
 				'description' => '',
+				'lineproducttype' => 'product',
 			),
 			'pricing' => array(
 				'cost_price' => 0,
