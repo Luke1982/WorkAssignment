@@ -58,10 +58,14 @@
 			me.crmid = me.el.getAttribute('data-crmid');
 			me.productId = me.el.getAttribute('data-productid');
 
-			new ProductAutocomplete(me.u.getFirstClass(me.el, "cbds-product-search--hasroot"), me, false, rootObj);
+			if (me.root.editmode == 'EditView') {
+				new ProductAutocomplete(me.u.getFirstClass(me.el, "cbds-product-search--hasroot"), me, false, rootObj);
+			}
 
 			for (var i = 0; i < comboBoxes.length; i++) {
-				var comboBox = new ldsCombobox(comboBoxes[i]);	
+				var comboBox = new ldsCombobox(comboBoxes[i], {
+					'enabled': me.root.editmode == 'EditView'
+				});
 				comboBox.onSelect = me.handleComboSelects.bind(comboBox, me);
 				me.comboBoxes.push(comboBox);
 			}
@@ -770,6 +774,7 @@
 		this.aggrInputPrefix = params.aggrInputPrefix,
 
 		this.el = el,
+		this.editmode = params.editmode,
 		this.linesContainer = el.getElementsByClassName(this.linesContClass)[0],
 		this.inventoryLines = {},
 		this.inventoryLines.seq = 0,
@@ -794,13 +799,16 @@
 		// Construction
 		this.utils.on(window, "click", this.handleClicks, this);
 		this.utils.on(this.aggrCont, "keyup", this.handleAggrInput, this);
-		this.startSortable();
+		if (this.editmode == 'EditView') {
+			this.startSortable();
+		}
 		this.startLines();
 		ldsCheckbox.setUnique();
 
 		var taxtypeInput = this.utils.getFirstClass(el, "cbds-inventory-block__input--taxtype");
 		this.taxTypeCombo = new ldsCombobox(this.utils.findUp(taxtypeInput, ".slds-combobox-picklist"), {
-			"onSelect" : this.changeTaxType.bind(this)
+			"onSelect" : this.changeTaxType.bind(this),
+			'enabled': this.editmode == 'EditView'
 		});
 
 		var ttCom = this.taxTypeCombo;

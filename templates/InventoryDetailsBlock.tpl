@@ -10,7 +10,8 @@ window.addEventListener("load", function(){
 			"linePrefix" : "cbds-inventoryline",
 			"inputPrefix" : "cbds-inventoryline__input",
 			"aggrPrefix" : "cbds-inventoryaggr",
-			"aggrInputPrefix" : "cbds-inventoryaggr__input"
+			"aggrInputPrefix" : "cbds-inventoryaggr__input",
+			"editmode": '{$MASTERMODE}'
 	});
 });
 </script>
@@ -52,6 +53,7 @@ window.addEventListener("load", function(){
 						</svg>
 						<span class="slds-assistive-text">Expand or collapse this line</span>
 					</button>
+					{if $MASTERMODE == 'EditView'}
 					<button type="button" class="slds-button slds-button_icon slds-button_icon-border-inverse cbds-toolbox__tool" data-clickfunction="insertNewLine" title="Add line" aria-pressed="false">
 						<svg class="slds-button__icon" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
@@ -64,6 +66,7 @@ window.addEventListener("load", function(){
 						</svg>
 						<span class="slds-assistive-text">Expand or collapse this line</span>
 					</button>
+					{/if}
 				</div>
 			</div>
 		</div>
@@ -141,6 +144,7 @@ window.addEventListener("load", function(){
 						</svg>
 						<span class="slds-assistive-text">{$MOD.LBL_COLL_ALL_LINES}</span>
 					</button>
+					{if $MASTERMODE == 'EditView'}
 					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-toolbox__tool" data-clickfunction="insertNewLine" title="{$MOD.LBL_INSERT_LINE}" aria-pressed="false">
 						<svg class="slds-button__icon" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#add"></use>
@@ -153,6 +157,7 @@ window.addEventListener("load", function(){
 						</svg>
 						<span class="slds-assistive-text">{$MOD.LBL_DEL_ALL_LINES}</span>
 					</button>
+					{/if}
 				</div>
 			</div>
 		</div>

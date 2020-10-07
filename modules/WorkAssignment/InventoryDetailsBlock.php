@@ -139,6 +139,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		global $app_strings, $current_language;
 		require_once 'Smarty_setup.php';
 		$smarty = new vtigerCRM_Smarty();
+		$smarty->assign('MASTERMODE', $_REQUEST['action']);
 		$smarty->assign('APP', $app_strings);
 		$smarty->assign('MOD', return_module_language($current_language, self::$modname));
 		return $smarty;

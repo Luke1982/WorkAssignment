@@ -42,6 +42,7 @@
 
 	{$data.custom = $custom}
 {/if}
+{if $MASTERMODE != 'EditView'}{$readonly = true}{else}{$readonly = false}{/if}
 <!-- LDS Detail line for inventorydetails -->
 <div class="{$productline_classprefix} slds-card slds-m-vertical_x-small slds-p-around_none{if $template} {$productline_classprefix}--template{/if}"
 	 data-crmid="{$data.meta.inventorydetailsid}"
@@ -98,16 +99,16 @@
 						<div class="slds-form-element slds-size_3-of-12">
 							<div class="slds-combobox_container slds-has-inline-listbox cbds-product-search--hasroot">
 								<div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-combobox-lookup" aria-expanded="false" aria-haspopup="listbox" role="combobox">
-									<div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
-										<input class="slds-input slds-combobox__input {$productline_inputprefix}--productname" aria-autocomplete="list" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" placeholder="Search Products and services" type="text" value="{if !$template}{$data.meta.productname}{/if}" />
-										{call name=LDSIcon lib='utility' icon='search' align='right' size='x-small'}
+									<div class="slds-combobox__form-element{if !$readonly} slds-input-has-icon slds-input-has-icon_right{/if}" role="none">
+										<input class="slds-input slds-combobox__input {$productline_inputprefix}--productname" aria-autocomplete="list" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" placeholder="Search Products and services" type="text" value="{if !$template}{$data.meta.productname}{/if}"{if $readonly} readonly="readonly"{/if}/>
+										{if !$readonly}{call name=LDSIcon lib='utility' icon='search' align='right' size='x-small'}{/if}
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- // Product name form element -->
 						<!-- Product quantity form element -->
-						{call name=ProductInputFormElement size='1-of-12' fieldname='quantity' value=$data.meta.quantity  icon='none' istemplate=$template type='number' error='Please input a number greater than 0' min='0.5'}
+						{call name=ProductInputFormElement size='1-of-12' fieldname='quantity' value=$data.meta.quantity  icon='none' istemplate=$template type='number' error='Please input a number greater than 0' min='0.5' readonly=$readonly}
 						<!-- // Product quantity form element -->
 						<div class="slds-grid slds-size_3-of-12 slds-p-left_x-small">
 							<!-- Discount type form element -->
@@ -126,15 +127,15 @@
 							<!-- // Discount type form element -->
 							<!-- Discount number (percent/direct) form element -->
 							{if $data.meta.discount_type == 'p'}{$icon = 'percent'}{else}{$icon = 'euro'}{/if}
-							{call name=ProductInputFormElement size='6-of-12' fieldname='discount_amount' value=$data.meta.discount_amount iconlib='corebos' icon=$icon istemplate=$template type='number' error='Please input a numeric value into this field'}
+							{call name=ProductInputFormElement size='6-of-12' fieldname='discount_amount' value=$data.meta.discount_amount iconlib='corebos' icon=$icon istemplate=$template type='number' error='Please input a numeric value into this field' readonly=$readonly}
 							<!-- // Discount number (percent/direct) form element -->
 						</div>
 						<!-- Discount amount form element -->
 						{$discount_total = $data.pricing.extgross - $data.pricing.extnet}
-						{call name=ProductInputFormElement size='2-of-12' fieldname='discount_total' value=$discount_total iconlib='corebos' icon='euro' istemplate=$template type='currency' readonly=true}
+						{call name=ProductInputFormElement size='2-of-12' fieldname='discount_total' value=$discount_total iconlib='corebos' icon='euro' istemplate=$template type='currency' readonly=$readonly}
 						<!-- // Discount amount form element -->
 						<!-- Line total form element -->
-						{call name=ProductInputFormElement size='2-of-12' fieldname='linetotal' value=$data.meta.linetotal iconlib='corebos' icon='euro' istemplate=$template type='currency' readonly=true}
+						{call name=ProductInputFormElement size='2-of-12' fieldname='linetotal' value=$data.meta.linetotal iconlib='corebos' icon='euro' istemplate=$template type='currency' readonly=$readonly}
 						<!-- // Line total form element -->
 					</div>
 				</div>
@@ -144,9 +145,11 @@
 		<!-- LDS Line tools column -->
 		<div class="slds-col slds-size_2-of-12 slds-align-middle">
 			<div class="slds-button-group slds-float_right">
-				{call name=LDSButton el='div' iconlib='utility' icon='move' iconsize='x-small' extraclass='cbds-detail-line-dragtool' title=$MOD.LBL_DRAG_LINE}
-				{call name=LDSButton el='button' iconlib='utility' icon='copy' iconsize='x-small' extraclass='cbds-detail-line-copytool' title=$MOD.LBL_COPY_LINE}
-				{call name=LDSButton el='button' iconlib='utility' icon='delete' iconsize='x-small' extraclass='cbds-button--delete cbds-detail-line-deletetool' title=$MOD.LBL_DELETE_LINE}
+				{if !$readonly}
+					{call name=LDSButton el='div' iconlib='utility' icon='move' iconsize='x-small' extraclass='cbds-detail-line-dragtool' title=$MOD.LBL_DRAG_LINE}
+					{call name=LDSButton el='button' iconlib='utility' icon='copy' iconsize='x-small' extraclass='cbds-detail-line-copytool' title=$MOD.LBL_COPY_LINE}
+					{call name=LDSButton el='button' iconlib='utility' icon='delete' iconsize='x-small' extraclass='cbds-button--delete cbds-detail-line-deletetool' title=$MOD.LBL_DELETE_LINE}
+				{/if}
 				{call name=LDSButton el='button' iconlib='utility' icon='switch' iconsize='x-small' extraclass='cbds-detail-line-extratool' title=$MOD.LBL_EXPAND_COLL_LINE}
 			</div>
 		</div>
@@ -165,7 +168,7 @@
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-form-element__row cbds-m-bottom_none">
 						{if isset($data.pricing.cost_price)}
-							{call name=ProductInputFormElement size='1-of-2' label='Cost Price'|@getTranslatedString:'Products' fieldname='cost_price' value=$data.pricing.cost_price iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false}
+							{call name=ProductInputFormElement size='1-of-2' label='Cost Price'|@getTranslatedString:'Products' fieldname='cost_price' value=$data.pricing.cost_price iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=$readonly}
 						{/if}
 						{if isset($data.pricing.cost_gross)}
 							{call name=ProductInputFormElement size='1-of-2' label='Cost Total'|@getTranslatedString:'InventoryDetails' fieldname='cost_gross' value=$data.pricing.cost_gross iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=true}
@@ -185,7 +188,7 @@
 					<div class="slds-panel__section slds-p-bottom_none">
 						<div class="slds-form-element__row cbds-m-bottom_none">
 						{if isset($data.pricing.listprice)}
-							{call name=ProductInputFormElement size='1-of-2' label='Listprice'|@getTranslatedString:'InventoryDetails' fieldname='listprice' value=$data.pricing.listprice iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=false savefield='listprice'}
+							{call name=ProductInputFormElement size='1-of-2' label='Listprice'|@getTranslatedString:'InventoryDetails' fieldname='listprice' value=$data.pricing.listprice iconlib='corebos' icon='euro' istemplate=$template type='currency' error='Please enter a valid currency amount' readonly=$readonly savefield='listprice'}
 						{/if}
 						</div>
 					</div>
@@ -203,7 +206,7 @@
 					{$usageunitspan = ' (<span class="'|cat:$productline_classprefix|cat:'--usageunit">'|cat:$data.logistics.usageunit|cat:'</span>)'}
 					<div class="slds-panel__section slds-p-bottom_none">
 					{if isset($data.logistics.units_delivered_received)}
-						{call name=ProductInputFormElement size='1-of-1' label='Units Delivered Received'|@getTranslatedString:'InventoryDetails'|cat:$usageunitspan fieldname='units_delivered_received' value=$data.logistics.units_delivered_received iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=false}
+						{call name=ProductInputFormElement size='1-of-1' label='Units Delivered Received'|@getTranslatedString:'InventoryDetails'|cat:$usageunitspan fieldname='units_delivered_received' value=$data.logistics.units_delivered_received iconlib='corebos' icon='none' istemplate=$template type='currency' error='Please enter a valid number' readonly=$readonly}
 					{/if}
 					</div>
 					<div class="slds-panel__section slds-p-bottom_none">
@@ -232,7 +235,7 @@
 				</div>
 				<div class="slds-form slds-form_compound slds-grow">
 					{foreach from=$data.taxes item=tax key=key}
-						{call name=ProductTaxPanelSection fieldname=$tax.taxname label=$tax.taxlabel amount=$tax.amount percent=$tax.percent symbol='euro'}
+						{call name=ProductTaxPanelSection fieldname=$tax.taxname label=$tax.taxlabel amount=$tax.amount percent=$tax.percent symbol='euro' readonly=$readonly}
 					{/foreach}
 				</div>
 			</div>
@@ -249,7 +252,7 @@
 					<div class="slds-panel__section slds-p-horizontal_none">
 						<div class="slds-form-element">
 							<div class="slds-form-element__control">
-								<textarea rows="10" class="slds-textarea {$productline_inputprefix}--description" placeholder="{$APP.description}">{if $data.meta.description != ''}{$data.meta.description}{/if}</textarea>
+								<textarea rows="10" class="slds-textarea {$productline_inputprefix}--description" placeholder="{$APP.description}"{if $readonly} readonly="readonly"{/if}>{if $data.meta.description != ''}{$data.meta.description}{/if}</textarea>
 							</div>
 						</div>
 					</div>
@@ -298,14 +301,15 @@
  * @param: The label, should be the field label
  * @param: The amount, should be the tax amount in the chosen currency
  * @param: The symbol, should be the currency symbol for the current user.
+ * @param: The readonly property.
 *}
-{function name=ProductTaxPanelSection fieldname='' label='' amount='' percent='' symbol='euro'}
+{function name=ProductTaxPanelSection fieldname='' label='' amount='' percent='' symbol='euro' readonly=false}
 <div class="slds-panel__section slds-panel__section slds-p-bottom_none">
 	<span class="slds-form-element__label">{$label}</span>
 	<div class="slds-form-element__row cbds-m-bottom_none">
 		<div class="slds-form-element slds-size_5-of-12">
 			<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-				<input type="text" class="slds-input {$productline_inputprefix}--{$fieldname}" value="{$percent}" data-type="currency"/>
+				<input type="text" class="slds-input {$productline_inputprefix}--{$fieldname}" value="{$percent}" data-type="currency"{if $readonly} readonly="readonly"{/if}/>
 				{call name=LDSIcon lib='corebos' icon='percent' align='left' size='x-small'}
 			</div>
 		</div>
