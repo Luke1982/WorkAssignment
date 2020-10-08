@@ -77,6 +77,9 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 * information for the block from it. Save that on the class
 	 * property $mod_info
 	 *
+	 * TODO: This method name should change since it doesn't
+	 * only get its information from the context
+	 *
 	 * @param Array $context  Context array about the parent
 	 *
 	 * @throws None
@@ -89,7 +92,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		$taxes = self::getTaxes($context);
 		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
 
-		self::$mod_info['taxtype'] = strtolower($fields['taxtype']);
+		self::$mod_info['taxtype'] = self::getTaxType($fields);
 		self::$mod_info['aggr']['pl_sh_total'] = $fields['pl_sh_total'];
 		self::$mod_info['aggr']['shtaxtotal'] = $fields['pl_sh_tax'];
 		self::$mod_info['aggr']['grosstotal'] = $fields['pl_gross_total'];
@@ -106,6 +109,38 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 
 		foreach (self::$mod_info['aggr'] as &$aggr_field) {
 			$aggr_field = CurrencyField::convertToUserFormat($aggr_field);
+		}
+	}
+
+	/**
+	 * Get the taxtype for the record, either from the existing
+	 * record or from a record we are converting/duplicating
+	 * from
+	 *
+	 * @param Array Fields, in case we need to get the taxtype
+	 *              from the context
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return String taxtype
+	 */
+	private static function getTaxType($fields) {
+		$mode = self::getMode();
+		switch ($mode) {
+			case 'detail':
+			case 'edit':
+				return strtolower($fields['taxtype']);
+				break;
+			case 'duplication':
+			case 'conversion':
+				global $adb;
+				$crmid = $_REQUEST['cbfromid'];
+				$setype = getSalesEntityType($crmid);
+				require_once 'modules/' . $setype . '/' . $setype . '.php';
+				$srcfocus = new $setype();
+				$q = "SELECT `taxtype` FROM `{$srcfocus->table_name}` WHERE `{$srcfocus->table_index}` = {$crmid}";
+				return $adb->query_result($adb->query($q), 0, 'taxtype');
+				break;
 		}
 	}
 
