@@ -23,7 +23,7 @@ class NewTaxHandler extends VTEventHandler {
 		$field = new Vtiger_Field();
 		$field->name = $taxname_prefix . $data['tax_id'] . '_amount';
 		$field->label= $labelprefix . $data['tax_label'];
-		$field->column = $taxname_prefix . $data['tax_id'] . '_amount';
+		$field->column = 'sum_' . $taxname_prefix . $data['tax_id'];
 		$field->columntype = 'DECIMAL(25,6)';
 		$field->uitype = 7;
 		$field->typeofdata = 'NN~O';

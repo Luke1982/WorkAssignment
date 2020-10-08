@@ -163,7 +163,7 @@ class WorkAssignment extends CRMEntity {
 			$field = new Vtiger_Field();
 			$field->name = $tx['taxname'] . '_amount';
 			$field->label= $labelprefix . $tx['taxlabel'];
-			$field->column = $tx['taxname'] . '_amount';
+			$field->column = 'sum_' . $tx['taxname'];
 			$field->columntype = 'DECIMAL(25,6)';
 			$field->uitype = 7;
 			$field->typeofdata = 'NN~O';
