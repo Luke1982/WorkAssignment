@@ -291,7 +291,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			}
 			return $ret;
 		}
-		function formatTaxesFromExistingRecords($blocklabel, $columnname, $fields, $value) {
+		function formatTaxesFromExistingRecords($blocklabel, $columnname, $fields, $value, &$taxes) {
 			if ($blocklabel == 'LBL_BLOCK_TAXES') {
 				$alltaxes = getAllTaxes('all');
 			} elseif ($blocklabel == 'LBL_BLOCK_SH_TAXES') {
@@ -305,7 +305,6 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 				'taxlabel' => $nameandlabel['taxlabel'],
 				'taxname' => $nameandlabel['taxname'],
 			);
-			return $taxes;
 		}
 
 		$q = "SELECT * FROM `{$srcfocus->table_name}` WHERE `{$srcfocus->table_index}` = {$crmid}";
@@ -315,7 +314,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			preg_match('/^sum_shtax[0-9]{1,2}$/', $columnname, $shmatches);
 			if (count($matches) > 0 && (int)$value > 0) {
 				// Regular tax
-				$taxes = formatTaxesFromExistingRecords('LBL_BLOCK_TAXES', $columnname, $fields, $value);
+				formatTaxesFromExistingRecords('LBL_BLOCK_TAXES', $columnname, $fields, $value, $taxes);
 			} elseif (count($shmatches) > 0 && (int)$value > 0) {
 				// SH tax
 				// This is a TO-DO. WorkAssignment saves the S&H taxes
@@ -323,7 +322,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 				// as invoices, save them on a relationtable. When converting
 				// from legacy modules, the S&H tax therefor will not be
 				// transported to the concept workassignment.
-				$taxes = formatTaxesFromExistingRecords('LBL_BLOCK_SH_TAXES', $columnname, $fields, $value);
+				formatTaxesFromExistingRecords('LBL_BLOCK_SH_TAXES', $columnname, $fields, $value, $taxes);
 			}
 		}
 		$taxes = self::completeExistingTaxes($taxes);
