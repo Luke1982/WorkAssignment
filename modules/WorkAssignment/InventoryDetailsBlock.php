@@ -152,6 +152,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 				$master_id = (int)$context['ID']->value;
 				break;
 			case 'duplication':
+			case 'conversion':
 				$master_id = (int)$_REQUEST['cbfromid'];
 				$fornew = true;
 				break;
@@ -331,12 +332,20 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 */
 	private static function getMode() {
 		$mode = '';
-		if ($_REQUEST['action'] == 'EditView' && !isset($_REQUEST['record'])) {
+		if ($_REQUEST['action'] == 'EditView'
+			&& !isset($_REQUEST['record'])
+			&& !isset($_REQUEST['cbfromid'])) {
 			$mode = 'create';
-		} elseif ($_REQUEST['action'] == 'EditView' && isset($_REQUEST['record'])
+		} elseif ($_REQUEST['action'] == 'EditView'
+				  && $_REQUEST['module'] != $_REQUEST['return_module']
+				  && !isset($_REQUEST['isDuplicate'])) {
+			$mode = 'conversion';
+		} elseif ($_REQUEST['action'] == 'EditView'
+				  && isset($_REQUEST['record'])
 				  && $_REQUEST['isDuplicate'] != 'true') {
 			$mode = 'edit';
-		} elseif ($_REQUEST['action'] == 'EditView' && $_REQUEST['isDuplicate'] == 'true') {
+		} elseif ($_REQUEST['action'] == 'EditView'
+				  && $_REQUEST['isDuplicate'] == 'true') {
 			$mode = 'duplication';
 		} elseif ($_REQUEST['action'] == 'DetailView') {
 			$mode = 'detail';
