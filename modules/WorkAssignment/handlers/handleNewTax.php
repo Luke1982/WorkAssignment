@@ -21,7 +21,7 @@ class NewTaxHandler extends VTEventHandler {
 		$block = Vtiger_Block::getInstance($blocklabel, $module);
 
 		$field = new Vtiger_Field();
-		$field->name = $taxname_prefix . $data['tax_id'] . '_amount';
+		$field->name = 'sum_' . $taxname_prefix . $data['tax_id'];
 		$field->label= $labelprefix . $data['tax_label'];
 		$field->column = 'sum_' . $taxname_prefix . $data['tax_id'];
 		$field->columntype = 'DECIMAL(25,6)';

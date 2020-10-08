@@ -193,7 +193,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">{$MOD.LBL_AMOUNT}</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input data-savefield="{$tax.taxname}_amount" class="slds-input cbds-inventoryaggr__input--{$tax.taxname}_amount" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
+																<input data-savefield="sum_{$tax.taxname}" class="slds-input cbds-inventoryaggr__input--sum_{$tax.taxname}" data-type="currency" readonly="readonly" value="{$tax.amount}" type="text">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
 																	<div class="slds-text-body_regular">&euro;</div>
 																</span>
@@ -241,7 +241,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">{$MOD.LBL_AMOUNT}</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input data-savefield="{$shtax.taxname}_amount" class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}_amount" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
+																<input data-savefield="sum_{$shtax.taxname}" class="slds-input cbds-inventoryaggr__input--sum_{$shtax.taxname}" data-type="currency" readonly="readonly" value="{$shtax.amount}" type="text">
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.3rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">&euro;</div>
 																</span>

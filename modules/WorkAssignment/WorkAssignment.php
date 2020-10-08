@@ -161,7 +161,7 @@ class WorkAssignment extends CRMEntity {
 		$rstax=$adb->query('SELECT `taxname`, `taxlabel`, `percentage` FROM ' . $tablename . ' WHERE deleted = 0');
 		while ($tx = $adb->fetch_array($rstax)) {
 			$field = new Vtiger_Field();
-			$field->name = $tx['taxname'] . '_amount';
+			$field->name = 'sum_' . $tx['taxname'];
 			$field->label= $labelprefix . $tx['taxlabel'];
 			$field->column = 'sum_' . $tx['taxname'];
 			$field->columntype = 'DECIMAL(25,6)';

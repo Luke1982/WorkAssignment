@@ -252,7 +252,7 @@
 				lineNet = this.fields.extnet.getValue(),
 				taxAmount = this.fields['tax' + i].active ? _getPerc(lineNet, taxPercent) : 0;
 
-			this.setField("tax" + i + "_amount", taxAmount);
+			this.setField("sum_tax" + i, taxAmount);
 			return taxAmount;
 		},
 
@@ -269,7 +269,7 @@
 			var flds = [];
 			for (var i = 1; i <= this.noOfLineTaxes(); i++) {
 				flds.push(this.fields[`tax${i}`])
-				flds.push(this.fields[`tax${i}_amount`])
+				flds.push(this.fields[`sum_tax${i}`])
 			}
 			return flds;
 		},
@@ -318,7 +318,7 @@
 				for (var i = 1; i <= this.noOfLineTaxes(); i++) {
 					let input = _getHiddenInputForField(seq, `id_tax${i}_perc`, 'idlines'),
 						p_val = this.fields[`tax${i}`].active ? this.fields[`tax${i}`].getValue() : 0,
-						a_val = this.fields[`tax${i}`].active ? this.fields[`tax${i}_amount`].getValue() : 0;
+						a_val = this.fields[`tax${i}`].active ? this.fields[`sum_tax${i}`].getValue() : 0;
 
 					cont.appendChild(input);
 					extraFields.tax_percent += input.value = p_val;
@@ -336,7 +336,7 @@
 			this.getTaxFields().forEach((field) => field.hide());
 			productTaxes.forEach((tax) => {
 				this.fields[tax.taxname].show();
-				this.fields[`${tax.taxname}_amount`].show();
+				this.fields[`sum_${tax.taxname}`].show();
 			});
 			// Because this is the result of an AJAX call
 			// we need to re-calculate the line.
@@ -961,7 +961,7 @@
 
 		calcGroupTaxes : function() {
 			for (field in this.fields) {
-				if (field.match(/tax[\d]{1,2}$/) != null) {
+				if (field.match(/^(sh)?tax[\d]{1,2}$/) != null) {
 					this.calcTax(field);
 				}
 			}
@@ -1000,7 +1000,7 @@
 		calcTax: function(name) {
 			var base = name.indexOf('sh') === 0 ? this.fields.pl_sh_total.getValue() : this.fields.grosstotal.getValue() - this.fields.totaldiscount.getValue();
 			var taxAmount = this.utils.getPerc(base, this.fields[name].getValue());
-			this.fields[name + "_amount"].update(taxAmount);
+			this.fields['sum_' + name].update(taxAmount);
 		},
 
 		getLinesSum : function(fieldname) {
@@ -1013,7 +1013,7 @@
 
 		getTaxes : function() {
 			var sum = 0,
-				r = new RegExp("^tax[\\d]{1,2}_amount", ""),
+				r = new RegExp("^sum_tax[\\d]{1,2}", ""),
 				type = this.taxTypeCombo._val;
 
 			if (type == "individual") {
@@ -1035,7 +1035,7 @@
 
 		getSHTaxes : function() {
 			var sum = 0,
-				r = new RegExp("^shtax[\\d]{1,2}_amount", "");
+				r = new RegExp("^sum_shtax[\\d]{1,2}", "");
 			for (field in this.fields) {
 				if ((field.match(r) || []).length > 0)
 					sum = sum + Number(this.fields[field].getValue());

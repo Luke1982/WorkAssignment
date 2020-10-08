@@ -400,7 +400,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			$taxcount = count($taxes);
 			$taxtype = $label == $tax_block_label ? 'tax' : 'shtax';
 			for ($i = 0; $i < $taxcount; $i++) {
-				$taxes[$i]['amount'] = CurrencyField::convertToUserFormat($fields[$taxtype . ($i + 1) . '_amount']);
+				$taxes[$i]['amount'] = CurrencyField::convertToUserFormat($fields['sum_' . $taxtype . ($i + 1)]);
 				$taxes[$i]['percent'] = CurrencyField::convertToUserFormat($fields[$taxtype . ($i + 1) . '_perc']);
 			}
 		}
