@@ -246,11 +246,132 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			case 'create':
 				return self::getAvailableTaxes();
 				break;
+			case 'duplication':
+			case 'conversion':
+				return self::getTaxesFromSourceRecord($_REQUEST['cbfromid']);
+				break;
 			case 'detail':
 			case 'edit':
 				return self::getTaxesFromContext($context);
 				break;
 		}
+	}
+
+	/**
+	 * Gets the taxes already used on a source record, e.g.
+	 * a records that we're converting from (Invoice for ex.)
+	 * or that we're duplicating from.
+	 *
+	 * @param Int The CRM ID of the source record
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array Array that uses the keys in
+	 *               $tax_blocks and fills them with
+	 *               tax information
+	 */
+	private static function getTaxesFromSourceRecord($crmid) {
+		global $adb;
+		$setype = getSalesEntityType($crmid);
+		require_once 'modules/' . $setype . '/' . $setype . '.php';
+		require_once 'include/utils/InventoryUtils.php';
+		require_once 'include/fields/CurrencyField.php';
+		$srcfocus = new $setype();
+		$taxes = array('LBL_BLOCK_TAXES' => array(), 'LBL_BLOCK_SH_TAXES' => array());
+
+		// Helper functions
+		function getTaxNameAndLabelFromColumnName($columnname, $alltaxes) {
+			$taxname = str_replace('sum_', '', $columnname);
+			$ret = array();
+			foreach ($alltaxes as $tax) {
+				if ($tax['taxname'] == $taxname) {
+					$ret['taxlabel'] = $tax['taxlabel'];
+					$ret['taxname'] = $tax['taxname'];
+				}
+			}
+			return $ret;
+		}
+		function formatTaxesFromExistingRecords($blocklabel, $columnname, $fields, $value) {
+			if ($blocklabel == 'LBL_BLOCK_TAXES') {
+				$alltaxes = getAllTaxes('all');
+			} elseif ($blocklabel == 'LBL_BLOCK_SH_TAXES') {
+				$alltaxes = getAllTaxes('all', 'sh');
+			}
+			$nameandlabel = getTaxNameAndLabelFromColumnName($columnname, $alltaxes);
+			$percentage = $value / ($fields['pl_net_total'] / 100);
+			$taxes['LBL_BLOCK_TAXES'][] = array(
+				'amount' => (int)$value,
+				'percent' => CurrencyField::convertToUserFormat($percentage),
+				'taxlabel' => $nameandlabel['taxlabel'],
+				'taxname' => $nameandlabel['taxname'],
+			);
+			return $taxes;
+		}
+
+		$q = "SELECT * FROM `{$srcfocus->table_name}` WHERE `{$srcfocus->table_index}` = {$crmid}";
+		$fields = $adb->fetch_array($adb->query($q));
+		foreach ($fields as $columnname => $value) {
+			preg_match('/^sum_tax[0-9]{1,2}$/', $columnname, $matches);
+			preg_match('/^sum_shtax[0-9]{1,2}$/', $columnname, $shmatches);
+			if (count($matches) > 0 && (int)$value > 0) {
+				// Regular tax
+				$taxes = formatTaxesFromExistingRecords('LBL_BLOCK_TAXES', $columnname, $fields, $value);
+			} elseif (count($shmatches) > 0 && (int)$value > 0) {
+				// SH tax
+				// This is a TO-DO. WorkAssignment saves the S&H taxes
+				// on the workassignment table, but legacy modules, such
+				// as invoices, save them on a relationtable. When converting
+				// from legacy modules, the S&H tax therefor will not be
+				// transported to the concept workassignment.
+				$taxes = formatTaxesFromExistingRecords('LBL_BLOCK_SH_TAXES', $columnname, $fields, $value);
+			}
+		}
+		$taxes = self::completeExistingTaxes($taxes);
+		return $taxes;
+	}
+
+	/**
+	 * When we duplicate or convert a record, there
+	 * is the possibility that between the createtime
+	 * of the source record and now, a new tax has been
+	 * added in the system. This method takes the taxes
+	 * that have so far been collected from the source
+	 * record and completes them with missing but
+	 * available taxes available in the system.
+	 *
+	 * @param Array The taxes so far
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array Array that uses the keys in
+	 *               $tax_blocks and fills them with
+	 *               tax information of both the source
+	 *               record as the system tax
+	 */
+	private static function completeExistingTaxes($taxes) {
+		$av_systemtaxes = self::getAvailableTaxes();
+		// Helper functions
+		function isTaxAlreadyPresent($existingtaxes, $taxtoadd, $blockname) {
+			$present = false;
+			foreach ($existingtaxes[$blockname] as $exis_tax) {
+				if ($exis_tax['taxname'] == $taxtoadd['taxname']) {
+					$present = true;
+					break;
+				}
+			}
+			return $present;
+		}
+		function checkTaxBlock($av_systemtaxes, $taxes, $blockname) {
+			foreach ($av_systemtaxes[$blockname] as $systemtax) {
+				if (!isTaxAlreadyPresent($taxes, $systemtax, $blockname)) {
+					$taxes[$blockname][] = $systemtax;
+				}
+			}
+			return $taxes;
+		}
+		$taxes = checkTaxBlock($av_systemtaxes, $taxes, 'LBL_BLOCK_TAXES');
+		$taxes = checkTaxBlock($av_systemtaxes, $taxes, 'LBL_BLOCK_SH_TAXES');
+		return $taxes;
 	}
 
 	/**
