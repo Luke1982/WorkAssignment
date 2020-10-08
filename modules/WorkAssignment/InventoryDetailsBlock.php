@@ -121,16 +121,42 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 */
 	public function process($context = false) {
 		// $context contains the WorkAssignment ID
-		// in $context['ID']
-		// ini_set('display_errors', 1);
-		// error_reporting(E_ALL);
 		self::setModuleNameFromContext($context);
 		self::getSelectedFields();
 		self::setModInfoFromContext($context);
-		self::$mod_info['lines'] = self::getLinesFromId((int)$context['ID']->value);
+
+		self::$mod_info['lines'] = self::getLines($context);
 		$smarty = $this->setupRenderer();
 		$smarty->assign('inventoryblock', self::$mod_info);
 		return $smarty->fetch('modules/' . self::$modname . '/InventoryDetailsBlock.tpl');
+	}
+
+	/**
+	 * Gets the existing inventorylines, or sets up
+	 * duplicate ones when duplicating the master module
+	 * or conversion from another inventory module
+	 *
+	 * @param Array $context  Context array about the parent (if any)
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array lines
+	 */
+	private static function getLines($context) {
+		$mode = self::getMode();
+		$master_id = 0;
+		$fornew = false;
+		switch ($mode) {
+			case 'detail':
+			case 'edit':
+				$master_id = (int)$context['ID']->value;
+				break;
+			case 'duplication':
+				$master_id = (int)$_REQUEST['cbfromid'];
+				$fornew = true;
+				break;
+		}
+		return self::getLinesFromId($master_id, $fornew);
 	}
 
 	/**
@@ -307,7 +333,8 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		$mode = '';
 		if ($_REQUEST['action'] == 'EditView' && !isset($_REQUEST['record'])) {
 			$mode = 'create';
-		} elseif ($_REQUEST['action'] == 'EditView' && isset($_REQUEST['record'])) {
+		} elseif ($_REQUEST['action'] == 'EditView' && isset($_REQUEST['record'])
+				  && $_REQUEST['isDuplicate'] != 'true') {
 			$mode = 'edit';
 		} elseif ($_REQUEST['action'] == 'EditView' && $_REQUEST['isDuplicate'] == 'true') {
 			$mode = 'duplication';
@@ -341,15 +368,18 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 * when the parent is in createmode.
 	 *
 	 * @param Int $id  crmid of the parent ('master')
+	 * @param Bool A flag that should be true when these lines
+	 * 			   need to be duplicates (e.g. for converting
+	 * 			   from another module or duplication)
 	 *
 	 * @throws None
 	 * @author MajorLabel <info@majorlabel.nl>
 	 * @return Array Array of lines
 	 */
-	private static function getLinesFromId($id) {
+	private static function getLinesFromId($id, $fornew = false) {
 		if (self::hasInventoryLines($id)) {
 			// Get existing lines
-			return self::getInventoryLines($id);
+			return self::getInventoryLines($id, $fornew);
 		} else {
 			return array(
 				self::getSkeletonLine()
@@ -416,9 +446,12 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	/**
 	 * Gets the existing inventorylines for a specific parent
 	 * ('master') ID. Orders by sequence no., joins on products
-	 * and (soon) services.
+	 * and services.
 	 *
 	 * @param Int The parent module ID
+	 * @param Bool A flag that should be true when these lines
+	 * 			   need to be duplicates (e.g. for converting
+	 * 			   from another module or duplication)
 	 *
 	 * @throws None
 	 * @author MajorLabel <info@majorlabel.nl>
@@ -426,16 +459,17 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 *               as can be seen in 'getSkeletonLine'. Field
 	 *               values are converted to user format.
 	 */
-	private static function getInventoryLines($id) {
+	private static function getInventoryLines($id, $fornew = false) {
 		require_once 'include/fields/CurrencyField.php';
 		global $adb, $current_user;
 		$skeleton = self::getSkeletonLine();
 		$lines = array();
+		$invlnesid_selector = $fornew ? '0' : 'id.inventorydetailsid';
 		$taxquery = '';
 		for ($i = 1; $i <= count($skeleton['taxes']); $i++) {
 			$taxquery .= "id.id_tax{$i}_perc AS 'inventorydetails||id_tax{$i}_perc',";
 		}
-		$q = "SELECT id.inventorydetailsid AS 'inventorydetails||inventorydetailsid',
+		$q = "SELECT {$invlnesid_selector} AS 'inventorydetails||inventorydetailsid',
 					 CASE
 					 	WHEN p.productname IS NULL THEN s.servicename
 						ELSE p.productname

@@ -8,7 +8,6 @@ A corebos module that lets you create Work Assignments (on location) for users
 ## Todo
 - Create address fields
 - Handle conversion from other records
-- handle duplication
 
 ## Issues
 - Right now the 'InventoryLine' JS module just counts the taxes and tries to find them by
