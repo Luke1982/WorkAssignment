@@ -171,7 +171,7 @@
 
 		setTaxType: function() {
 			var type = this.root.taxTypeCombo._val,
-				taxCol = this.u.getFirstClass(this.el, this.root.linePrefix + "--taxcol"),
+				taxCol = this.u.getFirstClass(this.el, this.root.linePrefix + "_taxcol"),
 				commentCol = this.u.getFirstClass(this.el, this.root.linePrefix + "--commentcol");
 
 			if (type == "individual") {
