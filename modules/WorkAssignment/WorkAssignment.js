@@ -901,10 +901,10 @@
 		},
 
 		insertNew : function() {
-			var template = document.getElementsByClassName(this.lineClass + "--template")[0];
+			var template = document.getElementsByClassName(this.lineClass + "_template")[0];
 			var container = document.getElementsByClassName(this.linesContClass)[0];
 			var newNode = template.cloneNode(true);
-			newNode.classList.remove(this.lineClass + "--template");
+			newNode.classList.remove(this.lineClass + "_template");
 			container.appendChild(newNode);
 			new InventoryLine(newNode, this);
 			this.updateCount();
