@@ -175,10 +175,10 @@
 				commentCol = this.u.getFirstClass(this.el, this.root.linePrefix + "--commentcol");
 
 			if (type == "individual") {
-				taxCol.classList.remove(this.root.linePrefix + "--taxcol-hidden");
+				taxCol.classList.remove(this.root.linePrefix + "_taxcol-hidden");
 				commentCol.classList.remove("slds-size_6-of-12");
 			} else if (type == "group") {
-				taxCol.classList.add(this.root.linePrefix + "--taxcol-hidden");
+				taxCol.classList.add(this.root.linePrefix + "_taxcol-hidden");
 				commentCol.classList.add("slds-size_6-of-12");
 			}
 		},
