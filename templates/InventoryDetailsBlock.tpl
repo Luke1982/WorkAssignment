@@ -182,7 +182,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">{$MOD.LBL_PERC}</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input data-savefield="{$tax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$tax.taxname}" value="{$tax.percent}" type="text" data-type="number" data-taxname="{$tax.taxname}" data-error-mess="{$MOD.LBL_VALID_NUM}">
+																<input data-savefield="{$tax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$tax.taxname}" value="{$tax.percent}" type="text" data-type="number" data-taxname="{$tax.taxname}" data-error-mess="{$MOD.LBL_VALID_NUM}"{if $MASTERMODE != 'EditView'} readonly="readonly"{/if}>
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
 																</span>
@@ -230,7 +230,7 @@ window.addEventListener("load", function(){
 														<div class="slds-form-element">
 															<label class="slds-form-element__label">{$MOD.LBL_PERC}</label>
 															<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-																<input data-savefield="{$shtax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="{$shtax.taxname}" data-error-mess="{$MOD.LBL_VALID_NUM}">
+																<input data-savefield="{$shtax.taxname}_perc" class="slds-input cbds-inventoryaggr__input--{$shtax.taxname}" value="{$shtax.percent}" type="text" data-type="number" data-taxname="{$shtax.taxname}" data-error-mess="{$MOD.LBL_VALID_NUM}"{if $MASTERMODE != 'EditView'} readonly="readonly"{/if}>
 																<span class="slds-icon_container slds-input__icon slds-input__icon_left" style="left: 0.75rem;">
 																	<div class="slds-text-body_regular slds-text-color_weak">%</div>
 																</span>
@@ -317,7 +317,7 @@ window.addEventListener("load", function(){
 												<div class="slds-grid">
 													<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 													<div class="slds-col slds-size_10-of-12 slds-form-element">
-														<input data-savefield="pl_dto_global" type="text" data-type="number" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_dto_global" value="{$inventoryblock.aggr.pl_dto_global}" />
+														<input data-savefield="pl_dto_global" type="text" data-type="number" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_dto_global" value="{$inventoryblock.aggr.pl_dto_global}"{if $MASTERMODE != 'EditView'} readonly="readonly"{/if}/>
 														<div class="slds-form-element__help"></div>
 													</div>
 												</div>
@@ -361,7 +361,7 @@ window.addEventListener("load", function(){
 												<div class="slds-grid">
 													<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 													<div class="slds-col slds-size_10-of-12 slds-form-element">
-														<input data-savefield="pl_sh_total" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_sh_total" value="{$inventoryblock.aggr.pl_sh_total}" type="text" data-type="currency" data-error-mess="{$MOD.LBL_VALID_CURR}">
+														<input data-savefield="pl_sh_total" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_sh_total" value="{$inventoryblock.aggr.pl_sh_total}" type="text" data-type="currency" data-error-mess="{$MOD.LBL_VALID_CURR}"{if $MASTERMODE != 'EditView'} readonly="readonly"{/if}>
 														<div class="slds-form-element__help"></div>
 													</div>
 												</div>
@@ -433,7 +433,7 @@ window.addEventListener("load", function(){
 										<div class="slds-grid">
 											<div class="slds-col slds-text-color_weak slds-size_2-of-12 slds-p-top_x-small">&euro;</div>
 											<div class="slds-col slds-size_10-of-12 slds-form-element">
-												<input data-savefield="pl_adjustment" type="text" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_adjustment" value="{$inventoryblock.aggr.pl_adjustment}" />
+												<input data-savefield="pl_adjustment" type="text" data-type="currency" class="slds-p-right_none slds-text-align_right slds-input cbds-inventoryaggr__input--pl_adjustment" value="{$inventoryblock.aggr.pl_adjustment}"{if $MASTERMODE != 'EditView'} readonly="readonly"{/if}/>
 												<div class="slds-form-element__help"></div>
 											</div>
 										</div>
