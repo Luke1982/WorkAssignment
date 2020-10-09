@@ -9,15 +9,22 @@
  ************************************************************************************/
 
 $mod_strings = array(
-	'ModuleName' => 'Module Name',
-	'SINGLE_ModuleName' => 'Module Name',
-	'ModuleName ID' => 'Module Name ID',
+	'WorkAssignment' => 'Werkopdracht',
+	'SINGLE_WorkAssignment' => 'Werkopdracht',
+	'WorkAssignment ID' => 'Werkopdracht ID',
 
 	'LBL_CUSTOM_INFORMATION' => 'Custom Information',
-	'LBL_MODULEBLOCK_INFORMATION' => 'ModuleBlock Information',
-	'LBL_DESCRIPTION_INFORMATION' => 'Verkoopkans omschrijving',
+	'LBL_WORKASSIGNMENT_INFORMATION' => 'Werkopdracht Informatie',
+	'LBL_DESCRIPTION_INFORMATION' => 'Werkopdracht omschrijving',
 
-	'ModuleFieldLabel' => 'ModuleFieldLabel Text',
+	'workassignment_no' => 'Nummer werkopdracht',
+	'workassignmentname' => 'Naam werkopdracht',
+	'startdate' => 'Aanvangsdatum',
+	'enddate' => 'Einddatum',
+	'account_id' => 'Klant',
+	'contact_id' => 'Contactpersoon',
+	'salesorder' => 'Verkooporder',
+	'wastatus' => 'Status werkopdracht',
 	'LBL_DISCOUNT_TYPE' => 'Type korting',
 	'LBL_DISCOUNT' => 'Korting',
 	'LBL_LINE_TOOLS' => 'Gereedschap',
@@ -41,5 +48,8 @@ $mod_strings = array(
 	'LBL_GLBL_DISCOUNT' => 'Extra totaalkorting',
 	'LBL_TOTAL_DISCOUNT' => 'Totale korting',
 	'LBL_TOTAL_TAX' => 'Totale belasting',
+	'LBL_WORKASSIGNMENT_FINANCIALINFO' => 'Financiële informatie',
+	'LBL_BLOCK_TAXES' => 'Belastingen',
+	'LBL_BLOCK_SH_TAXES' => 'Belastingen over handling en verzendtoeslag',
 );
 ?>
