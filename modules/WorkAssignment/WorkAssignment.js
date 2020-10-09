@@ -241,37 +241,33 @@
 
 		calcLineTax: function() {
 			var totalTax = 0;
-			for (var i = 0; i < this.noOfLineTaxes(); i++) {
-				totalTax = totalTax + this.calcIndivTax(i + 1);
-			}
+			this.getTaxFields().forEach((taxfield) => {
+				totalTax = totalTax + this.calcIndivTax(taxfield);
+			});
 			return this.root.taxTypeCombo._val == "individual" ? Number(totalTax.toFixed(2)) : 0;
 		},
 
-		calcIndivTax: function(i) {
-			var taxPercent = this.fields['tax' + i].getValue(),
+		calcIndivTax: function(taxfield) {
+			var taxPercent = taxfield.getValue(),
 				lineNet = this.fields.extnet.getValue(),
-				taxAmount = this.fields['tax' + i].active ? _getPerc(lineNet, taxPercent) : 0;
+				taxAmount = taxfield.active ? _getPerc(lineNet, taxPercent) : 0;
 
-			this.setField("sum_tax" + i, taxAmount);
+			this.setField(`sum_${this.getBareTaxName(taxfield)}`, taxAmount);
 			return taxAmount;
-		},
-
-		noOfLineTaxes: function() {
-			var no = 0;
-			for (field in this.fields) {
-				if (field.match(/["tax"][0-9]{1,2}$/))
-					no++;
-			}
-			return no;
 		},
 
 		getTaxFields: function() {
 			var flds = [];
-			for (var i = 1; i <= this.noOfLineTaxes(); i++) {
-				flds.push(this.fields[`tax${i}`])
-				flds.push(this.fields[`sum_tax${i}`])
+			for (field in this.fields) {
+				if (/tax[0-9]{1,2}_perc$/.test(field)) {
+					flds.push(this.fields[field])
+				}
 			}
 			return flds;
+		},
+
+		getBareTaxName: function(taxfield) {
+			return taxfield.getFieldName().replace('_perc', '');
 		},
 
 		setField: function(fieldname, newVal) {
@@ -315,15 +311,16 @@
 				}
 			}
 			if (this.root.taxTypeCombo._val === 'individual') {
-				for (var i = 1; i <= this.noOfLineTaxes(); i++) {
-					let input = _getHiddenInputForField(seq, `id_tax${i}_perc`, 'idlines'),
-						p_val = this.fields[`tax${i}`].active ? this.fields[`tax${i}`].getValue() : 0,
-						a_val = this.fields[`tax${i}`].active ? this.fields[`sum_tax${i}`].getValue() : 0;
+				this.getTaxFields().forEach((taxfield) => {
+					let baretaxname = this.getBareTaxName(taxfield),
+						input = _getHiddenInputForField(seq, `id_${baretaxname}_perc`, 'idlines'),
+						p_val = taxfield.active ? taxfield.getValue() : 0,
+						a_val = taxfield.active ? this.fields[`sum_${baretaxname}`].getValue() : 0;
 
 					cont.appendChild(input);
 					extraFields.tax_percent += input.value = p_val;
 					extraFields.linetax += a_val;
-				}
+				});
 			}
 			for (field in extraFields) {
 					let input = _getHiddenInputForField(seq, field, 'idlines');

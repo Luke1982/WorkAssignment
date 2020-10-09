@@ -428,14 +428,10 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 
 		$fields = $context['FIELDS']->value;
 		self::$tax_blocks = self::getAvailableTaxes();
-		list($tax_block_label, $shtax_block_label) = array_keys(self::$tax_blocks);
-
-		foreach (self::$tax_blocks as $label => &$taxes) {
-			$taxcount = count($taxes);
-			$taxtype = $label == $tax_block_label ? 'tax' : 'shtax';
-			for ($i = 0; $i < $taxcount; $i++) {
-				$taxes[$i]['amount'] = CurrencyField::convertToUserFormat($fields['sum_' . $taxtype . ($i + 1)]);
-				$taxes[$i]['percent'] = CurrencyField::convertToUserFormat($fields[$taxtype . ($i + 1) . '_perc']);
+		foreach (self::$tax_blocks as $label => $taxes) {
+			foreach ($taxes as $key => $tax) {
+				self::$tax_blocks[$label][$key]['amount'] = CurrencyField::convertToUserFormat($fields['sum_' . $key]);
+				self::$tax_blocks[$label][$key]['percent'] = CurrencyField::convertToUserFormat($fields[$key . '_perc']);
 			}
 		}
 		return self::$tax_blocks;
@@ -458,7 +454,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		require_once 'include/fields/CurrencyField.php';
 		$taxes = array('LBL_BLOCK_TAXES' => array(), 'LBL_BLOCK_SH_TAXES' => array());
 		foreach (getAllTaxes('available', 'sh') as $shtax) {
-			$taxes['LBL_BLOCK_SH_TAXES'][] = array(
+			$taxes['LBL_BLOCK_SH_TAXES'][$shtax['taxname']] = array(
 				'amount' => 0,
 				'percent' => CurrencyField::convertToUserFormat($shtax['percentage']),
 				'taxlabel' => $shtax['taxlabel'],
@@ -466,7 +462,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			);
 		}
 		foreach (getAllTaxes('available') as $tax) {
-			$taxes['LBL_BLOCK_TAXES'][] = array(
+			$taxes['LBL_BLOCK_TAXES'][$tax['taxname']] = array(
 				'amount' => 0,
 				'percent' => CurrencyField::convertToUserFormat($tax['percentage']),
 				'taxlabel' => $tax['taxlabel'],
