@@ -27,7 +27,7 @@ class ChangeTaxHandler extends VTEventHandler {
 		$module = VTiger_Module::getInstance($inv_mod_name);
 		$new_fldpresence = $data['status'] == 'disabled' ? 1 : 0;
 
-		$amntfield = Vtiger_Field::getInstance($data['tax_name'] . '_amount', $module);
+		$amntfield = Vtiger_Field::getInstance('sum_' . $data['tax_name'], $module);
 		$percfield = Vtiger_Field::getInstance($data['tax_name'] . '_perc', $module);
 		$amntfield->presence = $percfield->presence = $new_fldpresence;
 
@@ -42,7 +42,7 @@ class ChangeTaxHandler extends VTEventHandler {
 		$taxnameprefix = $data['tax_type'] == 'tax' ? 'tax' : 'shtax';
 		$taxname = $taxnameprefix . $data['tax_id'];
 
-		$amntfield = Vtiger_Field::getInstance($taxname . '_amount', $module);
+		$amntfield = Vtiger_Field::getInstance('sum_' . $taxname, $module);
 		$percfield = Vtiger_Field::getInstance($taxname . '_perc', $module);
 
 		$amntfield->label = $labelprefix . $data['new_label'];
