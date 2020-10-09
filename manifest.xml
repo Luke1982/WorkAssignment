@@ -3,7 +3,7 @@
   <name>WorkAssignment</name>
   <label>WorkAssignment</label>
   <parent>Tools</parent>
-  <version>0.1</version>
+  <version>0.11</version>
   <short_description>A corebos module that lets you create Work Assignments (on location) for users.</short_description>
   <dependencies>
     <vtiger_version>5.4.0</vtiger_version>
@@ -18,7 +18,7 @@
       *    Thanks to the community for supporting this vtiger CRM module.
       *
       *************************************************************************************************
-      * Copyright 2020 MajorLabel  --  This file is a part of vtiger CRM TimeControl extension.
+      * Copyright 2020 MajorLabel  --  This file is a part of vtiger CRM Inventory Extension.
       * You can copy, adapt and distribute the work under the "Attribution-NonCommercial-ShareAlike"
       * Vizsage Public License (the "License"). You may not use this file except in compliance with the
       * License. Roughly speaking, non-commercial users may share and modify this code, but must give credit
@@ -32,7 +32,7 @@
       * (the License).
       *************************************************************************************************
       *  Module       : WorkAssignment
-      *  Version      : 0.1
+      *  Version      : 0.11
       *  Author       : MajorLabel
       *************************************************************************************************
       ]]></inline>
