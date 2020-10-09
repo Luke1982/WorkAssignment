@@ -3,7 +3,7 @@
   <name>WorkAssignment</name>
   <label>WorkAssignment</label>
   <parent>Tools</parent>
-  <version>0.11</version>
+  <version>0.12</version>
   <short_description>A corebos module that lets you create Work Assignments (on location) for users.</short_description>
   <dependencies>
     <vtiger_version>5.4.0</vtiger_version>
@@ -32,7 +32,7 @@
       * (the License).
       *************************************************************************************************
       *  Module       : WorkAssignment
-      *  Version      : 0.11
+      *  Version      : 0.12
       *  Author       : MajorLabel
       *************************************************************************************************
       ]]></inline>
