@@ -44,7 +44,7 @@
 {/if}
 {if $MASTERMODE != 'EditView'}{$readonly = true}{else}{$readonly = false}{/if}
 <!-- LDS Detail line for inventorydetails -->
-<div class="{$productline_classprefix} slds-card slds-m-vertical_x-small slds-p-around_none{if $template} {$productline_classprefix}--template{/if}"
+<div class="{$productline_classprefix} slds-card slds-m-vertical_x-small slds-p-around_none{if $template} {$productline_classprefix}_template{/if}"
 	 data-crmid="{$data.meta.inventorydetailsid}"
 	 data-productid="{$data.meta.productid}"
 >
@@ -148,7 +148,7 @@
 				{if !$readonly}
 					{call name=LDSButton el='div' iconlib='utility' icon='move' iconsize='x-small' extraclass='cbds-detail-line-dragtool' title=$MOD.LBL_DRAG_LINE}
 					{call name=LDSButton el='button' iconlib='utility' icon='copy' iconsize='x-small' extraclass='cbds-detail-line-copytool' title=$MOD.LBL_COPY_LINE}
-					{call name=LDSButton el='button' iconlib='utility' icon='delete' iconsize='x-small' extraclass='cbds-button--delete cbds-detail-line-deletetool' title=$MOD.LBL_DELETE_LINE}
+					{call name=LDSButton el='button' iconlib='utility' icon='delete' iconsize='x-small' extraclass='cbds-button_delete cbds-detail-line-deletetool' title=$MOD.LBL_DELETE_LINE}
 				{/if}
 				{call name=LDSButton el='button' iconlib='utility' icon='switch' iconsize='x-small' extraclass='cbds-detail-line-extratool' title=$MOD.LBL_EXPAND_COLL_LINE}
 			</div>
@@ -228,7 +228,7 @@
 		</div>
 		<!-- // LDS extra inventoryline column -->
 		<!-- LDS extra inventoryline column -->
-		<div class="slds-col slds-size_3-of-12 {$productline_classprefix}--taxcol{if $inventoryblock.taxtype == 'group'} {$productline_classprefix}--taxcol-hidden{/if}">
+		<div class="slds-col slds-size_3-of-12 {$productline_classprefix}_taxcol{if $inventoryblock.taxtype == 'group'} {$productline_classprefix}_taxcol-hidden{/if}">
 			<div class="slds-panel">
 				<div class="slds-panel__header">
 					<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate" title="{'InventoryDetailsTaxBlock'|@getTranslatedString:'InventoryDetails'}">{'InventoryDetailsTaxBlock'|@getTranslatedString:'InventoryDetails'}</h2>
@@ -377,7 +377,7 @@
 			{call name=LDSCheckbox label=$label value=$value fieldname=$fieldname}
 		{/if}
 	</div>
-	<div class="slds-form-element__help cbds-form-element__help--fixed"></div>
+	<div class="slds-form-element__help cbds-form-element__help_fixed"></div>
 </div>
 {/function}
 

@@ -151,7 +151,7 @@ window.addEventListener("load", function(){
 						</svg>
 						<span class="slds-assistive-text">{$MOD.LBL_INSERT_LINE}</span>
 					</button>
-					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-button--delete cbds-toolbox__tool" data-clickfunction="deleteAllLines" title="{$MOD.LBL_DEL_ALL_LINES}" aria-pressed="false">
+					<button type="button" class="slds-button slds-button_icon slds-button_icon-border cbds-button_delete cbds-toolbox__tool" data-clickfunction="deleteAllLines" title="{$MOD.LBL_DEL_ALL_LINES}" aria-pressed="false">
 						<svg class="slds-button__icon" aria-hidden="true">
 							<use xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#delete"></use>
 						</svg>
@@ -164,7 +164,7 @@ window.addEventListener("load", function(){
 		<div class="slds-card__body cbds-inventoryaggr">
 			<div class="slds-grid">
 				<div class="slds-col slds-size_4-of-12">
-					<div class="slds-panel slds-m-around_small slds-theme_shade slds-theme_alert-texture slds-box cbds-inventoryaggr__taxes--group{if $inventoryblock.taxtype == 'group'} active{/if}">
+					<div class="slds-panel slds-m-around_small slds-theme_shade slds-theme_alert-texture slds-box cbds-inventoryaggr__taxes_group{if $inventoryblock.taxtype == 'group'} active{/if}">
 						<div class="slds-panel__header">
 							<h2 class="slds-panel__header-title slds-text-heading_small slds-truncate slds-text-color_default" title="{$APP.LBL_TAX}">{$APP.LBL_TAX}</h2>
 						</div>

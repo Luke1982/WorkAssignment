@@ -121,24 +121,24 @@
 		},
 
 		toggleExtra: function(e) {
-			this.extraLine.classList.toggle(this.root.lineClass + "__extra--expanded");
-			this.extraTool.children[0].classList.toggle("cbds-exp-coll-icon--expanded");
+			this.extraLine.classList.toggle(this.root.lineClass + "__extra_expanded");
+			this.extraTool.children[0].classList.toggle("cbds-exp-coll-icon_expanded");
 			let headingsWrapper = this.el.getElementsByClassName(`${this.root.lineClass}__headingswrapper`)[0];
-			headingsWrapper.classList.toggle(`${this.root.lineClass}__headingswrapper--show`);
+			headingsWrapper.classList.toggle(`${this.root.lineClass}__headingswrapper_show`);
 		},
 
 		expandExtra: function() {
-			this.extraLine.classList.add(this.root.lineClass + "__extra--expanded");
-			this.extraTool.children[0].classList.add("cbds-exp-coll-icon--expanded");
+			this.extraLine.classList.add(this.root.lineClass + "__extra_expanded");
+			this.extraTool.children[0].classList.add("cbds-exp-coll-icon_expanded");
 			let headingsWrapper = this.el.getElementsByClassName(`${this.root.lineClass}__headingswrapper`)[0];
-			headingsWrapper.classList.add(`${this.root.lineClass}__headingswrapper--show`);
+			headingsWrapper.classList.add(`${this.root.lineClass}__headingswrapper_show`);
 		},
 
 		collExtra: function() {
-			this.extraLine.classList.remove(this.root.lineClass + "__extra--expanded");
-			this.extraTool.children[0].classList.remove("cbds-exp-coll-icon--expanded");
+			this.extraLine.classList.remove(this.root.lineClass + "__extra_expanded");
+			this.extraTool.children[0].classList.remove("cbds-exp-coll-icon_expanded");
 			let headingsWrapper = this.el.getElementsByClassName(`${this.root.lineClass}__headingswrapper`)[0];
-			headingsWrapper.classList.remove(`${this.root.lineClass}__headingswrapper--show`);
+			headingsWrapper.classList.remove(`${this.root.lineClass}__headingswrapper_show`);
 		},
 
 		handleInput: function(e) {
@@ -1042,9 +1042,9 @@
 
 		changeTaxType : function(val) {
 			if (val == "individual") {
-				this.utils.getFirstClass(this.el, this.aggrPrefix + "__taxes--group").classList.remove("active");
+				this.utils.getFirstClass(this.el, this.aggrPrefix + "__taxes_group").classList.remove("active");
 			} else if (val == "group") {
-				this.utils.getFirstClass(this.el, this.aggrPrefix + "__taxes--group").classList.add("active");
+				this.utils.getFirstClass(this.el, this.aggrPrefix + "__taxes_group").classList.add("active");
 			}
 
 			for (line in this.inventoryLines) {
