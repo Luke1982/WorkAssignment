@@ -304,7 +304,7 @@
  * @param: The readonly property.
 *}
 {function name=ProductTaxPanelSection fieldname='' label='' amount='' percent='' symbol='euro' readonly=false}
-<div class="slds-panel__section slds-panel__section slds-p-bottom_none">
+<div class="slds-panel__section slds-panel__section slds-p-bottom_none{if $amount == 'N/A'} slds-hide{/if}">
 	<span class="slds-form-element__label">{$label}</span>
 	<div class="slds-form-element__row cbds-m-bottom_none">
 		<div class="slds-form-element slds-size_5-of-12">

@@ -626,9 +626,20 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		$lines = array();
 		$invlnesid_selector = $fornew ? '0' : 'id.inventorydetailsid';
 		$taxquery = '';
-		for ($i = 1; $i <= count($skeleton['taxes']); $i++) {
-			$taxquery .= "id.id_tax{$i}_perc AS 'inventorydetails||id_tax{$i}_perc',";
-			$taxquery .= "(id.extnet * (id.id_tax{$i}_perc / 100)) AS 'inventorydetails||sum_id_tax{$i}',";
+		foreach ($skeleton['taxes'] as $tax) {
+			$taxid = str_replace('tax', '', $tax['taxname']);
+			$taxquery .= <<<EOF
+				CASE
+				WHEN EXISTS (SELECT 1 FROM vtiger_producttaxrel AS ptr WHERE ptr.productid = p.productid AND ptr.taxid = ${taxid})
+				THEN id.id_tax${taxid}_perc
+				ELSE 'N/A'
+				END AS 'inventorydetails||id_tax${taxid}_perc',
+				CASE
+					WHEN EXISTS (SELECT 1 FROM vtiger_producttaxrel AS ptr WHERE ptr.productid = p.productid AND ptr.taxid = ${taxid})
+				THEN (id.extnet * (id.id_tax${taxid}_perc / 100))
+				ELSE 'N/A'
+				END AS 'inventorydetails||sum_id_tax${taxid}',
+EOF;
 		}
 		$q = "SELECT {$invlnesid_selector} AS 'inventorydetails||inventorydetailsid',
 					 CASE
@@ -684,8 +695,10 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			$newskel['logistics'] = self::getFieldsForGroup($line, $newskel, 'logistics');
 
 			foreach ($newskel['taxes'] as &$tax) {
-				$tax['percent'] = CurrencyField::convertToUserFormat($line['inventorydetails||id_' . $tax['taxname'] . '_perc'], $current_user);
-				$tax['amount'] = CurrencyField::convertToUserFormat($line['inventorydetails||sum_id_' . $tax['taxname']], $current_user);
+				$taxamount = $line['inventorydetails||sum_id_' . $tax['taxname']];
+				$taxpercent = $line['inventorydetails||id_' . $tax['taxname'] . '_perc'];
+				$tax['amount'] = $taxamount != 'N/A' ? CurrencyField::convertToUserFormat($taxamount, $current_user) : $taxamount;
+				$tax['percent'] = $taxpercent != 'N/A' ? CurrencyField::convertToUserFormat($taxpercent, $current_user) : $taxpercent;
 			}
 			$lines[] = $newskel;
 		}
