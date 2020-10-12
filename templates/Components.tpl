@@ -97,14 +97,20 @@
 					<div class="slds-form-element__row">
 						<!-- Product name form element -->
 						<div class="slds-form-element slds-size_3-of-12">
+						{if $readonly}
+						<div class="slds-p-left_small">
+							<a href="index.php?module={if $data.meta.lineproducttype == 'product'}Products{else}Services{/if}&action=DetailView&record={$data.meta.productid}">{$data.meta.productname}</a>
+						</div>
+						{else}
 							<div class="slds-combobox_container slds-has-inline-listbox cbds-product-search--hasroot">
 								<div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-combobox-lookup" aria-expanded="false" aria-haspopup="listbox" role="combobox">
 									<div class="slds-combobox__form-element{if !$readonly} slds-input-has-icon slds-input-has-icon_right{/if}" role="none">
-										<input class="slds-input slds-combobox__input {$productline_inputprefix}--productname" aria-autocomplete="list" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" placeholder="Search Products and services" type="text" value="{if !$template}{$data.meta.productname}{/if}"{if $readonly} readonly="readonly"{/if}/>
+											<input class="slds-input slds-combobox__input {$productline_inputprefix}--productname" aria-autocomplete="list" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" placeholder="Search Products and services" type="text" value="{if !$template}{$data.meta.productname}{/if}"/>
 										{if !$readonly}{call name=LDSIcon lib='utility' icon='search' align='right' size='x-small'}{/if}
 									</div>
 								</div>
 							</div>
+						{/if}
 						</div>
 						<!-- // Product name form element -->
 						<!-- Product quantity form element -->
