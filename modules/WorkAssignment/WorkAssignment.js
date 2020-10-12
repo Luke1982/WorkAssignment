@@ -481,10 +481,23 @@
 		this.active		= true;
 
 		this.u.on(this.el, "jsInput", this.format, this);
+		this.construct();
 	}
 
 	InventoryField.prototype = {
 		constructor : InventoryField,
+
+		construct: function() {
+			this.setActiveState();
+		},
+
+		setActiveState: function() {
+			if (this.el.hasAttribute('data-active') && this.el.getAttribute('data-active') == 'false') {
+				this.active = false;
+			} else {
+				this.active = true;
+			}
+		},
 
 		getType : function() {
 			return this.el.hasAttribute("data-type") ? this.el.getAttribute("data-type") : false;
@@ -542,7 +555,7 @@
 		},
 
 		validate : function() {
-			if (this.isReadOnly()) return true;
+			if (this.isReadOnly() || !this.active) return true;
 			var type = this.getType();
 			switch(type) {
 				case "number":

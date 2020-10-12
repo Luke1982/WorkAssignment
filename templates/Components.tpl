@@ -309,13 +309,13 @@
 	<div class="slds-form-element__row cbds-m-bottom_none">
 		<div class="slds-form-element slds-size_5-of-12">
 			<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-				<input type="text" class="slds-input {$productline_inputprefix}--{$fieldname}_perc" value="{$percent}" data-type="currency"{if $readonly} readonly="readonly"{/if}/>
+				<input type="text" class="slds-input {$productline_inputprefix}--{$fieldname}_perc" value="{$percent}" data-type="currency"{if $readonly} readonly="readonly"{/if} data-active="{if $percent == 'N/A'}false{else}true{/if}"/>
 				{call name=LDSIcon lib='corebos' icon='percent' align='left' size='x-small'}
 			</div>
 		</div>
 		<div class="slds-form-element slds-size_7-of-12">
 			<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-				<input type="text" class="slds-input {$productline_inputprefix}--sum_{$fieldname}" data-type="currency" readonly="readonly" value="{$amount}" />
+				<input type="text" class="slds-input {$productline_inputprefix}--sum_{$fieldname}" data-type="currency" readonly="readonly" value="{$amount}" data-active="{if $percent == 'N/A'}false{else}true{/if}"/>
 				{call name=LDSIcon lib='corebos' icon=$symbol align='left' size='x-small'}
 			</div>
 		</div>
