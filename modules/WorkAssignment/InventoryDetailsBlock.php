@@ -628,6 +628,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		$taxquery = '';
 		for ($i = 1; $i <= count($skeleton['taxes']); $i++) {
 			$taxquery .= "id.id_tax{$i}_perc AS 'inventorydetails||id_tax{$i}_perc',";
+			$taxquery .= "(id.extnet * (id.id_tax{$i}_perc / 100)) AS 'inventorydetails||sum_id_tax{$i}',";
 		}
 		$q = "SELECT {$invlnesid_selector} AS 'inventorydetails||inventorydetailsid',
 					 CASE
@@ -684,6 +685,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 
 			foreach ($newskel['taxes'] as &$tax) {
 				$tax['percent'] = CurrencyField::convertToUserFormat($line['inventorydetails||id_' . $tax['taxname'] . '_perc'], $current_user);
+				$tax['amount'] = CurrencyField::convertToUserFormat($line['inventorydetails||sum_id_' . $tax['taxname']], $current_user);
 			}
 			$lines[] = $newskel;
 		}
