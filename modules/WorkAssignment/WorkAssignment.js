@@ -192,6 +192,7 @@
 				this.calcDiscount();
 				this.calcLineNet();
 				this.setTotal();
+				this.calcLineTax();
 				this.root.updateAggr();
 				this.root.updateHiddenDomFields();
 			}
@@ -332,7 +333,8 @@
 		actualizeLineTaxes: function(productTaxes) {
 			this.getTaxFields().forEach((field) => field.hide());
 			productTaxes.forEach((tax) => {
-				this.fields[tax.taxname].show();
+				this.fields[`${tax.taxname}_perc`].update(tax.percentage);
+				this.fields[`${tax.taxname}_perc`].show();
 				this.fields[`sum_${tax.taxname}`].show();
 			});
 			// Because this is the result of an AJAX call
