@@ -120,6 +120,7 @@ class WorkAssignment extends CRMEntity {
 			$this->setModuleSeqNumber('configure', $modulename, 'WA', '0000001');
 			$this->installTaxFields();
 			$this->installTaxHandlers();
+			$this->setRelatedToInventoryDetails();
 		} elseif ($event_type == 'module.disabled') {
 			// Handle actions when this module is disabled.
 		} elseif ($event_type == 'module.enabled') {
@@ -192,6 +193,13 @@ class WorkAssignment extends CRMEntity {
 		$em->registerHandler('corebos.add.tax', 'modules/WorkAssignment/handlers/handleNewTax.php', 'NewTaxHandler');
 		$em->registerHandler('corebos.changestatus.tax', 'modules/WorkAssignment/handlers/handleChangedTax.php', 'ChangeTaxHandler');
 		$em->registerHandler('corebos.changelabel.tax', 'modules/WorkAssignment/handlers/handleChangedTax.php', 'ChangeTaxHandler');
+	}
+
+	private function setRelatedToInventoryDetails() {
+		require_once 'vtlib/Vtiger/Module.php';
+		$module = VTiger_Module::getInstance('InventoryDetails');
+		$reltofield = Vtiger_Field::getInstance('related_to', $module);
+		$reltofield->setRelatedModules(array(get_class($this)));
 	}
 
 	/**
