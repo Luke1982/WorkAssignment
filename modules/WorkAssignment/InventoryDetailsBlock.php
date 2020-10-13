@@ -64,6 +64,10 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		'products||lineproducttype' => '',
 	);
 
+	// Applicable when converting: an array that holds the
+	// source record columns
+	private static $srcrecord_info = array();
+
 	public static function title() {
 		return getTranslatedString('LBL_INVENTORYDETAILS_BLOCK', self::$modname);
 	}
@@ -283,13 +287,44 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 				break;
 			case 'duplication':
 			case 'conversion':
-				return self::getTaxesFromSourceRecord($_REQUEST['cbfromid']);
+				if (self::getSourceRecord($_REQUEST['cbfromid'])['taxtype'] == 'group') {
+					return self::getTaxesFromSourceRecord($_REQUEST['cbfromid']);
+				} else {
+					return self::getAvailableTaxes();
+				}
 				break;
 			case 'detail':
 			case 'edit':
 				return self::getTaxesFromContext($context);
 				break;
 		}
+	}
+
+	/**
+	 * Gets the source record from the database
+	 * or returns it when it has already been retrieved.
+	 * Source record means: the source we're converting
+	 * or duplicating from.
+	 *
+	 * @param Int The CRM ID of the source record
+	 *
+	 * @throws None
+	 * @author MajorLabel <info@majorlabel.nl>
+	 * @return Array
+	 */
+	private static function getSourceRecord($crmid) {
+		if (count(self::$srcrecord_info) == 0) {
+			global $adb;
+			$setype = getSalesEntityType($crmid);
+			require_once 'modules/' . $setype . '/' . $setype . '.php';
+			$srcfocus = new $setype();
+			$q = "SELECT * FROM `{$srcfocus->table_name}` WHERE `{$srcfocus->table_index}` = {$crmid}";
+			$fields = $adb->fetch_array($adb->query($q));
+			foreach ($fields as $columnname => $value) {
+				self::$srcrecord_info[$columnname] = $value;
+			}
+		}
+		return self::$srcrecord_info;
 	}
 
 	/**
@@ -306,12 +341,8 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	 *               tax information
 	 */
 	private static function getTaxesFromSourceRecord($crmid) {
-		global $adb;
-		$setype = getSalesEntityType($crmid);
-		require_once 'modules/' . $setype . '/' . $setype . '.php';
 		require_once 'include/utils/InventoryUtils.php';
 		require_once 'include/fields/CurrencyField.php';
-		$srcfocus = new $setype();
 		$taxes = array('LBL_BLOCK_TAXES' => array(), 'LBL_BLOCK_SH_TAXES' => array());
 
 		// Helper functions
@@ -342,8 +373,7 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 			);
 		}
 
-		$q = "SELECT * FROM `{$srcfocus->table_name}` WHERE `{$srcfocus->table_index}` = {$crmid}";
-		$fields = $adb->fetch_array($adb->query($q));
+		$fields = self::getSourceRecord($crmid);
 		foreach ($fields as $columnname => $value) {
 			preg_match('/^sum_tax[0-9]{1,2}$/', $columnname, $matches);
 			preg_match('/^sum_shtax[0-9]{1,2}$/', $columnname, $shmatches);
