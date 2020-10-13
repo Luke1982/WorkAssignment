@@ -656,19 +656,28 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		$lines = array();
 		$invlnesid_selector = $fornew ? '0' : 'id.inventorydetailsid';
 		$taxquery = '';
+		$systaxesforlines = false;
+		if ($fornew && self::getSourceRecord($id)['taxtype'] == 'group') {
+			$systaxesforlines = true;
+		}
 		foreach ($skeleton['taxes'] as $tax) {
 			$taxid = str_replace('tax', '', $tax['taxname']);
+			if ($systaxesforlines) {
+				$taxselector = "(SELECT taxpercentage FROM vtiger_producttaxrel AS ptr WHERE ptr.productid = p.productid AND ptr.taxid = {$taxid})";
+			} else {
+				$taxselector = "id.id_tax{$taxid}_perc";
+			}
 			$taxquery .= <<<EOF
 				CASE
-				WHEN EXISTS (SELECT 1 FROM vtiger_producttaxrel AS ptr WHERE ptr.productid = p.productid AND ptr.taxid = ${taxid})
-				THEN id.id_tax${taxid}_perc
+				WHEN EXISTS (SELECT 1 FROM vtiger_producttaxrel AS ptr WHERE ptr.productid = p.productid AND ptr.taxid = {$taxid})
+				THEN {$taxselector}
 				ELSE 'N/A'
 				END AS 'inventorydetails||id_tax${taxid}_perc',
 				CASE
-					WHEN EXISTS (SELECT 1 FROM vtiger_producttaxrel AS ptr WHERE ptr.productid = p.productid AND ptr.taxid = ${taxid})
-				THEN (id.extnet * (id.id_tax${taxid}_perc / 100))
+					WHEN EXISTS (SELECT 1 FROM vtiger_producttaxrel AS ptr WHERE ptr.productid = p.productid AND ptr.taxid = {$taxid})
+				THEN (id.extnet * ({$taxselector} / 100))
 				ELSE 'N/A'
-				END AS 'inventorydetails||sum_id_tax${taxid}',
+				END AS 'inventorydetails||sum_id_tax{$taxid}',
 EOF;
 		}
 		$q = "SELECT {$invlnesid_selector} AS 'inventorydetails||inventorydetailsid',
