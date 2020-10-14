@@ -120,6 +120,7 @@
 			this.u.insertAfter(original, newNode);
 			let line = new InventoryLine(newNode, this.root);
 			line.crmid = 0;
+			line.productId = this.productId;
 			this.root.updateCount();
 			this.root.updateAggr();
 			this.root.updateHiddenDomFields();
