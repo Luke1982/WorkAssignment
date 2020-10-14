@@ -41,7 +41,11 @@
 		this.fields 	= {},
 		this.productId	= 0,
 		this.crmid		= 0,
-		this.divisible	= true;
+		this.divisible	= true,
+		this.image		= {
+			name: '',
+			attId: 0
+		};
 
 		/* Private properties */
 		var copyTool 	= _getTool(el, "copy"),
@@ -82,6 +86,20 @@
 			}
 
 			ldsCheckbox.setUnique();
+
+			let lineImg = me.el.getElementsByClassName('cbds-product-line-image')[0],
+				lineImgName = lineImg.getAttribute('data-lineimage'),
+				lineImgAttid = lineImg.getAttribute('data-lineimage-attid'),
+				lineImgPath = lineImg.getAttribute('data-lineimage-path'),
+				img = new Image();
+
+			if (lineImgAttid != '' && lineImgAttid != 0) {
+				img.src = `${lineImgPath}${lineImgAttid}_${lineImgName}`;
+				me.image.name = lineImgName;
+				me.image.attId = lineImgAttid;
+				img.decode()
+				.then(() => {lineImg.src = img.src})
+			}
 		}
 		construct(this);
 
@@ -296,12 +314,14 @@
 		},
 
 		updateDomContainer: function(cont) {
-			let seq = this.getSeq()
+			let seq = this.getSeq(),
 				extraFields = {
 					'productid': this.productId,
 					'crmid': this.crmid,
 					'linetax': 0,
-					'tax_percent': 0
+					'tax_percent': 0,
+					'lineimage': this.image.name,
+					'lineimage_attid': this.image.attId
 				};
 			for (field in this.fields) {
 				if (this.fields[field].active === true) {
@@ -357,6 +377,20 @@
 				}
 			}
 			return {};
+		},
+
+		getProductImage: function(id) {
+			fetch(`index.php?module=Utilities&action=UtilitiesAjax&file=ExecuteFunctions&functiontocall=getImageInfoFor&record=${id}`)
+				.then(r => r.json())
+				.then((r) => {
+					let line = this.u.findUp(this.el, '.cbds-inventoryline'),
+						img = line.getElementsByClassName('cbds-product-line-image')[0],
+						imgPath = r !== '' ? r.images[''].fullpath : '';
+
+					this.image.name = r !== '' ? r.images[''].name : '';
+					this.image.attId = r !== '' ? r.images[''].id : 0;
+					img.src = imgPath;
+				})
 		}
 	}
 

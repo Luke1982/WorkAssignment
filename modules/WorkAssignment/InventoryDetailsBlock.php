@@ -52,6 +52,9 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 		'inventorydetails||extnet' => '',
 		'inventorydetails||linetotal' => '',
 		'inventorydetails||description' => '',
+		'inventorydetails||lineimage' => '',
+		'inventorydetails||lineimage_attid' => '',
+		'inventorydetails||lineimage_path' => '',
 		'products||productname' => '',
 		'products||usageunit' => '',
 		'products||lineproducttype' => '',
@@ -62,6 +65,8 @@ class InventoryDetailsBlock_RenderBlock extends InventoryDetailsBlock {
 	// pass some info on to the line array
 	private static $nonfield_lineprops = array(
 		'products||lineproducttype' => '',
+		'inventorydetails||lineimage_attid' => '',
+		'inventorydetails||lineimage_path' => '',
 	);
 
 	// Applicable when converting: an array that holds the
@@ -687,6 +692,9 @@ EOF;
 					 END AS 'products||productname',
 					 id.productid AS 'inventorydetails||productid',
 					 id.quantity AS 'inventorydetails||quantity',
+					 id.lineimage AS 'inventorydetails||lineimage',
+					 att.attachmentsid AS 'inventorydetails||lineimage_attid',
+					 att.path AS 'inventorydetails||lineimage_path',
 					 CASE
 					 	WHEN id.discount_percent > 0 THEN 'p'
 						ELSE 'd'
@@ -720,6 +728,8 @@ EOF;
 			  FROM vtiger_inventorydetails AS id
 			  LEFT JOIN vtiger_products AS p ON id.productid = p.productid
 			  LEFT JOIN vtiger_service AS s ON id.productid = s.serviceid
+			  LEFT JOIN vtiger_seattachmentsrel AS attrel ON id.inventorydetailsid = attrel.crmid
+			  LEFT JOIN vtiger_attachments AS att ON attrel.attachmentsid = att.attachmentsid
 			  INNER JOIN vtiger_crmentity AS c ON id.inventorydetailsid = c.crmid
 			  WHERE c.deleted = 0
 			  AND id.related_to = {$id}
@@ -832,7 +842,9 @@ EOF;
 		return array(
 			'meta' => array(
 				'inventorydetailsid' => 0,
-				'image' => '',
+				'lineimage' => '',
+				'lineimage_attid' => 0,
+				'lineimage_path' => '',
 				'productname' => '',
 				'productid' => 0,
 				'quantity' => 1,

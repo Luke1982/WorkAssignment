@@ -18,10 +18,11 @@ class handleInventoryDetailsLines extends VTEventHandler {
 		$idfocus = new InventoryDetails();
 		foreach ($_REQUEST['idlines'] as $lineseq => $line) {
 			if ((int)$line['crmid'] == 0) {
-				self::saveNewIDLine($entityData, $line, $idfocus, $lineseq);
+				$newline = self::saveNewIDLine($entityData, $line, $idfocus, $lineseq);
 			} else {
-				self::saveExistingIDLine($entityData, $line, $idfocus, $lineseq);
+				$newline = self::saveExistingIDLine($entityData, $line, $idfocus, $lineseq);
 			}
+			self::handleImageAttachmentID($line['lineimage_attid'], $newline->id);
 		}
 		foreach ($_REQUEST['deletelines'] as $linecrmid => $crmid) {
 			$idfocus->trash('InventoryDetails', $linecrmid);
@@ -43,7 +44,7 @@ class handleInventoryDetailsLines extends VTEventHandler {
 		$idfocus->column_fields['discount_amount'] = $line['discount_type'] == 'd' ? $line['discount_amount'] : 0;
 		$idfocus->column_fields['total_stock'] = $line['qtyinstock'];
 
-		self::sanitizeAndSaveIdLine($idfocus);
+		return self::sanitizeAndSaveIdLine($idfocus);
 	}
 
 	private static function saveExistingIDLine($entityData, $line, $idfocus, $lineseq) {
@@ -61,7 +62,7 @@ class handleInventoryDetailsLines extends VTEventHandler {
 		$idfocus->column_fields['discount_percent'] = $line['discount_type'] == 'p' ? $line['discount_amount'] : 0;
 		$idfocus->column_fields['discount_amount'] = $line['discount_type'] == 'd' ? $line['discount_amount'] : 0;
 
-		self::sanitizeAndSaveIdLine($idfocus);
+		return self::sanitizeAndSaveIdLine($idfocus);
 	}
 
 	private static function sanitizeAndSaveIdLine($focus) {
@@ -71,6 +72,19 @@ class handleInventoryDetailsLines extends VTEventHandler {
 		$focus->column_fields = DataTransform::sanitizeRetrieveEntityInfo($focus->column_fields, $meta);
 		$focus->save('InventoryDetails');
 		return $focus;
+	}
+
+	private static function handleImageAttachmentID($att_id, $lineid) {
+		global $adb;
+		if ((int)$att_id != 0) {
+			$r = $adb->query("SELECT * FROM `vtiger_seattachmentsrel` WHERE crmid = {$lineid}");
+			if ($adb->num_rows($r) > 0) {
+				$adb->query("UPDATE `vtiger_seattachmentsrel` SET attachmentsid = {$att_id} WHERE crmid = {$lineid}");
+			} else {
+				$adb->query("INSERT INTO `vtiger_seattachmentsrel` (crmid, attachmentsid)
+							VALUES ({$lineid}, {$att_id})");
+			}
+		}
 	}
 
 	private static function saveAggregation($entityData) {

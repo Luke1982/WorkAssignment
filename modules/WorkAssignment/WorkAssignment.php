@@ -121,6 +121,7 @@ class WorkAssignment extends CRMEntity {
 			$this->installTaxFields();
 			$this->installTaxHandlers();
 			$this->setRelatedToInventoryDetails();
+			$this->installImageFieldInventoryDetails();
 		} elseif ($event_type == 'module.disabled') {
 			// Handle actions when this module is disabled.
 		} elseif ($event_type == 'module.enabled') {
@@ -200,6 +201,28 @@ class WorkAssignment extends CRMEntity {
 		$module = VTiger_Module::getInstance('InventoryDetails');
 		$reltofield = Vtiger_Field::getInstance('related_to', $module);
 		$reltofield->setRelatedModules(array(get_class($this)));
+	}
+
+	private function installImageFieldInventoryDetails() {
+		global $adb;
+		require_once 'vtlib/Vtiger/Module.php';
+
+		$r = $adb->query("SELECT * FROM vtiger_field WHERE tablename = 'vtiger_inventorydetails' AND fieldname = 'lineimage' AND uitype = 69");
+		if ($adb->num_rows($r) == 0) {
+			$module = VTiger_Module::getInstance('InventoryDetails');
+			$block = Vtiger_Block::getInstance('LBL_INVENTORYDETAILS_INFORMATION', $module);
+
+			$field = new Vtiger_Field();
+			$field->name = 'lineimage';
+			$field->label= 'lineimage';
+			$field->column = 'lineimage';
+			$field->columntype = 'TEXT';
+			$field->uitype = 69;
+			$field->typeofdata = 'V~O';
+			$field->displaytype = 1;
+			$field->presence = 0;
+			$block->addField($field);
+		}
 	}
 
 	/**

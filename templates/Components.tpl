@@ -86,7 +86,11 @@
 	<div class="slds-grid slds-gutters cbds-detail-line__main">
 		<div class="slds-col slds-size_1-of-12">
 			<div class="cbds-image-container">
-				<img src="{if !$template && isset($data.meta.image) && $data.meta.image != ''}{$data.meta.image}{/if}" class="cbds-image cbds-product-line-image" />
+				<img src="" class="cbds-image cbds-product-line-image"
+					 data-lineimage="{$data.meta.lineimage}"
+					 data-lineimage-attid="{$data.meta.lineimage_attid}"
+					 data-lineimage-path="{$data.meta.lineimage_path}"
+				/>
 			</div>
 		</div>
 		<!-- Nested column with input fields -->
