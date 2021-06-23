@@ -118,10 +118,6 @@ class WorkAssignment extends CRMEntity {
 		if ($event_type == 'module.postinstall') {
 			// Handle post installation actions
 			$this->setModuleSeqNumber('configure', $modulename, 'WA', '0000001');
-			$this->installTaxFields();
-			$this->installTaxHandlers();
-			$this->setRelatedToInventoryDetails();
-			$this->installImageFieldInventoryDetails();
 		} elseif ($event_type == 'module.disabled') {
 			// Handle actions when this module is disabled.
 		} elseif ($event_type == 'module.enabled') {
@@ -132,96 +128,6 @@ class WorkAssignment extends CRMEntity {
 			// Handle actions before this module is updated.
 		} elseif ($event_type == 'module.postupdate') {
 			// Handle actions after this module is updated.
-		}
-	}
-
-	private function installTaxFields() {
-		$blocks = array(
-			array(
-				'name' => 'LBL_BLOCK_TAXES',
-				'table' => 'vtiger_inventorytaxinfo',
-				'labelprefix' => '',
-			),
-			array(
-				'name' => 'LBL_BLOCK_SH_TAXES',
-				'table' => 'vtiger_shippingtaxinfo',
-				'labelprefix' => 'SH ',
-			),
-		);
-		foreach ($blocks as $block) {
-			$this->createTaxFields($block['name'], $block['table'], $block['labelprefix']);
-		}
-	}
-
-	private function createTaxFields($blocklabel, $tablename, $labelprefix = '') {
-		global $adb;
-		require_once 'vtlib/Vtiger/Module.php';
-
-		$module = VTiger_Module::getInstance(get_class($this));
-		$block = Vtiger_Block::getInstance($blocklabel, $module);
-
-		$rstax=$adb->query('SELECT `taxname`, `taxlabel`, `percentage` FROM ' . $tablename . ' WHERE deleted = 0');
-		while ($tx = $adb->fetch_array($rstax)) {
-			$field = new Vtiger_Field();
-			$field->name = 'sum_' . $tx['taxname'];
-			$field->label= $labelprefix . $tx['taxlabel'];
-			$field->column = 'sum_' . $tx['taxname'];
-			$field->columntype = 'DECIMAL(25,6)';
-			$field->uitype = 7;
-			$field->typeofdata = 'NN~O';
-			$field->displaytype = 2;
-			$field->presence = 0;
-			$block->addField($field);
-
-			$field = new Vtiger_Field();
-			$field->name = $tx['taxname'] . '_perc';
-			$field->label= $labelprefix . $tx['taxlabel'] . ' (%)';
-			$field->column = $tx['taxname'] . '_perc';
-			$field->columntype = 'DECIMAL(7,3)';
-			$field->uitype = 7;
-			$field->typeofdata = 'N~O';
-			$field->displaytype = 2;
-			$field->presence = 0;
-			$block->addField($field);
-		}
-	}
-
-	private function installTaxHandlers() {
-		global $adb;
-		require 'include/events/include.inc';
-		$em = new VTEventsManager($adb);
-
-		$em->registerHandler('corebos.add.tax', 'modules/WorkAssignment/handlers/handleNewTax.php', 'NewTaxHandler');
-		$em->registerHandler('corebos.changestatus.tax', 'modules/WorkAssignment/handlers/handleChangedTax.php', 'ChangeTaxHandler');
-		$em->registerHandler('corebos.changelabel.tax', 'modules/WorkAssignment/handlers/handleChangedTax.php', 'ChangeTaxHandler');
-	}
-
-	private function setRelatedToInventoryDetails() {
-		require_once 'vtlib/Vtiger/Module.php';
-		$module = VTiger_Module::getInstance('InventoryDetails');
-		$reltofield = Vtiger_Field::getInstance('related_to', $module);
-		$reltofield->setRelatedModules(array(get_class($this)));
-	}
-
-	private function installImageFieldInventoryDetails() {
-		global $adb;
-		require_once 'vtlib/Vtiger/Module.php';
-
-		$r = $adb->query("SELECT * FROM vtiger_field WHERE tablename = 'vtiger_inventorydetails' AND fieldname = 'lineimage' AND uitype = 69");
-		if ($adb->num_rows($r) == 0) {
-			$module = VTiger_Module::getInstance('InventoryDetails');
-			$block = Vtiger_Block::getInstance('LBL_INVENTORYDETAILS_INFORMATION', $module);
-
-			$field = new Vtiger_Field();
-			$field->name = 'lineimage';
-			$field->label= 'lineimage';
-			$field->column = 'lineimage';
-			$field->columntype = 'TEXT';
-			$field->uitype = 69;
-			$field->typeofdata = 'V~O';
-			$field->displaytype = 1;
-			$field->presence = 0;
-			$block->addField($field);
 		}
 	}
 

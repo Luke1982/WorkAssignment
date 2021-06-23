@@ -3,7 +3,7 @@
   <name>WorkAssignment</name>
   <label>WorkAssignment</label>
   <parent>Tools</parent>
-  <version>0.12</version>
+  <version>0.1</version>
   <short_description>A corebos module that lets you create Work Assignments (on location) for users.</short_description>
   <dependencies>
     <vtiger_version>5.4.0</vtiger_version>
@@ -32,7 +32,7 @@
       * (the License).
       *************************************************************************************************
       *  Module       : WorkAssignment
-      *  Version      : 0.12
+      *  Version      : 0.1
       *  Author       : MajorLabel
       *************************************************************************************************
       ]]></inline>
@@ -50,19 +50,6 @@
           `contact_id` INT(11) DEFAULT NULL,
           `salesorder` INT(11) NOT NULL,
           `wastatus` VARCHAR(100) DEFAULT NULL,
-          `pl_gross_total` DECIMAL(25,6),
-          `pl_dto_line` DECIMAL(25,6),
-          `pl_dto_global` DECIMAL(25,6),
-          `pl_dto_total` DECIMAL(25,6),
-          `pl_net_total` DECIMAL(25,6),
-          `pl_sh_total` DECIMAL(25,6),
-          `pl_sh_tax` DECIMAL(25,6),
-          `pl_adjustment` DECIMAL(25,6),
-          `pl_grand_total` DECIMAL(25,6),
-          `sum_nettotal` DECIMAL(25,6),
-          `sum_taxtotal` DECIMAL(25,6),
-          `taxtype` VARCHAR(16) DEFAULT 'group',
-          `currencyid` INT(11) DEFAULT 1,
           PRIMARY KEY (`workassignmentid`)
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
         </table>
@@ -361,268 +348,6 @@
               </field>
             </fields>
           </block>
-          <block>
-            <label>LBL_WORKASSIGNMENT_FINANCIALINFO</label>
-            <fields>
-              <field>
-                <fieldname>pl_gross_total</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_gross_total</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Gross Total</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>0</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>pl_dto_line</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_dto_line</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Line Discount</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>1</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>pl_dto_global</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_dto_global</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Global Discount</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>2</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>pl_dto_total</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_dto_total</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Total Discount</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>3</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>pl_net_total</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_net_total</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Net Total (aGD)</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>4</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>pl_sh_total</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_sh_total</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>SH Total</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>5</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>pl_sh_tax</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_sh_tax</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>SH Tax</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>6</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>pl_adjustment</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_adjustment</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Final Adjustment</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>7</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>pl_grand_total</fieldname>
-                <uitype>7</uitype>
-                <columnname>pl_grand_total</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Grand Total</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>8</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>sum_nettotal</fieldname>
-                <uitype>7</uitype>
-                <columnname>sum_nettotal</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Net Total (bGD)</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>9</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>sum_taxtotal</fieldname>
-                <uitype>7</uitype>
-                <columnname>sum_taxtotal</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>Total Tax</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>10</sequence>
-                <typeofdata>NN~O</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-              <field>
-                <fieldname>taxtype</fieldname>
-                <uitype>16</uitype>
-                <columnname>taxtype</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>taxtype</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>11</sequence>
-                <typeofdata>V~M</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-                <picklistvalues>
-                  <picklistvalue>group</picklistvalue>
-                  <picklistvalue>individual</picklistvalue>
-                </picklistvalues>
-              </field>
-              <field>
-                <fieldname>currencyid</fieldname>
-                <uitype>7</uitype>
-                <columnname>currencyid</columnname>
-                <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
-                <fieldlabel>currencyid</fieldlabel>
-                <readonly>1</readonly>
-                <presence>0</presence>
-                <selected>0</selected>
-                <sequence>12</sequence>
-                <typeofdata>I~M</typeofdata>
-                <quickcreate>0</quickcreate>
-                <quickcreatesequence>0</quickcreatesequence>
-                <displaytype>2</displaytype>
-                <info_type>BAS</info_type>
-                <helpinfo><![CDATA[]]></helpinfo>
-                <masseditable>0</masseditable>
-              </field>
-            </fields>
-          </block>
-          <block>
-            <label>LBL_BLOCK_TAXES</label>
-          </block>
-          <block>
-            <label>LBL_BLOCK_SH_TAXES</label>
-          </block>
         </blocks>
         <customviews>
           <customview>
@@ -685,10 +410,10 @@
         <relatedlists>
           <relatedlist>
             <function>get_dependents_list</function>
-            <label>InventoryDetails</label>
+            <label>WorkAssignmentLines</label>
             <sequence>0</sequence>
             <presence>0</presence>
-            <relatedmodule>InventoryDetails</relatedmodule>
+            <relatedmodule>WorkAssignmentLines</relatedmodule>
             <actions></actions>
           </relatedlist>
           <relatedlist>
@@ -705,16 +430,16 @@
         <events>
           <event>
             <eventname>vtiger.entity.aftersave</eventname>
-            <classname>handleInventoryDetailsLines</classname>
-            <filename>modules/WorkAssignment/handleInventoryDetailsLines.php</filename>
+            <classname>handleWorkAssignmentLines</classname>
+            <filename>modules/WorkAssignment/handleWorkAssignmentLines.php</filename>
             <condition><![CDATA[moduleName in ['WorkAssignment']]]></condition>
           </event>
         </events>
         <customlinks>
         <customlink>
           <linktype>DETAILVIEWWIDGET</linktype>
-          <linklabel>InventoryDetailsBlock</linklabel>
-          <linkurl><![CDATA[block://InventoryDetailsBlock:modules/WorkAssignment/InventoryDetailsBlock.php]]></linkurl>
+          <linklabel>WorkAssignmentLinesBlock</linklabel>
+          <linkurl><![CDATA[block://WorkAssignmentLinesBlock:modules/WorkAssignment/WorkAssignmentLinesBlock.php]]></linkurl>
           <linkicon><![CDATA[]]></linkicon>
           <sequence>0</sequence>
           <handler_path><![CDATA[]]></handler_path>
@@ -723,8 +448,8 @@
         </customlink>
           <customlink>
             <linktype>EDITVIEWWIDGET</linktype>
-            <linklabel>InventoryDetailsBlock</linklabel>
-            <linkurl><![CDATA[block://InventoryDetailsBlock:modules/WorkAssignment/InventoryDetailsBlock.php]]></linkurl>
+            <linklabel>WorkAssignmentLinesBlock</linklabel>
+            <linkurl><![CDATA[block://WorkAssignmentLinesBlock:modules/WorkAssignment/WorkAssignmentLinesBlock.php]]></linkurl>
             <linkicon><![CDATA[]]></linkicon>
             <sequence>0</sequence>
             <handler_path><![CDATA[]]></handler_path>
