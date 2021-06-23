@@ -386,10 +386,16 @@
 				.then((r) => {
 					let line = this.u.findUp(this.el, '.cbds-inventoryline'),
 						img = line.getElementsByClassName('cbds-product-line-image')[0],
-						imgPath = r !== '' ? r.images[''].fullpath : '';
+						imgPath = r !== '' ? r.images[''].fullpath : '',
+						seq = this.getSeq();
 
 					this.image.name = r !== '' ? r.images[''].name : '';
 					this.image.attId = r !== '' ? r.images[''].id : 0;
+					img.setAttribute('data-lineimage', this.image.name);
+					img.setAttribute('data-lineimage-attid', this.image.attId);
+					img.setAttribute('data-lineimage-path', r !== '' ? r.images[''].path : '');
+					document.getElementsByName(`idlines[${seq}][lineimage]`)[0].value = this.image.name;
+					document.getElementsByName(`idlines[${seq}][lineimage_attid]`)[0].value = this.image.attId;
 					img.src = imgPath;
 				})
 		}
