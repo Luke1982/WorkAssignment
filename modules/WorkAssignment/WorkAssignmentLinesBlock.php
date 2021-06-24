@@ -28,5 +28,16 @@ class WorkAssignmentLinesBlock_RenderBlock extends WorkAssignmentLinesBlock {
 	 */
 	public function process($context = false) {
 		// $context contains the WorkAssignment ID
+		$test = array(
+			'lines' => array(
+				array(
+					'seq' => 12,
+					'crmid' => 23094,
+					'productid' => 2312,
+					'preparationstatus' => 'Not yet prepared',
+				),
+			),
+		);
+		echo '<input type="hidden" id="workassignmentlineinfo" value=\'' . json_encode($test) . '\' />';
 	}
 }
