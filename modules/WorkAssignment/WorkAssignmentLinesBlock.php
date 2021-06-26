@@ -38,6 +38,9 @@ class WorkAssignmentLinesBlock_RenderBlock extends WorkAssignmentLinesBlock {
 				),
 			),
 		);
-		echo '<input type="hidden" id="workassignmentlineinfo" value=\'' . json_encode($test) . '\' />';
+		// echo '<input type="hidden" id="workassignmentlineinfo" value=\'' . json_encode($test) . '\' />';
+		echo '<div id="workassignmentlines"></div>';
+		echo '<script src="/include/js/Inventory.js"></script>';
+		echo '<script src="/modules/WorkAssignment/dist/bundle.js"></script>';
 	}
 }

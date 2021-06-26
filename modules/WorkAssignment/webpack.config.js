@@ -33,10 +33,8 @@ module.exports = {
             },
         ]
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': { NODE_ENV: JSON.stringify('production') }
-        }),
-        // new ExtractTextPlugin('[name].css')
-    ]
+    mode: 'development', // Either 'development' or 'production'
+    performance: {
+        hints: false // Surpress warnings on for instance exceeding the 244kB limit
+    }
 };
