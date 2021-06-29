@@ -8154,6 +8154,424 @@ Spinner.defaultProps = defaultProps;
 
 /***/ }),
 
+/***/ "./node_modules/@salesforce/design-system-react/components/textarea/check-props.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/textarea/check-props.js ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_warning_only_one_of_properties__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utilities/warning/only-one-of-properties */ "./node_modules/@salesforce/design-system-react/utilities/warning/only-one-of-properties.js");
+/* harmony import */ var _utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utilities/warning/sunset-property */ "./node_modules/@salesforce/design-system-react/utilities/warning/sunset-property.js");
+/* harmony import */ var _utilities_get_component_doc__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/get-component-doc */ "./node_modules/@salesforce/design-system-react/utilities/get-component-doc.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable import/no-mutable-exports */
+
+/* eslint-disable max-len */
+
+
+
+
+let checkProps = function checkPropsFunction() {};
+
+if (true) {
+  checkProps = function checkPropsFunction(COMPONENT, props, jsonDoc) {
+    const createDocUrl = Object(_utilities_get_component_doc__WEBPACK_IMPORTED_MODULE_2__["default"])(jsonDoc);
+    Object(_utilities_warning_only_one_of_properties__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, {
+      assistiveText: props.assistiveText,
+      label: props.label
+    }, createDocUrl());
+
+    if (typeof props.assistiveText === 'string') {
+      Object(_utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_1__["default"])(COMPONENT, props.assistiveText, 'assistiveText', `\`assistiveText\` as a string has been deprecated and is now an object to allow for multiple uses in the component. Please use \`assistiveText.label\` instead. ${createDocUrl('assistiveText')}`);
+    }
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (checkProps);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/textarea/component.json":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/textarea/component.json ***!
+  \*****************************************************************************************/
+/*! exports provided: component, status, display-name, classKey, SLDS-component-path, site-stories, url-slug, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"component\":\"textarea\",\"status\":\"prod\",\"display-name\":\"Textareas\",\"classKey\":\"Textarea\",\"SLDS-component-path\":\"/components/forms#flavor-textarea\",\"site-stories\":[{\"heading\":\"Default\",\"path\":\"/__examples__/default.jsx\"},{\"heading\":\"Error\",\"path\":\"/__examples__/error.jsx\"},{\"heading\":\"Disabled\",\"path\":\"/__examples__/disabled.jsx\"}],\"url-slug\":\"textareas\"}");
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/textarea/index.jsx":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/textarea/index.jsx ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! shortid */ "./node_modules/shortid/index.js");
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(shortid__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _check_props__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./check-props */ "./node_modules/@salesforce/design-system-react/components/textarea/check-props.js");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* harmony import */ var _utilities_get_aria_props__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utilities/get-aria-props */ "./node_modules/@salesforce/design-system-react/utilities/get-aria-props.js");
+/* harmony import */ var _component_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./component.json */ "./node_modules/@salesforce/design-system-react/components/textarea/component.json");
+var _component_json__WEBPACK_IMPORTED_MODULE_7___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./component.json */ "./node_modules/@salesforce/design-system-react/components/textarea/component.json", 1);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* eslint-disable react/jsx-curly-brace-presence */
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable jsx-a11y/no-autofocus */
+// # Textarea Component
+// Implements the [Textarea design pattern](https://lightningdesignsystem.com/components/textarea).
+// Based on SLDS v2.4.0
+//
+// ### React
+
+ // ### classNames
+// [github.com/JedWatson/classnames](https://github.com/JedWatson/classnames)
+// This project uses `classnames`, "a simple javascript utility for conditionally
+// joining classNames together."
+
+ // ### shortid
+// [npmjs.com/package/shortid](https://www.npmjs.com/package/shortid)
+// shortid is a short, non-sequential, url-friendly, unique id generator
+
+ // ## Children
+// This component's `checkProps` which issues warnings to developers about properties when in development mode (similar to React's built in development tools)
+
+
+
+
+
+/**
+ * A multi-line plain-text editing control.
+ */
+
+class Textarea extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props); // `checkProps` issues warnings to developers about properties (similar to React's built in development tools)
+
+    this.getId = () => this.props.id || this.generatedId;
+
+    this.getErrorId = () => this.props['aria-describedby'] || this.generatedErrorId;
+
+    Object(_check_props__WEBPACK_IMPORTED_MODULE_4__["default"])(_utilities_constants__WEBPACK_IMPORTED_MODULE_5__["TEXTAREA"], props, _component_json__WEBPACK_IMPORTED_MODULE_7__);
+    this.generatedId = shortid__WEBPACK_IMPORTED_MODULE_3___default.a.generate();
+
+    if (props.errorText) {
+      this.generatedErrorId = shortid__WEBPACK_IMPORTED_MODULE_3___default.a.generate();
+    }
+  }
+
+  // ### Render
+  render() {
+    const {
+      autoFocus,
+      children,
+      className,
+      classNameContainer,
+      disabled,
+      errorText,
+      textareaRef,
+      // eslint-disable-line react/prop-types
+      label,
+      onBlur,
+      onChange,
+      onClick,
+      onFocus,
+      onInput,
+      onInvalid,
+      onKeyDown,
+      onKeyPress,
+      onKeyUp,
+      onSelect,
+      onSubmit,
+      maxLength,
+      name,
+      placeholder,
+      required,
+      role,
+      value,
+      defaultValue,
+      wrap // ### Additional properties
+      // Using [object destructuring](https://facebook.github.io/react/docs/transferring-props.html#transferring-with-...-in-jsx) to pass on any properties which are not explicitly defined.
+      // ...props // Uncomment this if you actually need to send the rest of the props to other elements
+
+    } = this.props;
+    const ariaProps = Object(_utilities_get_aria_props__WEBPACK_IMPORTED_MODULE_6__["default"])(this.props);
+    const assistiveTextLabel = typeof this.props.assistiveText === 'string' ? this.props.assistiveText : _objectSpread({}, this.props.assistiveText).label;
+    const labelText = label || assistiveTextLabel; // One of these is required to pass accessibility tests
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-form-element', {
+        'slds-has-error': errorText
+      }, classNameContainer)
+    }, labelText && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-form-element__label', {
+        'slds-assistive-text': assistiveTextLabel && !label
+      }),
+      htmlFor: this.getId()
+    }, required && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("abbr", {
+      className: "slds-required",
+      title: "required"
+    }, '*'), labelText), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-form-element__control')
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", _extends({
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-textarea', className),
+      autoFocus: autoFocus,
+      disabled: disabled,
+      id: this.getId(),
+      maxLength: maxLength,
+      name: name,
+      onBlur: onBlur,
+      onChange: onChange,
+      onClick: onClick,
+      onFocus: onFocus,
+      onInput: onInput,
+      onInvalid: onInvalid,
+      onKeyDown: onKeyDown,
+      onKeyPress: onKeyPress,
+      onKeyUp: onKeyUp,
+      onSelect: onSelect,
+      onSubmit: onSubmit,
+      placeholder: placeholder,
+      ref: textareaRef,
+      role: role,
+      required: required,
+      wrap: wrap,
+      value: value,
+      defaultValue: defaultValue
+    }, ariaProps))), errorText && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: this.getErrorId(),
+      className: "slds-form-element__help"
+    }, errorText), children);
+  }
+
+}
+
+Textarea.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_5__["TEXTAREA"];
+Textarea.propTypes = {
+  /**
+   * **Assistive text for accessibility.**
+   * * `label`: If present, the label associated with this `textarea` is overwritten by this text and is visually not shown.
+   */
+  assistiveText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+
+  /**
+   * The aria-activedescendant attribute contains the ID of the currently active child object that is part of a composite widget within the Document Object Model. It makes do with the overhead of having all or more than one child focusable. As the name specifies, it helps in managing the current active child of the composite widget.
+   */
+  'aria-activedescendant': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Indicates if the suggestions in a composite widget are values that complete the current textbox input.
+   */
+  'aria-autocomplete': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * An HTML ID that is shared with ARIA-supported devices with the
+   * `aria-controls` attribute in order to relate the input with
+   * another region of the page. An example would be a select box
+   * that shows or hides a panel.
+   */
+  'aria-controls': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The `aria-describedby` attribute is used to indicate the IDs of the elements that describe the object. It is used to establish a relationship between widgets or groups and text that described them. This is very similar to aria-labelledby: a label describes the essence of an object, while a description provides more information that the user might need.
+   */
+  'aria-describedby': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Use the `aria-expanded` state to indicate whether regions of the content are collapsible, and to expose whether a region is currently expanded or collapsed.
+   */
+  'aria-expanded': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Indicates that the element has a popup context menu or sub-level menu.
+   */
+  'aria-haspopup': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The aria-labelledby attribute contains the element IDs of labels in objects such as input elements, widgets, and groups. The attribute establishes relationships between objects and their labels. Assistive technology, such as screen readers, use this attribute to catalog the objects in a document so that users can navigate between them. Without an element ID, the assistive technology cannot catalog the object.
+   */
+  'aria-labelledby': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * An HTML ID that is shared with ARIA-supported devices with the
+   * `aria-controls` attribute in order to relate the input with
+   * another region of the page. An example would be a search field
+   * that shows search results.
+   */
+  'aria-owns': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The `aria-required` attribute is used to indicate that user input is required on an element before a form can be submitted.
+   */
+  'aria-required': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Specifies is the textarea should automatically get focus when the page loads. This is typically a poor user experience.
+   */
+  autoFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Elements are added after the `textarea`.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Class names to be added to the textarea component.
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /** Allows for ability to apply classNames to outer textarea div.
+   */
+  classNameContainer: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * Disables the textarea and prevents editing the contents.
+   */
+  disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Message to display when the textarea is in an error state. When this is present, also visually highlights the component as in error.
+   */
+  errorText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Every textarea must have a unique ID in order to support keyboard navigation and ARIA support.
+   */
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * This callback exposes the textarea reference / DOM node to parent components. `<Parent textareaRef={(textareaComponent) => this.textarea = textareaComponent} />
+   */
+  textareaRef: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This label appears above the textarea.
+   */
+  label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Triggered when focus is removed.
+   */
+  onBlur: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This callback fires when the textarea changes. The synthetic React event will be the first parameter to the callback. You will probably want to reference `event.target.value` in your callback. No custom data object is provided.
+   */
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This event fires when the textarea is clicked.
+   */
+  onClick: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Triggered when component is focused.
+   */
+  onFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Similar to `onchange`. Triggered when an element gets user input.
+   */
+  onInput: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Triggered when a submittable <input> element is invalid.
+   */
+  onInvalid: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Triggered when a key is pressed down
+   */
+  onKeyDown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Triggered when a key is pressed and released
+   */
+  onKeyPress: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Triggered when a key is released
+   */
+  onKeyUp: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Triggered after some text has been selected in an element.
+   */
+  onSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Fires when a form is submitted.
+   */
+  onSubmit: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Maximum number of characters allowed.
+   */
+  maxLength: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Name of the submitted form parameter.
+   */
+  name: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Text that will appear in an empty textarea.
+   */
+  placeholder: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Highlights the textarea as a required field (does not perform any validation).
+   */
+  required: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The textarea is a controlled component, and will always display this value.
+   */
+  value: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The textarea is a uncontrolled component, and this will be the initial value.
+   */
+  defaultValue: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Specifies how the text in a text area is to be wrapped when submitted in a form.
+   */
+  wrap: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['soft', 'hard'])
+};
+/* harmony default export */ __webpack_exports__["default"] = (Textarea);
+
+/***/ }),
+
 /***/ "./node_modules/@salesforce/design-system-react/components/tooltip/check-props.js":
 /*!****************************************************************************************!*\
   !*** ./node_modules/@salesforce/design-system-react/components/tooltip/check-props.js ***!
@@ -37478,6 +37896,13 @@ const ComboBoxComponent = ({
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-form-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    class: "slds-form-element__label",
+    for: "workshop-state"
+  }, "Werkplaats status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-form-element__control"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-combobox_container",
     ref: thisNode
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -37508,7 +37933,7 @@ const ComboBoxComponent = ({
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid",
     role: "presentation"
-  }, renderedOptions))));
+  }, renderedOptions)))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ComboBoxComponent);
@@ -37543,6 +37968,13 @@ const ProductAutoCompleteComponent = ({
     new window.ProductAutocomplete(thisNode.current, {}, onProductSelect);
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-form-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    class: "slds-form-element__label",
+    for: "product"
+  }, "Product"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-form-element__control"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-combobox_container slds-has-inline-listbox cbds-product-search-component",
     ref: thisNode
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -37585,7 +38017,7 @@ const ProductAutoCompleteComponent = ({
     className: "slds-spinner__dot-a"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-spinner__dot-b"
-  }))))));
+  }))))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProductAutoCompleteComponent);
@@ -37610,6 +38042,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./WorkAssignmentLineActions */ "./src/WorkAssignmentLineActions.js");
 /* harmony import */ var _WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./WorkAssignmentLineAssets */ "./src/WorkAssignmentLineAssets.js");
 /* harmony import */ var _WorkAssignmentLineSubProducts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./WorkAssignmentLineSubProducts */ "./src/WorkAssignmentLineSubProducts.js");
+/* harmony import */ var _salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @salesforce/design-system-react/components/card */ "./node_modules/@salesforce/design-system-react/components/card/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_textarea__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @salesforce/design-system-react/components/textarea */ "./node_modules/@salesforce/design-system-react/components/textarea/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+
+
+
 
 
 
@@ -37626,6 +38064,7 @@ const WorkAssignmentLine = () => {
   const [productType, setProductType] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Products');
   const [assets, setAssets] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [subProducts, setSubProducts] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [remarks, setRemarks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
   const [workshopStatus, setWorkshopStatus] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
     value: 'not_prepared',
     label: 'Geen voorbereiding',
@@ -37666,7 +38105,8 @@ const WorkAssignmentLine = () => {
       name: "number_input",
       category: "utility"
     }),
-    id: "qty"
+    id: "qty",
+    label: "Aantal"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_3-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductAutoCompleteComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -37681,7 +38121,8 @@ const WorkAssignmentLine = () => {
       name: "number_input",
       category: "utility"
     }),
-    id: "qty-delivered"
+    id: "qty-delivered",
+    label: "Aantal geleverd"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_3-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_input__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -37692,7 +38133,8 @@ const WorkAssignmentLine = () => {
       name: "checkin",
       category: "utility"
     }),
-    id: "workshop-location"
+    id: "workshop-location",
+    label: "Locatie in werkplaats"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_2-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ComboBoxComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -37709,7 +38151,25 @@ const WorkAssignmentLine = () => {
     className: "slds-col slds-size_4-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineSubProducts__WEBPACK_IMPORTED_MODULE_7__["default"], {
     parts: subProducts
-  })));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-col slds-size_4-of-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    heading: "Opmerkingen",
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      category: "standard",
+      name: "display_text",
+      size: "small"
+    }),
+    className: "slds-m-top_small"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    className: "slds-textarea slds-m-around_small",
+    style: {
+      width: 'calc(100% - 1.5rem)'
+    },
+    onChange: e => {
+      setRemarks(e.target.value);
+    }
+  }, remarks))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLine);
@@ -37907,7 +38367,8 @@ const WorkAssignmentLineAssets = ({
       size: "small"
     })
   }, assets.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    items: assets
+    items: assets,
+    fixedLayout: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: "Activa naam",
     property: "assetname"
@@ -37929,14 +38390,10 @@ const WorkAssignmentLineAssets = ({
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @salesforce/design-system-react/components/button */ "./node_modules/@salesforce/design-system-react/components/button/index.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @salesforce/design-system-react/components/card */ "./node_modules/@salesforce/design-system-react/components/card/index.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table */ "./node_modules/@salesforce/design-system-react/components/data-table/index.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_data_table_cell__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/cell */ "./node_modules/@salesforce/design-system-react/components/data-table/cell.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/column */ "./node_modules/@salesforce/design-system-react/components/data-table/column.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
-
-
+/* harmony import */ var _salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @salesforce/design-system-react/components/card */ "./node_modules/@salesforce/design-system-react/components/card/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table */ "./node_modules/@salesforce/design-system-react/components/data-table/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/column */ "./node_modules/@salesforce/design-system-react/components/data-table/column.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
 
 
 
@@ -37948,26 +38405,26 @@ const WorkAssignmentLineSubProducts = ({
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-grid slds-grid_vertical slds-m-top_small"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_1__["default"], {
     heading: "Onderdelen",
-    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
       category: "standard",
       name: "strategy",
       size: "small"
     })
-  }, parts.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, parts.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
     items: parts,
     fixedLayout: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_3__["default"], {
     label: "Product",
     property: "productname",
     truncate: true,
     width: "70%"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_3__["default"], {
     label: "Nodig",
     property: "quantity",
     width: "15%"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_3__["default"], {
     label: "Voorraad",
     property: "qtyinstock",
     width: "15%"

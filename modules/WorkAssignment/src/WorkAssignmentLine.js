@@ -7,6 +7,9 @@ import ComboBoxComponent from './ComboBoxComponent'
 import WorkAssignmentLineActions from './WorkAssignmentLineActions'
 import WorkAssignmentLineAssets from './WorkAssignmentLineAssets'
 import WorkAssignmentLineSubProducts from './WorkAssignmentLineSubProducts'
+import Card from '@salesforce/design-system-react/components/card';
+import Textarea from '@salesforce/design-system-react/components/textarea';
+import Icon from '@salesforce/design-system-react/components/icon';
 
 const WorkAssignmentLine = () => {
 	const [qty, setQty] = useState(0)
@@ -15,6 +18,7 @@ const WorkAssignmentLine = () => {
 	const [productType, setProductType] = useState('Products')
 	const [assets, setAssets] = useState([])
 	const [subProducts, setSubProducts] = useState([])
+	const [remarks, setRemarks] = useState('')
 	const [workshopStatus, setWorkshopStatus] = useState([
 		{
 			value: 'not_prepared',
@@ -63,6 +67,7 @@ const WorkAssignmentLine = () => {
 						/>
 					}
 					id="qty"
+					label="Aantal"
 				/>
 			</div>
 			<div className="slds-col slds-size_3-of-12">
@@ -82,6 +87,7 @@ const WorkAssignmentLine = () => {
 						/>
 					}
 					id="qty-delivered"
+					label="Aantal geleverd"
 				/>
 			</div>
 			<div className="slds-col slds-size_3-of-12">
@@ -96,6 +102,7 @@ const WorkAssignmentLine = () => {
 						/>
 					}
 					id="workshop-location"
+					label="Locatie in werkplaats"
 				/>
 			</div>
 			<div className="slds-col slds-size_2-of-12">
@@ -117,6 +124,19 @@ const WorkAssignmentLine = () => {
 				<WorkAssignmentLineSubProducts
 					parts={subProducts}
 				/>
+			</div>
+			<div className="slds-col slds-size_4-of-12">
+				<Card
+					heading="Opmerkingen"
+					icon={<Icon category="standard" name="display_text" size="small" />}
+					className="slds-m-top_small"
+				>
+					<textarea
+						className="slds-textarea slds-m-around_small"
+						style={{width: 'calc(100% - 1.5rem)'}}
+						onChange={e => {setRemarks(e.target.value)}}
+					>{remarks}</textarea>
+				</Card>
 			</div>
 		</div>
 	)

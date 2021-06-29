@@ -24,45 +24,49 @@ const ComboBoxComponent = ({options, onSelect}) => {
 	}, [])
 
 	return(
-		<div
-			className="slds-combobox_container" ref={thisNode}>
-			<div
-				className="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-combobox-picklist"
-				aria-expanded="false"
-				aria-haspopup="listbox"
-				role="combobox"
-			>
+		<div className="slds-form-element">
+			<label class="slds-form-element__label" for="workshop-state">Werkplaats status</label>
+			<div className="slds-form-element__control"></div>
 				<div
-					className="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
-					role="none"
-				>
-					<input
-						className="slds-input slds-combobox__input"
-						aria-controls=""
-						autoComplete="off"
-						role="textbox"
-						placeholder={selectedOption.label}
-						readOnly="readonly"
-						type="text"
-						value={selectedOption.label}
-					/>
-					<InputIcon
-							assistiveText={{
-								icon: 'Maak een keuze',
-							}}
-							name="down"
-							category="utility"
-						/>
-				</div>
-				<div role="listbox">
-					<ul
-						className="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid" 
-						role="presentation">
-						{renderedOptions}
-					</ul>
+					className="slds-combobox_container" ref={thisNode}>
+					<div
+						className="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-combobox-picklist"
+						aria-expanded="false"
+						aria-haspopup="listbox"
+						role="combobox"
+					>
+						<div
+							className="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
+							role="none"
+						>
+							<input
+								className="slds-input slds-combobox__input"
+								aria-controls=""
+								autoComplete="off"
+								role="textbox"
+								placeholder={selectedOption.label}
+								readOnly="readonly"
+								type="text"
+								value={selectedOption.label}
+							/>
+							<InputIcon
+									assistiveText={{
+										icon: 'Maak een keuze',
+									}}
+									name="down"
+									category="utility"
+								/>
+						</div>
+						<div role="listbox">
+							<ul
+								className="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid" 
+								role="presentation">
+								{renderedOptions}
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 	)
 }
 

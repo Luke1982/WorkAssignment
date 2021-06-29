@@ -88,7 +88,7 @@ const WorkAssignmentLineAssets = ({setAssets, assets}) => {
 				icon={<Icon category="standard" name="asset_relationship" size="small" />}
 			>
 				{assets.length > 0 &&
-					<DataTable items={assets}>
+					<DataTable items={assets} fixedLayout>
 						<DataTableColumn 
 							label="Activa naam"
 							property="assetname"

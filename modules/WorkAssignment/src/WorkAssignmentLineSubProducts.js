@@ -1,9 +1,7 @@
 import React from 'react'
 
-import Button from '@salesforce/design-system-react/components/button'; 
 import Card from '@salesforce/design-system-react/components/card';
 import DataTable from '@salesforce/design-system-react/components/data-table';
-import DataTableCell from '@salesforce/design-system-react/components/data-table/cell';
 import DataTableColumn from '@salesforce/design-system-react/components/data-table/column';
 import Icon from '@salesforce/design-system-react/components/icon';
 
