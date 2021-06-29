@@ -690,6 +690,3761 @@ var _initialiseProps = function () {
 
 /***/ }),
 
+/***/ "./node_modules/@salesforce/design-system-react/components/card/empty.jsx":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/card/empty.jsx ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+// React is an external dependency of the project.
+
+
+
+/**
+ * A default empty state for Cards.
+ */
+
+const CardEmpty = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  className: "slds-p-horizontal_small"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  className: "slds-text-align_center slds-m-bottom_x-large"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+  className: "slds-text-heading_small slds-p-top_large slds-p-bottom_large"
+}, props.heading), props.children)); // ### Display Name
+// Always use the canonical component name as the React display name.
+
+
+CardEmpty.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_2__["CARD_EMPTY"]; // ### Prop Types
+
+CardEmpty.propTypes = {
+  /**
+   * Additional call to actions that will render under the heading. Often this is an "Add Item" button.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Primary text for an Empty Card.
+   */
+  heading: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+};
+CardEmpty.defaultProps = {
+  heading: 'No Related Items'
+};
+/* harmony default export */ __webpack_exports__["default"] = (CardEmpty);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/card/filter.jsx":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/card/filter.jsx ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../input */ "./node_modules/@salesforce/design-system-react/components/input/index.jsx");
+/* harmony import */ var _icon_input_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../icon/input-icon */ "./node_modules/@salesforce/design-system-react/components/icon/input-icon/index.jsx");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+const _excluded = ["id", "placeholder", "onChange"];
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+
+
+
+
+/**
+ * A default filter or search input for Cards that contain items.
+ */
+
+const Filter = props => {
+  const {
+    id,
+    placeholder,
+    onChange
+  } = props,
+        rest = _objectWithoutProperties(props, _excluded);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_input__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, rest, {
+    assistiveText: {
+      label: placeholder
+    },
+    iconLeft: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_icon_input_icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "search",
+      category: "utility"
+    }),
+    id: id,
+    onChange: onChange,
+    placeholder: placeholder
+  }));
+}; // ### Display Name
+// Always use the canonical component name as the React display name.
+
+
+Filter.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_4__["CARD_FILTER"]; // ### Prop Types
+
+Filter.propTypes = {
+  /**
+   * The HTML `id` from the card with a suffixe.
+   */
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * This callback fires when the input changes.
+   */
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Text present in input until the user enters text. This text will also be used for a visually hidden label on the filter `input` element for accessibility.
+   */
+  placeholder: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
+};
+Filter.defaultProps = {
+  placeholder: 'Find in List'
+};
+/* harmony default export */ __webpack_exports__["default"] = (Filter);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/card/index.jsx":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/card/index.jsx ***!
+  \********************************************************************************/
+/*! exports provided: default, idSuffixes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "idSuffixes", function() { return idSuffixes; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _private_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./private/header */ "./node_modules/@salesforce/design-system-react/components/card/private/header.jsx");
+/* harmony import */ var _private_body__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./private/body */ "./node_modules/@salesforce/design-system-react/components/card/private/body.jsx");
+/* harmony import */ var _private_footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./private/footer */ "./node_modules/@salesforce/design-system-react/components/card/private/footer.jsx");
+/* harmony import */ var _empty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./empty */ "./node_modules/@salesforce/design-system-react/components/card/empty.jsx");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// # Card Component
+// Implements the [Card design pattern](https://www.lightningdesignsystem.com/components/cards/) in React.
+// Based on SLDS v2.2.1
+// ### React
+
+ // ### classNames
+// [github.com/JedWatson/classnames](https://github.com/JedWatson/classnames)
+// This project uses `classnames`, "a simple javascript utility for conditionally
+// joining classNames together."
+
+ // ## Children
+
+
+
+
+
+
+const idSuffixes = {
+  body: '__body',
+  headerActions: '__header-actions',
+  heading: '__heading',
+  filter: '__filter-input'
+};
+/**
+ * Cards are used to apply a container around a related grouping of information. It has a header, a body, and an optional footer. It often contains a DataTable or Tile (coming soon). Actions associated with selected items or with all items are included within the header actions. Footer often contains pagination.
+ */
+
+const Card = props => {
+  const bodyId = props.id ? props.id + idSuffixes.body : null;
+  const filterId = props.id ? props.id + idSuffixes.filter : null;
+  const headingId = props.id ? props.id + idSuffixes.heading : null;
+  const headerActionsId = props.id ? props.id + idSuffixes.headerActions : null;
+  let {
+    empty
+  } = props;
+
+  if (empty === true) {
+    // Can be overridden by passing in a node to the empty prop
+    empty = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_empty__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      id: props.id,
+      heading: props.heading
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+    id: props.id,
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-card', props.className),
+    style: props.style
+  }, !props.hasNoHeader && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    header: props.header,
+    headingId: headingId,
+    icon: props.icon,
+    filter: props.filter,
+    filterId: filterId,
+    heading: props.heading,
+    headerActions: props.headerActions,
+    headerActionsId: headerActionsId
+  }), !empty ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_body__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: bodyId,
+    className: props.bodyClassName
+  }, props.children) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_body__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: bodyId,
+    className: props.bodyClassName
+  }, empty), props.footer ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_footer__WEBPACK_IMPORTED_MODULE_5__["default"], null, props.footer) : null);
+}; // ### Display Name
+// Always use the canonical component name as the React display name.
+
+
+Card.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_7__["CARD"];
+Card.defaultProps = {
+  heading: 'Related Items'
+}; // ### Prop Types
+
+Card.propTypes = {
+  /**
+   * CSS classes to be added to the card body (wraps children).
+   */
+  bodyClassName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * The main section of the card. It often contains a `DataTable` or `Tile`.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * CSS classes to be added to the card.
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * Replaces the body (that is the children) with the specified empty state, this will also remove header actions, the filter, and the icon. If the default empty state is wanted, set to `true`.
+   */
+  empty: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node]),
+
+  /**
+   * Adds a filter input to the card header.
+   */
+  filter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Footer often contains pagination.
+   */
+  footer: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Allows card to have no header, and ignores header related props altogether.
+   */
+  hasNoHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Allows a custom header (the media object with the icon in the first column). `icon`, `heading` and other props are passed into the media object from Card if present. Use `design-system-react/components/media-object` to create your own custom header.
+   */
+  header: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * The heading is the name of the related item group and should only contain inline elements.
+   */
+  heading: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]).isRequired,
+
+  /**
+   * Actions to perform on selected items or actions that are not specific to one item such as adding an item. If no group actions are needed, then the number of selected items is often present.
+   */
+  headerActions: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Icon associated with the items within the `body`.
+   */
+  icon: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Set the HTML `id` of the card. This also sets the `id` of the filter and the header actions.
+   */
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Custom styles to be added to the card.
+   */
+  style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+};
+/* harmony default export */ __webpack_exports__["default"] = (Card);
+
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/card/private/body.jsx":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/card/private/body.jsx ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+ // ### classNames
+// [github.com/JedWatson/classnames](https://github.com/JedWatson/classnames)
+// This project uses `classnames`, "a simple javascript utility for conditionally joining classNames together."
+
+
+
+
+const CardBody = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-card__body', props.className),
+  id: props.id
+}, props.children);
+
+CardBody.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_3__["CARD_BODY"];
+CardBody.propTypes = {
+  /**
+   * Elements to place in the body.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * CSS classes to be added to the card.
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * Set the HTML `id` of the body.
+   */
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+};
+/* harmony default export */ __webpack_exports__["default"] = (CardBody);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/card/private/footer.jsx":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/card/private/footer.jsx ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+
+
+
+const CardFooter = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  className: "slds-card__footer"
+}, props.children);
+
+CardFooter.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_2__["CARD_FOOTER"];
+CardFooter.propTypes = {
+  /**
+   * Elements to place in the footer.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node
+};
+/* harmony default export */ __webpack_exports__["default"] = (CardFooter);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/card/private/header.jsx":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/card/private/header.jsx ***!
+  \*****************************************************************************************/
+/*! exports provided: default, idSuffixes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "idSuffixes", function() { return idSuffixes; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _media_object__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../media-object */ "./node_modules/@salesforce/design-system-react/components/media-object/index.jsx");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+ // ### classNames
+// [github.com/JedWatson/classnames](https://github.com/JedWatson/classnames)
+// This project uses `classnames`, "a simple javascript utility for conditionally
+// joining classNames together."
+
+ // ## Children
+
+
+ // Allow for predicatable DOM queries with `querySelectorAll(cssClasses.base)`
+
+const idSuffixes = {
+  headerActions: '__header-actions',
+  heading: '__heading',
+  filter: '__filter-input'
+};
+
+const renderFilter = (filter, id) => {
+  // allow id to be set by custom header component passed in
+  const clonedFilter = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(filter, {
+    id: filter.props.id || id
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-input-has-icon slds-input-has-icon_left slds-size_1-of-3"
+  }, clonedFilter);
+};
+
+renderFilter.displayName = 'renderFilter';
+/**
+ * Card Header is a private component and is not meant to be imported or used for Card's `header` prop. It just happens to have the same file name.
+ */
+
+const CardHeader = props => {
+  let title = null;
+
+  if (typeof props.heading === 'string' || props.heading instanceof String) {
+    title = props.heading;
+  }
+
+  const heading = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    id: props.headingId,
+    className: "slds-text-heading_small slds-truncate",
+    title: title
+  }, props.heading);
+  let Header;
+
+  if (props.header) {
+    Header = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(props.header, _objectSpread({
+      figure: props.icon,
+      body: heading,
+      verticalCenter: true,
+      canTruncate: true
+    }, props.header.props));
+  } else {
+    Header = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_media_object__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      figure: props.icon,
+      body: heading,
+      verticalCenter: true,
+      canTruncate: true
+    });
+  }
+
+  const hasFilter = props.filter ? true : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-card__header', 'slds-grid')
+  }, Header, props.filter ? renderFilter(props.filter, props.filterId) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: props.headerActionsId,
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-no-flex', {
+      'slds-size_1-of-3': hasFilter,
+      'slds-text-align_right': hasFilter
+    })
+  }, props.headerActions));
+}; // ### Display Name
+// Always use the canonical component name as the React display name.
+
+
+CardHeader.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_4__["CARD_HEADER"]; // ### Prop Types
+
+CardHeader.propTypes = {
+  /**
+   * Adds a filter input to the card header
+   */
+  filter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Set the HTML `id` of the card filter.
+   */
+  filterId: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Allows a custom header (the media object with the icon in the first column). `icon`, `heading` and other props are passed in the media object from Card. Use `design-system-react/components/media-object` to create your own.
+   */
+  header: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Actions performed on selected items or that relate to the entire group of items such as "Add Item.""
+   */
+  headerActions: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Set the HTML `id` of the card header actions.
+   */
+  headerActionsId: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The heading is the name of the related item group.
+   */
+  heading: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.element, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]).isRequired,
+
+  /**
+   * Set the HTML `id` of the card heading.
+   */
+  headingId: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Icon associated with grouped items
+   */
+  icon: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node
+};
+/* harmony default export */ __webpack_exports__["default"] = (CardHeader);
+
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/checkbox/check-props.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/checkbox/check-props.js ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_warning_deprecated_event_parameter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utilities/warning/deprecated-event-parameter */ "./node_modules/@salesforce/design-system-react/utilities/warning/deprecated-event-parameter.js");
+/* harmony import */ var _utilities_get_component_doc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utilities/get-component-doc */ "./node_modules/@salesforce/design-system-react/utilities/get-component-doc.js");
+/* harmony import */ var _utilities_warning_only_one_of_properties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/warning/only-one-of-properties */ "./node_modules/@salesforce/design-system-react/utilities/warning/only-one-of-properties.js");
+/* harmony import */ var _utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/warning/sunset-property */ "./node_modules/@salesforce/design-system-react/utilities/warning/sunset-property.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable import/no-mutable-exports */
+
+/* eslint-disable max-len */
+
+
+
+
+
+let checkProps = function checkPropsFunction() {};
+
+if (true) {
+  checkProps = function checkPropsFunction(COMPONENT, props, jsonDoc) {
+    const createDocUrl = Object(_utilities_get_component_doc__WEBPACK_IMPORTED_MODULE_1__["default"])(jsonDoc);
+    Object(_utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_3__["default"])(COMPONENT, props.label, 'label', `Use \`labels.label\` instead.${createDocUrl('labels')}`);
+    Object(_utilities_warning_deprecated_event_parameter__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, {
+      oldEventParameterOrder: props.oldEventParameterOrder,
+      propAsString: 'onChange',
+      propAsValue: props.onChange
+    }, `\`components/forms/checkbox\` is deprecated. \`components/checkbox\` should be used. When this path update is made \`onChange\` event parameters will change from \`onChange(value, event, { value }) to \`onChange(event, { value }). Please update your event parameters when you change paths.\` If you are using the CommonJS named import, \`Checkbox\` events will break at v1.0 and this warning will be present until then. Please review https://github.com/salesforce/design-system-react/releases when you upgrade. ${createDocUrl('onChange')}`);
+
+    if (props.variant === 'toggle' && props.indeterminate === true) {
+      Object(_utilities_warning_only_one_of_properties__WEBPACK_IMPORTED_MODULE_2__["default"])(COMPONENT, {
+        variant: props.variant,
+        indeterminate: props.indeterminate
+      }, `Currently SLDS does not support the \`indeterminate\` state in Checkbox Toggle. See SLDS documentation about [Checkbox Toggle](https://lightningdesignsystem.com/components/forms/#flavor-checkbox-toggle-checkbox-toggle) for more information. ${createDocUrl('variant')}`);
+    }
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (checkProps);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/checkbox/component.json":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/checkbox/component.json ***!
+  \*****************************************************************************************/
+/*! exports provided: component, status, display-name, classKey, last-accessibility-review, SLDS-component-path, site-stories, url-slug, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"component\":\"checkbox\",\"status\":\"prod\",\"display-name\":\"Checkboxes\",\"classKey\":\"Checkbox\",\"last-accessibility-review\":{\"date-iso-8601\":\"2018/01/18\",\"commit-sha\":\"ad6b6c6523ee21cada11be5f7ea4d99abc530726\"},\"SLDS-component-path\":\"/components/checkbox\",\"site-stories\":[{\"heading\":\"Default\",\"path\":\"/__examples__/default.jsx\"},{\"heading\":\"Error State\",\"path\":\"/__examples__/error.jsx\"},{\"heading\":\"Toggle\",\"path\":\"/__examples__/toggle.jsx\"},{\"heading\":\"Grouped with Tri-State\",\"path\":\"/__examples__/grouped-with-tristate.jsx\"}],\"url-slug\":\"checkboxes\"}");
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/checkbox/index.jsx":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/checkbox/index.jsx ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! shortid */ "./node_modules/shortid/index.js");
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(shortid__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utilities_key_code__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utilities/key-code */ "./node_modules/@salesforce/design-system-react/utilities/key-code.js");
+/* harmony import */ var _utilities_event__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utilities/event */ "./node_modules/@salesforce/design-system-react/utilities/event.js");
+/* harmony import */ var _check_props__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./check-props */ "./node_modules/@salesforce/design-system-react/components/checkbox/check-props.js");
+/* harmony import */ var _component_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./component.json */ "./node_modules/@salesforce/design-system-react/components/checkbox/component.json");
+var _component_json__WEBPACK_IMPORTED_MODULE_7___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./component.json */ "./node_modules/@salesforce/design-system-react/components/checkbox/component.json", 1);
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+/* harmony import */ var _utilities_get_aria_props__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utilities/get-aria-props */ "./node_modules/@salesforce/design-system-react/utilities/get-aria-props.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* eslint-disable react/jsx-curly-brace-presence */
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// # Checkbox Component
+// Implements the [Checkbox design pattern](https://www.lightningdesignsystem.com/components/forms/#checkbox) in React.
+
+
+ // ### shortid
+// [npmjs.com/package/shortid](https://www.npmjs.com/package/shortid)
+// shortid is a short, non-sequential, url-friendly, unique id generator
+
+ // ### Event Helpers
+
+
+ // This component's `checkProps` which issues warnings to developers about properties when in development mode (similar to React's built in development tools)
+
+
+
+
+
+
+const propTypes = {
+  /**
+   * An HTML ID that is shared with ARIA-supported devices with the
+   * `aria-controls` attribute in order to relate the input with
+   * another region of the page. An example would be a select box
+   * that shows or hides a panel.
+   */
+  'aria-controls': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The `aria-describedby` attribute is used to indicate the IDs of the elements that describe the object. It is used to establish a relationship between widgets or groups and text that described them. This is very similar to aria-labelledby: a label describes the essence of an object, while a description provides more information that the user might need.
+   */
+  'aria-describedby': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The aria-labelledby attribute establishes relationships between objects and their label(s), and its value should be one or more element IDs, which refer to elements that have the text needed for labeling. List multiple element IDs in a space delimited fashion.
+   */
+  'aria-labelledby': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * `aria-owns` indicate that an element depends on the current one when the relation can't be determined by the hierarchy structure.
+   */
+  'aria-owns': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The `aria-required` attribute is used to indicate that user input is required on an element before a form can be submitted.
+   */
+  'aria-required': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * **Assistive text for accessibility**
+   * This object is merged with the default props object on every render.
+   * * `heading`: This is used as a visually hidden label if, no `labels.heading` is provided.
+   * * `label`: This is used as a visually hidden label if, no `labels.label` is provided.
+   */
+  assistiveText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    heading: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+
+  /**
+   * The Checkbox should be a controlled component, and will always be in the state specified. If checked is not defined, the state of the uncontrolled native `input` component will be used.
+   */
+  checked: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * This is the initial value of an uncontrolled form element and is present only
+   * to provide compatibility with hybrid framework applications that are not
+   * entirely React. It should only be used in an application without centralized
+   * state (Redux, Flux). "Controlled components" with centralized state is highly recommended. See [Code Overview](https://github.com/salesforce/design-system-react/blob/master/docs/codebase-overview.md#controlled-and-uncontrolled-components) for more information.
+   */
+  defaultChecked: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Class names to be added to the outer container of the Checkbox.
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * Disables the Checkbox and prevents clicking it.
+   */
+  disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Message to display when the Checkbox is in an error state. When this is present, also visually highlights the component as in error.
+   */
+  errorText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * A unique ID is needed in order to support keyboard navigation and ARIA support. This ID is added to the `input` element
+   */
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The Checkbox will be indeterminate if its state can not be figured out or is partially checked. Once a checkbox is indeterminate, a click should cause it to be checked. Since a user cannot put a checkbox into an indeterminate state, it is assumed you are controlling the value of `checked` with the parent, also, and that this is a controlled component. **Note:** `indeterminate` proptype does nothing in the `toggle` variant, as [SLDS does not support it](https://lightningdesignsystem.com/components/forms/#flavor-checkbox-toggle-checkbox-toggle).
+   */
+  indeterminate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * **Text labels for internationalization**
+   * This object is merged with the default props object on every render.
+   * * `heading`: Heading for the visual picker variant
+   * * `label`: Label for the _enabled_ state of the Toggle variant. Defaults to "Enabled".
+   * * `toggleDisabled`: Label for the _disabled_ state of the Toggle variant. Defaults to "Disabled". Note that this uses SLDS language, and meaning, of "Enabled" and "Disabled"; referring to the state of whatever the checkbox is _toggling_, not whether the checkbox itself is enabled or disabled.
+   * * `toggleEnabled`: Label for the _enabled_ state of the Toggle variant. Defaults to "Enabled".
+   */
+  labels: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    heading: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    toggleDisabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    toggleEnabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+
+  /**
+   * Name of the submitted form parameter.
+   */
+  name: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * This event fires when the Checkbox looses focus. It passes in `{ event }`.
+   */
+  onBlur: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This event fires when the Checkbox changes. Passes in `event, { checked }`. This used to be `checked, event, { checked }`.
+   */
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This event fires when the Checkbox is focused. It passes in `{ event }`.
+   */
+  onFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This event fires when a key is pressed down. It passes in `{ event }`.
+   */
+  onKeyDown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This event fires when a character is typed. See [this article](http://www.bloggingdeveloper.com/post/KeyPress-KeyDown-KeyUp-The-Difference-Between-Javascript-Key-Events.aspx) for more information. It passes in `{ event }`.
+   */
+  onKeyPress: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This event fires when a pressed key is released. It passes in `{ event }`.
+   */
+  onKeyUp: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Triggered to indicate that this component should receive focus.
+   */
+  onRequestFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Displays the value of the input, but does not allow changes.
+   */
+  readOnly: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * If true, will trigger `onRequestFocus`.
+   */
+  requestFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Highlights the Checkbox as a required field (does not perform any validation).
+   */
+  required: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The aria-role of the checkbox.
+   */
+  role: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Write <code>"-1"</code> if you don't want the user to tab to the button.
+   */
+  tabIndex: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Which UX pattern of checkbox? The default is `base` while other option is `toggle`. (**Note:** `toggle` variant does not support the `indeterminate` feature, because [SLDS does not support it](https://lightningdesignsystem.com/components/forms/#flavor-checkbox-toggle-checkbox-toggle).)
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['base', 'toggle', 'button-group', 'visual-picker']),
+
+  /**
+   * Determines whether visual picker is coverable when selected (only for visual picker variant)
+   */
+  coverable: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Determines whether the visual picker should be vertical or horizontal (only for visual picker variant)
+   */
+  vertical: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Allows icon to shown with checkbox (only for non-coverable visual picker variant)
+   */
+  onRenderVisualPicker: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Allows icon to shown if checkbox is not selected (only for visual picker variant)
+   */
+  onRenderVisualPickerSelected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Allows icon to shown if checkbox is not selected (only for visual picker variant)
+   */
+  onRenderVisualPickerNotSelected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Size of checkbox in case of visual composer variant
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['medium', 'large'])
+};
+const defaultProps = {
+  assistiveText: {},
+  labels: {
+    toggleDisabled: 'Disabled',
+    toggleEnabled: 'Enabled'
+  },
+  variant: 'base'
+};
+/**
+ * The ability to style checkboxes with CSS varies across browsers. Using this component ensures checkboxes look the same everywhere.
+ */
+
+class Checkbox extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props);
+
+    _initialiseProps.call(this);
+
+    Object(_check_props__WEBPACK_IMPORTED_MODULE_6__["default"])(_utilities_constants__WEBPACK_IMPORTED_MODULE_8__["CHECKBOX"], this.props, _component_json__WEBPACK_IMPORTED_MODULE_7__);
+    this.generatedId = shortid__WEBPACK_IMPORTED_MODULE_3___default.a.generate();
+  }
+
+  render() {
+    const ariaProps = Object(_utilities_get_aria_props__WEBPACK_IMPORTED_MODULE_10__["default"])(this.props);
+
+    if (this.props.variant === 'toggle') {
+      ariaProps['aria-describedby'] = `${this.getId()}-desc`;
+    }
+
+    const assistiveText = _objectSpread(_objectSpread(_objectSpread({}, defaultProps.assistiveText), typeof this.props.assistiveText === 'string' ? {
+      label: this.props.assistiveText
+    } : {}), typeof this.props.assistiveText === 'object' ? this.props.assistiveText : {});
+
+    const labels = _objectSpread(_objectSpread(_objectSpread({}, defaultProps.labels), this.props.label ? {
+      label: this.props.label
+    } : {}), this.props.labels);
+
+    const subRenders = {
+      base: this.renderBaseVariant,
+      'button-group': this.renderButtonGroupVariant,
+      toggle: this.renderToggleVariant,
+      'visual-picker': this.renderVisualPickerVariant
+    };
+    const variantExists = subRenders[this.props.variant];
+    return variantExists ? subRenders[this.props.variant](this.props, ariaProps, assistiveText, labels) : subRenders.base(this.props, ariaProps, assistiveText, labels);
+  }
+
+}
+
+var _initialiseProps = function () {
+  this.getId = () => this.props.id || this.generatedId;
+
+  this.getErrorId = () => this.props.errorText ? `${this.getId()}-error-text` : undefined;
+
+  this.getAriaDescribedBy = ({
+    idArray = []
+  } = {}) => idArray.concat(this.props['aria-describedby'], this.getErrorId()).filter(Boolean).join(' ') || undefined;
+
+  this.handleChange = event => {
+    const {
+      checked,
+      indeterminate,
+      onChange
+    } = this.props;
+
+    if (typeof onChange === 'function') {
+      // `target.checked` is present twice to maintain backwards compatibility. Please remove first parameter `value` on the next breaking change or when `forms/checkbox` is removed.
+      if (this.props.oldEventParameterOrder) {
+        onChange(event.target.checked, event, {
+          checked: indeterminate ? true : !checked,
+          indeterminate: false
+        });
+      } else {
+        // NEW API
+        onChange(event, {
+          checked: indeterminate ? true : !checked,
+          indeterminate: false
+        });
+      }
+    }
+  };
+
+  this.handleKeyDown = event => {
+    if (event.keyCode) {
+      if (event.keyCode === _utilities_key_code__WEBPACK_IMPORTED_MODULE_4__["default"].ENTER || event.keyCode === _utilities_key_code__WEBPACK_IMPORTED_MODULE_4__["default"].SPACE) {
+        _utilities_event__WEBPACK_IMPORTED_MODULE_5__["default"].trapImmediate(event);
+        this.handleChange(event);
+      }
+    }
+  };
+
+  this.renderButtonGroupVariant = (props, ariaProps, assistiveText, labels) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-button slds-checkbox_button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    disabled: props.disabled
+    /* A form element should not have both checked and defaultChecked props. */
+
+  }, props.checked !== undefined ? {
+    checked: props.checked
+  } : {
+    defaultChecked: props.defaultChecked
+  }, {
+    id: this.getId(),
+    name: props.name,
+    onBlur: props.onBlur,
+    onChange: this.handleChange,
+    onFocus: props.onFocus,
+    onKeyDown: props.onKeyDown,
+    onKeyPress: props.onKeyPress,
+    onKeyUp: props.onKeyUp,
+    ref: component => {
+      this.input = component;
+    },
+    role: props.role,
+    required: props.required,
+    type: "checkbox"
+  }, ariaProps, {
+    "aria-describedby": this.getAriaDescribedBy()
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "slds-checkbox_button__label",
+    htmlFor: this.getId()
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-checkbox_faux"
+  }, labels.label), assistiveText.label ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-assistive-text"
+  }, assistiveText.label) : null));
+
+  this.renderBaseVariant = (props, ariaProps, assistiveText, labels) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-form-element', {
+      'is-required': props.required,
+      'slds-has-error': props.errorText
+    }, props.className)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-form-element__control"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-checkbox"
+  }, props.required ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("abbr", {
+    className: "slds-required",
+    title: "required"
+  }, '*') : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    disabled: props.disabled
+    /* A form element should not have both checked and defaultChecked props. */
+
+  }, props.checked !== undefined ? {
+    checked: props.checked
+  } : {
+    defaultChecked: props.defaultChecked
+  }, {
+    id: this.getId(),
+    name: props.name,
+    onBlur: props.onBlur,
+    onChange: this.handleChange,
+    onFocus: props.onFocus,
+    onKeyDown: props.onKeyDown,
+    onKeyPress: props.onKeyPress,
+    onKeyUp: props.onKeyUp,
+    ref: component => {
+      if (component) {
+        // eslint-disable-next-line no-param-reassign
+        component.indeterminate = props.indeterminate;
+
+        if (this.props.requestFocus && this.props.onRequestFocus) {
+          this.props.onRequestFocus(component);
+        }
+      }
+
+      this.input = component;
+    },
+    role: props.role,
+    required: props.required,
+    tabIndex: props.tabIndex,
+    type: "checkbox"
+  }, ariaProps, {
+    "aria-describedby": this.getAriaDescribedBy()
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "slds-checkbox__label",
+    htmlFor: this.getId(),
+    id: props.labelId
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-checkbox_faux"
+  }), labels.label ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-form-element__label"
+  }, labels.label) : null, assistiveText.label ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-assistive-text"
+  }, assistiveText.label) : null))), props.errorText ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-form-element__help",
+    id: this.getErrorId()
+  }, props.errorText) : null);
+
+  this.renderToggleVariant = (props, ariaProps, assistiveText, labels) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-form-element', {
+      'is-required': props.required,
+      'slds-has-error': props.errorText
+    }, props.className)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "slds-checkbox_toggle slds-grid",
+    htmlFor: this.getId()
+  }, props.required ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("abbr", {
+    className: "slds-required",
+    title: "required"
+  }, '*') : null, labels.label ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-form-element__label slds-m-bottom_none"
+  }, labels.label) : null, assistiveText.label ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-assistive-text"
+  }, assistiveText.label) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    disabled: props.disabled,
+    id: this.getId()
+    /* A form element should not have both checked and defaultChecked props. */
+
+  }, props.checked !== undefined ? {
+    checked: props.checked
+  } : {
+    defaultChecked: props.defaultChecked
+  }, {
+    name: props.name,
+    onBlur: props.onBlur,
+    onChange: this.handleChange,
+    onFocus: props.onFocus,
+    onKeyDown: props.onKeyDown,
+    onKeyPress: props.onKeyPress,
+    onKeyUp: props.onKeyUp,
+    ref: component => {
+      this.input = component;
+    },
+    role: props.role,
+    required: props.required,
+    type: "checkbox"
+  }, ariaProps, {
+    "aria-describedby": this.getAriaDescribedBy({
+      idArray: [`${this.getId()}-desc`]
+    })
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    id: `${this.getId()}-desc`,
+    className: "slds-checkbox_faux_container",
+    "aria-live": "assertive"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-checkbox_faux"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-checkbox_on"
+  }, labels.toggleEnabled), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-checkbox_off"
+  }, labels.toggleDisabled))), props.errorText ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-form-element__help",
+    id: this.getErrorId()
+  }, props.errorText) : null);
+
+  this.renderVisualPickerVariant = (props, ariaProps, assistiveText) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-visual-picker', `slds-visual-picker_${this.props.size}`, this.props.vertical ? 'slds-visual-picker_vertical' : null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    disabled: props.disabled
+    /* A form element should not have both checked and defaultChecked props. */
+
+  }, props.checked !== undefined ? {
+    checked: props.checked
+  } : {
+    defaultChecked: props.defaultChecked
+  }, {
+    id: this.getId(),
+    name: props.name,
+    onBlur: props.onBlur,
+    onChange: this.handleChange,
+    onFocus: props.onFocus,
+    onKeyDown: props.onKeyDown,
+    onKeyPress: props.onKeyPress,
+    onKeyUp: props.onKeyUp,
+    ref: component => {
+      this.input = component;
+    },
+    role: props.role,
+    required: props.required,
+    type: "checkbox"
+  }, ariaProps, {
+    "aria-describedby": this.getAriaDescribedBy()
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "slds-checkbox_button__label",
+    htmlFor: this.getId()
+  }, this.props.coverable ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-visual-picker__figure slds-visual-picker__icon slds-align_absolute-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-is-selected"
+  }, this.props.onRenderVisualPickerSelected()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-is-not-selected"
+  }, this.props.onRenderVisualPickerNotSelected())) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center"
+  }, this.props.onRenderVisualPicker()), !this.props.vertical ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-visual-picker__body"
+  }, this.props.labels.heading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-text-heading_small"
+  }, this.props.labels.heading) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-text-title"
+  }, this.props.labels.label), assistiveText.label || assistiveText.heading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-assistive-text"
+  }, assistiveText.label || assistiveText.heading) : null) : null, !this.props.coverable ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-icon_container slds-visual-picker__text-check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_icon__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    assistiveText: this.props.assistiveText,
+    category: "utility",
+    name: "check",
+    colorVariant: "base",
+    size: "x-small"
+  })) : null));
+};
+
+Checkbox.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_8__["CHECKBOX"];
+Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (Checkbox);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/color-picker/private/swatch.jsx":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/color-picker/private/swatch.jsx ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+const Swatch = ({
+  color,
+  style,
+  label,
+  labels
+}) => {
+  const innerStyle = _objectSpread({
+    backgroundColor: color
+  }, style);
+
+  let assistiveText = label || color; // falsey values output a transparent swatch
+
+  if (!color) {
+    innerStyle.backgroundImage = 'linear-gradient(-45deg, white 47%, #870500 0, #870500 53%, white 0)';
+
+    if (labels && labels.swatchTabTransparentSwatch) {
+      assistiveText = labels.swatchTabTransparentSwatch;
+    }
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-swatch",
+    style: innerStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-assistive-text"
+  }, assistiveText));
+};
+
+Swatch.propTypes = {
+  color: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
+};
+/* harmony default export */ __webpack_exports__["default"] = (Swatch);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/cell.jsx":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/cell.jsx ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _private_cell_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./private/cell-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-context.jsx");
+/* harmony import */ var _private_table_context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./private/table-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx");
+/* harmony import */ var _private_context_helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./private/context-helper */ "./node_modules/@salesforce/design-system-react/components/data-table/private/context-helper.js");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+ // ### classNames
+
+
+
+
+ // ## Constants
+
+
+/**
+ * The default Cell renderer for the DataTable. Pass in any React component with the same `displayName` which takes the same props to provide custom rendering.
+ */
+
+const DataTableCell = props => {
+  const tableContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_private_table_context__WEBPACK_IMPORTED_MODULE_4__["default"]);
+  const cellContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_private_cell_context__WEBPACK_IMPORTED_MODULE_3__["default"]);
+  const {
+    tabIndex,
+    hasFocus,
+    handleFocus,
+    handleKeyDown
+  } = Object(_private_context_helper__WEBPACK_IMPORTED_MODULE_5__["default"])(tableContext, cellContext, props.fixedLayout);
+  const childText = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.isValidElement(props.children) ? props.children.props.children : props.children;
+  const contents = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+      'slds-truncate': props.fixedLayout
+    }),
+    title: props.title || childText
+  }, props.children);
+  const className = classnames__WEBPACK_IMPORTED_MODULE_2___default()(props.className, {
+    'slds-has-focus': hasFocus
+  });
+
+  const ref = node => {
+    if (node && hasFocus) {
+      node.focus();
+    }
+  };
+
+  let cell =
+  /*#__PURE__*/
+  // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+    className: className,
+    "data-label": props.label,
+    onFocus: handleFocus,
+    onKeyDown: handleKeyDown,
+    ref: ref,
+    role: props.fixedLayout ? 'gridcell' : null,
+    style: props.width ? {
+      width: props.width
+    } : null,
+    tabIndex: tabIndex,
+    headers: props.headerId
+  }, contents);
+
+  if (props.primaryColumn) {
+    cell = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      className: className,
+      ref: ref,
+      "data-label": props.label,
+      role: props.fixedLayout ? 'gridcell' : null,
+      tabIndex: tabIndex,
+      style: props.width ? {
+        width: props.width
+      } : null,
+      onFocus: handleFocus,
+      onKeyDown: handleKeyDown
+    }, contents);
+  }
+
+  return cell;
+}; // ### Display Name
+// Always use the canonical component name as the React display name.
+
+
+DataTableCell.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_6__["DATA_TABLE_CELL"]; // ### Prop Types
+
+DataTableCell.propTypes = {
+  /**
+   * The contents of the cell. This can be simple text or DOM nodes. Equivalent to `props.item[props.property]`
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * Class names to be added to the cell.
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * Use this if you are creating an advanced table (selectable, sortable, or resizable rows)
+   */
+  fixedLayout: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The item from the items which represents this row.
+   */
+  item: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * The primary column for a row. This is almost always the first column.
+   */
+  primaryColumn: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The property of this item to display.
+   */
+  property: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Shows on hover. Useful for truncated cells.
+   */
+  title: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Width of column. This is required for advanced/fixed layout tables. Please provide units. (`rems` are recommended)
+   */
+  width: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+};
+/* harmony default export */ __webpack_exports__["default"] = (DataTableCell);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/check-props.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/check-props.js ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utilities/warning/deprecated-property */ "./node_modules/@salesforce/design-system-react/utilities/warning/deprecated-property.js");
+/* harmony import */ var _utilities_get_component_doc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utilities/get-component-doc */ "./node_modules/@salesforce/design-system-react/utilities/get-component-doc.js");
+/* harmony import */ var _utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/warning/sunset-property */ "./node_modules/@salesforce/design-system-react/utilities/warning/sunset-property.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable import/no-mutable-exports */
+
+
+
+
+let checkProps = function checkPropsFunction() {};
+
+if (true) {
+  checkProps = function checkPropsFunction(COMPONENT, props, jsonDoc) {
+    const createDocUrl = Object(_utilities_get_component_doc__WEBPACK_IMPORTED_MODULE_1__["default"])(jsonDoc);
+    /* eslint-disable max-len */
+    // Deprecated and changed to another property
+
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.onChange, 'onChange', 'onRowChange', 'The callback parameters have been changed. `onRowChange` passes in `[event, { selection }` in order to align with other components.');
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.compact, 'compact', undefined, `compact has been deprecated as non-compact data tables do not exist in SLDS. ${createDocUrl()}`);
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.collection, 'collection', 'items', createDocUrl('items'));
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.onSelect, 'onSelect', 'onChange', createDocUrl('onChange'));
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.onDeselect, 'onDeselect', 'onChange', createDocUrl('onChange'));
+    Object(_utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_2__["default"])(COMPONENT, props.sortable, 'sortable', `The table is sortable if one or more of its columns are sortable. ${createDocUrl()}`); // Deprecated and moved to a child
+
+    Object(_utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_2__["default"])(COMPONENT, props.columns, 'columns', `Please provide one or more children of the type <Column /> instead. ${createDocUrl()}`);
+    Object(_utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_2__["default"])(COMPONENT, props.bordered, 'bordered', `All SLDS DataTables have row borders by default now. If you do not want row borders, please use \`unborderedRow\`. ${createDocUrl('unborderedRow')}`);
+    /* eslint-enable max-len */
+
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.assistiveTextForActionsHeader, 'assistiveTextForActionsHeader', "assistiveText['actionsHeader']", createDocUrl('assistiveText'));
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.assistiveTextForColumnSort, 'assistiveTextForColumnSort', "assistiveText['columnSort']", createDocUrl('assistiveText'));
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.assistiveTextForColumnSortedAscending, 'assistiveTextForColumnSortedAscending', "assistiveText['columnSortedAscending']", createDocUrl('assistiveText'));
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.assistiveTextForColumnSortedDescending, 'assistiveTextForColumnSortedDescending', "assistiveText['columnSortedDescending']", createDocUrl('assistiveText'));
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.assistiveTextForSelectAllRows, 'assistiveTextForSelectAllRows', "assistiveText['selectAllRows']", createDocUrl('assistiveText'));
+    Object(_utilities_warning_deprecated_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props.assistiveTextForSelectRow, 'assistiveTextForSelectRow', "assistiveText['selectRow']", createDocUrl('assistiveText'));
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (checkProps);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/column-check-props.js":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/column-check-props.js ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_warning_if_one_then_both_required_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utilities/warning/if-one-then-both-required-property */ "./node_modules/@salesforce/design-system-react/utilities/warning/if-one-then-both-required-property.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable import/no-mutable-exports */
+
+
+let checkProps = function checkPropsFunction() {};
+
+if (true) {
+  checkProps = function checkPropsFunction(COMPONENT, props) {
+    /* eslint-disable max-len */
+    // Deprecated and changed to another property
+    Object(_utilities_warning_if_one_then_both_required_property__WEBPACK_IMPORTED_MODULE_0__["default"])(COMPONENT, props, {
+      isSorted: props.isSorted,
+      sortDirection: props.sortDirection
+    });
+    /* eslint-enable max-len */
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (checkProps);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/column.jsx":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/column.jsx ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable react/no-unused-prop-types */
+
+/* deepscan-disable REACT_USELESS_PROP_TYPES */
+// ### React
+
+ // ## Constants
+
+ // extends is used below so that react-docgen can detect the component
+
+/**
+ * Columns define the structure of the data displayed in the DataTable.
+ */
+
+class DataTableColumn extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {} // ### Display Name
+// Always use the canonical component name as the React display name.
+
+
+DataTableColumn.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_2__["DATA_TABLE_COLUMN"]; // ### Prop Types
+
+DataTableColumn.propTypes = {
+  /**
+   * Use a _higher-order component_ to customize a data table cell that will override the default cell rendering. `CustomDataTableCell` must have the same `displayName` as `DataTableCell` or it will be ignored. If you want complete control of the HTML, including the wrapping `td`, you don't have to use `DataTableCell`.
+   * ```
+   * import DataTableCell from 'design-system-react/data-table/cell';
+   * const CustomDataTableCell = ({ children, ...props }) => (
+   *   <DataTableCell {...props} >
+   *     <a href="#">{children}</a>
+   *   </DataTableCell>
+   * );
+   * CustomDataTableCell.displayName = DataTableCell.displayName;
+   *
+   * <DataTable>
+   *   <DataTableColumn />
+   *   <DataTableColumn>
+   *     <DataTableCustomCell />
+   *   </DataTableColumn>
+   *   <DataTableRowActions />
+   * </DataTable>
+   * ```
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.element,
+
+  /**
+   * Some columns, such as "date last viewed" or "date recently updated," should sort descending first, since that is what the user probably wants. How often does one want to see their oldest files first in a table? If sortable and the `DataTable`'s parent has not defined the sort order, then ascending (A at the top to Z at the bottom) is the default sort order on first click.
+   */
+  isDefaultSortDescending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Selects this column as the currently sorted column.
+   */
+  isSorted: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The column label. If a `string` is not passed in, no `title` attribute will be rendered.
+   */
+  label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node]),
+
+  /**
+   * The primary column for a row. This is almost always the first column.
+   */
+  primaryColumn: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The property which corresponds to this column.
+   */
+  property: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Whether or not the column is sortable.
+   */
+  sortable: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The current sort direction. If left out the component will track this internally. Required if `isSorted` is true.
+   */
+  sortDirection: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['desc', 'asc']),
+
+  /**
+   * Title used for truncation div within the cell.
+   */
+  title: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Adds truncate to cell node.
+   */
+  truncate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Width of column. This is required for advanced/fixed layout tables. Please provide units. (`rems` are recommended)
+   */
+  width: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+};
+/* harmony default export */ __webpack_exports__["default"] = (DataTableColumn);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/component.json":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/component.json ***!
+  \*******************************************************************************************/
+/*! exports provided: component, status, display-name, classKey, last-accessibility-review, SLDS-component-path, dependencies, site-stories, url-slug, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"component\":\"data-table\",\"status\":\"prod\",\"display-name\":\"Data Tables\",\"classKey\":\"DataTable\",\"last-accessibility-review\":{\"date-iso-8601\":\"2017/01/01\",\"deprecated-accessibility\":\"true\",\"commit-sha\":\"ad6b6c6523ee21cada11be5f7ea4d99abc530726\"},\"SLDS-component-path\":\"/components/data-tables\",\"dependencies\":[{\"component\":\"cell\",\"classKey\":\"DataTableCell\"},{\"component\":\"column\",\"classKey\":\"DataTableColumn\"},{\"component\":\"highlight-cell\",\"classKey\":\"DataTableHighlightCell\"},{\"component\":\"row-actions\",\"classKey\":\"DataTableRowActions\"}],\"site-stories\":[{\"heading\":\"Basic\",\"path\":\"/__examples__/basic-fluid.jsx\"},{\"heading\":\"Basic: Fluid and Striped\",\"path\":\"/__examples__/basic-fluid-striped.jsx\"},{\"heading\":\"Basic: No row hover\",\"path\":\"/__examples__/basic-fluid-no-row-hover.jsx\"},{\"heading\":\"Basic: Columns bordered\",\"path\":\"/__examples__/basic-fluid-column-bordered.jsx\"},{\"heading\":\"Fixed Layout\",\"path\":\"/__examples__/basic-fixed-layout.jsx\"},{\"heading\":\"Advanced\",\"path\":\"/__examples__/advanced.jsx\"},{\"heading\":\"Advanced: Single Selection\",\"path\":\"/__examples__/advanced-single-select.jsx\"},{\"heading\":\"Advanced: Fixed Header\",\"path\":\"/__examples__/fixed-header.jsx\"},{\"heading\":\"Advanced: Joined with Page Header\",\"path\":\"/__examples__/joined-with-page-header.jsx\"},{\"heading\":\"Custom Classes\",\"path\":\"/__examples__/custom-classes.jsx\"},{\"heading\":\"Infinite Scrolling\",\"path\":\"/__examples__/infinite-scrolling.jsx\"}],\"url-slug\":\"data-tables\"}");
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/index.jsx":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/index.jsx ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! shortid */ "./node_modules/shortid/index.js");
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(shortid__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash_assign__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash.assign */ "./node_modules/lodash.assign/index.js");
+/* harmony import */ var lodash_assign__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_assign__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var lodash_reject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash.reject */ "./node_modules/lodash.reject/index.js");
+/* harmony import */ var lodash_reject__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_reject__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _check_props__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./check-props */ "./node_modules/@salesforce/design-system-react/components/data-table/check-props.js");
+/* harmony import */ var _component_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./component.json */ "./node_modules/@salesforce/design-system-react/components/data-table/component.json");
+var _component_json__WEBPACK_IMPORTED_MODULE_7___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./component.json */ "./node_modules/@salesforce/design-system-react/components/data-table/component.json", 1);
+/* harmony import */ var _utilities_execution_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utilities/execution-environment */ "./node_modules/@salesforce/design-system-react/utilities/execution-environment.js");
+/* harmony import */ var _utilities_design_tokens_dist_palette_colors_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utilities/design-tokens/dist/palette-colors.common */ "./node_modules/@salesforce/design-system-react/utilities/design-tokens/dist/palette-colors.common.js");
+/* harmony import */ var _utilities_design_tokens_dist_palette_colors_common__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_utilities_design_tokens_dist_palette_colors_common__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _utilities_design_tokens_dist_salesforce_skin_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utilities/design-tokens/dist/salesforce-skin.common */ "./node_modules/@salesforce/design-system-react/utilities/design-tokens/dist/salesforce-skin.common.js");
+/* harmony import */ var _utilities_design_tokens_dist_salesforce_skin_common__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_utilities_design_tokens_dist_salesforce_skin_common__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _cell__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cell */ "./node_modules/@salesforce/design-system-react/components/data-table/cell.jsx");
+/* harmony import */ var _column__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./column */ "./node_modules/@salesforce/design-system-react/components/data-table/column.jsx");
+/* harmony import */ var _private_head__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./private/head */ "./node_modules/@salesforce/design-system-react/components/data-table/private/head.jsx");
+/* harmony import */ var _private_row__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./private/row */ "./node_modules/@salesforce/design-system-react/components/data-table/private/row.jsx");
+/* harmony import */ var _row_actions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./row-actions */ "./node_modules/@salesforce/design-system-react/components/data-table/row-actions.jsx");
+/* harmony import */ var _private_table_context__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./private/table-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx");
+/* harmony import */ var _private_mode__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./private/mode */ "./node_modules/@salesforce/design-system-react/components/data-table/private/mode.js");
+/* harmony import */ var _spinner__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../spinner */ "./node_modules/@salesforce/design-system-react/components/spinner/index.jsx");
+/* harmony import */ var _utilities_key_code__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../utilities/key-code */ "./node_modules/@salesforce/design-system-react/utilities/key-code.js");
+/* harmony import */ var _utilities_key_callbacks__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../utilities/key-callbacks */ "./node_modules/@salesforce/design-system-react/utilities/key-callbacks.js");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+const _excluded = ["children"];
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+/* eslint-disable max-lines */
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// # Data Table Component
+// Implements the [Data Table design pattern](https://www.lightningdesignsystem.com/components/data-tables) in React.
+
+ // ### shortid
+// [npmjs.com/package/shortid](https://www.npmjs.com/package/shortid)
+// shortid is a short, non-sequential, url-friendly, unique id generator
+
+
+
+
+ // This component's `checkProps` which issues warnings to developers about properties when in development mode (similar to React's built in development tools)
+
+
+
+
+
+ // ## Children
+
+
+
+
+
+
+
+
+
+
+
+ // Safely get the length of an array, returning 0 for invalid input.
+
+const count = array => Array.isArray(array) ? array.length : 0;
+
+const defaultProps = {
+  assistiveText: {
+    actionsHeader: 'Actions',
+    columnSort: 'Sort by: ',
+    columnSortedAscending: 'Sorted Ascending',
+    columnSortedDescending: 'Sorted Descending',
+    selectAllRows: 'Select all rows',
+    selectRow: 'Select row',
+    selectRowGroup: 'Choose a row to select',
+    loadingMore: 'Loading more'
+  },
+  selection: [],
+  hasMore: false,
+  loadMoreOffset: 20
+};
+/**
+ * DataTables support the display of structured data in rows and columns with an HTML table. To sort, filter or paginate the table, simply update the data passed in the items to the table and it will re-render itself appropriately. The table will throw a sort event as needed, and helper components for paging and filtering are coming soon.
+ *
+ * NOTE: for horizontal scrolling with `fixedHeader`-enabled DataTables, see the `style` property description
+ */
+
+class DataTable extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  // ### Display Name
+  // Always use the canonical component name as the React display name.
+  // ### Prop Types
+  constructor(props) {
+    super(props);
+
+    this.handleToggleAll = (e, {
+      checked
+    }) => {
+      // REMOVE AT NEXT BREAKING CHANGE
+      // `onChange` is deprecated and replaced with `onRowChange`
+      if (typeof this.props.onChange === 'function') {
+        const selection = (checked ? [...this.props.items] : []).filter(item => item.type !== 'header-row');
+        this.props.onChange(selection, e);
+      }
+
+      if (typeof this.props.onRowChange === 'function') {
+        const selection = (checked ? [...this.props.items] : []).filter(item => item.type !== 'header-row');
+        this.props.onRowChange(e, {
+          selection
+        });
+      }
+    };
+
+    this.handleRowToggle = (item, selected, e) => {
+      // REMOVE AT NEXT BREAKING CHANGE
+      // `onChange` is deprecated and replaced with `onRowChange`
+      if (typeof this.props.onChange === 'function') {
+        let selection;
+
+        if (selected) {
+          selection = this.props.selectRows === 'radio' ? [item] : [...this.props.selection, item];
+        } else {
+          selection = lodash_reject__WEBPACK_IMPORTED_MODULE_5___default()(this.props.selection, item);
+        }
+
+        this.props.onChange(selection, e);
+      } // DEPRECATED CODE ENDS HERE
+
+
+      if (typeof this.props.onRowChange === 'function') {
+        let selection;
+
+        if (selected) {
+          selection = this.props.selectRows === 'radio' ? [item] : [...this.props.selection, item];
+        } else {
+          selection = lodash_reject__WEBPACK_IMPORTED_MODULE_5___default()(this.props.selection, item);
+        }
+
+        this.props.onRowChange(e, {
+          selection
+        });
+      }
+    };
+
+    this.resizeFixedHeaders = event => {
+      const headerRefs = [].concat(this.headerRefs.select, this.headerRefs.column, this.headerRefs.action);
+
+      if (this.props.onFixedHeaderResize) {
+        this.props.onFixedHeaderResize(event, {
+          headerRefs,
+          scrollerRef: this.scrollerRef
+        });
+      } else if (headerRefs.length > 0) {
+        let documentScrollLeft = 0;
+
+        if (_utilities_execution_environment__WEBPACK_IMPORTED_MODULE_8__["canUseDOM"]) {
+          documentScrollLeft = document.documentElement.scrollLeft;
+        }
+
+        headerRefs.forEach(column => {
+          if (column && _utilities_execution_environment__WEBPACK_IMPORTED_MODULE_8__["canUseDOM"]) {
+            const columnLeft = column.getBoundingClientRect().left + documentScrollLeft;
+            let wrapperLeft = 0;
+
+            if (this.scrollerRef) {
+              wrapperLeft = this.scrollerRef.getBoundingClientRect().left + documentScrollLeft;
+            }
+
+            const cellFixed = column.querySelector('.slds-cell-fixed');
+
+            if (cellFixed) {
+              cellFixed.style.left = `${columnLeft - wrapperLeft}px`;
+              cellFixed.style.width = `${column.offsetWidth}px`;
+            }
+          }
+        });
+      }
+    };
+
+    this.loadMoreIfNeeded = () => {
+      if (this.props.hasMore && this.props.onLoadMore) {
+        const {
+          scrollTop,
+          offsetHeight,
+          scrollHeight
+        } = this.scrollerRef;
+
+        if (scrollTop + offsetHeight > scrollHeight - this.props.loadMoreOffset) {
+          this.props.onLoadMore();
+        }
+      }
+    };
+
+    this.toggleFixedHeaderListeners = attach => {
+      if (this.props.onToggleFixedHeaderListeners) {
+        this.props.onToggleFixedHeaderListeners({}, {
+          attach,
+          resizeHandler: this.resizeFixedHeaders,
+          scrollerRef: this.scrollerRef
+        });
+      } else {
+        const action = [`${attach ? 'add' : 'remove'}EventListener`];
+
+        if (_utilities_execution_environment__WEBPACK_IMPORTED_MODULE_8__["canUseEventListeners"]) {
+          window[action]('resize', this.resizeFixedHeaders);
+          window[action]('resize', this.loadMoreIfNeeded);
+        }
+
+        if (_utilities_execution_environment__WEBPACK_IMPORTED_MODULE_8__["canUseEventListeners"] && this.scrollerRef) {
+          this.scrollerRef[action]('scroll', this.resizeFixedHeaders);
+          this.scrollerRef[action]('scroll', this.loadMoreIfNeeded);
+        }
+      }
+    };
+
+    this.generatedId = shortid__WEBPACK_IMPORTED_MODULE_2___default.a.generate();
+    this.headerRefs = {
+      action: [],
+      column: [],
+      select: []
+    };
+    this.scrollerRef = null;
+    this.state = {
+      // Currently selected cell
+      activeCell: {
+        rowIndex: 1,
+        columnIndex: this.props.selectRows ? 1 : 0
+      },
+      // Interactive element within a cell that receives focus when in actionable mode
+      activeElement: null,
+      // The table can be in navigation or actionable mode
+      mode: _private_mode__WEBPACK_IMPORTED_MODULE_17__["default"].NAVIGATION,
+      // The table currently has focus
+      tableHasFocus: false,
+      // Allows for keyboard navigation. This is useful for temporarily disabling keyboard navigation
+      // when another component requires its own focus behavior (e.g. menu dropdown).
+      allowKeyboardNavigation: props.keyboardNavigation
+    }; // Map of cells to interactive elements within that cell
+
+    this.interactiveElements = {};
+    this.changeActiveCell = this.changeActiveCell.bind(this);
+    this.changeActiveElement = this.changeActiveElement.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.registerInteractiveElement = this.registerInteractiveElement.bind(this); // `checkProps` issues warnings to developers about properties (similar to React's built in development tools)
+
+    Object(_check_props__WEBPACK_IMPORTED_MODULE_6__["default"])(_utilities_constants__WEBPACK_IMPORTED_MODULE_21__["DATA_TABLE"], props, _component_json__WEBPACK_IMPORTED_MODULE_7__);
+  }
+
+  componentDidMount() {
+    if (this.props.fixedHeader) {
+      this.toggleFixedHeaderListeners(true);
+      this.resizeFixedHeaders();
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.fixedHeader) {
+      this.resizeFixedHeaders(); // If the first page of results isn't enough to allow the user to scroll it causes
+      // the user to get into a state where they cannot load the second page.
+      // Simulating a scroll here will ensure that enough rows are loaded to enable scrolling
+
+      this.loadMoreIfNeeded();
+    }
+
+    if (this.props.items !== prevProps.items) {
+      this.interactiveElements = {};
+    }
+
+    if (this.state.allowKeyboardNavigation && !prevState.allowKeyboardNavigation) {
+      // When re-enabling keyboard navigation (e.g. when a dropdown closes), mark that
+      // focus has returned to the table. This must wait until after `allowKeyboardNavigation`
+      // is set in `onClose` because the callback could focus the incorrect element (e.g. dropdown
+      // trigger) when it executes.
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        tableHasFocus: true
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    this.toggleFixedHeaderListeners(false);
+  }
+
+  getId() {
+    return this.props.id || this.generatedId;
+  }
+
+  getFirstInteractiveElement(rowIndex, columnIndex) {
+    if (this.state.mode === _private_mode__WEBPACK_IMPORTED_MODULE_17__["default"].ACTIONABLE && this.interactiveElements[rowIndex] && this.interactiveElements[rowIndex][columnIndex]) {
+      return this.interactiveElements[rowIndex][columnIndex][0];
+    }
+
+    return null;
+  }
+
+  changeActiveCell(rowIndex, columnIndex) {
+    this.setState({
+      tableHasFocus: true,
+      activeCell: {
+        rowIndex,
+        columnIndex
+      }
+    });
+  }
+
+  changeActiveElement(activeElement) {
+    this.setState({
+      activeElement,
+      mode: _private_mode__WEBPACK_IMPORTED_MODULE_17__["default"].ACTIONABLE
+    });
+  }
+
+  handleKeyDown(event) {
+    Object(_utilities_key_callbacks__WEBPACK_IMPORTED_MODULE_20__["default"])(event, {
+      callbacks: {
+        [_utilities_key_code__WEBPACK_IMPORTED_MODULE_19__["default"].UP]: {
+          callback: evt => this.handleKeyDownUp(evt)
+        },
+        [_utilities_key_code__WEBPACK_IMPORTED_MODULE_19__["default"].DOWN]: {
+          callback: evt => this.handleKeyDownDown(evt)
+        },
+        [_utilities_key_code__WEBPACK_IMPORTED_MODULE_19__["default"].LEFT]: {
+          callback: evt => this.handleKeyDownLeft(evt)
+        },
+        [_utilities_key_code__WEBPACK_IMPORTED_MODULE_19__["default"].RIGHT]: {
+          callback: evt => this.handleKeyDownRight(evt)
+        },
+        [_utilities_key_code__WEBPACK_IMPORTED_MODULE_19__["default"].ENTER]: {
+          callback: evt => this.handleKeyDownEnter(evt)
+        },
+        [_utilities_key_code__WEBPACK_IMPORTED_MODULE_19__["default"].ESCAPE]: {
+          callback: evt => this.handleKeyDownEscape(evt)
+        }
+      }
+    });
+  }
+
+  handleKeyDownUp() {
+    const newRowIndex = Math.max(this.state.activeCell.rowIndex - 1, 0);
+    const activeElement = this.getFirstInteractiveElement(newRowIndex, this.state.activeCell.columnIndex);
+
+    if (newRowIndex !== this.state.activeCell.rowIndex) {
+      this.setState(prevState => ({
+        activeCell: {
+          rowIndex: newRowIndex,
+          columnIndex: prevState.activeCell.columnIndex
+        },
+        activeElement
+      }));
+    }
+  }
+
+  handleKeyDownDown() {
+    const newRowIndex = Math.min(this.state.activeCell.rowIndex + 1, this.props.items.length);
+    const activeElement = this.getFirstInteractiveElement(newRowIndex, this.state.activeCell.columnIndex);
+
+    if (newRowIndex !== this.state.activeCell.rowIndex) {
+      this.setState(prevState => ({
+        activeCell: {
+          rowIndex: newRowIndex,
+          columnIndex: prevState.activeCell.columnIndex
+        },
+        activeElement
+      }));
+    }
+  }
+
+  handleKeyDownLeft() {
+    const newColumnIndex = Math.max(this.state.activeCell.columnIndex - 1, 0);
+    const activeElement = this.getFirstInteractiveElement(this.state.activeCell.rowIndex, newColumnIndex);
+
+    if (newColumnIndex !== this.state.activeCell.columnIndex) {
+      this.setState(prevState => ({
+        activeCell: {
+          rowIndex: prevState.activeCell.rowIndex,
+          columnIndex: newColumnIndex
+        },
+        activeElement
+      }));
+    }
+  }
+
+  handleKeyDownRight() {
+    const newColumnIndex = Math.min(this.state.activeCell.columnIndex + 1, this.props.children.length - (this.props.selectRows ? 0 : 1));
+    const activeElement = this.getFirstInteractiveElement(this.state.activeCell.rowIndex, newColumnIndex);
+
+    if (newColumnIndex !== this.state.activeCell.columnIndex) {
+      this.setState(prevState => ({
+        activeCell: {
+          rowIndex: prevState.activeCell.rowIndex,
+          columnIndex: newColumnIndex
+        },
+        activeElement
+      }));
+    }
+  }
+
+  handleKeyDownEnter() {
+    if (this.state.mode === _private_mode__WEBPACK_IMPORTED_MODULE_17__["default"].NAVIGATION) {
+      const {
+        rowIndex,
+        columnIndex
+      } = this.state.activeCell;
+      let activeElement = null;
+
+      if (this.interactiveElements[rowIndex] && this.interactiveElements[rowIndex][columnIndex]) {
+        [activeElement] = this.interactiveElements[rowIndex][columnIndex];
+      }
+
+      this.setState({
+        mode: _private_mode__WEBPACK_IMPORTED_MODULE_17__["default"].ACTIONABLE,
+        activeElement
+      });
+    }
+  }
+
+  handleKeyDownEscape() {
+    if (this.state.mode === _private_mode__WEBPACK_IMPORTED_MODULE_17__["default"].ACTIONABLE) {
+      this.setState({
+        mode: _private_mode__WEBPACK_IMPORTED_MODULE_17__["default"].NAVIGATION,
+        activeElement: null
+      });
+    }
+  }
+
+  registerInteractiveElement(rowIndex, columnIndex, elementId) {
+    if (!this.interactiveElements[rowIndex]) {
+      this.interactiveElements[rowIndex] = {};
+    }
+
+    const existingElements = this.interactiveElements[rowIndex][columnIndex] || [];
+    this.interactiveElements[rowIndex][columnIndex] = [...existingElements, elementId];
+  } // ### Render
+
+
+  render() {
+    const ariaProps = {};
+    const numHeaderRows = 1;
+    const numRows = count(this.props.items);
+    const numSelected = count(this.props.selection);
+    const numNonHeaderRows = count(this.props.items.filter(item => item.type !== 'header-row'));
+    const canSelectRows = this.props.selectRows && numNonHeaderRows > 0 ? this.props.selectRows : false;
+    const allSelected = canSelectRows && numNonHeaderRows === numSelected;
+    const indeterminateSelected = canSelectRows && numNonHeaderRows !== numSelected && numSelected !== 0;
+    const columns = [];
+    let RowActions = null;
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.Children.forEach(this.props.children, child => {
+      if (child && child.type.displayName === _column__WEBPACK_IMPORTED_MODULE_12__["default"].displayName) {
+        const _child$props = child.props,
+              {
+          children
+        } = _child$props,
+              columnProps = _objectWithoutProperties(_child$props, _excluded);
+
+        const props = lodash_assign__WEBPACK_IMPORTED_MODULE_4___default()({}, this.props); // eslint-disable-next-line fp/no-delete
+
+        delete props.children;
+        lodash_assign__WEBPACK_IMPORTED_MODULE_4___default()(props, columnProps);
+        let Cell;
+
+        if (children && children.type.displayName === _utilities_constants__WEBPACK_IMPORTED_MODULE_21__["DATA_TABLE_CELL"]) {
+          Cell = children.type;
+          lodash_assign__WEBPACK_IMPORTED_MODULE_4___default()(props, children.props);
+        } else {
+          Cell = _cell__WEBPACK_IMPORTED_MODULE_11__["default"];
+        } // eslint-disable-next-line fp/no-mutating-methods
+
+
+        columns.push({
+          Cell,
+          props,
+          dataTableProps: this.props
+        });
+      } else if (child && child.type.displayName === _row_actions__WEBPACK_IMPORTED_MODULE_15__["default"].displayName) {
+        const {
+          dropdown
+        } = child.props;
+        const dropdownPropOverrides = {};
+
+        if (this.props.fixedHeader) {
+          dropdownPropOverrides.menuPosition = 'overflowBoundaryElement';
+        }
+
+        RowActions = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(child, {
+          dropdown: dropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(dropdown, dropdownPropOverrides) : null
+        });
+      }
+    });
+
+    const assistiveText = _objectSpread(_objectSpread({}, defaultProps.assistiveText), this.props.assistiveText);
+
+    if (this.props.assistiveTextForActionsHeader) {
+      assistiveText.actionsHeader = this.props.assistiveTextForActionsHeader;
+    }
+
+    if (this.props.assistiveTextForSelectAllRows) {
+      assistiveText.selectAllRows = this.props.assistiveTextForSelectAllRows;
+    }
+
+    if (this.props.assistiveTextForColumnSortedAscending) {
+      assistiveText.columnSortedAscending = this.props.assistiveTextForColumnSortedAscending;
+    }
+
+    if (this.props.assistiveTextForColumnSortedDescending) {
+      assistiveText.columnSortedDescending = this.props.assistiveTextForColumnSortedDescending;
+    }
+
+    if (this.props.assistiveTextForColumnSort) {
+      assistiveText.columnSort = this.props.assistiveTextForColumnSort;
+    }
+
+    if (this.props.assistiveTextForSelectRow) {
+      assistiveText.selectRow = this.props.assistiveTextForSelectRow;
+    }
+
+    if (this.props.selectRows && this.props.selectRows !== 'radio') {
+      ariaProps['aria-multiselectable'] = 'true';
+    } // This guarantees there are never any old header references if props change
+
+
+    this.headerRefs = {
+      action: RowActions ? this.headerRefs.action : [],
+      column: this.headerRefs.column.slice(0, columns.length),
+      select: canSelectRows ? this.headerRefs.select : []
+    };
+    const tableContext = {
+      activeCell: this.state.activeCell,
+      activeElement: this.state.activeElement,
+      mode: this.state.mode,
+      tableHasFocus: this.state.tableHasFocus,
+      changeActiveCell: this.changeActiveCell,
+      changeActiveElement: this.changeActiveElement,
+      handleKeyDown: this.handleKeyDown,
+      registerInteractiveElement: this.registerInteractiveElement,
+      allowKeyboardNavigation: this.state.allowKeyboardNavigation,
+      setAllowKeyboardNavigation: allowKeyboardNavigation => {
+        if (this.props.keyboardNavigation) {
+          this.setState({
+            allowKeyboardNavigation
+          });
+        }
+      }
+    };
+    let component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_table_context__WEBPACK_IMPORTED_MODULE_16__["default"].Provider, {
+      value: tableContext
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", _extends({}, ariaProps, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('slds-table', {
+        'slds-table_fixed-layout': this.props.fixedLayout,
+        'slds-table_header-fixed': this.props.fixedHeader,
+        'slds-table_resizable-cols': this.props.fixedLayout,
+        'slds-table_bordered': !this.props.unborderedRow,
+        'slds-table_cell-buffer': !this.props.fixedLayout && !this.props.unbufferedCell,
+        'slds-max-medium-table_stacked': this.props.stacked,
+        'slds-max-medium-table_stacked-horizontal': this.props.stackedHorizontal,
+        'slds-table_striped': this.props.striped,
+        'slds-table_col-bordered': this.props.columnBordered,
+        'slds-no-row-hover': this.props.noRowHover
+      }, this.props.className),
+      id: this.getId(),
+      ref: node => {
+        if (node) {
+          this.tableRef = node;
+        }
+      },
+      role: this.props.fixedLayout ? 'grid' : null,
+      onBlur: event => {
+        if (this.tableRef && !this.tableRef.contains(event.relatedTarget)) {
+          this.setState({
+            tableHasFocus: false,
+            mode: _private_mode__WEBPACK_IMPORTED_MODULE_17__["default"].NAVIGATION,
+            activeElement: null
+          });
+        }
+      },
+      style: this.props.style
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_head__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      assistiveText: assistiveText,
+      allSelected: allSelected,
+      fixedHeader: this.props.fixedHeader,
+      fixedLayout: this.props.fixedLayout,
+      headerRefs: (ref, index) => {
+        if (index === 'action' || index === 'select') {
+          if (ref) {
+            this.headerRefs[index][0] = ref;
+          } else {
+            this.headerRefs[index] = [];
+          }
+        } else {
+          this.headerRefs.column[index] = ref;
+        }
+      },
+      indeterminateSelected: indeterminateSelected,
+      canSelectRows: canSelectRows,
+      columns: columns,
+      id: `${this.getId()}-${_utilities_constants__WEBPACK_IMPORTED_MODULE_21__["DATA_TABLE_HEAD"]}`,
+      onToggleAll: this.handleToggleAll,
+      onSort: this.props.onSort,
+      showRowActions: !!RowActions
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, numRows > 0 ? this.props.items.map((item, index) => {
+      const rowId = this.getId() && item.id ? `${this.getId()}-${_utilities_constants__WEBPACK_IMPORTED_MODULE_21__["DATA_TABLE_ROW"]}-${item.id}` : shortid__WEBPACK_IMPORTED_MODULE_2___default.a.generate();
+      return this.props.onRenderSubHeadingRow && item.type === 'header-row' ? this.props.onRenderSubHeadingRow({
+        assistiveText,
+        classNameRow: item.classNameRow,
+        columns,
+        key: rowId,
+        id: rowId,
+        tableId: this.getId(),
+        item
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_row__WEBPACK_IMPORTED_MODULE_14__["default"], {
+        assistiveText: assistiveText,
+        canSelectRows: canSelectRows,
+        className: item.classNameRow,
+        columns: columns,
+        fixedLayout: this.props.fixedLayout,
+        id: rowId,
+        index: index,
+        item: item,
+        key: rowId,
+        onToggle: this.handleRowToggle,
+        selection: this.props.selection,
+        rowActions: RowActions,
+        tableId: this.getId(),
+        rowIndex: index + numHeaderRows
+      });
+    }) : // Someday this should be an element to render when the table is empty
+    null))), this.props.fixedHeader && this.props.hasMore && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slds-is-relative slds-p-around_large"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spinner__WEBPACK_IMPORTED_MODULE_18__["default"], {
+      assistiveText: {
+        label: this.props.assistiveText.loadingMore
+      },
+      hasContainer: false,
+      size: "small",
+      variant: "brand"
+    })));
+
+    if (this.props.fixedHeader) {
+      const border = `1px solid ${_utilities_design_tokens_dist_palette_colors_common__WEBPACK_IMPORTED_MODULE_9__["colorGray5"]}`;
+      const styles = {
+        borderTop: border,
+        height: '100%'
+      };
+
+      if (this.props.joined) {
+        styles.borderBottom = border;
+        styles.borderLeft = border;
+        styles.borderRight = border;
+        styles.borderTop = 'none';
+        styles.borderRadius = _utilities_design_tokens_dist_salesforce_skin_common__WEBPACK_IMPORTED_MODULE_10__["tableBorderRadius"];
+      }
+
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "slds-table_header-fixed_container",
+        style: styles,
+        onScroll: e => {
+          const containerScrollLeft = e.target.scrollLeft;
+
+          if (containerScrollLeft > 0) {
+            e.target.scrollLeft = 0;
+
+            if (this.scrollerRef) {
+              this.scrollerRef.scrollLeft = containerScrollLeft;
+            }
+          }
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "slds-table_header-fixed_scroller",
+        ref: ref => {
+          this.scrollerRef = ref;
+        },
+        style: {
+          height: '100%',
+          overflow: 'auto'
+        }
+      }, component));
+    }
+
+    return component;
+  }
+
+}
+
+DataTable.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_21__["DATA_TABLE"];
+DataTable.propTypes = {
+  /**
+   * **Assistive text for accessibility.**
+   * This object is merged with the default props object on every render.
+   * * `actionsHeader`: Text for heading of actions column
+   * * `columnSort`: Text for sort action on table column header
+   * * `columnSortedAscending`: Text announced once a column is sorted in ascending order
+   * * `columnSortedDescending`: Text announced once a column is sorted in descending order
+   * * `selectAllRows`: Text for select all checkbox within the table header
+   * * `selectRow`: Text for select row. Default: "Select row 1"
+   * * `selectRowGroup`: This is an input group label and is attached to each checkbox or radio. Default is "Choose a row to select"
+   */
+  assistiveText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    actionsHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSortedAscending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSortedDescending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectAllRows: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectRow: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectRowGroup: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    loadingMore: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+
+  /**
+   * Provide children of the type `<DataTableColumn />` to define the structure of the data being represented and children of the type `<DataTableRowActions />` to define a menu which will be rendered for each item in the grid. Use a _higher-order component_ to customize a data table cell that will override the default cell rendering. `CustomDataTableCell` must have the same `displayName` as `DataTableCell` or it will be ignored. If you want complete control of the HTML, including the wrapping `td`, you don't have to use `DataTableCell`.
+   * ```
+   * import DataTableCell from 'design-system-react/data-table/cell';
+   * const CustomDataTableCell = ({ children, ...props }) => (
+   *   <DataTableCell {...props} >
+   *     <a href="#">{children}</a>
+   *   </DataTableCell>
+   * );
+   * CustomDataTableCell.displayName = DataTableCell.displayName;
+   *
+   * <DataTable>
+   *   <DataTableColumn />
+   *   <DataTableColumn>
+   *   <DataTableCustomCell />
+   *   </DataTableColumn>
+   *   <DataTableRowActions />
+   * </DataTable>
+   * ```
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Class names to be added to the table.
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * A variant which adds border to the vertical columns.
+   */
+  columnBordered: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Use this to enable fixed headers and scrolling columns / rows. Appearance / behavior is consistent only if used in combination with `fixedLayout`. Since scrolling is enabled, columns are not truncated unless a width is set. Due to `overflow:hidden` elements, any dialog components will need a separate render tree (portal) such as with `menuPosition: overflowBoundaryElement` in order to break out of the container.
+   */
+  fixedHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Use this if you are creating an advanced table (selectable, sortable, or resizable rows). Columns widths will be truncate based on width and DOM ancestors. See `fixedHeader` to enable horizontal and vertical scrolling.
+   *
+   * When `keyboardNavigation` is enabled, the advanced table implements keyboard navigation as described in [Data Tables](https://www.lightningdesignsystem.com/components/data-tables/).
+   * Wrap interactive elements in the table with `<DataTableInteractiveElement>` so that it can control the element's focus and `tabIndex` behavior:
+   * ```
+   * const InteractiveButton = DataTableInteractiveElement(Button);
+   * const InteractiveCheckBox = DataTableInteractiveElement(Checkbox);
+   * const CustomDataTableCell = () => (
+   * 	<DataTableCell>
+   * 		<InteractiveCheckBox />
+   * 		<InteractiveButton />
+   * 	</DataTableCell>
+   * );
+   * ```
+   * The wrapped element must accept the props:
+   *  * `onFocus`: Callback for when the element is focused.
+   *  * `onRequestFocus`: Trigger to indicate that this element should be focused.
+   *  * `requestFocus`: This wrapper overrides the `requestFocus` prop and provides its own value.
+   *  * `tabIndex`: This wrapper overrides the `tabIndex` prop and provides its own value.
+   */
+  fixedLayout: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * When fixedHeader is true, specifies whether there's more data to be loaded and displays a spinner at the bottom of the table if so.
+   */
+  hasMore: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * A render prop for subheadings to describe what the next section of the table is about. This is often a heirarchical data structure and semantic heading levels should be used, but not visually differ. This is not a `role=rowheader` which provides a heading for a row. Basic sorting of columns is not recommended, since this pattern assumes top level groupings. Headings should be visually aligned with selection column when selection pattern is present, so not to be grouped with the previous row.
+     * ```
+     * const CustomHeaderRow = ({ columns, item } ) => (
+     *	<tr>
+     *    <th id={item.id} colSpan={columns.length+1} scope="colgroup">
+     *      <p role="heading" aria-level={item.ariaLevel}>
+     *        {item.heading}
+     *      </p>
+     *    </th>
+     *  </tr>);
+     *CustomHeaderRow.displayName = DataTableCell.displayName;
+     *
+     * <DataTable items=[{
+        type: 'header-row',
+        id: 'header-row-example-id-3',
+        heading: 'Argentina > Autonomous City of Buenos Aires > Belgrano',
+        ariaLevel: 3,
+     * }],
+     * />
+     * ```
+   */
+  onRenderSubHeadingRow: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * A unique ID is needed in order to support keyboard navigation and ARIA support.
+   */
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The collection of items to render in the table. This is an array of objects with each object having keys that correspond with the  `property` prop of each `DataTableColumn`.
+   *
+   * Use the key `classNameRow` to add a custom class to the item's `<tr>` element.
+   */
+  items: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+    classNameRow: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  })).isRequired,
+
+  /**
+   * Makes DataTable joinable with PageHeader by adding appropriate classes/styling
+   */
+  joined: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Determines when to trigger infinite loading based on how many pixels the table's scroll position is from the bottom of the table.
+   */
+  loadMoreOffset: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+
+  /**
+   * Enables keyboard navigation when this is an advanced table.
+   */
+  keyboardNavigation: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * A variant which removes hover style on rows
+   */
+  noRowHover: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * By default this function resizes the display headers when fixedHeader is `true`, but this behavior can be overridden. Passes an event and a data object with properties `headerRefs`, an array of DOM nodes referencing the `thead th` elements and `scrollerRef`, a DOM node referencing `.slds-table_header-fixed_scroller`
+   */
+  onFixedHeaderResize: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This function fires when infinite loading loads more data.
+   *
+   * This will be called multiple times while the table is being scrolled within the `loadMoreOffset`. It'll also continue to be called while `hasMore` is `true` and the table has not yet loaded enough rows to allow a user to scroll.  Please track whether or not loading is in progress and check it at the start of this function to avoid executing your callback too many times.
+   */
+  onLoadMore: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This function fires when the selection of rows changes. This component passes in `event, { selection }` to the function. `selection` is an array of objects from the `items` prop.
+   *
+   * This used to be `onChange` which is deprecated now, so that the parameters can be consistent with other components. `onChange` passed in the selection first and the event wtihout a data object.
+   */
+  onRowChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This function fires when the table should be sorted.
+   */
+  onSort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * By default this function attaches/detaches listeners for window resize and tbody scrolling when fixedHeader is `true`, but this behavior can be overridden. Passes an event and a data object with an `attach` boolean property to determine whether listeners should be attached, a `resizeHandler` function property that can be called as-needed, and a `scrollerRef` DOM node property that serves as a reference to `.slds-table_header-fixed_scroller`
+   */
+  onToggleFixedHeaderListeners: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * An array of objects of selected rows. See `items` prop for shape of objects.
+   */
+  selection: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+
+  /**
+   * Specifies a row selection UX pattern.
+   * * `checkbox`: Multiple row selection.
+   * * `radio`: _Required_ single row selection.
+   * _This prop used to be a `boolean`, a `true` value will be considered `checkbox` for backwards compatibility._
+   */
+  selectRows: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['checkbox', 'radio'])]),
+
+  /**
+   * A variant which modifies table layout by stacking cells to accommodate smaller viewports. Should not be used at the same time as `stackedHorizontal`.
+   */
+  stacked: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * A variant which modifies table layout by displaying the header and row data side by side for smaller viewports. Should not be used at the same time as `stacked`.
+   */
+  stackedHorizontal: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * A variant which adds stripes to alternating rows.
+   */
+  striped: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Custom styles to be passed to the table.
+   * NOTE: for horizontal scrolling in `fixedHeader`-enabled DataTables, apply a `minWidth` style here. If the containing element width is less than the `minWidth` value, horizontal scrolling will occur
+   */
+  style: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * Tables have horizontal borders by default. This removes them.
+   */
+  unborderedRow: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * A variant which removes horizontal padding. CSS class will be removed if `fixedLayout==true`.
+   */
+  unbufferedCell: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool
+};
+DataTable.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (DataTable);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/interactive-element.jsx":
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/interactive-element.jsx ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! shortid */ "./node_modules/shortid/index.js");
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(shortid__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _private_mode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./private/mode */ "./node_modules/@salesforce/design-system-react/components/data-table/private/mode.js");
+/* harmony import */ var _private_cell_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./private/cell-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-context.jsx");
+/* harmony import */ var _private_table_context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./private/table-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* eslint-disable fp/no-rest-parameters */
+
+
+
+
+
+/**
+ * Wrapper for interactive elements in the table.
+ *
+ * The Advanced Data Table implements keyboard navigation as described in [Data Tables](https://www.lightningdesignsystem.com/components/data-tables/).
+ * This wrapper controls an element's focus and `tabIndex` behavior so that it is consistent with the spec.
+ *
+ * The wrapped element must accept the props:
+ *  `onFocus`: Callback for when the element is focused.
+ *  `onRequestFocus`: Trigger to indicate that this element should be focused.
+ *  `requestFocus`: This wrapper overrides the `requestFocus` prop and provides its own value.
+ *  `tabIndex`: This wrapper overrides the `tabIndex` prop and provides its own value.
+ */
+
+/* harmony default export */ __webpack_exports__["default"] = (WrappedElement => {
+  class InteractiveElement extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+    constructor(props) {
+      super(props);
+      this.elementId = shortid__WEBPACK_IMPORTED_MODULE_1___default.a.generate();
+    }
+
+    onFocus(tableContext, ...args) {
+      if (tableContext.activeElement !== this.elementId) {
+        tableContext.changeActiveElement(this.elementId);
+      }
+
+      if (this.props.onFocus) {
+        this.props.onFocus(...args);
+      }
+    }
+
+    onRequestFocus(tableContext, node, ...args) {
+      if (tableContext.tableHasFocus) {
+        node.focus();
+
+        if (this.props.onRequestFocus) {
+          this.props.onRequestFocus(...args);
+        }
+      }
+    }
+
+    onOpen(tableContext, ...args) {
+      tableContext.setAllowKeyboardNavigation(false);
+
+      if (this.props.onOpen) {
+        this.props.onOpen(...args);
+      }
+    }
+
+    onClose(tableContext, ...args) {
+      tableContext.setAllowKeyboardNavigation(true);
+
+      if (this.props.onClose) {
+        this.props.onClose(...args);
+      }
+    }
+
+    render() {
+      const {
+        onFocus,
+        onRequestFocus,
+        onOpen,
+        onClose
+      } = this;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_table_context__WEBPACK_IMPORTED_MODULE_4__["default"].Consumer, null, tableContext => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_cell_context__WEBPACK_IMPORTED_MODULE_3__["default"].Consumer, null, cellContext => {
+        tableContext.registerInteractiveElement(cellContext.rowIndex, cellContext.columnIndex, this.elementId);
+        const requestFocus = tableContext.mode === _private_mode__WEBPACK_IMPORTED_MODULE_2__["default"].ACTIONABLE && tableContext.activeElement === this.elementId;
+        const tabIndex = tableContext.mode === _private_mode__WEBPACK_IMPORTED_MODULE_2__["default"].ACTIONABLE ? '0' : '-1';
+        const keyboardNavProps = tableContext.allowKeyboardNavigation ? {
+          onFocus: onFocus.bind(this, tableContext),
+          onRequestFocus: onRequestFocus.bind(this, tableContext),
+          requestFocus,
+          tabIndex
+        } : {};
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WrappedElement, _objectSpread(_objectSpread(_objectSpread({}, this.props), {
+          onOpen: onOpen.bind(this, tableContext),
+          onClose: onClose.bind(this, tableContext)
+        }), keyboardNavProps));
+      }));
+    }
+
+  }
+
+  InteractiveElement.displayName = `InteractiveElement${WrappedElement.displayName}`;
+  return InteractiveElement;
+});
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/interactive-link.jsx":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/interactive-link.jsx ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _interactive_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./interactive-element */ "./node_modules/@salesforce/design-system-react/components/data-table/interactive-element.jsx");
+/* harmony import */ var _private_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./private/link */ "./node_modules/@salesforce/design-system-react/components/data-table/private/link.jsx");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(_interactive_element__WEBPACK_IMPORTED_MODULE_0__["default"])(_private_link__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-context.jsx":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/cell-context.jsx ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({
+  rowIndex: null,
+  columnIndex: null
+}));
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-fixed.jsx":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/cell-fixed.jsx ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+/**
+ * Used internally, provides fixed cell rendering
+ */
+
+const CellFixed = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  className: "slds-cell-fixed",
+  style: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    lineHeight: '2rem'
+  }
+}, props.children);
+
+/* harmony default export */ __webpack_exports__["default"] = (CellFixed);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/context-helper.js":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/context-helper.js ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/**
+ * Calculates data table keyboard navigation state based on currently selected cell
+ */
+/* harmony default export */ __webpack_exports__["default"] = ((tableContext, cellContext, fixedLayout) => {
+  const isActive = tableContext.activeCell.rowIndex === cellContext.rowIndex && tableContext.activeCell.columnIndex === cellContext.columnIndex;
+  const hasFocus = fixedLayout && tableContext.tableHasFocus && isActive;
+
+  const handleFocus = () => {
+    if (fixedLayout && tableContext.allowKeyboardNavigation) {
+      tableContext.changeActiveCell(cellContext.rowIndex, cellContext.columnIndex);
+    }
+  };
+
+  const handleKeyDown = event => {
+    if (fixedLayout && tableContext.allowKeyboardNavigation) {
+      tableContext.handleKeyDown(event);
+    }
+  };
+
+  const tabIndex = fixedLayout && isActive && !tableContext.activeElement && tableContext.allowKeyboardNavigation ? '0' : undefined;
+  return {
+    tabIndex,
+    hasFocus,
+    handleFocus,
+    handleKeyDown
+  };
+});
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/head.jsx":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/head.jsx ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _cell_fixed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cell-fixed */ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-fixed.jsx");
+/* harmony import */ var _checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../checkbox */ "./node_modules/@salesforce/design-system-react/components/checkbox/index.jsx");
+/* harmony import */ var _header_cell__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./header-cell */ "./node_modules/@salesforce/design-system-react/components/data-table/private/header-cell.jsx");
+/* harmony import */ var _interactive_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../interactive-element */ "./node_modules/@salesforce/design-system-react/components/data-table/interactive-element.jsx");
+/* harmony import */ var _private_cell_context__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../private/cell-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-context.jsx");
+/* harmony import */ var _private_table_context__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../private/table-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx");
+/* harmony import */ var _context_helper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./context-helper */ "./node_modules/@salesforce/design-system-react/components/data-table/private/context-helper.js");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+
+ // ## Children
+
+
+
+
+
+
+
+ // ## Constants
+
+
+const InteractiveCheckbox = Object(_interactive_element__WEBPACK_IMPORTED_MODULE_6__["default"])(_checkbox__WEBPACK_IMPORTED_MODULE_4__["default"]);
+/**
+ * Used internally, provides header row rendering to the DataTable.
+ */
+
+class DataTableHead extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(...args) {
+    var _temp;
+
+    return _temp = super(...args), this.getActionsHeader = () => {
+      const {
+        fixedHeader
+      } = this.props;
+
+      const getContent = style => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "slds-th__action",
+        style: style
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-assistive-text"
+      }, this.props.assistiveText.actionsHeader));
+
+      let actionsHeader = null;
+
+      if (this.props.showRowActions) {
+        actionsHeader = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_table_context__WEBPACK_IMPORTED_MODULE_8__["default"].Consumer, null, tableContext => {
+          const columnIndex = this.props.canSelectRows ? this.props.columns.length + 1 : this.props.columns.length;
+          const cellContext = {
+            columnIndex,
+            rowIndex: 0
+          };
+          const {
+            tabIndex,
+            hasFocus,
+            handleFocus,
+            handleKeyDown
+          } = Object(_context_helper__WEBPACK_IMPORTED_MODULE_9__["default"])(tableContext, cellContext, this.props.fixedLayout);
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+              'slds-has-focus': hasFocus
+            }),
+            ref: ref => {
+              if (this.props.headerRefs) {
+                this.props.headerRefs(ref, 'action');
+              }
+
+              if (ref && hasFocus) {
+                ref.focus();
+              }
+            },
+            scope: "col",
+            style: {
+              height: fixedHeader ? 0 : null,
+              lineHeight: fixedHeader ? 0 : null,
+              width: '3.25rem'
+            },
+            onFocus: handleFocus,
+            onKeyDown: handleKeyDown,
+            tabIndex: tabIndex
+          }, getContent(fixedHeader ? {
+            height: 0,
+            overflow: 'hidden',
+            paddingBottom: 0,
+            paddingTop: 0,
+            visibility: 'hidden'
+          } : null), fixedHeader ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cell_fixed__WEBPACK_IMPORTED_MODULE_3__["default"], null, getContent({
+            lineHeight: 1,
+            width: '100%'
+          })) : null);
+        });
+      }
+
+      return actionsHeader;
+    }, this.getSelectHeader = () => {
+      const {
+        canSelectRows,
+        fixedHeader
+      } = this.props;
+
+      const getContent = (idSuffix, style, ariaHidden) => {
+        let render = null;
+
+        if (canSelectRows === 'radio') {
+          render = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "slds-truncate slds-assistive-text",
+            id: `${this.props.id}-column-group-header-row-select`,
+            title: this.props.assistiveText.selectRowGroup
+          }, this.props.assistiveText.selectRowGroup);
+        } else if (canSelectRows === true || canSelectRows === 'checkbox') {
+          render = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "slds-th__action slds-th__action_form",
+            "aria-hidden": ariaHidden && true,
+            style: style
+          }, !ariaHidden ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            id: `${this.props.id}-column-group-header-row-select`,
+            className: "slds-assistive-text"
+          }, this.props.assistiveText.selectAllRows) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InteractiveCheckbox, {
+            assistiveText: {
+              label: this.props.assistiveText.selectAllRows
+            },
+            checked: this.props.allSelected,
+            indeterminate: this.props.indeterminateSelected,
+            id: `${this.props.id}-${idSuffix}` // There is a checkbox for user interaction and a checkbox for positioning. ariaHidden is for the checkbox for positioning and it should be removed from the accessibility tree.
+            ,
+            name: !ariaHidden ? 'SelectAll' : undefined,
+            onChange: this.props.onToggleAll
+          }));
+        }
+
+        return render;
+      };
+
+      let selectHeader = null;
+
+      if (canSelectRows) {
+        selectHeader = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_table_context__WEBPACK_IMPORTED_MODULE_8__["default"].Consumer, null, tableContext => {
+          const cellContext = {
+            columnIndex: 0,
+            rowIndex: 0
+          };
+          const {
+            tabIndex,
+            hasFocus,
+            handleFocus,
+            handleKeyDown
+          } = Object(_context_helper__WEBPACK_IMPORTED_MODULE_9__["default"])(tableContext, cellContext, this.props.fixedLayout);
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('slds-text-align_right', {
+              'slds-has-focus': hasFocus
+            }),
+            ref: ref => {
+              if (this.props.headerRefs) {
+                this.props.headerRefs(ref, 'select');
+              }
+
+              if (ref && hasFocus) {
+                ref.focus();
+              }
+            },
+            scope: "col",
+            style: {
+              height: fixedHeader ? 0 : null,
+              lineHeight: fixedHeader ? 0 : null,
+              width: '3.25rem'
+            },
+            onFocus: handleFocus,
+            onKeyDown: handleKeyDown,
+            tabIndex: tabIndex
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_cell_context__WEBPACK_IMPORTED_MODULE_7__["default"].Provider, {
+            value: cellContext
+          }, getContent('SelectAll-fixed-header', fixedHeader ? {
+            display: 'flex',
+            height: 0,
+            overflow: 'hidden',
+            paddingBottom: 0,
+            paddingTop: 0,
+            visibility: 'hidden'
+          } : null, fixedHeader && 'ariaHidden'), fixedHeader ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cell_fixed__WEBPACK_IMPORTED_MODULE_3__["default"], null, getContent('SelectAll', {
+            display: 'flex',
+            justifyContent: 'flex-end',
+            lineHeight: 1,
+            width: '100%'
+          })) : null));
+        });
+      }
+
+      return selectHeader;
+    }, _temp;
+  }
+
+  // ### Render
+  render() {
+    const actionsHeader = this.getActionsHeader();
+    const selectHeader = this.getSelectHeader();
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      className: "slds-line-height_reset"
+    }, selectHeader, this.props.columns.map((column, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_cell_context__WEBPACK_IMPORTED_MODULE_7__["default"].Provider, {
+      key: `${this.props.id}-${column.props.property}`,
+      value: {
+        columnIndex: this.props.canSelectRows ? index + 1 : index,
+        rowIndex: 0
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_cell__WEBPACK_IMPORTED_MODULE_5__["default"], _extends({
+      assistiveText: this.props.assistiveText,
+      cellRef: ref => {
+        if (this.props.headerRefs) {
+          this.props.headerRefs(ref, index);
+        }
+      },
+      fixedHeader: this.props.fixedHeader,
+      id: `${this.props.id}-${column.props.property}`,
+      onSort: this.props.onSort
+    }, column.props)))), actionsHeader));
+  }
+
+}
+
+DataTableHead.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_10__["DATA_TABLE_HEAD"];
+DataTableHead.propTypes = {
+  assistiveText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    actionsHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSortedAscending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSortedDescending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectAllRows: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectRow: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+  allSelected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  headerRefs: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  indeterminateSelected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  canSelectRows: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['checkbox', 'radio'])]),
+  columns: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    Cell: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+    props: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+  })),
+  fixedHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  onToggleAll: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  onSort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  showRowActions: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool
+};
+/* harmony default export */ __webpack_exports__["default"] = (DataTableHead);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/header-cell.jsx":
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/header-cell.jsx ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash_isfunction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.isfunction */ "./node_modules/lodash.isfunction/index.js");
+/* harmony import */ var lodash_isfunction__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_isfunction__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _cell_fixed__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cell-fixed */ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-fixed.jsx");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+/* harmony import */ var _column_check_props__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../column-check-props */ "./node_modules/@salesforce/design-system-react/components/data-table/column-check-props.js");
+/* harmony import */ var _link__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./link */ "./node_modules/@salesforce/design-system-react/components/data-table/private/link.jsx");
+/* harmony import */ var _interactive_link__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../interactive-link */ "./node_modules/@salesforce/design-system-react/components/data-table/interactive-link.jsx");
+/* harmony import */ var _private_cell_context__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../private/cell-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-context.jsx");
+/* harmony import */ var _private_table_context__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../private/table-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx");
+/* harmony import */ var _context_helper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./context-helper */ "./node_modules/@salesforce/design-system-react/components/data-table/private/context-helper.js");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+ // ### classNames
+
+ // ### isFunction
+
+ // ## Children
+
+
+ // This component's `checkProps` which issues warnings to developers about properties when in development mode (similar to React's built in development tools)
+
+
+
+
+
+
+ // ## Constants
+
+
+/**
+ * Used internally, renders each individual column heading.
+ */
+
+class DataTableHeaderCell extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(...args) {
+    var _temp;
+
+    return _temp = super(...args), this.state = {
+      sortDirection: null
+    }, this.handleSort = e => {
+      e.preventDefault();
+      const oldSortDirection = this.props.sortDirection || this.state.sortDirection; // UX pattern: If sortable, and the DataTable's parent has not defined the sort order, then ascending (that is A->Z) is the default sort order on first click. Some columns, such as "last viewed" or "recently updated," should sort descending first, since that is what the user probably wants. Who wants to see the oldest files first?
+
+      const sortDirection = function sortDirectionFunction(direction, isDefaultSortDescending) {
+        switch (direction) {
+          case 'asc':
+            return 'desc';
+
+          case 'desc':
+            return 'asc';
+
+          case null:
+            return isDefaultSortDescending ? 'desc' : 'asc';
+
+          default:
+            return 'asc';
+        }
+      }(oldSortDirection, this.props.isDefaultSortDescending);
+
+      const data = {
+        property: this.props.property,
+        sortDirection
+      };
+      this.setState({
+        sortDirection
+      });
+
+      if (lodash_isfunction__WEBPACK_IMPORTED_MODULE_3___default()(this.props.onSort)) {
+        this.props.onSort(data, e);
+      }
+    }, _temp;
+  }
+
+  componentDidMount() {
+    Object(_column_check_props__WEBPACK_IMPORTED_MODULE_6__["default"])(_utilities_constants__WEBPACK_IMPORTED_MODULE_12__["DATA_TABLE_COLUMN"], this.props);
+  }
+
+  componentDidUpdate(prevProps) {
+    // reset sort state when another column is sorted
+    if (prevProps.isSorted === true && this.props.isSorted === false) {
+      this.setState({
+        sortDirection: null
+      }); // eslint-disable-line react/no-did-update-set-state
+    }
+  }
+
+  // ### Render
+  render() {
+    const {
+      fixedHeader,
+      isSorted,
+      label,
+      sortable,
+      width
+    } = this.props;
+    const labelType = typeof label; // This decides which arrow to render--which is current sort order if the column is sorted OR the future sort order if the arrow is clicked in the future.
+
+    const sortDirection = this.props.sortDirection || this.state.sortDirection || this.props.isDefaultSortDescending && 'desc';
+    const expandedSortDirection = sortDirection === 'desc' ? 'descending' : 'ascending';
+    const ariaSort = isSorted ? expandedSortDirection : 'none';
+
+    const getFixedLayoutSubRenders = isHidden => {
+      if (sortable) {
+        // Don't make the anchor interactable when it's hidden
+        const SortLink = isHidden ? _link__WEBPACK_IMPORTED_MODULE_7__["default"] : _interactive_link__WEBPACK_IMPORTED_MODULE_8__["default"];
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SortLink, {
+          href: "#",
+          className: "slds-th__action slds-text-link_reset",
+          onClick: this.handleSort,
+          role: "button"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "slds-assistive-text"
+        }, this.props.assistiveTextForColumnSort || this.props.assistiveText.columnSort, ' '), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "slds-truncate",
+          title: labelType === 'string' ? label : undefined
+        }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_icon__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          className: "slds-is-sortable__icon",
+          category: "utility",
+          name: sortDirection === 'desc' ? 'arrowdown' : 'arrowup',
+          size: "x-small"
+        }), sortDirection ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "slds-assistive-text",
+          "aria-atomic": "true"
+        }, sortDirection === 'asc' ? this.props.assistiveTextForColumnSortedAscending || this.props.assistiveText.columnSortedAscending : this.props.assistiveTextForColumnSortedDescending || this.props.assistiveText.columnSortedDescending) : null);
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-p-horizontal_x-small slds-th__action",
+        style: {
+          display: 'flex'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-truncate",
+        title: labelType === 'string' ? label : undefined
+      }, label));
+    };
+
+    const getHeaderCellContent = isHidden => this.props.fixedLayout ? getFixedLayoutSubRenders(isHidden) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "slds-truncate",
+      title: labelType === 'string' ? label : undefined
+    }, label);
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_table_context__WEBPACK_IMPORTED_MODULE_10__["default"].Consumer, null, tableContext => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_cell_context__WEBPACK_IMPORTED_MODULE_9__["default"].Consumer, null, cellContext => {
+      const {
+        tabIndex,
+        hasFocus,
+        handleFocus,
+        handleKeyDown
+      } = Object(_context_helper__WEBPACK_IMPORTED_MODULE_11__["default"])(tableContext, cellContext, this.props.fixedLayout);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+        "aria-label": labelType === 'string' ? label : undefined,
+        "aria-sort": ariaSort,
+        className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+          'slds-is-sortable': sortable,
+          'slds-is-sorted': isSorted,
+          [`slds-is-sorted_${sortDirection}`]: sortDirection,
+          'slds-is-sorted_asc': isSorted && !sortDirection // default for hover, up arrow is ascending which means A is at the top of the table, and Z is at the bottom. You have to think about row numbers abstracting, and not the visual order on the table.
+
+        }),
+        onFocus: handleFocus,
+        onKeyDown: handleKeyDown,
+        ref: ref => {
+          if (this.props.cellRef) {
+            this.props.cellRef(ref);
+
+            if (ref && hasFocus) {
+              ref.focus();
+            }
+          }
+        },
+        scope: "col",
+        style: fixedHeader || width ? {
+          height: fixedHeader ? 0 : null,
+          lineHeight: fixedHeader ? 0 : null,
+          width: width || null
+        } : null,
+        tabIndex: tabIndex
+      }, fixedHeader ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(getHeaderCellContent(true), {
+        style: {
+          display: 'flex',
+          height: 0,
+          overflow: 'hidden',
+          paddingBottom: 0,
+          paddingTop: 0,
+          visibility: 'hidden'
+        }
+      }) : getHeaderCellContent(), fixedHeader ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cell_fixed__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(getHeaderCellContent(), {
+        style: {
+          alignItems: 'center',
+          display: 'flex',
+          flex: '1 1 auto',
+          lineHeight: 1.25,
+          width: '100%'
+        },
+        tabIndex: sortable ? 0 : null
+      })) : null);
+    }));
+  }
+
+}
+
+DataTableHeaderCell.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_12__["DATA_TABLE_HEADER_CELL"];
+DataTableHeaderCell.propTypes = {
+  assistiveText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    actionsHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSortedAscending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSortedDescending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectAllRows: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectRow: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+  cellRef: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  fixedHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+
+  /**
+   * Some columns, such as "date last viewed" or "date recently updated," should sort descending first, since that is what the user probably wants. How often does one want to see their oldest files first in a table? If sortable and the `DataTable`'s parent has not defined the sort order, then ascending (A at the top to Z at the bottom) is the default sort order on first click.
+   */
+  isDefaultSortDescending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Indicates if column is sorted.
+   */
+  isSorted: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The column label.
+   */
+  label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node]),
+
+  /**
+   * The function to execute on sort.
+   */
+  onSort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * The property which corresponds to this column.
+   */
+  property: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Whether or not the column is sortable.
+   */
+  sortable: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * The current sort direction.
+   */
+  sortDirection: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['desc', 'asc']),
+
+  /**
+   * Width of column. This is required for advanced/fixed layout tables. Please provide units. (`rems` are recommended)
+   */
+  width: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+};
+/* harmony default export */ __webpack_exports__["default"] = (DataTableHeaderCell);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/link.jsx":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/link.jsx ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utilities_key_code__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utilities/key-code */ "./node_modules/@salesforce/design-system-react/utilities/key-code.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (props => {
+  // Avoid passing props to <a> that it doesn't understand
+  const passThroughProps = {};
+  const entries = Object.entries(props);
+  entries.forEach(entry => {
+    const [key, value] = entry;
+
+    if (['onRequestFocus', 'onOpen', 'onClose', 'requestFocus'].indexOf(key) === -1) {
+      passThroughProps[key] = value;
+    }
+  });
+  return (
+    /*#__PURE__*/
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", _extends({
+      ref: node => {
+        if (node && props.requestFocus && props.onRequestFocus) {
+          props.onRequestFocus(node);
+        }
+      },
+      onKeyDown: event => event.keyCode === _utilities_key_code__WEBPACK_IMPORTED_MODULE_1__["default"].ENTER && props.onClick ? props.onClick(event) : undefined
+    }, passThroughProps), props.children)
+  );
+});
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/mode.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/mode.js ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const Mode = Object.freeze({
+  NAVIGATION: 'navigation',
+  ACTIONABLE: 'actionable'
+});
+/* harmony default export */ __webpack_exports__["default"] = (Mode);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/row.jsx":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/row.jsx ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash_find__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.find */ "./node_modules/lodash.find/index.js");
+/* harmony import */ var lodash_find__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_find__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../checkbox */ "./node_modules/@salesforce/design-system-react/components/checkbox/index.jsx");
+/* harmony import */ var _radio__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../radio */ "./node_modules/@salesforce/design-system-react/components/radio/index.jsx");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* harmony import */ var _interactive_element__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../interactive-element */ "./node_modules/@salesforce/design-system-react/components/data-table/interactive-element.jsx");
+/* harmony import */ var _private_cell_context__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../private/cell-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-context.jsx");
+/* harmony import */ var _private_table_context__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../private/table-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx");
+/* harmony import */ var _context_helper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./context-helper */ "./node_modules/@salesforce/design-system-react/components/data-table/private/context-helper.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+ // ### classNames
+
+ // ### find
+
+ // ## Children
+
+
+ // ## Constants
+
+
+
+
+
+
+const InteractiveCheckbox = Object(_interactive_element__WEBPACK_IMPORTED_MODULE_7__["default"])(_checkbox__WEBPACK_IMPORTED_MODULE_4__["default"]);
+const InteractiveRadio = Object(_interactive_element__WEBPACK_IMPORTED_MODULE_7__["default"])(_radio__WEBPACK_IMPORTED_MODULE_5__["default"]);
+const propTypes = {
+  assistiveText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    actionsHeader: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSort: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSortedAscending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    columnSortedDescending: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectAllRows: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    selectRow: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+  canSelectRows: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['checkbox', 'radio'])]),
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+  columns: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    Cell: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+    props: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object
+  })),
+
+  /**
+   * Use this if you are creating an advanced table (selectable, sortable, or resizable rows)
+   */
+  fixedLayout: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  item: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object.isRequired,
+  onToggle: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  rowActions: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.element,
+  selection: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+  tableId: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+};
+/**
+ * Used internally, provides row rendering to the DataTable.
+ */
+
+const DataTableRow = props => {
+  const tableContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_private_table_context__WEBPACK_IMPORTED_MODULE_9__["default"]);
+  const selectRowCellContext = {
+    rowIndex: props.rowIndex,
+    columnIndex: 0
+  };
+  const {
+    tabIndex,
+    hasFocus,
+    handleFocus,
+    handleKeyDown
+  } = Object(_context_helper__WEBPACK_IMPORTED_MODULE_10__["default"])(tableContext, selectRowCellContext, props.fixedLayout);
+
+  const handleToggle = (e, {
+    checked
+  }) => props.onToggle(props.item, checked, e);
+
+  const ariaProps = {};
+  const isSelected = !!lodash_find__WEBPACK_IMPORTED_MODULE_3___default()(props.selection, props.item);
+
+  if (props.canSelectRows) {
+    ariaProps['aria-selected'] = isSelected ? 'true' : 'false';
+  } // i18n
+
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", _extends({}, ariaProps, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(props.className, {
+      'slds-hint-parent': props.rowActions,
+      'slds-is-selected': props.canSelectRows && isSelected,
+      'slds-has-focus': hasFocus
+    })
+  }), props.canSelectRows ?
+  /*#__PURE__*/
+  // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+    role: props.fixedLayout ? 'gridcell' : null,
+    className: "slds-text-align_right",
+    "data-label": props.stacked ? 'Select Row' : undefined,
+    style: {
+      width: '3.25rem'
+    },
+    onFocus: handleFocus,
+    onKeyDown: handleKeyDown,
+    ref: ref => {
+      if (ref && hasFocus) {
+        ref.focus();
+      }
+    },
+    tabIndex: tabIndex
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_cell_context__WEBPACK_IMPORTED_MODULE_8__["default"].Provider, {
+    value: selectRowCellContext
+  }, props.canSelectRows === 'radio' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InteractiveRadio, {
+    assistiveText: {
+      label: `${props.assistiveText.selectRow} ${Number(props.index) + 1}`
+    },
+    "aria-labelledby": `${props.id}-SelectRow-label ${props.tableId}-SLDSDataTableHead-column-group-header-row-select`,
+    checked: isSelected,
+    className: "slds-m-right_x-small",
+    id: `${props.id}-SelectRow`,
+    labelId: `${props.id}-SelectRow-label`,
+    name: `${props.tableId}-SelectRow`,
+    onChange: handleToggle
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InteractiveCheckbox, {
+    assistiveText: {
+      label: `${props.assistiveText.selectRow} ${Number(props.index) + 1}`
+    },
+    "aria-labelledby": `${props.id}-SelectRow-label ${props.tableId}-SLDSDataTableHead-column-group-header-row-select`,
+    checked: isSelected,
+    id: `${props.id}-SelectRow`,
+    labelId: `${props.id}-SelectRow-label`,
+    name: `SelectRow${props.index + 1}`,
+    onChange: handleToggle
+  }))) : null, props.columns.map((column, index) => {
+    const {
+      Cell
+    } = column;
+    const cellId = `${props.id}-${_utilities_constants__WEBPACK_IMPORTED_MODULE_6__["DATA_TABLE_CELL"]}-${column.props.property}`;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_cell_context__WEBPACK_IMPORTED_MODULE_8__["default"].Provider, {
+      key: cellId,
+      value: {
+        columnIndex: props.canSelectRows ? index + 1 : index,
+        rowIndex: props.rowIndex
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Cell, _extends({}, column.props, {
+      className: column.props.truncate ? 'slds-truncate' : null,
+      fixedLayout: props.fixedLayout,
+      rowHeader: column.props.primaryColumn,
+      id: cellId,
+      item: props.item,
+      width: column.props.width,
+      headerId: props.item.headerId,
+      columns: props.columns
+    }), props.item[column.props.property]));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_private_cell_context__WEBPACK_IMPORTED_MODULE_8__["default"].Provider, {
+    value: {
+      columnIndex: props.canSelectRows ? props.columns.length + 1 : props.columns.length,
+      rowIndex: props.rowIndex
+    }
+  }, props.rowActions ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.cloneElement(props.rowActions, {
+    id: `${props.id}-${_utilities_constants__WEBPACK_IMPORTED_MODULE_6__["DATA_TABLE_ROW_ACTIONS"]}`,
+    item: props.item,
+    fixedLayout: props.fixedLayout
+  }) : null));
+};
+
+DataTableRow.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_6__["DATA_TABLE_ROW"];
+DataTableRow.propTypes = propTypes;
+/* harmony default export */ __webpack_exports__["default"] = (DataTableRow);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({
+  activeCell: {
+    rowIndex: 0,
+    columnIndex: 0
+  },
+  activeElement: null,
+  mode: null,
+  tableHasFocus: false,
+  changeActiveCell: () => {},
+  changeActiveElement: () => {},
+  handleKeyDown: () => {},
+  registerInteractiveElement: () => {},
+  allowKeyboardNavigation: true,
+  setAllowKeyboardNavigation: () => {}
+}));
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/data-table/row-actions.jsx":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/data-table/row-actions.jsx ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash_isfunction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash.isfunction */ "./node_modules/lodash.isfunction/index.js");
+/* harmony import */ var lodash_isfunction__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_isfunction__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _menu_dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../menu-dropdown */ "./node_modules/@salesforce/design-system-react/components/menu-dropdown/index.jsx");
+/* harmony import */ var _utilities_event__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utilities/event */ "./node_modules/@salesforce/design-system-react/utilities/event.js");
+/* harmony import */ var _interactive_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./interactive-element */ "./node_modules/@salesforce/design-system-react/components/data-table/interactive-element.jsx");
+/* harmony import */ var _private_cell_context__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./private/cell-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/cell-context.jsx");
+/* harmony import */ var _private_table_context__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./private/table-context */ "./node_modules/@salesforce/design-system-react/components/data-table/private/table-context.jsx");
+/* harmony import */ var _private_context_helper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./private/context-helper */ "./node_modules/@salesforce/design-system-react/components/data-table/private/context-helper.js");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+// ### React
+
+
+ // ### isFunction
+
+ // ## Children
+
+ // ### Event Helpers
+
+
+
+
+
+ // ## Constants
+
+
+const InteractiveDropdown = Object(_interactive_element__WEBPACK_IMPORTED_MODULE_6__["default"])(_menu_dropdown__WEBPACK_IMPORTED_MODULE_4__["default"]);
+const propTypes = {
+  /**
+   * Description of the menu for screenreaders.
+   */
+  assistiveText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * Class names to be added to the actions menu.
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * HTML ID to be added to the actions menu.
+   */
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * `DataTable` row item
+   */
+  item: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+
+  /**
+   * Disable hint styling which changes the color of the dropdown svg on hover over.
+   */
+  noHint: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Triggered when an item is selected.
+   */
+  onAction: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * `Dropdown` options. See `Dropdown`.
+   */
+  options: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+
+  /**
+   * A [Dropdown](http://react.lightningdesignsystem.com/components/dropdown-menus/) component. The props from this drop will be merged and override any default props.
+   * **Note:** onAction will not be overridden, both `DropDown`'s onSelect(dropDownActionOption) and onAction(rowItem, dropdownActionOption) will be called with appropriate parameters
+   */
+  dropdown: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node
+};
+const defaultProps = {
+  assistiveText: {
+    icon: 'Actions'
+  },
+  noHint: false,
+  options: []
+};
+/**
+ * RowActions provide a mechanism for defining a menu to display alongside each row in the DataTable.
+ */
+
+const DataTableRowActions = props => {
+  const tableContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_private_table_context__WEBPACK_IMPORTED_MODULE_8__["default"]);
+  const cellContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_private_cell_context__WEBPACK_IMPORTED_MODULE_7__["default"]);
+  const {
+    tabIndex,
+    hasFocus,
+    handleFocus,
+    handleKeyDown
+  } = Object(_private_context_helper__WEBPACK_IMPORTED_MODULE_9__["default"])(tableContext, cellContext, props.fixedLayout);
+
+  const handleClick = e => {
+    _utilities_event__WEBPACK_IMPORTED_MODULE_5__["default"].trap(e);
+  };
+
+  const handleSelect = selection => {
+    if (lodash_isfunction__WEBPACK_IMPORTED_MODULE_3___default()(props.onAction)) {
+      props.onAction(props.item, selection);
+    }
+
+    if (props.dropdown && lodash_isfunction__WEBPACK_IMPORTED_MODULE_3___default()(props.dropdown.props.onSelect)) {
+      props.dropdown.props.onSelect(selection);
+    }
+  }; // i18n
+
+
+  const defaultDropdownProps = {
+    align: 'right',
+    buttonClassName: 'slds-button_icon-x-small',
+    buttonVariant: 'icon',
+    iconCategory: 'utility',
+    iconName: 'down',
+    iconSize: 'small',
+    iconVariant: 'border-filled',
+    assistiveText: props.assistiveText,
+    className: props.className,
+    options: props.options,
+    hint: !props.noHint,
+    id: props.id
+  };
+  let dropdownProps = props.dropdown ? props.dropdown.props : {};
+  dropdownProps = _objectSpread(_objectSpread(_objectSpread({}, defaultDropdownProps), dropdownProps), {}, {
+    onSelect: handleSelect
+  });
+  return (
+    /*#__PURE__*/
+
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()({
+        'slds-has-focus': hasFocus
+      }),
+      "data-label": "Actions",
+      onClick: handleClick,
+      style: {
+        width: '3.25rem'
+      },
+      onFocus: handleFocus,
+      onKeyDown: handleKeyDown,
+      ref: ref => {
+        if (ref && hasFocus) {
+          ref.focus();
+        }
+      },
+      role: props.fixedLayout ? 'gridcell' : null,
+      tabIndex: tabIndex
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InteractiveDropdown, dropdownProps))
+  );
+};
+
+DataTableRowActions.propTypes = propTypes;
+DataTableRowActions.defaultProps = defaultProps;
+DataTableRowActions.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_10__["DATA_TABLE_ROW_ACTIONS"];
+/* harmony default export */ __webpack_exports__["default"] = (DataTableRowActions);
+
+/***/ }),
+
 /***/ "./node_modules/@salesforce/design-system-react/components/icon-settings/index.jsx":
 /*!*****************************************************************************************!*\
   !*** ./node_modules/@salesforce/design-system-react/components/icon-settings/index.jsx ***!
@@ -2408,6 +6163,95 @@ InnerInput.defaultProps = defaultProps;
 
 /***/ }),
 
+/***/ "./node_modules/@salesforce/design-system-react/components/media-object/index.jsx":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/media-object/index.jsx ***!
+  \****************************************************************************************/
+/*! exports provided: cssClasses, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cssClasses", function() { return cssClasses; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+// ### React
+
+ // ### classNames
+// [github.com/JedWatson/classnames](https://github.com/JedWatson/classnames)
+// This project uses `classnames`, "a simple javascript utility for conditionally
+// joining classNames together."
+
+
+ // Allow for predicatable DOM queries with `querySelectorAll(cssClasses.base)`
+
+const cssClasses = {
+  base: 'slds-media',
+  figure: 'slds-media__figure',
+  body: 'slds-media__body'
+};
+/**
+ * When you need text and a figure next to each other, use a media object.
+ */
+
+class MediaObject extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  // ### Display Name
+  // Always use the canonical component name as the React display name.
+  // ### Prop Types
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_2___default()(cssClasses.base, {
+        'slds-media_center': this.props.verticalCenter,
+        'slds-has-flexi-truncate': this.props.canTruncate
+      }, this.props.className)
+    }, this.props.figure ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: cssClasses.figure
+    }, this.props.figure, " ") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: cssClasses.body
+    }, this.props.body));
+  }
+
+}
+
+MediaObject.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_3__["MEDIA_OBJECT"];
+MediaObject.propTypes = {
+  /**
+   * Often the body may need to be truncated for correct layout. This is only applicable if using the component within a flexbox container.
+   */
+  canTruncate: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Class names to be added to the component's HTML tag with `slds-media` class.
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * The body is often text such as a heading or paragraph.
+   */
+  body: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * The figure is the optional visualization of the text within the body.
+   */
+  figure: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.node,
+
+  /**
+   * Vertically centers the body with the middle of the figure.
+   */
+  verticalCenter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool
+};
+/* harmony default export */ __webpack_exports__["default"] = (MediaObject);
+
+/***/ }),
+
 /***/ "./node_modules/@salesforce/design-system-react/components/menu-dropdown/button-trigger.jsx":
 /*!**************************************************************************************************!*\
   !*** ./node_modules/@salesforce/design-system-react/components/menu-dropdown/button-trigger.jsx ***!
@@ -3787,6 +7631,410 @@ PortalSettings.propTypes = {
 const PortalSettingsContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({});
 /* harmony default export */ __webpack_exports__["default"] = (PortalSettings);
 
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/radio/check-props.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/radio/check-props.js ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_get_component_doc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utilities/get-component-doc */ "./node_modules/@salesforce/design-system-react/utilities/get-component-doc.js");
+/* harmony import */ var _utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utilities/warning/sunset-property */ "./node_modules/@salesforce/design-system-react/utilities/warning/sunset-property.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable import/no-mutable-exports */
+
+/* eslint-disable max-len */
+
+
+
+let checkProps = function checkPropsFunction() {};
+
+if (true) {
+  checkProps = function checkPropsFunction(COMPONENT, props, jsonDoc) {
+    const createDocUrl = Object(_utilities_get_component_doc__WEBPACK_IMPORTED_MODULE_0__["default"])(jsonDoc);
+    Object(_utilities_warning_sunset_property__WEBPACK_IMPORTED_MODULE_1__["default"])(COMPONENT, props.label, 'label', `Use \`labels.label\` instead.${createDocUrl('labels')}`);
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (checkProps);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/radio/component.json":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/radio/component.json ***!
+  \**************************************************************************************/
+/*! exports provided: component, status, display-name, classKey, last-accessibility-review, site-stories, SLDS-component-path, url-slug, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"component\":\"radio\",\"status\":\"prod\",\"display-name\":\"Radios\",\"classKey\":\"Radio\",\"last-accessibility-review\":{\"date-iso-8601\":\"2018/01/18\",\"commit-sha\":\"ad6b6c6523ee21cada11be5f7ea4d99abc530726\"},\"site-stories\":[{\"heading\":\"Default\",\"path\":\"/__examples__/default.jsx\"},{\"heading\":\"Disabled\",\"path\":\"/__examples__/disabled.jsx\"}],\"SLDS-component-path\":\"/components/radio-group/\",\"url-slug\":\"radios\"}");
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/components/radio/index.jsx":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/components/radio/index.jsx ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! shortid */ "./node_modules/shortid/index.js");
+/* harmony import */ var shortid__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(shortid__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utilities_key_code__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utilities/key-code */ "./node_modules/@salesforce/design-system-react/utilities/key-code.js");
+/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
+/* harmony import */ var _utilities_get_aria_props__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utilities/get-aria-props */ "./node_modules/@salesforce/design-system-react/utilities/get-aria-props.js");
+/* harmony import */ var _utilities_get_data_props__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utilities/get-data-props */ "./node_modules/@salesforce/design-system-react/utilities/get-data-props.js");
+/* harmony import */ var _components_color_picker_private_swatch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/color-picker/private/swatch */ "./node_modules/@salesforce/design-system-react/components/color-picker/private/swatch.jsx");
+/* harmony import */ var _icon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+/* harmony import */ var _check_props__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./check-props */ "./node_modules/@salesforce/design-system-react/components/radio/check-props.js");
+/* harmony import */ var _component_json__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./component.json */ "./node_modules/@salesforce/design-system-react/components/radio/component.json");
+var _component_json__WEBPACK_IMPORTED_MODULE_11___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./component.json */ "./node_modules/@salesforce/design-system-react/components/radio/component.json", 1);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+
+
+
+
+
+
+
+
+ // This component's `checkProps` which issues warnings to developers about properties when in development mode (similar to React's built in development tools)
+
+
+
+const propTypes = {
+  /**
+   * **Assistive text for accessibility**
+   * This object is merged with the default props object on every render.
+   * * `label`: This is used as a visually hidden label if, no `labels.label` is provided.
+   */
+  assistiveText: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+
+  /**
+   * The ID of an element that describes this radio input. Often used for error messages.
+   */
+  'aria-describedby': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The aria-labelledby attribute establishes relationships between objects and their label(s), and its value should be one or more element IDs, which refer to elements that have the text needed for labeling. List multiple element IDs in a space delimited fashion.
+   */
+  'aria-labelledby': prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * This is a controlled component. This radio is checked according to this value.
+   */
+  checked: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Class name to be passed to radio input wrapper ( `span` element)
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string]),
+
+  /**
+   * This is the initial value of an uncontrolled form element and is present only to provide compatibility
+   * with hybrid framework applications that are not entirely React. It should only be used in an application
+   * without centralized state (Redux, Flux). "Controlled components" with centralized state is highly recommended.
+   * See [Code Overview](https://github.com/salesforce/design-system-react/blob/master/docs/codebase-overview.md#controlled-and-uncontrolled-components) for more information.
+   */
+  defaultChecked: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Disable this radio input.
+   */
+  disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * A unique ID that is used to associating a label to the `input` element. This ID is added to the `input` element.
+   */
+  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * **Text labels for internationalization**
+   * This object is merged with the default props object on every render.
+   * * `heading`: Heading for the visual picker variant
+   * * `label`: Label for the radio input
+   */
+  labels: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    heading: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+    label: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+  }),
+
+  /**
+   * The name of the radio input group.
+   */
+  name: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * This event fires when the radio selection changes. Passes in `event, { checked }`.
+   */
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * This event fires when the Checkbox is focused. It passes in `{ event }`.
+   */
+  onFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Triggered to indicate that this component should receive focus.
+   */
+  onRequestFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * If true, will trigger `onRequestFocus`.
+   */
+  requestFocus: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Write <code>"-1"</code> if you don't want the user to tab to the button.
+   */
+  tabIndex: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * The value of this radio input.
+   */
+  value: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Variant of the Radio button. Base is the default and button-group makes the radio button look like a normal button (should be a child of <RadioButtonGroup>).
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['base', 'button-group', 'swatch', 'visual-picker']),
+
+  /**
+   * Determines whether visual picker is coverable when selected (only for visual picker variant)
+   */
+  coverable: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Determines whether the visual picker should be vertical or horizontal (only for visual picker variant)
+   */
+  vertical: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+
+  /**
+   * Allows icon to shown if radio is not selected (only for non-coverable visual picker variant)
+   */
+  onRenderVisualPicker: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Allows icon to shown if radio is not selected (only for visual picker variant)
+   */
+  onRenderVisualPickerSelected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Allows icon to shown if radio is not selected (only for visual picker variant)
+   */
+  onRenderVisualPickerNotSelected: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+
+  /**
+   * Shows description for radio option (only for visual picker variant)
+   */
+  description: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+
+  /**
+   * Allows icon to shown if radio is not selected (only for visual picker variant)
+   */
+  size: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['medium', 'large']),
+
+  /**
+   * Ref callback that will pass in the radio's `input` tag
+   */
+  refs: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.shape({
+    input: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+  })
+};
+const defaultProps = {
+  assistiveText: {},
+  variant: 'base',
+  coverable: false
+};
+/**
+ * A radio input that can have a single input checked at any one time. Radios should be wrapped with
+ * a [RadioGroup](/components/radio-group) or [RadioButtonGroup](/components/radio-button-group)
+ */
+
+class Radio extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleChange = (event, preventDuplicateChangeEvent) => {
+      if (!this.preventDuplicateChangeEvent) {
+        this.preventDuplicateChangeEvent = Boolean(preventDuplicateChangeEvent);
+
+        if (this.props.onChange) {
+          this.props.onChange(event, {
+            checked: !this.props.checked
+          });
+        }
+      } else {
+        this.preventDuplicateChangeEvent = false;
+      }
+    };
+
+    this.preventDuplicateChangeEvent = false;
+    Object(_check_props__WEBPACK_IMPORTED_MODULE_10__["default"])(_utilities_constants__WEBPACK_IMPORTED_MODULE_5__["RADIO"], this.props, _component_json__WEBPACK_IMPORTED_MODULE_11__);
+    this.generatedId = shortid__WEBPACK_IMPORTED_MODULE_2___default.a.generate();
+  }
+
+  getId() {
+    return this.props.id || this.generatedId;
+  }
+
+  render() {
+    const ariaProps = Object(_utilities_get_aria_props__WEBPACK_IMPORTED_MODULE_6__["default"])(this.props);
+    const dataProps = Object(_utilities_get_data_props__WEBPACK_IMPORTED_MODULE_7__["default"])(this.props);
+    let radio;
+
+    const labels = _objectSpread(_objectSpread(_objectSpread({}, defaultProps.labels), this.props.label ? {
+      label: this.props.label
+    } : {}), this.props.labels);
+
+    if (this.props.variant === 'swatch') {
+      radio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        style: {
+          border: '1px'
+        },
+        className: "slds-radio_button__label",
+        htmlFor: this.getId()
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_color_picker_private_swatch__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        label: labels.label,
+        style: this.props.style,
+        color: this.props.value
+      })));
+    } else if (this.props.variant === 'button-group') {
+      radio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "slds-radio_button__label",
+        htmlFor: this.getId()
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-radio_faux"
+      }, labels.label));
+    } else if (this.props.variant === 'visual-picker') {
+      radio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: this.getId()
+      }, this.props.coverable ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "slds-visual-picker__figure slds-visual-picker__icon slds-align_absolute-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-is-selected"
+      }, this.props.onRenderVisualPickerSelected()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-is-not-selected"
+      }, this.props.onRenderVisualPickerNotSelected())) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center"
+      }, this.props.onRenderVisualPicker()), !this.props.vertical ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-visual-picker__body"
+      }, labels.heading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-text-heading_small"
+      }, labels.heading) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-text-title"
+      }, labels.label)) : null, !this.props.coverable ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-icon_container slds-visual-picker__text-check"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_icon__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        assistiveText: this.props.assistiveText,
+        category: "utility",
+        name: "check",
+        colorVariant: "base",
+        size: "x-small"
+      })) : null);
+    } else {
+      radio = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "slds-radio__label",
+        htmlFor: this.getId(),
+        id: this.props.labelId
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-radio_faux"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-form-element__label"
+      }, labels.label), this.props.assistiveText.label ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "slds-assistive-text"
+      }, this.props.assistiveText.label) : null);
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(this.props.variant === 'visual-picker' ? `slds-visual-picker_${this.props.size}` : null, {
+        'slds-radio': this.props.variant === 'base' || this.props.variant === 'swatch',
+        'slds-button slds-radio_button': this.props.variant === 'button-group',
+        'slds-visual-picker': this.props.variant === 'visual-picker',
+        'slds-visual-picker_vertical': this.props.variant === 'visual-picker' && this.props.vertical
+      }, this.props.className)
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+      type: "radio",
+      id: this.getId(),
+      name: this.props.name,
+      value: this.props.value
+      /* A form element should not have both checked and defaultChecked props. */
+
+    }, this.props.checked !== undefined ? {
+      checked: this.props.checked
+    } : {
+      defaultChecked: this.props.defaultChecked
+    }, {
+      onFocus: this.props.onFocus,
+      onChange: event => {
+        this.handleChange(event);
+      },
+      onClick: event => {
+        if (this.props.checked && this.props.deselectable) {
+          this.handleChange(event);
+        }
+      },
+      onKeyPress: event => {
+        const {
+          charCode
+        } = event;
+
+        if (charCode === _utilities_key_code__WEBPACK_IMPORTED_MODULE_4__["default"].SPACE && this.props.checked && this.props.deselectable) {
+          this.handleChange(event, true);
+        } else if (charCode === _utilities_key_code__WEBPACK_IMPORTED_MODULE_4__["default"].ENTER && this.props.checked && this.props.deselectable || !this.props.checked) {
+          this.handleChange(event);
+        }
+      },
+      disabled: this.props.disabled,
+      tabIndex: this.props.tabIndex
+    }, ariaProps, dataProps, {
+      ref: input => {
+        if (this.props.refs && this.props.refs.input) {
+          this.props.refs.input(input);
+        }
+
+        if (input && this.props.requestFocus && this.props.onRequestFocus) {
+          this.props.onRequestFocus(input);
+        }
+      }
+    })), radio);
+  }
+
+}
+
+Radio.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_5__["RADIO"];
+Radio.propTypes = propTypes;
+Radio.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (Radio);
 
 /***/ }),
 
@@ -6302,6 +10550,28 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./node_modules/@salesforce/design-system-react/icons/utility/drag_and_drop.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/icons/utility/drag_and_drop.js ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "viewBox": "0 0 52 52",
+  "xmlns": "http://www.w3.org/2000/svg",
+  "path": {
+    "d": "M20 4c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm12 0c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zM20 16c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm12 0c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zM20 28c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm12 0c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zM20 40c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm12 0c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4z"
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/@salesforce/design-system-react/icons/utility/index.js":
 /*!*****************************************************************************!*\
   !*** ./node_modules/@salesforce/design-system-react/icons/utility/index.js ***!
@@ -6669,6 +10939,633 @@ const VISUAL_PICKER_LINK = 'SLDSVisualPickerLink';
 const WELCOME_MAT = 'SLDSWelcomeMat';
 const WELCOME_MAT_TILE = 'SLDSWelcomeMatTile';
 const WELCOME_MAT_BADGE = 'SLDSWelcomeMatBadge';
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/utilities/design-tokens/dist/palette-colors.common.js":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/utilities/design-tokens/dist/palette-colors.common.js ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  // Disabled state of BRAND_HEADER_CONTRAST_WEAK
+  brandHeaderContrastWeakDisabled: 'rgba(166, 166, 166, 0.25)',
+  // Gray Color 11
+  colorGray11: 'rgb(62, 62, 60)',
+  // Transparent value of BRAND_PRIMARY at 10%
+  brandPrimaryTransparent10: 'rgba(21, 137, 238, 0.1)',
+  // Gray Color 12
+  colorGray12: 'rgb(43, 40, 38)',
+  // These RGBA values need to be updated if BRAND_BACKGROUND_DARK changes, solves webkit bug
+  brandBackgroundDarkTransparent: 'rgba(221, 219, 218, 0)',
+  // Background color a branded app header
+  brandHeader: 'rgb(255, 255, 255)',
+  // Active / Hover state of BRAND_LIGHT
+  brandLightActive: 'rgb(227, 229, 237)',
+  // Variant of BRAND_HEADER_CONTRAST that provides a warm color
+  brandHeaderContrastWarm: 'rgb(191, 2, 1)',
+  // Disabled state of BRAND_HEADER_ICON
+  brandHeaderIconDisabled: 'rgba(145, 145, 145, 0.25)',
+  // Active / Hover state of BRAND_HEADER_CONTRAST
+  brandHeaderContrastActive: 'rgb(80, 80, 80)',
+  // Primary page background color
+  brandBackgroundPrimary: 'rgb(250, 250, 249)',
+  // Primary brand color
+  brandPrimary: 'rgb(21, 137, 238)',
+  // Active / Hover state of BRAND_HEADER_CONTRAST_WEAK
+  brandHeaderContrastWeakActive: 'rgb(129, 129, 129)',
+  // Active / Hover state of BRAND_CONTRAST
+  brandContrastActive: 'rgb(13, 14, 18)',
+  // Variant of BRAND_HEADER_CONTRAST that provides a cool color
+  brandHeaderContrastCool: 'rgb(0, 85, 131)',
+  // Variant of BRAND_HEADER that is accessible with BRAND_HEADER
+  brandHeaderContrastInverse: 'rgb(255, 255, 255)',
+  // Dark variant of BRAND that is accessible with light colors
+  brandDark: 'rgb(24, 35, 55)',
+  // Dark variant of BRAND that is accessible with white
+  brandAccessible: 'rgb(0, 112, 210)',
+  // Dark variant of BRAND_BACKGROUND_PRIMARY, used within gradient of background color
+  brandBackgroundDark: 'rgb(232, 232, 232)',
+  // Active / Hover state of BRAND_TEXT_LINK
+  brandTextLinkActive: 'rgb(0, 95, 178)',
+  // Gray Color 1
+  colorGray1: 'rgb(255, 255, 255)',
+  // Gray Color 2
+  colorGray2: 'rgb(250, 250, 249)',
+  // Active / Hover state of BRAND_HEADER_ICON
+  brandHeaderIconActive: 'rgb(129, 129, 129)',
+  // Gray Color 3
+  colorGray3: 'rgb(243, 242, 242)',
+  // Icons of BRAND_HEADER that is accessible with BRAND_HEADER
+  brandHeaderIcon: 'rgb(145, 145, 145)',
+  // Disabled state of BRAND_A11Y
+  brandDisabled: 'rgb(201, 199, 197)',
+  // Primary text link brand color
+  brandTextLink: 'rgb(0, 109, 204)',
+  // Gray Color 4
+  colorGray4: 'rgb(236, 235, 234)',
+  // Gray Color 5
+  colorGray5: 'rgb(221, 219, 218)',
+  // Gray Color 6
+  colorGray6: 'rgb(201, 199, 197)',
+  // Active / Hover state of BRAND_A11Y
+  brandAccessibleActive: 'rgb(0, 95, 178)',
+  // Gray Color 7
+  colorGray7: 'rgb(176, 173, 171)',
+  // Active / Hover state of BRAND_DARK
+  brandDarkActive: 'rgb(37, 48, 69)',
+  // Gray Color 8
+  colorGray8: 'rgb(150, 148, 146)',
+  // Active / Hover state of BRAND_HEADER_CONTRAST
+  brandHeaderContrastInverseActive: 'rgb(238, 238, 238)',
+  // Active / Hover state of BRAND_HEADER_CONTRAST_COOL
+  brandHeaderContrastCoolActive: 'rgb(0, 85, 131)',
+  // Gray Color 9
+  colorGray9: 'rgb(112, 110, 107)',
+  // Variant of BRAND that is accessible with BRAND
+  brandContrast: 'rgb(26, 27, 30)',
+  // Weak contrast ratio, useful for iconography
+  brandHeaderContrastWeak: 'rgb(145, 145, 145)',
+  // Active / Hover state of BRAND_PRIMARY
+  brandPrimaryActive: 'rgb(0, 122, 221)',
+  // These RGBA values need to be updated if BRAND_BACKGROUND_PRIMARY changes, solves webkit bug
+  brandBackgroundPrimaryTransparent: 'rgba(250, 250, 249, 0)',
+  // Variant of BRAND_HEADER that is accessible with BRAND_HEADER
+  brandHeaderContrast: 'rgb(94, 94, 94)',
+  // Transparent value of BRAND_PRIMARY
+  brandPrimaryTransparent: 'rgba(21, 137, 238, 0.1)',
+  // Active / Hover state of BRAND_HEADER_CONTRAST_WARM
+  brandHeaderContrastWarmActive: 'rgb(172, 0, 0)',
+  // Transparent value of BRAND_PRIMARY at 40%
+  brandPrimaryTransparent40: 'rgba(21, 137, 238, 0.4)',
+  // Light variant of BRAND that is accessible with dark colors
+  brandLight: 'rgb(244, 246, 254)',
+  // Gray Color 10
+  colorGray10: 'rgb(81, 79, 77)'
+};
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/utilities/design-tokens/dist/salesforce-skin.common.js":
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/utilities/design-tokens/dist/salesforce-skin.common.js ***!
+  \*************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = {
+  // Used as the background color for the active state on rows or items on list-like components.
+  colorBackgroundRowActive: 'rgb(236, 235, 234)',
+  // Brandable modal header
+  colorBackgroundModalBrand: 'rgb(0, 112, 210)',
+  // Background color for notification list item.
+  colorBackgroundNotification: 'rgb(255, 255, 255)',
+  // Background color for a new notification list item.
+  colorBackgroundNotificationNew: 'rgb(243, 242, 242)',
+  // Notifications badge background color.
+  colorBackgroundNotificationBadgeActive: 'rgb(0, 57, 107)',
+  // Notifications badge background color.
+  colorBackgroundNotificationBadgeHover: 'rgb(0, 95, 178)',
+  colorContrastPrimary: 'rgb(243, 242, 242)',
+  // Used as the background color for the hover state on rows or items on list-like components.
+  colorBackgroundRowHover: 'rgb(243, 242, 242)',
+  colorForegroundPrimary: 'rgb(255, 255, 255)',
+  // Dark color for UI elements related to errors. Accessible with white text.
+  colorBackgroundErrorDark: 'rgb(194, 57, 52)',
+  // Background color for UI elements related to providing neutral information (not error, success, or warning).
+  colorBackgroundInfo: 'rgb(112, 110, 107)',
+  // The color of the mask overlay that appears when you enter a modal state.
+  colorBackgroundTempModalTint: 'rgba(43, 40, 38, 0.6)',
+  // Background color for reminder notification on hover
+  colorBackgroundReminderHover: 'rgb(255, 255, 255)',
+  // Winter 18 token, this has been deprecated. Please use BRAND_BACKGROUND_DARK_TRANSPARENT instead. These RGBA values need to be updated if BRAND_BAND_COLOR_BACKGROUND_PRIMARY changes, solves webkit bug
+  brandBandColorBackgroundSecondaryTransparent: 'rgba(253, 253, 253, 0)',
+  // Notifications badge background color.
+  colorBackgroundNotificationBadge: 'rgb(194, 57, 52)',
+  // Color of the indicator dot.
+  colorBackgroundIndicatorDot: 'rgb(22, 50, 92)',
+  cardWrapperColorBackground: 'rgb(255, 255, 255)',
+  // Alternative background color for dark portions of the app.
+  colorBackgroundAltInverse: 'rgb(22, 50, 92)',
+  popoverWalkthroughHeaderImage: '/assets/images/popovers/popover-header.png',
+  // Disabled input
+  colorBackgroundInputDisabled: 'rgb(236, 235, 234)',
+  // Used as the background color for the new state on rows or items on list-like components.
+  colorBackgroundRowNew: 'rgb(217, 255, 223)',
+  // Hovered toggle background color.
+  colorBackgroundToggleHover: 'rgb(150, 148, 146)',
+  popoverWalkthroughColorBackground: 'rgb(3, 46, 97)',
+  // Dark color for UI elements that have to do with success. Accessible with white text.
+  colorBackgroundSuccessDark: 'rgb(4, 132, 75)',
+  // Background color for reminder notification
+  colorBackgroundReminder: 'rgb(244, 246, 249)',
+  // Used as background for loading stencils on white background.
+  colorBackgroundStencil: 'rgb(243, 242, 242)',
+  // Used when further differentiation is needed because colorBackground and colorBackgroundAlt are both being used in close proximity.
+  colorBackgroundAlt2: 'rgb(243, 242, 242)',
+  // Color for UI elements that have to do with warning.
+  colorBackgroundWarning: 'rgb(255, 183, 93)',
+  // Hovered background color for success buttons
+  colorBackgroundButtonSuccessHover: 'rgb(4, 132, 75)',
+  popoverWalkthroughAltImage: '/assets/images/popovers/popover-action.png',
+  // Hover color for utility bar item.
+  colorBackgroundUtilityBarHover: 'rgb(236, 235, 234)',
+  progressColorBorderShade: 'rgb(243, 242, 242)',
+  // Background color for highlighting text in search results.
+  colorBackgroundHighlightSearch: 'rgb(255, 240, 63)',
+  // Toggle background color.
+  colorBackgroundToggle: 'rgb(176, 173, 171)',
+  // Use COLOR_BACKGROUND_PAGE_HEADER instead.
+  colorBackgroundAnchor: 'rgb(243, 242, 242)',
+  popoverWalkthroughAltNubbinColorBackground: 'rgb(33, 92, 160)',
+  // Hover color for UI elements related to destructive actions.
+  colorBackgroundDestructiveHover: 'rgb(166, 26, 20)',
+  progressColorBackgroundShade: 'rgb(243, 242, 242)',
+  // Default background color for the whole app.
+  colorBackground: 'rgb(243, 242, 242)',
+  // Our product brand blue, darkened to meet accessibility color contrast ratios with white text.
+  colorBrandDark: 'rgb(0, 112, 210)',
+  // Background color for success buttons
+  colorBackgroundButtonSuccess: 'rgb(75, 202, 129)',
+  // The color of the mask overlay that appears when you enter a modal state.
+  colorBackgroundBackdrop: 'rgba(255, 255, 255, 0.75)',
+  // Our product brand blue.
+  colorBrand: 'rgb(21, 137, 238)',
+  // Background color for default desktop chrome (ex. global header)
+  colorBackgroundChromeDesktop: 'rgb(255, 255, 255)',
+  // Default Page Header background color
+  pageHeaderColorBackground: 'rgb(243, 242, 242)',
+  // Active button backgrounds on modal headers
+  colorBackgroundModalButtonActive: 'rgba(0, 0, 0, 0.16)',
+  // Color for UI elements related to destructive actions.
+  colorBackgroundDestructive: 'rgb(194, 57, 52)',
+  // Selected checkboxes
+  colorBackgroundInputCheckboxSelected: 'rgb(21, 137, 238)',
+  // Default checkboxes
+  colorBackgroundInputCheckbox: 'rgb(255, 255, 255)',
+  colorBackgroundPrimary: 'rgb(243, 242, 242)',
+  // Color for UI elements that have to do with success.
+  colorBackgroundSuccess: 'rgb(75, 202, 129)',
+  // Disabled checkboxes
+  colorBackgroundInputCheckboxDisabled: 'rgb(221, 219, 218)',
+  // Background color for pills.
+  colorBackgroundPill: 'rgb(255, 255, 255)',
+  // Color of the spinner dot.
+  colorBackgroundSpinnerDot: 'rgb(176, 173, 171)',
+  colorBackgroundBrandPrimaryFocus: 'rgb(0, 95, 178)',
+  // Color for UI elements related to the offline state.
+  colorBackgroundOffline: 'rgb(62, 62, 60)',
+  tableColorBackgroundHeaderHover: 'rgb(255, 255, 255)',
+  // The color of the mask overlay that provides user feedback on interaction.
+  colorBackgroundBackdropTint: 'rgb(250, 250, 249)',
+  colorBackgroundBrandPrimaryActive: 'rgb(0, 95, 178)',
+  // Selected input field (when user has clicked or tabbed into field)
+  colorBackgroundInputActive: 'rgb(255, 255, 255)',
+  popoverWalkthroughColorBackgroundAlt: 'rgb(22, 74, 133)',
+  // Winter 18 token, this has been deprecated. Please use BRAND_BACKGROUND_PRIMARY_DARK instead.
+  brandBandColorBackgroundSecondary: 'rgb(253, 253, 253)',
+  tableColorBackgroundHeader: 'rgb(250, 250, 249)',
+  // Used as an alternate background for loading stencils on gray backgrounds.
+  colorBackgroundStencilAlt: 'rgb(236, 235, 234)',
+  // The background color of an internal scrollbar.
+  colorBackgroundScrollbar: 'rgb(236, 235, 234)',
+  // Disabled toggle background color.
+  colorBackgroundToggleDisabled: 'rgb(176, 173, 171)',
+  // Background color for toast messaging.
+  colorBackgroundToast: 'rgb(112, 110, 107)',
+  colorBackgroundBrandPrimaryHover: 'rgb(0, 95, 178)',
+  // Background color for default mobile chrome (ex. global header)
+  colorBackgroundChromeMobile: 'rgb(0, 112, 210)',
+  // Winter 18 token, this has been deprecated. Please use BRAND_BACKGROUND_PRIMARY_TRANSPARENT instead. These RGBA values need to be updated if BRAND_BAND_COLOR_BACKGROUND_PRIMARY changes, solves webkit bug
+  brandBandColorBackgroundPrimaryTransparent: 'rgba(253, 253, 253, 0)',
+  // Background color for UI elements related to the concept of an external user or customer.
+  colorBackgroundCustomer: 'rgb(255, 154, 60)',
+  // Color for UI elements related to errors.
+  colorBackgroundError: 'rgb(212, 80, 76)',
+  colorContrastSecondary: 'rgb(243, 242, 242)',
+  // Secondary top bar background color (child browser, file preview, etc.)
+  colorBackgroundBrowser: 'rgb(112, 110, 107)',
+  // Second default background color for the app.
+  colorBackgroundAlt: 'rgb(255, 255, 255)',
+  // Background color of comment posts in the feed.
+  colorBackgroundPost: 'rgb(250, 250, 249)',
+  colorBackgroundBrandPrimary: 'rgb(0, 112, 210)',
+  // Used as the background color for selected rows or items on list-like components.
+  colorBackgroundRowSelected: 'rgb(236, 235, 234)',
+  // Default input field
+  colorBackgroundInput: 'rgb(255, 255, 255)',
+  // Background color for success toast messaging.
+  colorBackgroundToastSuccess: 'rgb(4, 132, 75)',
+  // Color of mask overlay that sits on top of an image when text is present.
+  colorBackgroundImageOverlay: 'rgba(0, 0, 0, 0.4)',
+  // Our product brand blue, darkened even further.
+  colorBrandDarker: 'rgb(0, 95, 178)',
+  // Used as the default background color for temporary dialog elements, such as the progress spinner background.
+  colorBackgroundTempModal: 'rgb(150, 148, 146)',
+  // Background color for text selected with a mouse.
+  colorBackgroundSelection: 'rgb(216, 237, 255)',
+  // Used as gray background when more contrast is desired.
+  colorBackgroundShade: 'rgb(236, 235, 234)',
+  // Standard modal header
+  colorBackgroundModal: 'rgb(255, 255, 255)',
+  // Active color for UI elements related to destructive actions.
+  colorBackgroundDestructiveActive: 'rgb(135, 5, 0)',
+  // Hovered active toggle background color.
+  colorBackgroundToggleActiveHover: 'rgb(0, 95, 178)',
+  // Background color for payloads in the feed.
+  colorBackgroundPayload: 'rgb(250, 250, 249)',
+  // Button backgrounds on modal headers
+  colorBackgroundModalButton: 'rgba(0, 0, 0, 0.07)',
+  // Active color for utility bar item.
+  colorBackgroundUtilityBarActive: 'rgb(21, 137, 238)',
+  // Active background color for success buttons
+  colorBackgroundButtonSuccessActive: 'rgb(4, 132, 75)',
+  buttonColorBackgroundPrimary: 'rgb(255, 255, 255)',
+  // Background color for error toast messaging.
+  colorBackgroundToastError: 'rgb(194, 57, 52)',
+  // Stage left org switcher dropdown arrow background color.
+  colorBackgroundOrgSwitcherArrow: 'rgb(6, 28, 63)',
+  // Default background color for dark portions of the app (like Stage Left or tooltips).
+  colorBackgroundInverse: 'rgb(6, 28, 63)',
+  // Active toggle background color.
+  colorBackgroundToggleActive: 'rgb(0, 112, 210)',
+  colorPickerSliderThumbColorBackground: 'rgb(243, 242, 242)',
+  // Winter 18 token, this has been deprecated. Please use BRAND_BACKGROUND_PRIMARY instead.
+  pageColorBackgroundPrimary: 'rgb(253, 253, 253)',
+  // Used as gray background in conjunction with Shade when more contrast is desired.
+  colorBackgroundShadeDark: 'rgb(221, 219, 218)',
+  // Notifications badge background color.
+  colorBackgroundNotificationBadgeFocus: 'rgb(0, 95, 178)',
+  // Background for utility icons that live in the action bar on mobile.
+  colorBackgroundActionbarIconUtility: 'rgb(112, 110, 107)',
+  // The background color of an internal scrollbar track.
+  colorBackgroundScrollbarTrack: 'rgb(201, 199, 197)',
+  // Background color for input field that has encountered an error.
+  colorBackgroundInputError: 'rgb(255, 221, 225)',
+  // Winter 18 token, this has been deprecated. Please use BRAND_BACKGROUND_PRIMARY instead.
+  brandBandColorBackgroundPrimary: 'rgb(253, 253, 253)',
+  // Background color for highlighting UI elements.
+  colorBackgroundHighlight: 'rgb(250, 255, 189)',
+  colorBackgroundSecondary: 'rgb(255, 255, 255)',
+  popoverWalkthroughHeaderColorBackground: 'rgb(22, 74, 133)',
+  brandBandDefaultImage: '/assets/images/themes/oneSalesforce/banner-brand-default.png',
+  bannerUserDefaultImage: '/assets/images/themes/oneSalesforce/banner-user-default.png',
+  bannerGroupDefaultImage: '/assets/images/themes/oneSalesforce/banner-group-public-default.png',
+  // The borders to create the checkmark
+  colorBorderInputCheckboxSelectedCheckmark: 'rgb(255, 255, 255)',
+  // Border color for disabled inverse button.
+  colorBorderButtonInverseDisabled: 'rgba(255, 255, 255, 0.15)',
+  // Hovered border color for a button with an icon that has a parent element that has a hover state
+  colorBorderIconInverseHintHover: 'rgba(255, 255, 255, 0.75)',
+  // Dark alternative border color for UI elements related to errors.
+  colorBorderErrorDark: 'rgb(234, 130, 136)',
+  // Border color for a button with an icon that has a parent element that has a hover state
+  colorBorderIconInverseHint: 'rgba(255, 255, 255, 0.5)',
+  // Our product brand blue, darkened to meet accessibility color contrast ratios with white text.
+  colorBorderBrandDark: 'rgb(0, 112, 210)',
+  // Border color for UI elements related to providing neutral information (not error, success, or warning).
+  colorBorderInfo: 'rgb(112, 110, 107)',
+  // Border color for UI elements that have to do with warnings.
+  colorBorderWarning: 'rgb(255, 183, 93)',
+  // Border color for an active tab.
+  colorBorderTabActive: 'rgb(255, 255, 255)',
+  // Disabled stroke color.
+  colorStrokeDisabled: 'rgb(236, 235, 234)',
+  // Hover border color for UI elements that have to do with destructive actions.
+  colorBorderDestructiveHover: 'rgb(166, 26, 20)',
+  // Default border color for UI elements.
+  colorBorder: 'rgb(221, 219, 218)',
+  // Border color on disabled form elements.
+  colorBorderInputDisabled: 'rgb(201, 199, 197)',
+  // Dark alternative border color for UI elements that have to do with success.
+  colorBorderSuccessDark: 'rgb(4, 132, 75)',
+  // Border color on notification reminders.
+  colorBorderReminder: 'rgb(236, 235, 234)',
+  // Active stroke color for our product brand blue.
+  colorStrokeBrandActive: 'rgb(22, 50, 92)',
+  // Border color for brandable primary button - disabled state
+  colorBorderButtonBrandDisabled: 'rgba(0, 0, 0, 0)',
+  pageHeaderColorBorder: 'rgb(221, 219, 218)',
+  // Border color for UI elements that have to do with destructive actions.
+  colorBorderDestructive: 'rgb(194, 57, 52)',
+  colorBorderPrimary: 'rgb(221, 219, 218)',
+  // Border color for default secondary button
+  colorBorderButtonDefault: 'rgb(221, 219, 218)',
+  // Darkest separator color - used as an alternate separator color when more differentiation is desired.
+  colorBorderSeparatorAlt2: 'rgb(201, 199, 197)',
+  // Border color for UI elements related to the offline state.
+  colorBorderOffline: 'rgb(62, 62, 60)',
+  colorBorderBrandPrimaryFocus: 'rgb(0, 95, 178)',
+  // Border color for UI elements that have to do with success.
+  colorBorderSuccess: 'rgb(75, 202, 129)',
+  // Lightest separator color - used as default separator on white backgrounds.
+  colorBorderSeparator: 'rgb(243, 242, 242)',
+  // Our product brand blue.
+  colorBorderBrand: 'rgb(21, 137, 238)',
+  colorBorderBrandPrimaryHover: 'rgb(0, 95, 178)',
+  // Used to delineate the boundary of a component that is being clicked. Specific to builders.
+  colorBorderSelectionActive: 'rgb(243, 242, 242)',
+  // Border color for brandable primary button
+  colorBorderButtonBrand: 'rgb(0, 112, 210)',
+  // Border color for UI elements that have to do with errors.
+  colorBorderError: 'rgb(194, 57, 52)',
+  // Used to delineate the boundary of a component that is being hovered over. Specific to builders.
+  colorBorderSelectionHover: 'rgb(21, 137, 238)',
+  colorBorderBrandPrimaryActive: 'rgb(0, 95, 178)',
+  // Border color on active form elements.
+  colorBorderInputActive: 'rgb(21, 137, 238)',
+  // Border color on form elements.
+  colorBorderInput: 'rgb(221, 219, 218)',
+  colorBorderBrandPrimary: 'rgb(0, 112, 210)',
+  // These borders create the faux checkmark when the checkbox toggle is in the checked state.
+  colorBorderToggleChecked: 'rgb(255, 255, 255)',
+  // Used as the border color for the hover state on selected rows or items on list-like components.
+  colorBorderRowSelectedHover: 'rgb(21, 137, 238)',
+  // Border color for UI elements related to the concept of an external user or customer.
+  colorBorderCustomer: 'rgb(255, 154, 60)',
+  // Used to delineate the boundary of a selected component. Specific to builders.
+  colorBorderSelection: 'rgb(0, 112, 210)',
+  // Used to delineate the boundary of a selected canvas element that is being hovered over. Specific to builders.
+  colorBorderCanvasElementSelectionHover: 'rgb(0, 95, 178)',
+  cardColorBorder: 'rgb(221, 219, 218)',
+  // Used as the border color for selected rows or items on list-like components.
+  colorBorderRowSelected: 'rgb(0, 112, 210)',
+  buttonColorBorderPrimary: 'rgb(221, 219, 218)',
+  // Medium separator color - used as default separator on light gray backgrounds.
+  colorBorderSeparatorAlt: 'rgb(221, 219, 218)',
+  // Used to delineate the boundary of a selected canvas element. Specific to builders.
+  colorBorderCanvasElementSelection: 'rgb(94, 180, 255)',
+  // Hover stroke color for our product brand blue.
+  colorStrokeBrandHover: 'rgb(0, 112, 210)',
+  // Border color to match UI elements using color-background-inverse.
+  colorBorderInverse: 'rgb(6, 28, 63)',
+  // Stroke color for our global header buttons.
+  colorStrokeHeaderButton: 'rgb(176, 173, 171)',
+  // Active border color for UI elements that have to do with destructive actions.
+  colorBorderDestructiveActive: 'rgb(135, 5, 0)',
+  // Alternative border color for UI elements related to errors.
+  colorBorderErrorAlt: 'rgb(234, 130, 136)',
+  pageHeaderJoinedColorBorder: 'rgb(221, 219, 218)',
+  // Our product brand blue.
+  colorStrokeBrand: 'rgb(0, 112, 210)',
+  // Border color for a selected tab in a tab group.
+  colorBorderTabSelected: 'rgb(0, 112, 210)',
+  cardFooterColorBorder: 'rgb(221, 219, 218)',
+  // Used as a separator on dark backgrounds, such as stage left navigation.
+  colorBorderSeparatorInverse: 'rgb(42, 66, 108)',
+  pageHeaderBorderRadius: '0.25rem',
+  tableBorderRadius: '0 0 0.25rem 0.25rem',
+  // Hard dropshadow on page header
+  pageHeaderShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.1)',
+  shadowSoftPrimaryHover: 'rgba(0, 0, 0, 0.20) 0 3px 6px',
+  // Custom glow for focus states on UI elements with explicit containers.
+  shadowButtonFocus: '0 0 3px #0070D2',
+  // Shadow for header.
+  shadowHeader: '0 2px 4px rgba(0, 0, 0, 0.07)',
+  // Soft dropshadow found on general UI elements such as containers
+  shadowSoftPrimary: 'rgba(0, 0, 0, 0.1) 0 2px 2px',
+  // Hard dropshadow found on general UI elements such as containers
+  shadowHardPrimary: 'rgba(0, 0, 0, 0.1) 0 2px 0',
+  // Shadow above overflow menu close bar.
+  shadowActionOverflowFooter: '0 -2px 4px #fafaf9',
+  // Hard dropshadow found on outer cards
+  cardShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.1)',
+  // Shadow for notifications that should be elevated above other components but under modals.
+  shadowReminder: '0 2px 3px 0 rgba(0, 0, 0, 0.20)',
+  // Shadow on elements that are docked to the bottom of the viewport.
+  shadowDocked: '0 -2px 2px 0 rgba(0, 0, 0, 0.16)',
+  // Shadow to make inline edit card pop out.
+  shadowInlineEdit: '0 2px 4px 4px rgba(0, 0, 0, 0.16)',
+  // Shadow for drag-n-drop.
+  shadowDrag: '0 2px 4px 0 rgba(0, 0, 0, 0.40)',
+  // Shadow for drop down.
+  shadowDropDown: '0 2px 3px 0 rgba(0, 0, 0, 0.16)',
+  // Inset shadow for editable grid
+  shadowFocusInset: '0 0 2px 2px #1589EE inset',
+  shadowSoftPrimaryActive: 'rgba(0, 0, 0, 0.20) 0 1px 1px',
+  // Custom glow for focus states on UI elements with explicit containers on dark or vibrantly colored backgrounds.
+  shadowButtonFocusInverse: '0 0 3px #ecebea',
+  // Shadow on images.
+  shadowImage: '0 1px 1px rgba(0, 0, 0, 0.16)',
+  formLabelFontSize: '.75rem',
+  inputStaticFontSize: '0.875rem',
+  inputStaticFontWeight: '400',
+  // Use for active tab.
+  tabsFontWeight: '700',
+  // Use for active tab.
+  cardFontWeight: '700',
+  pageHeaderTitleFontWeight: '700',
+  //
+  componentSpacingMargin: '0.75rem',
+  //
+  componentSpacingPadding: '1rem',
+  //
+  templateGutters: '0.75rem',
+  //
+  templateProfileGutters: '8rem 0.75rem 0.75rem',
+  //
+  tableCellSpacing: '0.25rem 0.5rem',
+  //
+  cardSpacingMargin: '0.75rem',
+  //
+  cardFooterPadding: '0.75rem 1rem',
+  cardFooterTextAlign: 'center',
+  // Icon color on dark background
+  colorTextIconInverse: 'rgb(255, 255, 255)',
+  // Action label text color
+  colorTextActionLabel: 'rgb(112, 110, 107)',
+  // Link color on dark background
+  colorTextLinkInverse: 'rgb(255, 255, 255)',
+  // Text color for a button that has a parent element that has a hover state. This is the default text/icon color for that button before its parent has been hovered over.
+  colorTextButtonInverseDisabled: 'rgba(255, 255, 255, 0.15)',
+  // Hovered icon color for a button that has a parent element that has a hover state
+  colorTextIconInverseHintHover: 'rgba(255, 255, 255, 0.75)',
+  // Input icon
+  colorTextInputIcon: 'rgb(176, 173, 171)',
+  // Link color on dark background - active state
+  colorTextLinkInverseActive: 'rgba(255, 255, 255, 0.5)',
+  // Action label active text color
+  colorTextActionLabelActive: 'rgb(62, 62, 60)',
+  // Icon color on dark background - active state
+  colorTextIconInverseActive: 'rgb(255, 255, 255)',
+  // Color for text on a selected tab in a tab group.
+  colorTextTabLabelSelected: 'rgb(0, 112, 210)',
+  // Color for texts or icons that are related to warnings on a dark background.
+  colorTextWarning: 'rgb(255, 183, 93)',
+  // Icon color for a button that has a parent element that has a hover state on a dark background. This is the default text/icon color for that button before its parent has been hovered over.
+  colorTextIconInverseHint: 'rgba(255, 255, 255, 0.5)',
+  // Color for disabled text in a tab group.
+  colorTextTabLabelDisabled: 'rgb(236, 235, 234)',
+  // Text color for default secondary button - hover state
+  colorTextButtonDefaultHover: 'rgb(0, 112, 210)',
+  // Input disabled text
+  colorTextInputDisabled: 'rgb(112, 110, 107)',
+  // Tertiary body text color
+  colorTextTertiary: 'rgb(150, 148, 146)',
+  // Focus link text
+  colorTextLinkFocus: 'rgb(0, 95, 178)',
+  // Text color for default secondary button
+  colorTextButtonDefault: 'rgb(0, 112, 210)',
+  // Default icon color - disabled state
+  colorTextIconDefaultDisabled: 'rgb(221, 219, 218)',
+  // Disabled link text
+  colorTextLinkDisabled: 'rgb(22, 50, 92)',
+  // Body text color
+  colorTextDefault: 'rgb(62, 62, 60)',
+  // Active state on a standalone link on a dark background.
+  colorTextInverseActive: 'rgb(94, 180, 255)',
+  // Text color for brandable primary button - disabled state
+  colorTextButtonBrandDisabled: 'rgb(255, 255, 255)',
+  // Primary body text color
+  colorTextPrimary: 'rgb(62, 62, 60)',
+  colorTextLinkPrimaryFocus: 'rgb(0, 95, 178)',
+  // Text color for brandable primary button - hover state
+  colorTextButtonBrandHover: 'rgb(255, 255, 255)',
+  // Hover link text
+  colorTextLinkHover: 'rgb(0, 95, 178)',
+  // Color for text in focus state in a tab group.
+  colorTextTabLabelFocus: 'rgb(0, 95, 178)',
+  // Text color for success text.
+  colorTextSuccess: 'rgb(2, 126, 70)',
+  // Color for text that is purposefully de-emphasized to create visual hierarchy.
+  colorTextWeak: 'rgb(112, 110, 107)',
+  // Input placeholder text on dark backgrounds.
+  colorTextPlaceholderInverse: 'rgb(236, 235, 234)',
+  // Default icon color - hover state.
+  colorTextIconDefaultHover: 'rgb(0, 112, 210)',
+  // Icon color for a button that has a parent element that has a hover state. This is the default text/icon color for that button before its parent has been hovered over.
+  colorTextIconDefaultHintBorderless: 'rgb(236, 235, 234)',
+  // Text color for pills.
+  colorTextPill: 'rgb(0, 112, 210)',
+  colorTextLinkPrimaryHover: 'rgb(0, 95, 178)',
+  // Link text (508)
+  colorTextLink: 'rgb(0, 109, 204)',
+  // Color for texts that are related to warnings on a light background.
+  colorTextWarningAlt: 'rgb(132, 72, 0)',
+  // Text color for brandable primary button
+  colorTextButtonBrand: 'rgb(255, 255, 255)',
+  // Color for text in active state in a tab group.
+  colorTextTabLabelActive: 'rgb(0, 57, 107)',
+  // Default icon color.
+  colorTextIconDefault: 'rgb(112, 110, 107)',
+  // Our product brand blue.
+  colorTextBrand: 'rgb(21, 137, 238)',
+  // Color for text in hover state in a tab group.
+  colorTextTabLabelHover: 'rgb(0, 95, 178)',
+  // Text color for default secondary button - disabled state
+  colorTextButtonDefaultDisabled: 'rgb(221, 219, 218)',
+  // Color for text on toast messages.
+  colorTextToast: 'rgb(236, 235, 234)',
+  // Color for disabled toggles
+  colorTextToggleDisabled: 'rgb(221, 219, 218)',
+  // Top bar icon color
+  colorTextBrowser: 'rgb(255, 255, 255)',
+  colorTextLinkPrimaryActive: 'rgb(0, 95, 178)',
+  // Error text for inputs and error misc
+  colorTextError: 'rgb(194, 57, 52)',
+  colorTextLinkPrimary: 'rgb(0, 112, 210)',
+  // Top bar active icon color
+  colorTextBrowserActive: 'rgba(0, 0, 0, 0.4)',
+  // Color for default text in a tab group.
+  colorTextTabLabel: 'rgb(22, 50, 92)',
+  // Customer text used in anchor subtitle
+  colorTextCustomer: 'rgb(255, 154, 60)',
+  // Default icon color - active state.
+  colorTextIconDefaultActive: 'rgb(0, 57, 107)',
+  // Text color found on any primary brand color
+  colorTextBrandPrimary: 'rgb(255, 255, 255)',
+  // Active link text
+  colorTextLinkActive: 'rgb(0, 57, 107)',
+  // Icon color for a button that has a parent element that has a hover state. This is the default text/icon color for that button before its parent has been hovered over.
+  colorTextIconDefaultHint: 'rgb(176, 173, 171)',
+  // Text color for brandable primary button - active state
+  colorTextButtonBrandActive: 'rgb(255, 255, 255)',
+  // Color of required field marker.
+  colorTextRequired: 'rgb(194, 57, 52)',
+  // Color for non-interactive icons that represent a selected item in a list
+  colorTextIconBrand: 'rgb(0, 112, 210)',
+  // Hover state on a standalone link on a dark background.
+  colorTextInverseHover: 'rgb(176, 173, 171)',
+  // Modal header title
+  colorTextModal: 'rgb(255, 255, 255)',
+  // Text color for a button that has a parent element that has a hover state. This is the default text/icon color for that button before its parent has been hovered over.
+  colorTextButtonInverse: 'rgb(236, 235, 234)',
+  buttonColorTextPrimary: 'rgb(255, 255, 255)',
+  // Modal header button text color
+  colorTextModalButton: 'rgb(112, 110, 107)',
+  // Link color on dark background - disabled state
+  colorTextLinkInverseDisabled: 'rgba(255, 255, 255, 0.15)',
+  // Inverse text color for dark backgrounds
+  colorTextInverse: 'rgb(255, 255, 255)',
+  // Text color for default secondary button - active state
+  colorTextButtonDefaultActive: 'rgb(0, 112, 210)',
+  // Icon color on dark background - disabled state
+  colorTextIconInverseDisabled: 'rgba(255, 255, 255, 0.15)',
+  // Text color for a button that has a parent element that has a hover state. This is the default text/icon color for that button before its parent has been hovered over.
+  colorTextButtonDefaultHint: 'rgb(176, 173, 171)',
+  // Color for interactive utility icons
+  colorTextIconUtility: 'rgb(176, 173, 171)',
+  // Icon color on dark background - hover state
+  colorTextIconInverseHover: 'rgb(255, 255, 255)',
+  // Input placeholder text.
+  colorTextPlaceholder: 'rgb(112, 110, 107)',
+  // Weak inverse text color for dark backgrounds
+  colorTextInverseWeak: 'rgb(176, 173, 171)',
+  // Secondary body text color
+  colorTextSecondary: 'rgb(112, 110, 107)',
+  // Typed input text
+  colorTextInputFocusInverse: 'rgb(22, 50, 92)',
+  // Text in stage left navigation.
+  colorTextStageLeft: 'rgb(236, 235, 234)',
+  // Link color on dark background - hover state
+  colorTextLinkInverseHover: 'rgba(255, 255, 255, 0.75)',
+  // Text color for success text on dark backgrounds.
+  colorTextSuccessInverse: 'rgb(75, 202, 129)',
+  // Text color for field labels.
+  colorTextLabel: 'rgb(112, 110, 107)'
+};
 
 /***/ }),
 
@@ -7150,6 +12047,58 @@ function KeyBuffer() {
 
 /***/ }),
 
+/***/ "./node_modules/@salesforce/design-system-react/utilities/key-callbacks.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/utilities/key-callbacks.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _event__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./event */ "./node_modules/@salesforce/design-system-react/utilities/event.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/*
+ * Helper function that has callbacks passed into it with the key
+ * being the keycode of the event. This allows an object literal to
+ * control key event callback mapping and avoids a long conditional
+ * if statement and uses an enumeration pattern instead.
+ */
+
+const mapKeyEventCallbacks = (event, {
+  callbacks = {},
+  shiftCallbacks = {},
+  stopPropagation = true
+}) => {
+  if (event.shiftKey && event.keyCode && shiftCallbacks[event.keyCode]) {
+    if (stopPropagation) {
+      _event__WEBPACK_IMPORTED_MODULE_0__["default"].trapEvent(event);
+    }
+
+    shiftCallbacks[event.keyCode].callback(event, shiftCallbacks[event.keyCode].data);
+  } else if (event.keyCode && callbacks[event.keyCode]) {
+    if (stopPropagation) {
+      _event__WEBPACK_IMPORTED_MODULE_0__["default"].trapEvent(event);
+    }
+
+    callbacks[event.keyCode].callback(event, callbacks[event.keyCode].data);
+  } else if (event.keyCode && callbacks.other) {
+    // You will likely NOT want to stop propagation of all key presses!
+    if (callbacks.other.stopPropagation) {
+      _event__WEBPACK_IMPORTED_MODULE_0__["default"].trapEvent(event);
+    }
+
+    callbacks.other.callback(event, callbacks.other.data);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (mapKeyEventCallbacks);
+
+/***/ }),
+
 /***/ "./node_modules/@salesforce/design-system-react/utilities/key-code.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/@salesforce/design-system-react/utilities/key-code.js ***!
@@ -7438,6 +12387,65 @@ function findTabbableDescendants(element) {
 
 /***/ }),
 
+/***/ "./node_modules/@salesforce/design-system-react/utilities/warning/deprecated-event-parameter.js":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/utilities/warning/deprecated-event-parameter.js ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _low_priority_warning__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./low-priority-warning */ "./node_modules/@salesforce/design-system-react/utilities/warning/low-priority-warning.js");
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable import/no-mutable-exports */
+
+/* eslint-disable max-len */
+// This function will deliver a warning message to the browser console about an event parameter change.
+
+
+let deprecated = function deprecatedFunction() {};
+
+if (true) {
+  const hasWarned = {};
+
+  deprecated = function deprecatedFunction(control, {
+    oldEventParameterOrder,
+    // flag that tells which parameter order is in use
+    propAsString,
+    // key name of prop being warned about
+    log // log function that will disable console warning and pipe to another function log({ message })
+
+  }, comment) {
+    const additionalComment = comment ? ` ${comment}` : '';
+    const warnOnFirstOccurrenceKey = control + propAsString;
+    const triggerWarning = Boolean(oldEventParameterOrder);
+
+    if (!hasWarned[warnOnFirstOccurrenceKey]) {
+      const message = `[Design System React] ${additionalComment}`;
+
+      if (triggerWarning && log) {
+        log({
+          message
+        });
+      } else if (triggerWarning) {
+        Object(_low_priority_warning__WEBPACK_IMPORTED_MODULE_0__["default"])(false, // false value triggers warning
+        message);
+      } // store global flag to limit warnings to first issue
+
+
+      hasWarned[warnOnFirstOccurrenceKey] = triggerWarning;
+    }
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (deprecated);
+
+/***/ }),
+
 /***/ "./node_modules/@salesforce/design-system-react/utilities/warning/deprecated-property-value.js":
 /*!*****************************************************************************************************!*\
   !*** ./node_modules/@salesforce/design-system-react/utilities/warning/deprecated-property-value.js ***!
@@ -7647,6 +12655,56 @@ if (true) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (isTriggerTabbable);
+
+/***/ }),
+
+/***/ "./node_modules/@salesforce/design-system-react/utilities/warning/low-priority-warning.js":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@salesforce/design-system-react/utilities/warning/low-priority-warning.js ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
+
+/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
+
+/* eslint-disable import/no-mutable-exports */
+let lowPriorityWarning = function printWarningFunction() {};
+
+if (true) {
+  // eslint-disable-next-line fp/no-rest-parameters
+  const printWarning = function printWarningFunction(originalMessage, ...args) {
+    let argIndex = 0;
+    const message = `Warning: ${originalMessage.replace(/%s/g, () => {
+      const argument = args[argIndex];
+      argIndex += 1;
+      return argument;
+    })}`;
+
+    if (typeof console !== 'undefined') {
+      console.warn(message); // eslint-disable-line no-console
+    }
+
+    try {
+      // Throw error to enable tracing the callstack.
+      // eslint-disable-next-line fp/no-throw
+      throw new Error(message);
+    } catch (event) {} // eslint-disable-line no-empty
+
+  }; // eslint-disable-next-line fp/no-rest-parameters
+
+
+  lowPriorityWarning = (condition, originalMessage, ...args) => {
+    if (!condition && originalMessage) {
+      printWarning(originalMessage, ...args);
+    }
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (lowPriorityWarning);
 
 /***/ }),
 
@@ -8765,6 +13823,2588 @@ function escapeRegExp(string) {
 
 module.exports = escapeRegExp;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/lodash.find/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/lodash.find/index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global, module) {/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
+/** Used as the `TypeError` message for "Functions" methods. */
+
+var FUNC_ERROR_TEXT = 'Expected a function';
+/** Used to stand-in for `undefined` hash values. */
+
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+/** Used to compose bitmasks for comparison styles. */
+
+var UNORDERED_COMPARE_FLAG = 1,
+    PARTIAL_COMPARE_FLAG = 2;
+/** Used as references for various `Number` constants. */
+
+var INFINITY = 1 / 0,
+    MAX_SAFE_INTEGER = 9007199254740991,
+    MAX_INTEGER = 1.7976931348623157e+308,
+    NAN = 0 / 0;
+/** `Object#toString` result references. */
+
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    promiseTag = '[object Promise]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]',
+    weakMapTag = '[object WeakMap]';
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+/** Used to match property names within property paths. */
+
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+    reIsPlainProp = /^\w*$/,
+    reLeadingDot = /^\./,
+    rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+/** Used to match leading and trailing whitespace. */
+
+var reTrim = /^\s+|\s+$/g;
+/** Used to match backslashes in property paths. */
+
+var reEscapeChar = /\\(\\)?/g;
+/** Used to detect bad signed hexadecimal string values. */
+
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+/** Used to detect binary string values. */
+
+var reIsBinary = /^0b[01]+$/i;
+/** Used to detect host constructors (Safari). */
+
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+/** Used to detect octal string values. */
+
+var reIsOctal = /^0o[0-7]+$/i;
+/** Used to detect unsigned integer values. */
+
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+/** Used to identify `toStringTag` values of typed arrays. */
+
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayTags[dataViewTag] = typedArrayTags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+/** Built-in method references without a dependency on `root`. */
+
+var freeParseInt = parseInt;
+/** Detect free variable `global` from Node.js. */
+
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+/** Detect free variable `self`. */
+
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+/** Used as a reference to the global object. */
+
+var root = freeGlobal || freeSelf || Function('return this')();
+/** Detect free variable `exports`. */
+
+var freeExports =  true && exports && !exports.nodeType && exports;
+/** Detect free variable `module`. */
+
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+/** Detect the popular CommonJS extension `module.exports`. */
+
+var moduleExports = freeModule && freeModule.exports === freeExports;
+/** Detect free variable `process` from Node.js. */
+
+var freeProcess = moduleExports && freeGlobal.process;
+/** Used to access faster Node.js helpers. */
+
+var nodeUtil = function () {
+  try {
+    return freeProcess && freeProcess.binding('util');
+  } catch (e) {}
+}();
+/* Node.js helper references. */
+
+
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+/**
+ * A specialized version of `_.some` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {boolean} Returns `true` if any element passes the predicate check,
+ *  else `false`.
+ */
+
+function arraySome(array, predicate) {
+  var index = -1,
+      length = array ? array.length : 0;
+
+  while (++index < length) {
+    if (predicate(array[index], index, array)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+/**
+ * The base implementation of `_.findIndex` and `_.findLastIndex` without
+ * support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {Function} predicate The function invoked per iteration.
+ * @param {number} fromIndex The index to search from.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+
+
+function baseFindIndex(array, predicate, fromIndex, fromRight) {
+  var length = array.length,
+      index = fromIndex + (fromRight ? 1 : -1);
+
+  while (fromRight ? index-- : ++index < length) {
+    if (predicate(array[index], index, array)) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+/**
+ * The base implementation of `_.property` without support for deep paths.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ */
+
+
+function baseProperty(key) {
+  return function (object) {
+    return object == null ? undefined : object[key];
+  };
+}
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+
+
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+
+  return result;
+}
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+
+
+function baseUnary(func) {
+  return function (value) {
+    return func(value);
+  };
+}
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+
+
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+/**
+ * Checks if `value` is a host object in IE < 9.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
+ */
+
+
+function isHostObject(value) {
+  // Many host objects are `Object` objects that can coerce to strings
+  // despite having improperly defined `toString` methods.
+  var result = false;
+
+  if (value != null && typeof value.toString != 'function') {
+    try {
+      result = !!(value + '');
+    } catch (e) {}
+  }
+
+  return result;
+}
+/**
+ * Converts `map` to its key-value pairs.
+ *
+ * @private
+ * @param {Object} map The map to convert.
+ * @returns {Array} Returns the key-value pairs.
+ */
+
+
+function mapToArray(map) {
+  var index = -1,
+      result = Array(map.size);
+  map.forEach(function (value, key) {
+    result[++index] = [key, value];
+  });
+  return result;
+}
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+
+
+function overArg(func, transform) {
+  return function (arg) {
+    return func(transform(arg));
+  };
+}
+/**
+ * Converts `set` to an array of its values.
+ *
+ * @private
+ * @param {Object} set The set to convert.
+ * @returns {Array} Returns the values.
+ */
+
+
+function setToArray(set) {
+  var index = -1,
+      result = Array(set.size);
+  set.forEach(function (value) {
+    result[++index] = value;
+  });
+  return result;
+}
+/** Used for built-in method references. */
+
+
+var arrayProto = Array.prototype,
+    funcProto = Function.prototype,
+    objectProto = Object.prototype;
+/** Used to detect overreaching core-js shims. */
+
+var coreJsData = root['__core-js_shared__'];
+/** Used to detect methods masquerading as native. */
+
+var maskSrcKey = function () {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? 'Symbol(src)_1.' + uid : '';
+}();
+/** Used to resolve the decompiled source of functions. */
+
+
+var funcToString = funcProto.toString;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty = objectProto.hasOwnProperty;
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+
+var objectToString = objectProto.toString;
+/** Used to detect if a method is native. */
+
+var reIsNative = RegExp('^' + funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+/** Built-in value references. */
+
+var Symbol = root.Symbol,
+    Uint8Array = root.Uint8Array,
+    propertyIsEnumerable = objectProto.propertyIsEnumerable,
+    splice = arrayProto.splice;
+/* Built-in method references for those with the same name as other `lodash` methods. */
+
+var nativeKeys = overArg(Object.keys, Object),
+    nativeMax = Math.max;
+/* Built-in method references that are verified to be native. */
+
+var DataView = getNative(root, 'DataView'),
+    Map = getNative(root, 'Map'),
+    Promise = getNative(root, 'Promise'),
+    Set = getNative(root, 'Set'),
+    WeakMap = getNative(root, 'WeakMap'),
+    nativeCreate = getNative(Object, 'create');
+/** Used to detect maps, sets, and weakmaps. */
+
+var dataViewCtorString = toSource(DataView),
+    mapCtorString = toSource(Map),
+    promiseCtorString = toSource(Promise),
+    setCtorString = toSource(Set),
+    weakMapCtorString = toSource(WeakMap);
+/** Used to convert symbols to primitives and strings. */
+
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolValueOf = symbolProto ? symbolProto.valueOf : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+
+function Hash(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+
+
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+}
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+
+
+function hashDelete(key) {
+  return this.has(key) && delete this.__data__[key];
+}
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+
+
+function hashGet(key) {
+  var data = this.__data__;
+
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+
+
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
+}
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+
+
+function hashSet(key, value) {
+  var data = this.__data__;
+  data[key] = nativeCreate && value === undefined ? HASH_UNDEFINED : value;
+  return this;
+} // Add methods to `Hash`.
+
+
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+
+function ListCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+
+
+function listCacheClear() {
+  this.__data__ = [];
+}
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+
+
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+
+  var lastIndex = data.length - 1;
+
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+
+  return true;
+}
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+
+
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+  return index < 0 ? undefined : data[index][1];
+}
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+
+
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+
+
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+
+  return this;
+} // Add methods to `ListCache`.
+
+
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+
+function MapCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+
+
+function mapCacheClear() {
+  this.__data__ = {
+    'hash': new Hash(),
+    'map': new (Map || ListCache)(),
+    'string': new Hash()
+  };
+}
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+
+
+function mapCacheDelete(key) {
+  return getMapData(this, key)['delete'](key);
+}
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+
+
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+
+
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+
+
+function mapCacheSet(key, value) {
+  getMapData(this, key).set(key, value);
+  return this;
+} // Add methods to `MapCache`.
+
+
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+/**
+ *
+ * Creates an array cache object to store unique values.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [values] The values to cache.
+ */
+
+function SetCache(values) {
+  var index = -1,
+      length = values ? values.length : 0;
+  this.__data__ = new MapCache();
+
+  while (++index < length) {
+    this.add(values[index]);
+  }
+}
+/**
+ * Adds `value` to the array cache.
+ *
+ * @private
+ * @name add
+ * @memberOf SetCache
+ * @alias push
+ * @param {*} value The value to cache.
+ * @returns {Object} Returns the cache instance.
+ */
+
+
+function setCacheAdd(value) {
+  this.__data__.set(value, HASH_UNDEFINED);
+
+  return this;
+}
+/**
+ * Checks if `value` is in the array cache.
+ *
+ * @private
+ * @name has
+ * @memberOf SetCache
+ * @param {*} value The value to search for.
+ * @returns {number} Returns `true` if `value` is found, else `false`.
+ */
+
+
+function setCacheHas(value) {
+  return this.__data__.has(value);
+} // Add methods to `SetCache`.
+
+
+SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+SetCache.prototype.has = setCacheHas;
+/**
+ * Creates a stack cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+
+function Stack(entries) {
+  this.__data__ = new ListCache(entries);
+}
+/**
+ * Removes all key-value entries from the stack.
+ *
+ * @private
+ * @name clear
+ * @memberOf Stack
+ */
+
+
+function stackClear() {
+  this.__data__ = new ListCache();
+}
+/**
+ * Removes `key` and its value from the stack.
+ *
+ * @private
+ * @name delete
+ * @memberOf Stack
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+
+
+function stackDelete(key) {
+  return this.__data__['delete'](key);
+}
+/**
+ * Gets the stack value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Stack
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+
+
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+/**
+ * Checks if a stack value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Stack
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+
+
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+/**
+ * Sets the stack `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Stack
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the stack cache instance.
+ */
+
+
+function stackSet(key, value) {
+  var cache = this.__data__;
+
+  if (cache instanceof ListCache) {
+    var pairs = cache.__data__;
+
+    if (!Map || pairs.length < LARGE_ARRAY_SIZE - 1) {
+      pairs.push([key, value]);
+      return this;
+    }
+
+    cache = this.__data__ = new MapCache(pairs);
+  }
+
+  cache.set(key, value);
+  return this;
+} // Add methods to `Stack`.
+
+
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+
+function arrayLikeKeys(value, inherited) {
+  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+  // Safari 9 makes `arguments.length` enumerable in strict mode.
+  var result = isArray(value) || isArguments(value) ? baseTimes(value.length, String) : [];
+  var length = result.length,
+      skipIndexes = !!length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
+      result.push(key);
+    }
+  }
+
+  return result;
+}
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+
+
+function assocIndexOf(array, key) {
+  var length = array.length;
+
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+
+  return -1;
+}
+/**
+ * The base implementation of `_.get` without support for default values.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @returns {*} Returns the resolved value.
+ */
+
+
+function baseGet(object, path) {
+  path = isKey(path, object) ? [path] : castPath(path);
+  var index = 0,
+      length = path.length;
+
+  while (object != null && index < length) {
+    object = object[toKey(path[index++])];
+  }
+
+  return index && index == length ? object : undefined;
+}
+/**
+ * The base implementation of `getTag`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+
+
+function baseGetTag(value) {
+  return objectToString.call(value);
+}
+/**
+ * The base implementation of `_.hasIn` without support for deep paths.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {Array|string} key The key to check.
+ * @returns {boolean} Returns `true` if `key` exists, else `false`.
+ */
+
+
+function baseHasIn(object, key) {
+  return object != null && key in Object(object);
+}
+/**
+ * The base implementation of `_.isEqual` which supports partial comparisons
+ * and tracks traversed objects.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @param {boolean} [bitmask] The bitmask of comparison flags.
+ *  The bitmask may be composed of the following flags:
+ *     1 - Unordered comparison
+ *     2 - Partial comparison
+ * @param {Object} [stack] Tracks traversed `value` and `other` objects.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ */
+
+
+function baseIsEqual(value, other, customizer, bitmask, stack) {
+  if (value === other) {
+    return true;
+  }
+
+  if (value == null || other == null || !isObject(value) && !isObjectLike(other)) {
+    return value !== value && other !== other;
+  }
+
+  return baseIsEqualDeep(value, other, baseIsEqual, customizer, bitmask, stack);
+}
+/**
+ * A specialized version of `baseIsEqual` for arrays and objects which performs
+ * deep comparisons and tracks traversed objects enabling objects with circular
+ * references to be compared.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @param {number} [bitmask] The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} [stack] Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+
+
+function baseIsEqualDeep(object, other, equalFunc, customizer, bitmask, stack) {
+  var objIsArr = isArray(object),
+      othIsArr = isArray(other),
+      objTag = arrayTag,
+      othTag = arrayTag;
+
+  if (!objIsArr) {
+    objTag = getTag(object);
+    objTag = objTag == argsTag ? objectTag : objTag;
+  }
+
+  if (!othIsArr) {
+    othTag = getTag(other);
+    othTag = othTag == argsTag ? objectTag : othTag;
+  }
+
+  var objIsObj = objTag == objectTag && !isHostObject(object),
+      othIsObj = othTag == objectTag && !isHostObject(other),
+      isSameTag = objTag == othTag;
+
+  if (isSameTag && !objIsObj) {
+    stack || (stack = new Stack());
+    return objIsArr || isTypedArray(object) ? equalArrays(object, other, equalFunc, customizer, bitmask, stack) : equalByTag(object, other, objTag, equalFunc, customizer, bitmask, stack);
+  }
+
+  if (!(bitmask & PARTIAL_COMPARE_FLAG)) {
+    var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+
+    if (objIsWrapped || othIsWrapped) {
+      var objUnwrapped = objIsWrapped ? object.value() : object,
+          othUnwrapped = othIsWrapped ? other.value() : other;
+      stack || (stack = new Stack());
+      return equalFunc(objUnwrapped, othUnwrapped, customizer, bitmask, stack);
+    }
+  }
+
+  if (!isSameTag) {
+    return false;
+  }
+
+  stack || (stack = new Stack());
+  return equalObjects(object, other, equalFunc, customizer, bitmask, stack);
+}
+/**
+ * The base implementation of `_.isMatch` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The object to inspect.
+ * @param {Object} source The object of property values to match.
+ * @param {Array} matchData The property names, values, and compare flags to match.
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+ */
+
+
+function baseIsMatch(object, source, matchData, customizer) {
+  var index = matchData.length,
+      length = index,
+      noCustomizer = !customizer;
+
+  if (object == null) {
+    return !length;
+  }
+
+  object = Object(object);
+
+  while (index--) {
+    var data = matchData[index];
+
+    if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
+      return false;
+    }
+  }
+
+  while (++index < length) {
+    data = matchData[index];
+    var key = data[0],
+        objValue = object[key],
+        srcValue = data[1];
+
+    if (noCustomizer && data[2]) {
+      if (objValue === undefined && !(key in object)) {
+        return false;
+      }
+    } else {
+      var stack = new Stack();
+
+      if (customizer) {
+        var result = customizer(objValue, srcValue, key, object, source, stack);
+      }
+
+      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, UNORDERED_COMPARE_FLAG | PARTIAL_COMPARE_FLAG, stack) : result)) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+
+
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+
+  var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+
+
+function baseIsTypedArray(value) {
+  return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objectToString.call(value)];
+}
+/**
+ * The base implementation of `_.iteratee`.
+ *
+ * @private
+ * @param {*} [value=_.identity] The value to convert to an iteratee.
+ * @returns {Function} Returns the iteratee.
+ */
+
+
+function baseIteratee(value) {
+  // Don't store the `typeof` result in a variable to avoid a JIT bug in Safari 9.
+  // See https://bugs.webkit.org/show_bug.cgi?id=156034 for more details.
+  if (typeof value == 'function') {
+    return value;
+  }
+
+  if (value == null) {
+    return identity;
+  }
+
+  if (typeof value == 'object') {
+    return isArray(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
+  }
+
+  return property(value);
+}
+/**
+ * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+
+
+function baseKeys(object) {
+  if (!isPrototype(object)) {
+    return nativeKeys(object);
+  }
+
+  var result = [];
+
+  for (var key in Object(object)) {
+    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+
+  return result;
+}
+/**
+ * The base implementation of `_.matches` which doesn't clone `source`.
+ *
+ * @private
+ * @param {Object} source The object of property values to match.
+ * @returns {Function} Returns the new spec function.
+ */
+
+
+function baseMatches(source) {
+  var matchData = getMatchData(source);
+
+  if (matchData.length == 1 && matchData[0][2]) {
+    return matchesStrictComparable(matchData[0][0], matchData[0][1]);
+  }
+
+  return function (object) {
+    return object === source || baseIsMatch(object, source, matchData);
+  };
+}
+/**
+ * The base implementation of `_.matchesProperty` which doesn't clone `srcValue`.
+ *
+ * @private
+ * @param {string} path The path of the property to get.
+ * @param {*} srcValue The value to match.
+ * @returns {Function} Returns the new spec function.
+ */
+
+
+function baseMatchesProperty(path, srcValue) {
+  if (isKey(path) && isStrictComparable(srcValue)) {
+    return matchesStrictComparable(toKey(path), srcValue);
+  }
+
+  return function (object) {
+    var objValue = get(object, path);
+    return objValue === undefined && objValue === srcValue ? hasIn(object, path) : baseIsEqual(srcValue, objValue, undefined, UNORDERED_COMPARE_FLAG | PARTIAL_COMPARE_FLAG);
+  };
+}
+/**
+ * A specialized version of `baseProperty` which supports deep paths.
+ *
+ * @private
+ * @param {Array|string} path The path of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ */
+
+
+function basePropertyDeep(path) {
+  return function (object) {
+    return baseGet(object, path);
+  };
+}
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+
+
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+
+  if (isSymbol(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+
+  var result = value + '';
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result;
+}
+/**
+ * Casts `value` to a path array if it's not one.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {Array} Returns the cast property path array.
+ */
+
+
+function castPath(value) {
+  return isArray(value) ? value : stringToPath(value);
+}
+/**
+ * Creates a `_.find` or `_.findLast` function.
+ *
+ * @private
+ * @param {Function} findIndexFunc The function to find the collection index.
+ * @returns {Function} Returns the new find function.
+ */
+
+
+function createFind(findIndexFunc) {
+  return function (collection, predicate, fromIndex) {
+    var iterable = Object(collection);
+
+    if (!isArrayLike(collection)) {
+      var iteratee = baseIteratee(predicate, 3);
+      collection = keys(collection);
+
+      predicate = function (key) {
+        return iteratee(iterable[key], key, iterable);
+      };
+    }
+
+    var index = findIndexFunc(collection, predicate, fromIndex);
+    return index > -1 ? iterable[iteratee ? collection[index] : index] : undefined;
+  };
+}
+/**
+ * A specialized version of `baseIsEqualDeep` for arrays with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Array} array The array to compare.
+ * @param {Array} other The other array to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} stack Tracks traversed `array` and `other` objects.
+ * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ */
+
+
+function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
+  var isPartial = bitmask & PARTIAL_COMPARE_FLAG,
+      arrLength = array.length,
+      othLength = other.length;
+
+  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+    return false;
+  } // Assume cyclic values are equal.
+
+
+  var stacked = stack.get(array);
+
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+
+  var index = -1,
+      result = true,
+      seen = bitmask & UNORDERED_COMPARE_FLAG ? new SetCache() : undefined;
+  stack.set(array, other);
+  stack.set(other, array); // Ignore non-index properties.
+
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index];
+
+    if (customizer) {
+      var compared = isPartial ? customizer(othValue, arrValue, index, other, array, stack) : customizer(arrValue, othValue, index, array, other, stack);
+    }
+
+    if (compared !== undefined) {
+      if (compared) {
+        continue;
+      }
+
+      result = false;
+      break;
+    } // Recursively compare arrays (susceptible to call stack limits).
+
+
+    if (seen) {
+      if (!arraySome(other, function (othValue, othIndex) {
+        if (!seen.has(othIndex) && (arrValue === othValue || equalFunc(arrValue, othValue, customizer, bitmask, stack))) {
+          return seen.add(othIndex);
+        }
+      })) {
+        result = false;
+        break;
+      }
+    } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, customizer, bitmask, stack))) {
+      result = false;
+      break;
+    }
+  }
+
+  stack['delete'](array);
+  stack['delete'](other);
+  return result;
+}
+/**
+ * A specialized version of `baseIsEqualDeep` for comparing objects of
+ * the same `toStringTag`.
+ *
+ * **Note:** This function only supports comparing values with tags of
+ * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {string} tag The `toStringTag` of the objects to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+
+
+function equalByTag(object, other, tag, equalFunc, customizer, bitmask, stack) {
+  switch (tag) {
+    case dataViewTag:
+      if (object.byteLength != other.byteLength || object.byteOffset != other.byteOffset) {
+        return false;
+      }
+
+      object = object.buffer;
+      other = other.buffer;
+
+    case arrayBufferTag:
+      if (object.byteLength != other.byteLength || !equalFunc(new Uint8Array(object), new Uint8Array(other))) {
+        return false;
+      }
+
+      return true;
+
+    case boolTag:
+    case dateTag:
+    case numberTag:
+      // Coerce booleans to `1` or `0` and dates to milliseconds.
+      // Invalid dates are coerced to `NaN`.
+      return eq(+object, +other);
+
+    case errorTag:
+      return object.name == other.name && object.message == other.message;
+
+    case regexpTag:
+    case stringTag:
+      // Coerce regexes to strings and treat strings, primitives and objects,
+      // as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
+      // for more details.
+      return object == other + '';
+
+    case mapTag:
+      var convert = mapToArray;
+
+    case setTag:
+      var isPartial = bitmask & PARTIAL_COMPARE_FLAG;
+      convert || (convert = setToArray);
+
+      if (object.size != other.size && !isPartial) {
+        return false;
+      } // Assume cyclic values are equal.
+
+
+      var stacked = stack.get(object);
+
+      if (stacked) {
+        return stacked == other;
+      }
+
+      bitmask |= UNORDERED_COMPARE_FLAG; // Recursively compare objects (susceptible to call stack limits).
+
+      stack.set(object, other);
+      var result = equalArrays(convert(object), convert(other), equalFunc, customizer, bitmask, stack);
+      stack['delete'](object);
+      return result;
+
+    case symbolTag:
+      if (symbolValueOf) {
+        return symbolValueOf.call(object) == symbolValueOf.call(other);
+      }
+
+  }
+
+  return false;
+}
+/**
+ * A specialized version of `baseIsEqualDeep` for objects with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+
+
+function equalObjects(object, other, equalFunc, customizer, bitmask, stack) {
+  var isPartial = bitmask & PARTIAL_COMPARE_FLAG,
+      objProps = keys(object),
+      objLength = objProps.length,
+      othProps = keys(other),
+      othLength = othProps.length;
+
+  if (objLength != othLength && !isPartial) {
+    return false;
+  }
+
+  var index = objLength;
+
+  while (index--) {
+    var key = objProps[index];
+
+    if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
+      return false;
+    }
+  } // Assume cyclic values are equal.
+
+
+  var stacked = stack.get(object);
+
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+
+  var result = true;
+  stack.set(object, other);
+  stack.set(other, object);
+  var skipCtor = isPartial;
+
+  while (++index < objLength) {
+    key = objProps[index];
+    var objValue = object[key],
+        othValue = other[key];
+
+    if (customizer) {
+      var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
+    } // Recursively compare objects (susceptible to call stack limits).
+
+
+    if (!(compared === undefined ? objValue === othValue || equalFunc(objValue, othValue, customizer, bitmask, stack) : compared)) {
+      result = false;
+      break;
+    }
+
+    skipCtor || (skipCtor = key == 'constructor');
+  }
+
+  if (result && !skipCtor) {
+    var objCtor = object.constructor,
+        othCtor = other.constructor; // Non `Object` object instances with different constructors are not equal.
+
+    if (objCtor != othCtor && 'constructor' in object && 'constructor' in other && !(typeof objCtor == 'function' && objCtor instanceof objCtor && typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+      result = false;
+    }
+  }
+
+  stack['delete'](object);
+  stack['delete'](other);
+  return result;
+}
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+
+
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key) ? data[typeof key == 'string' ? 'string' : 'hash'] : data.map;
+}
+/**
+ * Gets the property names, values, and compare flags of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the match data of `object`.
+ */
+
+
+function getMatchData(object) {
+  var result = keys(object),
+      length = result.length;
+
+  while (length--) {
+    var key = result[length],
+        value = object[key];
+    result[length] = [key, value, isStrictComparable(value)];
+  }
+
+  return result;
+}
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+
+
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+/**
+ * Gets the `toStringTag` of `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+
+
+var getTag = baseGetTag; // Fallback for data views, maps, sets, and weak maps in IE 11,
+// for data views in Edge < 14, and promises in Node.js.
+
+if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map && getTag(new Map()) != mapTag || Promise && getTag(Promise.resolve()) != promiseTag || Set && getTag(new Set()) != setTag || WeakMap && getTag(new WeakMap()) != weakMapTag) {
+  getTag = function (value) {
+    var result = objectToString.call(value),
+        Ctor = result == objectTag ? value.constructor : undefined,
+        ctorString = Ctor ? toSource(Ctor) : undefined;
+
+    if (ctorString) {
+      switch (ctorString) {
+        case dataViewCtorString:
+          return dataViewTag;
+
+        case mapCtorString:
+          return mapTag;
+
+        case promiseCtorString:
+          return promiseTag;
+
+        case setCtorString:
+          return setTag;
+
+        case weakMapCtorString:
+          return weakMapTag;
+      }
+    }
+
+    return result;
+  };
+}
+/**
+ * Checks if `path` exists on `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path to check.
+ * @param {Function} hasFunc The function to check properties.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ */
+
+
+function hasPath(object, path, hasFunc) {
+  path = isKey(path, object) ? [path] : castPath(path);
+  var result,
+      index = -1,
+      length = path.length;
+
+  while (++index < length) {
+    var key = toKey(path[index]);
+
+    if (!(result = object != null && hasFunc(object, key))) {
+      break;
+    }
+
+    object = object[key];
+  }
+
+  if (result) {
+    return result;
+  }
+
+  var length = object ? object.length : 0;
+  return !!length && isLength(length) && isIndex(key, length) && (isArray(object) || isArguments(object));
+}
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+
+
+function isIndex(value, length) {
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return !!length && (typeof value == 'number' || reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length;
+}
+/**
+ * Checks if `value` is a property name and not a property path.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+ */
+
+
+function isKey(value, object) {
+  if (isArray(value)) {
+    return false;
+  }
+
+  var type = typeof value;
+
+  if (type == 'number' || type == 'symbol' || type == 'boolean' || value == null || isSymbol(value)) {
+    return true;
+  }
+
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
+}
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+
+
+function isKeyable(value) {
+  var type = typeof value;
+  return type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean' ? value !== '__proto__' : value === null;
+}
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+
+
+function isMasked(func) {
+  return !!maskSrcKey && maskSrcKey in func;
+}
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+
+
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
+  return value === proto;
+}
+/**
+ * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` if suitable for strict
+ *  equality comparisons, else `false`.
+ */
+
+
+function isStrictComparable(value) {
+  return value === value && !isObject(value);
+}
+/**
+ * A specialized version of `matchesProperty` for source values suitable
+ * for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @param {*} srcValue The value to match.
+ * @returns {Function} Returns the new spec function.
+ */
+
+
+function matchesStrictComparable(key, srcValue) {
+  return function (object) {
+    if (object == null) {
+      return false;
+    }
+
+    return object[key] === srcValue && (srcValue !== undefined || key in Object(object));
+  };
+}
+/**
+ * Converts `string` to a property path array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the property path array.
+ */
+
+
+var stringToPath = memoize(function (string) {
+  string = toString(string);
+  var result = [];
+
+  if (reLeadingDot.test(string)) {
+    result.push('');
+  }
+
+  string.replace(rePropName, function (match, number, quote, string) {
+    result.push(quote ? string.replace(reEscapeChar, '$1') : number || match);
+  });
+  return result;
+});
+/**
+ * Converts `value` to a string key if it's not a string or symbol.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {string|symbol} Returns the key.
+ */
+
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol(value)) {
+    return value;
+  }
+
+  var result = value + '';
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result;
+}
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to process.
+ * @returns {string} Returns the source code.
+ */
+
+
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+
+    try {
+      return func + '';
+    } catch (e) {}
+  }
+
+  return '';
+}
+/**
+ * This method is like `_.find` except that it returns the index of the first
+ * element `predicate` returns truthy for instead of the element itself.
+ *
+ * @static
+ * @memberOf _
+ * @since 1.1.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {Function} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @param {number} [fromIndex=0] The index to search from.
+ * @returns {number} Returns the index of the found element, else `-1`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'active': false },
+ *   { 'user': 'fred',    'active': false },
+ *   { 'user': 'pebbles', 'active': true }
+ * ];
+ *
+ * _.findIndex(users, function(o) { return o.user == 'barney'; });
+ * // => 0
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.findIndex(users, { 'user': 'fred', 'active': false });
+ * // => 1
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.findIndex(users, ['active', false]);
+ * // => 0
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.findIndex(users, 'active');
+ * // => 2
+ */
+
+
+function findIndex(array, predicate, fromIndex) {
+  var length = array ? array.length : 0;
+
+  if (!length) {
+    return -1;
+  }
+
+  var index = fromIndex == null ? 0 : toInteger(fromIndex);
+
+  if (index < 0) {
+    index = nativeMax(length + index, 0);
+  }
+
+  return baseFindIndex(array, baseIteratee(predicate, 3), index);
+}
+/**
+ * Iterates over elements of `collection`, returning the first element
+ * `predicate` returns truthy for. The predicate is invoked with three
+ * arguments: (value, index|key, collection).
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to inspect.
+ * @param {Function} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @param {number} [fromIndex=0] The index to search from.
+ * @returns {*} Returns the matched element, else `undefined`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'age': 36, 'active': true },
+ *   { 'user': 'fred',    'age': 40, 'active': false },
+ *   { 'user': 'pebbles', 'age': 1,  'active': true }
+ * ];
+ *
+ * _.find(users, function(o) { return o.age < 40; });
+ * // => object for 'barney'
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.find(users, { 'age': 1, 'active': true });
+ * // => object for 'pebbles'
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.find(users, ['active', false]);
+ * // => object for 'fred'
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.find(users, 'active');
+ * // => object for 'barney'
+ */
+
+
+var find = createFind(findIndex);
+/**
+ * Creates a function that memoizes the result of `func`. If `resolver` is
+ * provided, it determines the cache key for storing the result based on the
+ * arguments provided to the memoized function. By default, the first argument
+ * provided to the memoized function is used as the map cache key. The `func`
+ * is invoked with the `this` binding of the memoized function.
+ *
+ * **Note:** The cache is exposed as the `cache` property on the memoized
+ * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ * constructor with one whose instances implement the
+ * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+ * method interface of `delete`, `get`, `has`, and `set`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to have its output memoized.
+ * @param {Function} [resolver] The function to resolve the cache key.
+ * @returns {Function} Returns the new memoized function.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': 2 };
+ * var other = { 'c': 3, 'd': 4 };
+ *
+ * var values = _.memoize(_.values);
+ * values(object);
+ * // => [1, 2]
+ *
+ * values(other);
+ * // => [3, 4]
+ *
+ * object.a = 2;
+ * values(object);
+ * // => [1, 2]
+ *
+ * // Modify the result cache.
+ * values.cache.set(object, ['a', 'b']);
+ * values(object);
+ * // => ['a', 'b']
+ *
+ * // Replace `_.memoize.Cache`.
+ * _.memoize.Cache = WeakMap;
+ */
+
+function memoize(func, resolver) {
+  if (typeof func != 'function' || resolver && typeof resolver != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+
+  var memoized = function () {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result);
+    return result;
+  };
+
+  memoized.cache = new (memoize.Cache || MapCache)();
+  return memoized;
+} // Assign cache to `_.memoize`.
+
+
+memoize.Cache = MapCache;
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+
+function eq(value, other) {
+  return value === other || value !== value && other !== other;
+}
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+
+
+function isArguments(value) {
+  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') && (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
+}
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+
+
+var isArray = Array.isArray;
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+/**
+ * This method is like `_.isArrayLike` except that it also checks if `value`
+ * is an object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array-like object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArrayLikeObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLikeObject(document.body.children);
+ * // => true
+ *
+ * _.isArrayLikeObject('abc');
+ * // => false
+ *
+ * _.isArrayLikeObject(_.noop);
+ * // => false
+ */
+
+
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+
+
+function isFunction(value) {
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 8-9 which returns 'object' for typed array and other constructors.
+  var tag = isObject(value) ? objectToString.call(value) : '';
+  return tag == funcTag || tag == genTag;
+}
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+
+
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+
+
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+
+
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+
+
+function isSymbol(value) {
+  return typeof value == 'symbol' || isObjectLike(value) && objectToString.call(value) == symbolTag;
+}
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+
+
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+/**
+ * Converts `value` to a finite number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.12.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {number} Returns the converted number.
+ * @example
+ *
+ * _.toFinite(3.2);
+ * // => 3.2
+ *
+ * _.toFinite(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toFinite(Infinity);
+ * // => 1.7976931348623157e+308
+ *
+ * _.toFinite('3.2');
+ * // => 3.2
+ */
+
+function toFinite(value) {
+  if (!value) {
+    return value === 0 ? value : 0;
+  }
+
+  value = toNumber(value);
+
+  if (value === INFINITY || value === -INFINITY) {
+    var sign = value < 0 ? -1 : 1;
+    return sign * MAX_INTEGER;
+  }
+
+  return value === value ? value : 0;
+}
+/**
+ * Converts `value` to an integer.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToInteger`](http://www.ecma-international.org/ecma-262/7.0/#sec-tointeger).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {number} Returns the converted integer.
+ * @example
+ *
+ * _.toInteger(3.2);
+ * // => 3
+ *
+ * _.toInteger(Number.MIN_VALUE);
+ * // => 0
+ *
+ * _.toInteger(Infinity);
+ * // => 1.7976931348623157e+308
+ *
+ * _.toInteger('3.2');
+ * // => 3
+ */
+
+
+function toInteger(value) {
+  var result = toFinite(value),
+      remainder = result % 1;
+  return result === result ? remainder ? result - remainder : result : 0;
+}
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+
+
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+
+  if (isSymbol(value)) {
+    return NAN;
+  }
+
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? other + '' : other;
+  }
+
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+}
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+
+
+function toString(value) {
+  return value == null ? '' : baseToString(value);
+}
+/**
+ * Gets the value at `path` of `object`. If the resolved value is
+ * `undefined`, the `defaultValue` is returned in its place.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.7.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+ * @returns {*} Returns the resolved value.
+ * @example
+ *
+ * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ *
+ * _.get(object, 'a[0].b.c');
+ * // => 3
+ *
+ * _.get(object, ['a', '0', 'b', 'c']);
+ * // => 3
+ *
+ * _.get(object, 'a.b.c', 'default');
+ * // => 'default'
+ */
+
+
+function get(object, path, defaultValue) {
+  var result = object == null ? undefined : baseGet(object, path);
+  return result === undefined ? defaultValue : result;
+}
+/**
+ * Checks if `path` is a direct or inherited property of `object`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path to check.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ * @example
+ *
+ * var object = _.create({ 'a': _.create({ 'b': 2 }) });
+ *
+ * _.hasIn(object, 'a');
+ * // => true
+ *
+ * _.hasIn(object, 'a.b');
+ * // => true
+ *
+ * _.hasIn(object, ['a', 'b']);
+ * // => true
+ *
+ * _.hasIn(object, 'b');
+ * // => false
+ */
+
+
+function hasIn(object, path) {
+  return object != null && hasPath(object, path, baseHasIn);
+}
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+
+
+function keys(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+}
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+
+
+function identity(value) {
+  return value;
+}
+/**
+ * Creates a function that returns the value at `path` of a given object.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {Array|string} path The path of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ * @example
+ *
+ * var objects = [
+ *   { 'a': { 'b': 2 } },
+ *   { 'a': { 'b': 1 } }
+ * ];
+ *
+ * _.map(objects, _.property('a.b'));
+ * // => [2, 1]
+ *
+ * _.map(_.sortBy(objects, _.property(['a', 'b'])), 'a.b');
+ * // => [1, 2]
+ */
+
+
+function property(path) {
+  return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
+}
+
+module.exports = find;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
@@ -10868,6 +18508,2537 @@ function isObject(value) {
 
 module.exports = isFunction;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/lodash.reject/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/lodash.reject/index.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global, module) {/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
+/** Used as the `TypeError` message for "Functions" methods. */
+
+var FUNC_ERROR_TEXT = 'Expected a function';
+/** Used to stand-in for `undefined` hash values. */
+
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+/** Used to compose bitmasks for comparison styles. */
+
+var UNORDERED_COMPARE_FLAG = 1,
+    PARTIAL_COMPARE_FLAG = 2;
+/** Used as references for various `Number` constants. */
+
+var INFINITY = 1 / 0,
+    MAX_SAFE_INTEGER = 9007199254740991;
+/** `Object#toString` result references. */
+
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    promiseTag = '[object Promise]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]',
+    weakMapTag = '[object WeakMap]';
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+/** Used to match property names within property paths. */
+
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+    reIsPlainProp = /^\w*$/,
+    reLeadingDot = /^\./,
+    rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+/** Used to match backslashes in property paths. */
+
+var reEscapeChar = /\\(\\)?/g;
+/** Used to detect host constructors (Safari). */
+
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+/** Used to detect unsigned integer values. */
+
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+/** Used to identify `toStringTag` values of typed arrays. */
+
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayTags[dataViewTag] = typedArrayTags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+/** Detect free variable `global` from Node.js. */
+
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+/** Detect free variable `self`. */
+
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+/** Used as a reference to the global object. */
+
+var root = freeGlobal || freeSelf || Function('return this')();
+/** Detect free variable `exports`. */
+
+var freeExports =  true && exports && !exports.nodeType && exports;
+/** Detect free variable `module`. */
+
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+/** Detect the popular CommonJS extension `module.exports`. */
+
+var moduleExports = freeModule && freeModule.exports === freeExports;
+/** Detect free variable `process` from Node.js. */
+
+var freeProcess = moduleExports && freeGlobal.process;
+/** Used to access faster Node.js helpers. */
+
+var nodeUtil = function () {
+  try {
+    return freeProcess && freeProcess.binding('util');
+  } catch (e) {}
+}();
+/* Node.js helper references. */
+
+
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+/**
+ * A specialized version of `_.filter` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {Array} Returns the new filtered array.
+ */
+
+function arrayFilter(array, predicate) {
+  var index = -1,
+      length = array ? array.length : 0,
+      resIndex = 0,
+      result = [];
+
+  while (++index < length) {
+    var value = array[index];
+
+    if (predicate(value, index, array)) {
+      result[resIndex++] = value;
+    }
+  }
+
+  return result;
+}
+/**
+ * A specialized version of `_.some` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {boolean} Returns `true` if any element passes the predicate check,
+ *  else `false`.
+ */
+
+
+function arraySome(array, predicate) {
+  var index = -1,
+      length = array ? array.length : 0;
+
+  while (++index < length) {
+    if (predicate(array[index], index, array)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+/**
+ * The base implementation of `_.property` without support for deep paths.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ */
+
+
+function baseProperty(key) {
+  return function (object) {
+    return object == null ? undefined : object[key];
+  };
+}
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+
+
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+
+  return result;
+}
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+
+
+function baseUnary(func) {
+  return function (value) {
+    return func(value);
+  };
+}
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+
+
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+/**
+ * Checks if `value` is a host object in IE < 9.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
+ */
+
+
+function isHostObject(value) {
+  // Many host objects are `Object` objects that can coerce to strings
+  // despite having improperly defined `toString` methods.
+  var result = false;
+
+  if (value != null && typeof value.toString != 'function') {
+    try {
+      result = !!(value + '');
+    } catch (e) {}
+  }
+
+  return result;
+}
+/**
+ * Converts `map` to its key-value pairs.
+ *
+ * @private
+ * @param {Object} map The map to convert.
+ * @returns {Array} Returns the key-value pairs.
+ */
+
+
+function mapToArray(map) {
+  var index = -1,
+      result = Array(map.size);
+  map.forEach(function (value, key) {
+    result[++index] = [key, value];
+  });
+  return result;
+}
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+
+
+function overArg(func, transform) {
+  return function (arg) {
+    return func(transform(arg));
+  };
+}
+/**
+ * Converts `set` to an array of its values.
+ *
+ * @private
+ * @param {Object} set The set to convert.
+ * @returns {Array} Returns the values.
+ */
+
+
+function setToArray(set) {
+  var index = -1,
+      result = Array(set.size);
+  set.forEach(function (value) {
+    result[++index] = value;
+  });
+  return result;
+}
+/** Used for built-in method references. */
+
+
+var arrayProto = Array.prototype,
+    funcProto = Function.prototype,
+    objectProto = Object.prototype;
+/** Used to detect overreaching core-js shims. */
+
+var coreJsData = root['__core-js_shared__'];
+/** Used to detect methods masquerading as native. */
+
+var maskSrcKey = function () {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? 'Symbol(src)_1.' + uid : '';
+}();
+/** Used to resolve the decompiled source of functions. */
+
+
+var funcToString = funcProto.toString;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty = objectProto.hasOwnProperty;
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+
+var objectToString = objectProto.toString;
+/** Used to detect if a method is native. */
+
+var reIsNative = RegExp('^' + funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+/** Built-in value references. */
+
+var Symbol = root.Symbol,
+    Uint8Array = root.Uint8Array,
+    propertyIsEnumerable = objectProto.propertyIsEnumerable,
+    splice = arrayProto.splice;
+/* Built-in method references for those with the same name as other `lodash` methods. */
+
+var nativeKeys = overArg(Object.keys, Object);
+/* Built-in method references that are verified to be native. */
+
+var DataView = getNative(root, 'DataView'),
+    Map = getNative(root, 'Map'),
+    Promise = getNative(root, 'Promise'),
+    Set = getNative(root, 'Set'),
+    WeakMap = getNative(root, 'WeakMap'),
+    nativeCreate = getNative(Object, 'create');
+/** Used to detect maps, sets, and weakmaps. */
+
+var dataViewCtorString = toSource(DataView),
+    mapCtorString = toSource(Map),
+    promiseCtorString = toSource(Promise),
+    setCtorString = toSource(Set),
+    weakMapCtorString = toSource(WeakMap);
+/** Used to convert symbols to primitives and strings. */
+
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolValueOf = symbolProto ? symbolProto.valueOf : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+
+function Hash(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+
+
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+}
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+
+
+function hashDelete(key) {
+  return this.has(key) && delete this.__data__[key];
+}
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+
+
+function hashGet(key) {
+  var data = this.__data__;
+
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+
+
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
+}
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+
+
+function hashSet(key, value) {
+  var data = this.__data__;
+  data[key] = nativeCreate && value === undefined ? HASH_UNDEFINED : value;
+  return this;
+} // Add methods to `Hash`.
+
+
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+
+function ListCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+
+
+function listCacheClear() {
+  this.__data__ = [];
+}
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+
+
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+
+  var lastIndex = data.length - 1;
+
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+
+  return true;
+}
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+
+
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+  return index < 0 ? undefined : data[index][1];
+}
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+
+
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+
+
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+
+  return this;
+} // Add methods to `ListCache`.
+
+
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+
+function MapCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+  this.clear();
+
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+
+
+function mapCacheClear() {
+  this.__data__ = {
+    'hash': new Hash(),
+    'map': new (Map || ListCache)(),
+    'string': new Hash()
+  };
+}
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+
+
+function mapCacheDelete(key) {
+  return getMapData(this, key)['delete'](key);
+}
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+
+
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+
+
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+
+
+function mapCacheSet(key, value) {
+  getMapData(this, key).set(key, value);
+  return this;
+} // Add methods to `MapCache`.
+
+
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+/**
+ *
+ * Creates an array cache object to store unique values.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [values] The values to cache.
+ */
+
+function SetCache(values) {
+  var index = -1,
+      length = values ? values.length : 0;
+  this.__data__ = new MapCache();
+
+  while (++index < length) {
+    this.add(values[index]);
+  }
+}
+/**
+ * Adds `value` to the array cache.
+ *
+ * @private
+ * @name add
+ * @memberOf SetCache
+ * @alias push
+ * @param {*} value The value to cache.
+ * @returns {Object} Returns the cache instance.
+ */
+
+
+function setCacheAdd(value) {
+  this.__data__.set(value, HASH_UNDEFINED);
+
+  return this;
+}
+/**
+ * Checks if `value` is in the array cache.
+ *
+ * @private
+ * @name has
+ * @memberOf SetCache
+ * @param {*} value The value to search for.
+ * @returns {number} Returns `true` if `value` is found, else `false`.
+ */
+
+
+function setCacheHas(value) {
+  return this.__data__.has(value);
+} // Add methods to `SetCache`.
+
+
+SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+SetCache.prototype.has = setCacheHas;
+/**
+ * Creates a stack cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+
+function Stack(entries) {
+  this.__data__ = new ListCache(entries);
+}
+/**
+ * Removes all key-value entries from the stack.
+ *
+ * @private
+ * @name clear
+ * @memberOf Stack
+ */
+
+
+function stackClear() {
+  this.__data__ = new ListCache();
+}
+/**
+ * Removes `key` and its value from the stack.
+ *
+ * @private
+ * @name delete
+ * @memberOf Stack
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+
+
+function stackDelete(key) {
+  return this.__data__['delete'](key);
+}
+/**
+ * Gets the stack value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Stack
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+
+
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+/**
+ * Checks if a stack value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Stack
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+
+
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+/**
+ * Sets the stack `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Stack
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the stack cache instance.
+ */
+
+
+function stackSet(key, value) {
+  var cache = this.__data__;
+
+  if (cache instanceof ListCache) {
+    var pairs = cache.__data__;
+
+    if (!Map || pairs.length < LARGE_ARRAY_SIZE - 1) {
+      pairs.push([key, value]);
+      return this;
+    }
+
+    cache = this.__data__ = new MapCache(pairs);
+  }
+
+  cache.set(key, value);
+  return this;
+} // Add methods to `Stack`.
+
+
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+
+function arrayLikeKeys(value, inherited) {
+  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+  // Safari 9 makes `arguments.length` enumerable in strict mode.
+  var result = isArray(value) || isArguments(value) ? baseTimes(value.length, String) : [];
+  var length = result.length,
+      skipIndexes = !!length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
+      result.push(key);
+    }
+  }
+
+  return result;
+}
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+
+
+function assocIndexOf(array, key) {
+  var length = array.length;
+
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+
+  return -1;
+}
+/**
+ * The base implementation of `_.forEach` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array|Object} Returns `collection`.
+ */
+
+
+var baseEach = createBaseEach(baseForOwn);
+/**
+ * The base implementation of `_.filter` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {Array} Returns the new filtered array.
+ */
+
+function baseFilter(collection, predicate) {
+  var result = [];
+  baseEach(collection, function (value, index, collection) {
+    if (predicate(value, index, collection)) {
+      result.push(value);
+    }
+  });
+  return result;
+}
+/**
+ * The base implementation of `baseForOwn` which iterates over `object`
+ * properties returned by `keysFunc` and invokes `iteratee` for each property.
+ * Iteratee functions may exit iteration early by explicitly returning `false`.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @returns {Object} Returns `object`.
+ */
+
+
+var baseFor = createBaseFor();
+/**
+ * The base implementation of `_.forOwn` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Object} Returns `object`.
+ */
+
+function baseForOwn(object, iteratee) {
+  return object && baseFor(object, iteratee, keys);
+}
+/**
+ * The base implementation of `_.get` without support for default values.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @returns {*} Returns the resolved value.
+ */
+
+
+function baseGet(object, path) {
+  path = isKey(path, object) ? [path] : castPath(path);
+  var index = 0,
+      length = path.length;
+
+  while (object != null && index < length) {
+    object = object[toKey(path[index++])];
+  }
+
+  return index && index == length ? object : undefined;
+}
+/**
+ * The base implementation of `getTag`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+
+
+function baseGetTag(value) {
+  return objectToString.call(value);
+}
+/**
+ * The base implementation of `_.hasIn` without support for deep paths.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {Array|string} key The key to check.
+ * @returns {boolean} Returns `true` if `key` exists, else `false`.
+ */
+
+
+function baseHasIn(object, key) {
+  return object != null && key in Object(object);
+}
+/**
+ * The base implementation of `_.isEqual` which supports partial comparisons
+ * and tracks traversed objects.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @param {boolean} [bitmask] The bitmask of comparison flags.
+ *  The bitmask may be composed of the following flags:
+ *     1 - Unordered comparison
+ *     2 - Partial comparison
+ * @param {Object} [stack] Tracks traversed `value` and `other` objects.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ */
+
+
+function baseIsEqual(value, other, customizer, bitmask, stack) {
+  if (value === other) {
+    return true;
+  }
+
+  if (value == null || other == null || !isObject(value) && !isObjectLike(other)) {
+    return value !== value && other !== other;
+  }
+
+  return baseIsEqualDeep(value, other, baseIsEqual, customizer, bitmask, stack);
+}
+/**
+ * A specialized version of `baseIsEqual` for arrays and objects which performs
+ * deep comparisons and tracks traversed objects enabling objects with circular
+ * references to be compared.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @param {number} [bitmask] The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} [stack] Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+
+
+function baseIsEqualDeep(object, other, equalFunc, customizer, bitmask, stack) {
+  var objIsArr = isArray(object),
+      othIsArr = isArray(other),
+      objTag = arrayTag,
+      othTag = arrayTag;
+
+  if (!objIsArr) {
+    objTag = getTag(object);
+    objTag = objTag == argsTag ? objectTag : objTag;
+  }
+
+  if (!othIsArr) {
+    othTag = getTag(other);
+    othTag = othTag == argsTag ? objectTag : othTag;
+  }
+
+  var objIsObj = objTag == objectTag && !isHostObject(object),
+      othIsObj = othTag == objectTag && !isHostObject(other),
+      isSameTag = objTag == othTag;
+
+  if (isSameTag && !objIsObj) {
+    stack || (stack = new Stack());
+    return objIsArr || isTypedArray(object) ? equalArrays(object, other, equalFunc, customizer, bitmask, stack) : equalByTag(object, other, objTag, equalFunc, customizer, bitmask, stack);
+  }
+
+  if (!(bitmask & PARTIAL_COMPARE_FLAG)) {
+    var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+
+    if (objIsWrapped || othIsWrapped) {
+      var objUnwrapped = objIsWrapped ? object.value() : object,
+          othUnwrapped = othIsWrapped ? other.value() : other;
+      stack || (stack = new Stack());
+      return equalFunc(objUnwrapped, othUnwrapped, customizer, bitmask, stack);
+    }
+  }
+
+  if (!isSameTag) {
+    return false;
+  }
+
+  stack || (stack = new Stack());
+  return equalObjects(object, other, equalFunc, customizer, bitmask, stack);
+}
+/**
+ * The base implementation of `_.isMatch` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The object to inspect.
+ * @param {Object} source The object of property values to match.
+ * @param {Array} matchData The property names, values, and compare flags to match.
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+ */
+
+
+function baseIsMatch(object, source, matchData, customizer) {
+  var index = matchData.length,
+      length = index,
+      noCustomizer = !customizer;
+
+  if (object == null) {
+    return !length;
+  }
+
+  object = Object(object);
+
+  while (index--) {
+    var data = matchData[index];
+
+    if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
+      return false;
+    }
+  }
+
+  while (++index < length) {
+    data = matchData[index];
+    var key = data[0],
+        objValue = object[key],
+        srcValue = data[1];
+
+    if (noCustomizer && data[2]) {
+      if (objValue === undefined && !(key in object)) {
+        return false;
+      }
+    } else {
+      var stack = new Stack();
+
+      if (customizer) {
+        var result = customizer(objValue, srcValue, key, object, source, stack);
+      }
+
+      if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, UNORDERED_COMPARE_FLAG | PARTIAL_COMPARE_FLAG, stack) : result)) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+
+
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+
+  var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+
+
+function baseIsTypedArray(value) {
+  return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objectToString.call(value)];
+}
+/**
+ * The base implementation of `_.iteratee`.
+ *
+ * @private
+ * @param {*} [value=_.identity] The value to convert to an iteratee.
+ * @returns {Function} Returns the iteratee.
+ */
+
+
+function baseIteratee(value) {
+  // Don't store the `typeof` result in a variable to avoid a JIT bug in Safari 9.
+  // See https://bugs.webkit.org/show_bug.cgi?id=156034 for more details.
+  if (typeof value == 'function') {
+    return value;
+  }
+
+  if (value == null) {
+    return identity;
+  }
+
+  if (typeof value == 'object') {
+    return isArray(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
+  }
+
+  return property(value);
+}
+/**
+ * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+
+
+function baseKeys(object) {
+  if (!isPrototype(object)) {
+    return nativeKeys(object);
+  }
+
+  var result = [];
+
+  for (var key in Object(object)) {
+    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+
+  return result;
+}
+/**
+ * The base implementation of `_.matches` which doesn't clone `source`.
+ *
+ * @private
+ * @param {Object} source The object of property values to match.
+ * @returns {Function} Returns the new spec function.
+ */
+
+
+function baseMatches(source) {
+  var matchData = getMatchData(source);
+
+  if (matchData.length == 1 && matchData[0][2]) {
+    return matchesStrictComparable(matchData[0][0], matchData[0][1]);
+  }
+
+  return function (object) {
+    return object === source || baseIsMatch(object, source, matchData);
+  };
+}
+/**
+ * The base implementation of `_.matchesProperty` which doesn't clone `srcValue`.
+ *
+ * @private
+ * @param {string} path The path of the property to get.
+ * @param {*} srcValue The value to match.
+ * @returns {Function} Returns the new spec function.
+ */
+
+
+function baseMatchesProperty(path, srcValue) {
+  if (isKey(path) && isStrictComparable(srcValue)) {
+    return matchesStrictComparable(toKey(path), srcValue);
+  }
+
+  return function (object) {
+    var objValue = get(object, path);
+    return objValue === undefined && objValue === srcValue ? hasIn(object, path) : baseIsEqual(srcValue, objValue, undefined, UNORDERED_COMPARE_FLAG | PARTIAL_COMPARE_FLAG);
+  };
+}
+/**
+ * A specialized version of `baseProperty` which supports deep paths.
+ *
+ * @private
+ * @param {Array|string} path The path of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ */
+
+
+function basePropertyDeep(path) {
+  return function (object) {
+    return baseGet(object, path);
+  };
+}
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+
+
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+
+  if (isSymbol(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+
+  var result = value + '';
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result;
+}
+/**
+ * Casts `value` to a path array if it's not one.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {Array} Returns the cast property path array.
+ */
+
+
+function castPath(value) {
+  return isArray(value) ? value : stringToPath(value);
+}
+/**
+ * Creates a `baseEach` or `baseEachRight` function.
+ *
+ * @private
+ * @param {Function} eachFunc The function to iterate over a collection.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+
+
+function createBaseEach(eachFunc, fromRight) {
+  return function (collection, iteratee) {
+    if (collection == null) {
+      return collection;
+    }
+
+    if (!isArrayLike(collection)) {
+      return eachFunc(collection, iteratee);
+    }
+
+    var length = collection.length,
+        index = fromRight ? length : -1,
+        iterable = Object(collection);
+
+    while (fromRight ? index-- : ++index < length) {
+      if (iteratee(iterable[index], index, iterable) === false) {
+        break;
+      }
+    }
+
+    return collection;
+  };
+}
+/**
+ * Creates a base function for methods like `_.forIn` and `_.forOwn`.
+ *
+ * @private
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {Function} Returns the new base function.
+ */
+
+
+function createBaseFor(fromRight) {
+  return function (object, iteratee, keysFunc) {
+    var index = -1,
+        iterable = Object(object),
+        props = keysFunc(object),
+        length = props.length;
+
+    while (length--) {
+      var key = props[fromRight ? length : ++index];
+
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+
+    return object;
+  };
+}
+/**
+ * A specialized version of `baseIsEqualDeep` for arrays with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Array} array The array to compare.
+ * @param {Array} other The other array to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} stack Tracks traversed `array` and `other` objects.
+ * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ */
+
+
+function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
+  var isPartial = bitmask & PARTIAL_COMPARE_FLAG,
+      arrLength = array.length,
+      othLength = other.length;
+
+  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+    return false;
+  } // Assume cyclic values are equal.
+
+
+  var stacked = stack.get(array);
+
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+
+  var index = -1,
+      result = true,
+      seen = bitmask & UNORDERED_COMPARE_FLAG ? new SetCache() : undefined;
+  stack.set(array, other);
+  stack.set(other, array); // Ignore non-index properties.
+
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index];
+
+    if (customizer) {
+      var compared = isPartial ? customizer(othValue, arrValue, index, other, array, stack) : customizer(arrValue, othValue, index, array, other, stack);
+    }
+
+    if (compared !== undefined) {
+      if (compared) {
+        continue;
+      }
+
+      result = false;
+      break;
+    } // Recursively compare arrays (susceptible to call stack limits).
+
+
+    if (seen) {
+      if (!arraySome(other, function (othValue, othIndex) {
+        if (!seen.has(othIndex) && (arrValue === othValue || equalFunc(arrValue, othValue, customizer, bitmask, stack))) {
+          return seen.add(othIndex);
+        }
+      })) {
+        result = false;
+        break;
+      }
+    } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, customizer, bitmask, stack))) {
+      result = false;
+      break;
+    }
+  }
+
+  stack['delete'](array);
+  stack['delete'](other);
+  return result;
+}
+/**
+ * A specialized version of `baseIsEqualDeep` for comparing objects of
+ * the same `toStringTag`.
+ *
+ * **Note:** This function only supports comparing values with tags of
+ * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {string} tag The `toStringTag` of the objects to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+
+
+function equalByTag(object, other, tag, equalFunc, customizer, bitmask, stack) {
+  switch (tag) {
+    case dataViewTag:
+      if (object.byteLength != other.byteLength || object.byteOffset != other.byteOffset) {
+        return false;
+      }
+
+      object = object.buffer;
+      other = other.buffer;
+
+    case arrayBufferTag:
+      if (object.byteLength != other.byteLength || !equalFunc(new Uint8Array(object), new Uint8Array(other))) {
+        return false;
+      }
+
+      return true;
+
+    case boolTag:
+    case dateTag:
+    case numberTag:
+      // Coerce booleans to `1` or `0` and dates to milliseconds.
+      // Invalid dates are coerced to `NaN`.
+      return eq(+object, +other);
+
+    case errorTag:
+      return object.name == other.name && object.message == other.message;
+
+    case regexpTag:
+    case stringTag:
+      // Coerce regexes to strings and treat strings, primitives and objects,
+      // as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
+      // for more details.
+      return object == other + '';
+
+    case mapTag:
+      var convert = mapToArray;
+
+    case setTag:
+      var isPartial = bitmask & PARTIAL_COMPARE_FLAG;
+      convert || (convert = setToArray);
+
+      if (object.size != other.size && !isPartial) {
+        return false;
+      } // Assume cyclic values are equal.
+
+
+      var stacked = stack.get(object);
+
+      if (stacked) {
+        return stacked == other;
+      }
+
+      bitmask |= UNORDERED_COMPARE_FLAG; // Recursively compare objects (susceptible to call stack limits).
+
+      stack.set(object, other);
+      var result = equalArrays(convert(object), convert(other), equalFunc, customizer, bitmask, stack);
+      stack['delete'](object);
+      return result;
+
+    case symbolTag:
+      if (symbolValueOf) {
+        return symbolValueOf.call(object) == symbolValueOf.call(other);
+      }
+
+  }
+
+  return false;
+}
+/**
+ * A specialized version of `baseIsEqualDeep` for objects with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+
+
+function equalObjects(object, other, equalFunc, customizer, bitmask, stack) {
+  var isPartial = bitmask & PARTIAL_COMPARE_FLAG,
+      objProps = keys(object),
+      objLength = objProps.length,
+      othProps = keys(other),
+      othLength = othProps.length;
+
+  if (objLength != othLength && !isPartial) {
+    return false;
+  }
+
+  var index = objLength;
+
+  while (index--) {
+    var key = objProps[index];
+
+    if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
+      return false;
+    }
+  } // Assume cyclic values are equal.
+
+
+  var stacked = stack.get(object);
+
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+
+  var result = true;
+  stack.set(object, other);
+  stack.set(other, object);
+  var skipCtor = isPartial;
+
+  while (++index < objLength) {
+    key = objProps[index];
+    var objValue = object[key],
+        othValue = other[key];
+
+    if (customizer) {
+      var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
+    } // Recursively compare objects (susceptible to call stack limits).
+
+
+    if (!(compared === undefined ? objValue === othValue || equalFunc(objValue, othValue, customizer, bitmask, stack) : compared)) {
+      result = false;
+      break;
+    }
+
+    skipCtor || (skipCtor = key == 'constructor');
+  }
+
+  if (result && !skipCtor) {
+    var objCtor = object.constructor,
+        othCtor = other.constructor; // Non `Object` object instances with different constructors are not equal.
+
+    if (objCtor != othCtor && 'constructor' in object && 'constructor' in other && !(typeof objCtor == 'function' && objCtor instanceof objCtor && typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+      result = false;
+    }
+  }
+
+  stack['delete'](object);
+  stack['delete'](other);
+  return result;
+}
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+
+
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key) ? data[typeof key == 'string' ? 'string' : 'hash'] : data.map;
+}
+/**
+ * Gets the property names, values, and compare flags of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the match data of `object`.
+ */
+
+
+function getMatchData(object) {
+  var result = keys(object),
+      length = result.length;
+
+  while (length--) {
+    var key = result[length],
+        value = object[key];
+    result[length] = [key, value, isStrictComparable(value)];
+  }
+
+  return result;
+}
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+
+
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+/**
+ * Gets the `toStringTag` of `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+
+
+var getTag = baseGetTag; // Fallback for data views, maps, sets, and weak maps in IE 11,
+// for data views in Edge < 14, and promises in Node.js.
+
+if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map && getTag(new Map()) != mapTag || Promise && getTag(Promise.resolve()) != promiseTag || Set && getTag(new Set()) != setTag || WeakMap && getTag(new WeakMap()) != weakMapTag) {
+  getTag = function (value) {
+    var result = objectToString.call(value),
+        Ctor = result == objectTag ? value.constructor : undefined,
+        ctorString = Ctor ? toSource(Ctor) : undefined;
+
+    if (ctorString) {
+      switch (ctorString) {
+        case dataViewCtorString:
+          return dataViewTag;
+
+        case mapCtorString:
+          return mapTag;
+
+        case promiseCtorString:
+          return promiseTag;
+
+        case setCtorString:
+          return setTag;
+
+        case weakMapCtorString:
+          return weakMapTag;
+      }
+    }
+
+    return result;
+  };
+}
+/**
+ * Checks if `path` exists on `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path to check.
+ * @param {Function} hasFunc The function to check properties.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ */
+
+
+function hasPath(object, path, hasFunc) {
+  path = isKey(path, object) ? [path] : castPath(path);
+  var result,
+      index = -1,
+      length = path.length;
+
+  while (++index < length) {
+    var key = toKey(path[index]);
+
+    if (!(result = object != null && hasFunc(object, key))) {
+      break;
+    }
+
+    object = object[key];
+  }
+
+  if (result) {
+    return result;
+  }
+
+  var length = object ? object.length : 0;
+  return !!length && isLength(length) && isIndex(key, length) && (isArray(object) || isArguments(object));
+}
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+
+
+function isIndex(value, length) {
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return !!length && (typeof value == 'number' || reIsUint.test(value)) && value > -1 && value % 1 == 0 && value < length;
+}
+/**
+ * Checks if `value` is a property name and not a property path.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+ */
+
+
+function isKey(value, object) {
+  if (isArray(value)) {
+    return false;
+  }
+
+  var type = typeof value;
+
+  if (type == 'number' || type == 'symbol' || type == 'boolean' || value == null || isSymbol(value)) {
+    return true;
+  }
+
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
+}
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+
+
+function isKeyable(value) {
+  var type = typeof value;
+  return type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean' ? value !== '__proto__' : value === null;
+}
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+
+
+function isMasked(func) {
+  return !!maskSrcKey && maskSrcKey in func;
+}
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+
+
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
+  return value === proto;
+}
+/**
+ * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` if suitable for strict
+ *  equality comparisons, else `false`.
+ */
+
+
+function isStrictComparable(value) {
+  return value === value && !isObject(value);
+}
+/**
+ * A specialized version of `matchesProperty` for source values suitable
+ * for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @param {*} srcValue The value to match.
+ * @returns {Function} Returns the new spec function.
+ */
+
+
+function matchesStrictComparable(key, srcValue) {
+  return function (object) {
+    if (object == null) {
+      return false;
+    }
+
+    return object[key] === srcValue && (srcValue !== undefined || key in Object(object));
+  };
+}
+/**
+ * Converts `string` to a property path array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the property path array.
+ */
+
+
+var stringToPath = memoize(function (string) {
+  string = toString(string);
+  var result = [];
+
+  if (reLeadingDot.test(string)) {
+    result.push('');
+  }
+
+  string.replace(rePropName, function (match, number, quote, string) {
+    result.push(quote ? string.replace(reEscapeChar, '$1') : number || match);
+  });
+  return result;
+});
+/**
+ * Converts `value` to a string key if it's not a string or symbol.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {string|symbol} Returns the key.
+ */
+
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol(value)) {
+    return value;
+  }
+
+  var result = value + '';
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result;
+}
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to process.
+ * @returns {string} Returns the source code.
+ */
+
+
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+
+    try {
+      return func + '';
+    } catch (e) {}
+  }
+
+  return '';
+}
+/**
+ * The opposite of `_.filter`; this method returns the elements of `collection`
+ * that `predicate` does **not** return truthy for.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} [predicate=_.identity] The function invoked per iteration.
+ * @returns {Array} Returns the new filtered array.
+ * @see _.filter
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney', 'age': 36, 'active': false },
+ *   { 'user': 'fred',   'age': 40, 'active': true }
+ * ];
+ *
+ * _.reject(users, function(o) { return !o.active; });
+ * // => objects for ['fred']
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.reject(users, { 'age': 40, 'active': true });
+ * // => objects for ['barney']
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.reject(users, ['active', false]);
+ * // => objects for ['fred']
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.reject(users, 'active');
+ * // => objects for ['barney']
+ */
+
+
+function reject(collection, predicate) {
+  var func = isArray(collection) ? arrayFilter : baseFilter;
+  return func(collection, negate(baseIteratee(predicate, 3)));
+}
+/**
+ * Creates a function that memoizes the result of `func`. If `resolver` is
+ * provided, it determines the cache key for storing the result based on the
+ * arguments provided to the memoized function. By default, the first argument
+ * provided to the memoized function is used as the map cache key. The `func`
+ * is invoked with the `this` binding of the memoized function.
+ *
+ * **Note:** The cache is exposed as the `cache` property on the memoized
+ * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ * constructor with one whose instances implement the
+ * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+ * method interface of `delete`, `get`, `has`, and `set`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to have its output memoized.
+ * @param {Function} [resolver] The function to resolve the cache key.
+ * @returns {Function} Returns the new memoized function.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': 2 };
+ * var other = { 'c': 3, 'd': 4 };
+ *
+ * var values = _.memoize(_.values);
+ * values(object);
+ * // => [1, 2]
+ *
+ * values(other);
+ * // => [3, 4]
+ *
+ * object.a = 2;
+ * values(object);
+ * // => [1, 2]
+ *
+ * // Modify the result cache.
+ * values.cache.set(object, ['a', 'b']);
+ * values(object);
+ * // => ['a', 'b']
+ *
+ * // Replace `_.memoize.Cache`.
+ * _.memoize.Cache = WeakMap;
+ */
+
+
+function memoize(func, resolver) {
+  if (typeof func != 'function' || resolver && typeof resolver != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+
+  var memoized = function () {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result);
+    return result;
+  };
+
+  memoized.cache = new (memoize.Cache || MapCache)();
+  return memoized;
+} // Assign cache to `_.memoize`.
+
+
+memoize.Cache = MapCache;
+/**
+ * Creates a function that negates the result of the predicate `func`. The
+ * `func` predicate is invoked with the `this` binding and arguments of the
+ * created function.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Function
+ * @param {Function} predicate The predicate to negate.
+ * @returns {Function} Returns the new negated function.
+ * @example
+ *
+ * function isEven(n) {
+ *   return n % 2 == 0;
+ * }
+ *
+ * _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
+ * // => [1, 3, 5]
+ */
+
+function negate(predicate) {
+  if (typeof predicate != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+
+  return function () {
+    var args = arguments;
+
+    switch (args.length) {
+      case 0:
+        return !predicate.call(this);
+
+      case 1:
+        return !predicate.call(this, args[0]);
+
+      case 2:
+        return !predicate.call(this, args[0], args[1]);
+
+      case 3:
+        return !predicate.call(this, args[0], args[1], args[2]);
+    }
+
+    return !predicate.apply(this, args);
+  };
+}
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+
+
+function eq(value, other) {
+  return value === other || value !== value && other !== other;
+}
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+
+
+function isArguments(value) {
+  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') && (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
+}
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+
+
+var isArray = Array.isArray;
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+/**
+ * This method is like `_.isArrayLike` except that it also checks if `value`
+ * is an object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array-like object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArrayLikeObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLikeObject(document.body.children);
+ * // => true
+ *
+ * _.isArrayLikeObject('abc');
+ * // => false
+ *
+ * _.isArrayLikeObject(_.noop);
+ * // => false
+ */
+
+
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+
+
+function isFunction(value) {
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 8-9 which returns 'object' for typed array and other constructors.
+  var tag = isObject(value) ? objectToString.call(value) : '';
+  return tag == funcTag || tag == genTag;
+}
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+
+
+function isLength(value) {
+  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+
+
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+
+
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+
+
+function isSymbol(value) {
+  return typeof value == 'symbol' || isObjectLike(value) && objectToString.call(value) == symbolTag;
+}
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+
+
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+
+function toString(value) {
+  return value == null ? '' : baseToString(value);
+}
+/**
+ * Gets the value at `path` of `object`. If the resolved value is
+ * `undefined`, the `defaultValue` is returned in its place.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.7.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+ * @returns {*} Returns the resolved value.
+ * @example
+ *
+ * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ *
+ * _.get(object, 'a[0].b.c');
+ * // => 3
+ *
+ * _.get(object, ['a', '0', 'b', 'c']);
+ * // => 3
+ *
+ * _.get(object, 'a.b.c', 'default');
+ * // => 'default'
+ */
+
+
+function get(object, path, defaultValue) {
+  var result = object == null ? undefined : baseGet(object, path);
+  return result === undefined ? defaultValue : result;
+}
+/**
+ * Checks if `path` is a direct or inherited property of `object`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path to check.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ * @example
+ *
+ * var object = _.create({ 'a': _.create({ 'b': 2 }) });
+ *
+ * _.hasIn(object, 'a');
+ * // => true
+ *
+ * _.hasIn(object, 'a.b');
+ * // => true
+ *
+ * _.hasIn(object, ['a', 'b']);
+ * // => true
+ *
+ * _.hasIn(object, 'b');
+ * // => false
+ */
+
+
+function hasIn(object, path) {
+  return object != null && hasPath(object, path, baseHasIn);
+}
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+
+
+function keys(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+}
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+
+
+function identity(value) {
+  return value;
+}
+/**
+ * Creates a function that returns the value at `path` of a given object.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {Array|string} path The path of the property to get.
+ * @returns {Function} Returns the new accessor function.
+ * @example
+ *
+ * var objects = [
+ *   { 'a': { 'b': 2 } },
+ *   { 'a': { 'b': 1 } }
+ * ];
+ *
+ * _.map(objects, _.property('a.b'));
+ * // => [2, 1]
+ *
+ * _.map(_.sortBy(objects, _.property(['a', 'b'])), 'a.b');
+ * // => [1, 2]
+ */
+
+
+function property(path) {
+  return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
+}
+
+module.exports = reject;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
@@ -19276,659 +29447,629 @@ module.exports = function requiredIf(type, condition) {
 
 /***/ }),
 
-/***/ "./node_modules/react-sortablejs/dist/index.es.js":
-/*!********************************************************!*\
-  !*** ./node_modules/react-sortablejs/dist/index.es.js ***!
-  \********************************************************/
-/*! exports provided: MultiDrag, Sortable, Swap, ReactSortable */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./node_modules/react-sortablejs/dist/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-sortablejs/dist/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReactSortable", function() { return ReactSortable; });
-/* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MultiDrag", function() { return sortablejs__WEBPACK_IMPORTED_MODULE_0__["MultiDrag"]; });
+var e = g(__webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js")),
+    t = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+    n = t.Children,
+    r = t.cloneElement,
+    o = t.Component,
+    i = t.createElement,
+    l = t.createRef,
+    a = g(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js")),
+    c = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js"),
+    s = g(c);
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Sortable", function() { return sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+exports.Sortable = s;
+var u = c.Direction;
+exports.Direction = u;
+var f = c.DOMRect;
+exports.DOMRect = f;
+var p = c.GroupOptions;
+exports.GroupOptions = p;
+var d = c.MoveEvent;
+exports.MoveEvent = d;
+var b = c.Options;
+exports.Options = b;
+var y = c.PullResult;
+exports.PullResult = y;
+var v = c.PutResult;
+exports.PutResult = v;
+var h = c.SortableEvent;
+exports.SortableEvent = h;
+var m = c.SortableOptions;
+exports.SortableOptions = m;
+var O = c.Utils;
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Swap", function() { return sortablejs__WEBPACK_IMPORTED_MODULE_0__["Swap"]; });
-
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var tiny_invariant__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js");
-
-
-
-
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-
-/* global Reflect, Promise */
-
-var extendStatics = function (d, b) {
-  extendStatics = Object.setPrototypeOf || {
-    __proto__: []
-  } instanceof Array && function (d, b) {
-    d.__proto__ = b;
-  } || function (d, b) {
-    for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
-  };
-
-  return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-  extendStatics(d, b);
-
-  function __() {
-    this.constructor = d;
-  }
-
-  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+function g(e) {
+  return e && e.__esModule ? e.default : e;
 }
 
-var __assign = function () {
-  __assign = Object.assign || function __assign(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
+function w(e, t) {
+  if (null == e) return {};
 
-      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-    }
-
-    return t;
-  };
-
-  return __assign.apply(this, arguments);
-};
-
-function __rest(s, e) {
-  var t = {};
-
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-
-  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-  }
-  return t;
-}
-
-function __read(o, n) {
-  var m = typeof Symbol === "function" && o[Symbol.iterator];
-  if (!m) return o;
-  var i = m.call(o),
+  var n,
       r,
-      ar = [],
-      e;
+      o = function (e, t) {
+    if (null == e) return {};
+    var n,
+        r,
+        o = {},
+        i = Object.keys(e);
 
-  try {
-    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-  } catch (error) {
-    e = {
-      error: error
-    };
-  } finally {
-    try {
-      if (r && !r.done && (m = i["return"])) m.call(i);
-    } finally {
-      if (e) throw e.error;
-    }
+    for (r = 0; r < i.length; r++) n = i[r], t.indexOf(n) >= 0 || (o[n] = e[n]);
+
+    return o;
+  }(e, t);
+
+  if (Object.getOwnPropertySymbols) {
+    var i = Object.getOwnPropertySymbols(e);
+
+    for (r = 0; r < i.length; r++) n = i[r], t.indexOf(n) >= 0 || Object.prototype.propertyIsEnumerable.call(e, n) && (o[n] = e[n]);
   }
 
-  return ar;
+  return o;
 }
 
-function __spread() {
-  for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-
-  return ar;
-}
-/**
- * Removes the `node` from the DOM
- * @param node
- */
-
-
-function removeNode(node) {
-  if (node.parentElement !== null) node.parentElement.removeChild(node);
-}
-/**
- * Inserts the `newChild` node at the given index in a parent
- * @param parent The parent HTML Element.
- * @param newChild A HTML eement to add as a child of the parent.
- * @param index index of the parent to place the new child in.
- */
-
-
-function insertNodeAt(parent, newChild, index) {
-  var refChild = parent.children[index] || null;
-  parent.insertBefore(newChild, refChild);
+function S(e) {
+  return function (e) {
+    if (Array.isArray(e)) return j(e);
+  }(e) || function (e) {
+    if ("undefined" != typeof Symbol && Symbol.iterator in Object(e)) return Array.from(e);
+  }(e) || function (e, t) {
+    if (!e) return;
+    if ("string" == typeof e) return j(e, t);
+    var n = Object.prototype.toString.call(e).slice(8, -1);
+    "Object" === n && e.constructor && (n = e.constructor.name);
+    if ("Map" === n || "Set" === n) return Array.from(e);
+    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return j(e, t);
+  }(e) || function () {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }();
 }
 
-function removeNodes(customs) {
-  customs.forEach(function (curr) {
-    return removeNode(curr.element);
+function j(e, t) {
+  (null == t || t > e.length) && (t = e.length);
+
+  for (var n = 0, r = new Array(t); n < t; n++) r[n] = e[n];
+
+  return r;
+}
+
+function x(e, t) {
+  var n = Object.keys(e);
+
+  if (Object.getOwnPropertySymbols) {
+    var r = Object.getOwnPropertySymbols(e);
+    t && (r = r.filter(function (t) {
+      return Object.getOwnPropertyDescriptor(e, t).enumerable;
+    })), n.push.apply(n, r);
+  }
+
+  return n;
+}
+
+function I(e) {
+  for (var t = 1; t < arguments.length; t++) {
+    var n = null != arguments[t] ? arguments[t] : {};
+    t % 2 ? x(Object(n), !0).forEach(function (t) {
+      P(e, t, n[t]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n)) : x(Object(n)).forEach(function (t) {
+      Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t));
+    });
+  }
+
+  return e;
+}
+
+function P(e, t, n) {
+  return t in e ? Object.defineProperty(e, t, {
+    value: n,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : e[t] = n, e;
+}
+
+function E(e) {
+  null !== e.parentElement && e.parentElement.removeChild(e);
+}
+
+function k(e) {
+  e.forEach(function (e) {
+    return E(e.element);
   });
 }
 
-function insertNodes(customs) {
-  customs.forEach(function (curr) {
-    insertNodeAt(curr.parentElement, curr.element, curr.oldIndex);
+function C(e) {
+  e.forEach(function (e) {
+    var t, n, r, o;
+    t = e.parentElement, n = e.element, r = e.oldIndex, o = t.children[r] || null, t.insertBefore(n, o);
   });
 }
 
-function createCustoms(evt, list) {
-  var mode = getMode(evt);
-  var parentElement = {
-    parentElement: evt.from
-  };
-  var custom = [];
+function D(e, t) {
+  var n = M(e),
+      r = {
+    parentElement: e.from
+  },
+      o = [];
 
-  switch (mode) {
+  switch (n) {
     case "normal":
-      /* eslint-disable */
-      var item = {
-        element: evt.item,
-        newIndex: evt.newIndex,
-        oldIndex: evt.oldIndex,
-        parentElement: evt.from
-      };
-      custom = [item];
+      o = [{
+        element: e.item,
+        newIndex: e.newIndex,
+        oldIndex: e.oldIndex,
+        parentElement: e.from
+      }];
       break;
 
     case "swap":
-      var drag = __assign({
-        element: evt.item,
-        oldIndex: evt.oldIndex,
-        newIndex: evt.newIndex
-      }, parentElement);
-
-      var swap = __assign({
-        element: evt.swapItem,
-        oldIndex: evt.newIndex,
-        newIndex: evt.oldIndex
-      }, parentElement);
-
-      custom = [drag, swap];
+      o = [I({
+        element: e.item,
+        oldIndex: e.oldIndex,
+        newIndex: e.newIndex
+      }, r), I({
+        element: e.swapItem,
+        oldIndex: e.newIndex,
+        newIndex: e.oldIndex
+      }, r)];
       break;
 
     case "multidrag":
-      custom = evt.oldIndicies.map(function (curr, index) {
-        return __assign({
-          element: curr.multiDragElement,
-          oldIndex: curr.index,
-          newIndex: evt.newIndicies[index].index
-        }, parentElement);
+      o = e.oldIndicies.map(function (t, n) {
+        return I({
+          element: t.multiDragElement,
+          oldIndex: t.index,
+          newIndex: e.newIndicies[n].index
+        }, r);
       });
-      break;
   }
-  /* eslint-enable */
 
-
-  var customs = createNormalized(custom, list);
-  return customs;
-}
-/** moves items form old index to new index without breaking anything ideally. */
-
-
-function handleStateChanges(normalized, list) {
-  var a = handleStateRemove(normalized, list);
-  var b = handleStateAdd(normalized, a);
-  return b;
-}
-
-function handleStateRemove(normalized, list) {
-  var newList = __spread(list);
-
-  normalized.concat().reverse().forEach(function (curr) {
-    return newList.splice(curr.oldIndex, 1);
-  });
-  return newList;
-}
-
-function handleStateAdd(normalized, list, evt, clone) {
-  var newList = __spread(list);
-
-  normalized.forEach(function (curr) {
-    var newItem = clone && evt && clone(curr.item, evt);
-    newList.splice(curr.newIndex, 0, newItem || curr.item);
-  });
-  return newList;
-}
-
-function getMode(evt) {
-  if (evt.oldIndicies && evt.oldIndicies.length > 0) return "multidrag";
-  if (evt.swapItem) return "swap";
-  return "normal";
-}
-
-function createNormalized(inputs, list) {
-  var normalized = inputs.map(function (curr) {
-    return __assign(__assign({}, curr), {
-      item: list[curr.oldIndex]
+  return function (e, t) {
+    return e.map(function (e) {
+      return I(I({}, e), {}, {
+        item: t[e.oldIndex]
+      });
+    }).sort(function (e, t) {
+      return e.oldIndex - t.oldIndex;
     });
-  }).sort(function (a, b) {
-    return a.oldIndex - b.oldIndex;
-  });
-  return normalized;
+  }(o, t);
 }
-/**
- * Removes the following group of properties from `props`,
- * leaving only `Sortable.Options` without any `on` methods.
- * @param props `ReactSortable.Props`
- */
 
-
-function destructurePropsForOptions(props) {
-  /* eslint-disable */
-  var // react sortable props
-  list = props.list,
-      setList = props.setList,
-      children = props.children,
-      tag = props.tag,
-      style = props.style,
-      className = props.className,
-      clone = props.clone,
-      // sortable options that have methods we want to overwrite
-  onAdd = props.onAdd,
-      onChange = props.onChange,
-      onChoose = props.onChoose,
-      onClone = props.onClone,
-      onEnd = props.onEnd,
-      onFilter = props.onFilter,
-      onRemove = props.onRemove,
-      onSort = props.onSort,
-      onStart = props.onStart,
-      onUnchoose = props.onUnchoose,
-      onUpdate = props.onUpdate,
-      onMove = props.onMove,
-      onSpill = props.onSpill,
-      onSelect = props.onSelect,
-      onDeselect = props.onDeselect,
-      options = __rest(props, ["list", "setList", "children", "tag", "style", "className", "clone", "onAdd", "onChange", "onChoose", "onClone", "onEnd", "onFilter", "onRemove", "onSort", "onStart", "onUnchoose", "onUpdate", "onMove", "onSpill", "onSelect", "onDeselect"]);
-  /* eslint-enable */
-
-
-  return options;
+function A(e, t) {
+  var n = S(t);
+  return e.concat().reverse().forEach(function (e) {
+    return n.splice(e.oldIndex, 1);
+  }), n;
 }
-/** Holds a global reference for which react element is being dragged */
-// @todo - use context to manage this. How does one use 2 different providers?
 
+function R(e, t, n, r) {
+  var o = S(t);
+  return e.forEach(function (e) {
+    var t = r && n && r(e.item, n);
+    o.splice(e.newIndex, 0, t || e.item);
+  }), o;
+}
 
-var store = {
+function M(e) {
+  return e.oldIndicies && e.oldIndicies.length > 0 ? "multidrag" : e.swapItem ? "swap" : "normal";
+}
+
+function U(e) {
+  return (U = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {
+    return typeof e;
+  } : function (e) {
+    return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
+  })(e);
+}
+
+function L(e) {
+  return function (e) {
+    if (Array.isArray(e)) return _(e);
+  }(e) || function (e) {
+    if ("undefined" != typeof Symbol && Symbol.iterator in Object(e)) return Array.from(e);
+  }(e) || function (e, t) {
+    if (!e) return;
+    if ("string" == typeof e) return _(e, t);
+    var n = Object.prototype.toString.call(e).slice(8, -1);
+    "Object" === n && e.constructor && (n = e.constructor.name);
+    if ("Map" === n || "Set" === n) return Array.from(e);
+    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _(e, t);
+  }(e) || function () {
+    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }();
+}
+
+function _(e, t) {
+  (null == t || t > e.length) && (t = e.length);
+
+  for (var n = 0, r = new Array(t); n < t; n++) r[n] = e[n];
+
+  return r;
+}
+
+function H(e, t) {
+  var n = Object.keys(e);
+
+  if (Object.getOwnPropertySymbols) {
+    var r = Object.getOwnPropertySymbols(e);
+    t && (r = r.filter(function (t) {
+      return Object.getOwnPropertyDescriptor(e, t).enumerable;
+    })), n.push.apply(n, r);
+  }
+
+  return n;
+}
+
+function N(e) {
+  for (var t = 1; t < arguments.length; t++) {
+    var n = null != arguments[t] ? arguments[t] : {};
+    t % 2 ? H(Object(n), !0).forEach(function (t) {
+      B(e, t, n[t]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n)) : H(Object(n)).forEach(function (t) {
+      Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t));
+    });
+  }
+
+  return e;
+}
+
+function q(e, t) {
+  for (var n = 0; n < t.length; n++) {
+    var r = t[n];
+    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(e, r.key, r);
+  }
+}
+
+function T(e, t) {
+  return (T = Object.setPrototypeOf || function (e, t) {
+    return e.__proto__ = t, e;
+  })(e, t);
+}
+
+function F(e) {
+  var t = function () {
+    if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
+    if (Reflect.construct.sham) return !1;
+    if ("function" == typeof Proxy) return !0;
+
+    try {
+      return Date.prototype.toString.call(Reflect.construct(Date, [], function () {})), !0;
+    } catch (e) {
+      return !1;
+    }
+  }();
+
+  return function () {
+    var n,
+        r = $(e);
+
+    if (t) {
+      var o = $(this).constructor;
+      n = Reflect.construct(r, arguments, o);
+    } else n = r.apply(this, arguments);
+
+    return G(this, n);
+  };
+}
+
+function G(e, t) {
+  return !t || "object" !== U(t) && "function" != typeof t ? function (e) {
+    if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    return e;
+  }(e) : t;
+}
+
+function $(e) {
+  return ($ = Object.setPrototypeOf ? Object.getPrototypeOf : function (e) {
+    return e.__proto__ || Object.getPrototypeOf(e);
+  })(e);
+}
+
+function B(e, t, n) {
+  return t in e ? Object.defineProperty(e, t, {
+    value: n,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : e[t] = n, e;
+}
+
+exports.Utils = O;
+
+var J = {
   dragging: null
-};
+},
+    z = function (t) {
+  !function (e, t) {
+    if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function");
+    e.prototype = Object.create(t && t.prototype, {
+      constructor: {
+        value: e,
+        writable: !0,
+        configurable: !0
+      }
+    }), t && T(e, t);
+  }(d, o);
+  var c,
+      u,
+      f,
+      p = F(d);
 
-var ReactSortable =
-/** @class */
-function (_super) {
-  __extends(ReactSortable, _super);
-
-  function ReactSortable(props) {
-    var _this = _super.call(this, props) || this; // @todo forward ref this component
-
-
-    _this.ref = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_2__["createRef"])(); // make all state false because we can't change sortable unless a mouse gesture is made.
-
-    var newList = props.list.map(function (item) {
-      return __assign(__assign({}, item), {
-        chosen: false,
-        selected: false
+  function d(t) {
+    var n;
+    !function (e, t) {
+      if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+    }(this, d), (n = p.call(this, t)).ref = l();
+    var r = t.list.map(function (e) {
+      return N(N({}, e), {}, {
+        chosen: !1,
+        selected: !1
       });
     });
-    props.setList(newList, _this.sortable, store);
-    Object(tiny_invariant__WEBPACK_IMPORTED_MODULE_3__["default"])( //@ts-expect-error: Doesn't exist. Will deprecate soon.
-    !props.plugins, "\nPlugins prop is no longer supported.\nInstead, mount it with \"Sortable.mount(new MultiDrag())\"\nPlease read the updated README.md at https://github.com/SortableJS/react-sortablejs.\n      ");
-    return _this;
+    return t.setList(r, n.sortable, J), e(!t.plugins, '\nPlugins prop is no longer supported.\nInstead, mount it with "Sortable.mount(new MultiDrag())"\nPlease read the updated README.md at https://github.com/SortableJS/react-sortablejs.\n      '), n;
   }
 
-  ReactSortable.prototype.componentDidMount = function () {
-    if (this.ref.current === null) return;
-    var newOptions = this.makeOptions();
-    sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(this.ref.current, newOptions);
-  };
-
-  ReactSortable.prototype.render = function () {
-    var _a = this.props,
-        tag = _a.tag,
-        style = _a.style,
-        className = _a.className,
-        id = _a.id;
-    var classicProps = {
-      style: style,
-      className: className,
-      id: id
-    }; // if no tag, default to a `div` element.
-
-    var newTag = !tag || tag === null ? "div" : tag;
-    return /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_2__["createElement"])(newTag, __assign({
-      // @todo - find a way (perhaps with the callback) to allow AntD components to work
-      ref: this.ref
-    }, classicProps), this.getChildren());
-  };
-
-  ReactSortable.prototype.getChildren = function () {
-    var _a = this.props,
-        children = _a.children,
-        dataIdAttr = _a.dataIdAttr,
-        _b = _a.selectedClass,
-        selectedClass = _b === void 0 ? "sortable-selected" : _b,
-        _c = _a.chosenClass,
-        chosenClass = _c === void 0 ? "sortable-chosen" : _c,
-
-    /* eslint-disable */
-    _d = _a.dragClass,
-        _e = _a.fallbackClass,
-        _f = _a.ghostClass,
-        _g = _a.swapClass,
-
-    /* eslint-enable */
-    _h = _a.filter,
-
-    /* eslint-enable */
-    filter = _h === void 0 ? "sortable-filter" : _h,
-        list = _a.list; // if no children, don't do anything.
-
-    if (!children || children == null) return null;
-    var dataid = dataIdAttr || "data-id";
-    /* eslint-disable-next-line */
-
-    return react__WEBPACK_IMPORTED_MODULE_2__["Children"].map(children, function (child, index) {
-      var _a, _b, _c;
-
-      var item = list[index];
-      var prevClassName = child.props.className; // @todo - handle the function if avalable. I don't think anyone will be doing this soon.
-
-      var filtered = typeof filter === "string" && (_a = {}, _a[filter.replace(".", "")] = !!item.filtered, _a);
-      var className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(prevClassName, __assign((_b = {}, _b[selectedClass] = item.selected, _b[chosenClass] = item.chosen, _b), filtered));
-      return /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_2__["cloneElement"])(child, (_c = {}, _c[dataid] = child.key, _c.className = className, _c));
-    });
-  };
-
-  Object.defineProperty(ReactSortable.prototype, "sortable", {
-    /** Appends the `sortable` property to this component */
-    get: function () {
-      var el = this.ref.current;
-      if (el === null) return null;
-      var key = Object.keys(el).find(function (k) {
-        return k.includes("Sortable");
+  return c = d, (u = [{
+    key: "componentDidMount",
+    value: function () {
+      if (null !== this.ref.current) {
+        var e = this.makeOptions();
+        s.create(this.ref.current, e);
+      }
+    }
+  }, {
+    key: "render",
+    value: function () {
+      var e = this.props,
+          t = e.tag,
+          n = {
+        style: e.style,
+        className: e.className,
+        id: e.id
+      };
+      return i(t && null !== t ? t : "div", N({
+        ref: this.ref
+      }, n), this.getChildren());
+    }
+  }, {
+    key: "getChildren",
+    value: function () {
+      var e = this.props,
+          t = e.children,
+          o = e.dataIdAttr,
+          i = e.selectedClass,
+          l = void 0 === i ? "sortable-selected" : i,
+          c = e.chosenClass,
+          s = void 0 === c ? "sortable-chosen" : c,
+          u = (e.dragClass, e.fallbackClass, e.ghostClass, e.swapClass, e.filter),
+          f = void 0 === u ? "sortable-filter" : u,
+          p = e.list;
+      if (!t || null == t) return null;
+      var d = o || "data-id";
+      return n.map(t, function (e, t) {
+        var n,
+            o,
+            i = p[t],
+            c = e.props.className,
+            u = "string" == typeof f && B({}, f.replace(".", ""), !!i.filtered),
+            b = a(c, N((B(n = {}, l, i.selected), B(n, s, i.chosen), n), u));
+        return r(e, (B(o = {}, d, e.key), B(o, "className", b), o));
       });
-      if (!key) return null; //@ts-expect-error: fix me.
-
-      return el[key];
-    },
-    enumerable: false,
-    configurable: true
-  });
-  /** Converts all the props from `ReactSortable` into the `options` object that `Sortable.create(el, [options])` can use. */
-
-  ReactSortable.prototype.makeOptions = function () {
-    var _this = this;
-
-    var DOMHandlers = ["onAdd", "onChoose", "onDeselect", "onEnd", "onRemove", "onSelect", "onSpill", "onStart", "onUnchoose", "onUpdate"];
-    var NonDOMHandlers = ["onChange", "onClone", "onFilter", "onSort"];
-    var newOptions = destructurePropsForOptions(this.props);
-    DOMHandlers.forEach(function (name) {
-      return newOptions[name] = _this.prepareOnHandlerPropAndDOM(name);
-    });
-    NonDOMHandlers.forEach(function (name) {
-      return newOptions[name] = _this.prepareOnHandlerProp(name);
-    });
-    /** onMove has 2 arguments and needs to be handled seperately. */
-
-    var onMove = function (evt, originalEvt) {
-      var onMove = _this.props.onMove;
-      var defaultValue = evt.willInsertAfter || -1;
-      if (!onMove) return defaultValue;
-      var result = onMove(evt, originalEvt, _this.sortable, store);
-      if (typeof result === "undefined") return false;
-      return result;
-    };
-
-    return __assign(__assign({}, newOptions), {
-      onMove: onMove
-    });
-  };
-  /** Prepares a method that will be used in the sortable options to call an `on[Handler]` prop & an `on[Handler]` ReactSortable method.  */
-
-
-  ReactSortable.prototype.prepareOnHandlerPropAndDOM = function (evtName) {
-    var _this = this;
-
-    return function (evt) {
-      // call the component prop
-      _this.callOnHandlerProp(evt, evtName); // calls state change
-      //@ts-expect-error: until @types multidrag item is in
-
-
-      _this[evtName](evt);
-    };
-  };
-  /** Prepares a method that will be used in the sortable options to call an `on[Handler]` prop */
-
-
-  ReactSortable.prototype.prepareOnHandlerProp = function (evtName) {
-    var _this = this;
-
-    return function (evt) {
-      // call the component prop
-      _this.callOnHandlerProp(evt, evtName);
-    };
-  };
-  /** Calls the `props.on[Handler]` function */
-
-
-  ReactSortable.prototype.callOnHandlerProp = function (evt, evtName) {
-    var propEvent = this.props[evtName];
-    if (propEvent) propEvent(evt, this.sortable, store);
-  }; // SORTABLE DOM HANDLING
-
-
-  ReactSortable.prototype.onAdd = function (evt) {
-    var _a = this.props,
-        list = _a.list,
-        setList = _a.setList,
-        clone = _a.clone;
-    /* eslint-disable-next-line */
-
-    var otherList = __spread(store.dragging.props.list);
-
-    var customs = createCustoms(evt, otherList);
-    removeNodes(customs);
-    var newList = handleStateAdd(customs, list, evt, clone).map(function (item) {
-      return __assign(__assign({}, item), {
-        selected: false
+    }
+  }, {
+    key: "makeOptions",
+    value: function () {
+      var e,
+          t = this,
+          n = ((e = this.props).list, e.setList, e.children, e.tag, e.style, e.className, e.clone, e.onAdd, e.onChange, e.onChoose, e.onClone, e.onEnd, e.onFilter, e.onRemove, e.onSort, e.onStart, e.onUnchoose, e.onUpdate, e.onMove, e.onSpill, e.onSelect, e.onDeselect, w(e, ["list", "setList", "children", "tag", "style", "className", "clone", "onAdd", "onChange", "onChoose", "onClone", "onEnd", "onFilter", "onRemove", "onSort", "onStart", "onUnchoose", "onUpdate", "onMove", "onSpill", "onSelect", "onDeselect"]));
+      return ["onAdd", "onChoose", "onDeselect", "onEnd", "onRemove", "onSelect", "onSpill", "onStart", "onUnchoose", "onUpdate"].forEach(function (e) {
+        return n[e] = t.prepareOnHandlerPropAndDOM(e);
+      }), ["onChange", "onClone", "onFilter", "onSort"].forEach(function (e) {
+        return n[e] = t.prepareOnHandlerProp(e);
+      }), N(N({}, n), {}, {
+        onMove: function (e, n) {
+          var r = t.props.onMove,
+              o = e.willInsertAfter || -1;
+          if (!r) return o;
+          var i = r(e, n, t.sortable, J);
+          return void 0 !== i && i;
+        }
       });
-    });
-    setList(newList, this.sortable, store);
-  };
+    }
+  }, {
+    key: "prepareOnHandlerPropAndDOM",
+    value: function (e) {
+      var t = this;
+      return function (n) {
+        t.callOnHandlerProp(n, e), t[e](n);
+      };
+    }
+  }, {
+    key: "prepareOnHandlerProp",
+    value: function (e) {
+      var t = this;
+      return function (n) {
+        t.callOnHandlerProp(n, e);
+      };
+    }
+  }, {
+    key: "callOnHandlerProp",
+    value: function (e, t) {
+      var n = this.props[t];
+      n && n(e, this.sortable, J);
+    }
+  }, {
+    key: "onAdd",
+    value: function (e) {
+      var t = this.props,
+          n = t.list,
+          r = t.setList,
+          o = t.clone,
+          i = D(e, L(J.dragging.props.list));
+      k(i), r(R(i, n, e, o).map(function (e) {
+        return N(N({}, e), {}, {
+          selected: !1
+        });
+      }), this.sortable, J);
+    }
+  }, {
+    key: "onRemove",
+    value: function (t) {
+      var n = this,
+          r = this.props,
+          o = r.list,
+          i = r.setList,
+          l = M(t),
+          a = D(t, o);
+      C(a);
+      var c = L(o);
+      if ("clone" !== t.pullMode) c = A(a, c);else {
+        var s = a;
 
-  ReactSortable.prototype.onRemove = function (evt) {
-    var _this = this;
-
-    var _a = this.props,
-        list = _a.list,
-        setList = _a.setList;
-    var mode = getMode(evt);
-    var customs = createCustoms(evt, list);
-    insertNodes(customs);
-
-    var newList = __spread(list); // remove state if not in clone mode. otherwise, keep.
-
-
-    if (evt.pullMode !== "clone") newList = handleStateRemove(customs, newList); // if clone, it doesn't really remove. instead it clones in place.
-    // @todo -
-    else {
-        // switch used to get the clone
-        var customClones = customs;
-
-        switch (mode) {
+        switch (l) {
           case "multidrag":
-            customClones = customs.map(function (item, index) {
-              return __assign(__assign({}, item), {
-                element: evt.clones[index]
+            s = a.map(function (e, n) {
+              return N(N({}, e), {}, {
+                element: t.clones[n]
               });
             });
             break;
 
           case "normal":
-            customClones = customs.map(function (item) {
-              return __assign(__assign({}, item), {
-                element: evt.clone
+            s = a.map(function (e) {
+              return N(N({}, e), {}, {
+                element: t.clone
               });
             });
             break;
 
           case "swap":
           default:
-            {
-              Object(tiny_invariant__WEBPACK_IMPORTED_MODULE_3__["default"])(true, "mode \"" + mode + "\" cannot clone. Please remove \"props.clone\" from <ReactSortable/> when using the \"" + mode + "\" plugin");
-            }
+            e(!0, 'mode "'.concat(l, '" cannot clone. Please remove "props.clone" from <ReactSortable/> when using the "').concat(l, '" plugin'));
         }
 
-        removeNodes(customClones); // replace selected items with cloned items
-
-        customs.forEach(function (curr) {
-          var index = curr.oldIndex;
-          /* eslint-disable-next-line */
-
-          var newItem = _this.props.clone(curr.item, evt);
-
-          newList.splice(index, 1, newItem);
-        });
-      } // remove item.selected from list
-
-    newList = newList.map(function (item) {
-      return __assign(__assign({}, item), {
-        selected: false
-      });
-    });
-    setList(newList, this.sortable, store);
-  };
-
-  ReactSortable.prototype.onUpdate = function (evt) {
-    var _a = this.props,
-        list = _a.list,
-        setList = _a.setList;
-    var customs = createCustoms(evt, list);
-    removeNodes(customs);
-    insertNodes(customs);
-    var newList = handleStateChanges(customs, list);
-    return setList(newList, this.sortable, store);
-  };
-
-  ReactSortable.prototype.onStart = function () {
-    store.dragging = this;
-  };
-
-  ReactSortable.prototype.onEnd = function () {
-    store.dragging = null;
-  };
-
-  ReactSortable.prototype.onChoose = function (evt) {
-    var _a = this.props,
-        list = _a.list,
-        setList = _a.setList;
-    var newList = list.map(function (item, index) {
-      if (index === evt.oldIndex) {
-        return __assign(__assign({}, item), {
-          chosen: true
+        k(s), a.forEach(function (e) {
+          var r = e.oldIndex,
+              o = n.props.clone(e.item, t);
+          c.splice(r, 1, o);
         });
       }
-
-      return item;
-    });
-    setList(newList, this.sortable, store);
-  };
-
-  ReactSortable.prototype.onUnchoose = function (evt) {
-    var _a = this.props,
-        list = _a.list,
-        setList = _a.setList;
-    var newList = list.map(function (item, index) {
-      if (index === evt.oldIndex) {
-        return __assign(__assign({}, item), {
-          chosen: false
+      i(c = c.map(function (e) {
+        return N(N({}, e), {}, {
+          selected: !1
         });
-      }
-
-      return item;
-    });
-    setList(newList, this.sortable, store);
-  };
-
-  ReactSortable.prototype.onSpill = function (evt) {
-    var _a = this.props,
-        removeOnSpill = _a.removeOnSpill,
-        revertOnSpill = _a.revertOnSpill;
-    if (removeOnSpill && !revertOnSpill) removeNode(evt.item);
-  };
-
-  ReactSortable.prototype.onSelect = function (evt) {
-    var _a = this.props,
-        list = _a.list,
-        setList = _a.setList;
-    var newList = list.map(function (item) {
-      return __assign(__assign({}, item), {
-        selected: false
-      });
-    });
-    evt.newIndicies.forEach(function (curr) {
-      var index = curr.index;
-
-      if (index === -1) {
-        console.log("\"" + evt.type + "\" had indice of \"" + curr.index + "\", which is probably -1 and doesn't usually happen here.");
-        console.log(evt);
-        return;
-      }
-
-      newList[index].selected = true;
-    });
-    setList(newList, this.sortable, store);
-  };
-
-  ReactSortable.prototype.onDeselect = function (evt) {
-    var _a = this.props,
-        list = _a.list,
-        setList = _a.setList;
-    var newList = list.map(function (item) {
-      return __assign(__assign({}, item), {
-        selected: false
-      });
-    });
-    evt.newIndicies.forEach(function (curr) {
-      var index = curr.index;
-      if (index === -1) return;
-      newList[index].selected = true;
-    });
-    setList(newList, this.sortable, store);
-  };
-  /* eslint-disable-next-line */
-
-
-  ReactSortable.defaultProps = {
-    clone: function (item) {
-      return item;
+      }), this.sortable, J);
     }
-  };
-  return ReactSortable;
-}(react__WEBPACK_IMPORTED_MODULE_2__["Component"]);
+  }, {
+    key: "onUpdate",
+    value: function (e) {
+      var t = this.props,
+          n = t.list,
+          r = t.setList,
+          o = D(e, n);
+      return k(o), C(o), r(function (e, t) {
+        return R(e, A(e, t));
+      }(o, n), this.sortable, J);
+    }
+  }, {
+    key: "onStart",
+    value: function () {
+      J.dragging = this;
+    }
+  }, {
+    key: "onEnd",
+    value: function () {
+      J.dragging = null;
+    }
+  }, {
+    key: "onChoose",
+    value: function (e) {
+      var t = this.props,
+          n = t.list;
+      (0, t.setList)(n.map(function (t, n) {
+        return n === e.oldIndex ? N(N({}, t), {}, {
+          chosen: !0
+        }) : t;
+      }), this.sortable, J);
+    }
+  }, {
+    key: "onUnchoose",
+    value: function (e) {
+      var t = this.props,
+          n = t.list;
+      (0, t.setList)(n.map(function (t, n) {
+        return n === e.oldIndex ? N(N({}, t), {}, {
+          chosen: !1
+        }) : t;
+      }), this.sortable, J);
+    }
+  }, {
+    key: "onSpill",
+    value: function (e) {
+      var t = this.props,
+          n = t.removeOnSpill,
+          r = t.revertOnSpill;
+      n && !r && E(e.item);
+    }
+  }, {
+    key: "onSelect",
+    value: function (e) {
+      var t = this.props,
+          n = t.list,
+          r = t.setList,
+          o = n.map(function (e) {
+        return N(N({}, e), {}, {
+          selected: !1
+        });
+      });
+      e.newIndicies.forEach(function (t) {
+        var n = t.index;
+        if (-1 === n) return console.log('"'.concat(e.type, '" had indice of "').concat(t.index, "\", which is probably -1 and doesn't usually happen here.")), void console.log(e);
+        o[n].selected = !0;
+      }), r(o, this.sortable, J);
+    }
+  }, {
+    key: "onDeselect",
+    value: function (e) {
+      var t = this.props,
+          n = t.list,
+          r = t.setList,
+          o = n.map(function (e) {
+        return N(N({}, e), {}, {
+          selected: !1
+        });
+      });
+      e.newIndicies.forEach(function (e) {
+        var t = e.index;
+        -1 !== t && (o[t].selected = !0);
+      }), r(o, this.sortable, J);
+    }
+  }, {
+    key: "sortable",
+    get: function () {
+      var e = this.ref.current;
+      if (null === e) return null;
+      var t = Object.keys(e).find(function (e) {
+        return e.includes("Sortable");
+      });
+      return t ? e[t] : null;
+    }
+  }]) && q(c.prototype, u), f && q(c, f), d;
+}();
 
-
+exports.ReactSortable = z, B(z, "defaultProps", {
+  clone: function (e) {
+    return e;
+  }
+});
 
 /***/ }),
 
@@ -27405,7 +37546,8 @@ const ComboBoxComponent = ({
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       role: "presentation",
       className: "slds-listbox__item",
-      "data-value": option.value
+      "data-value": option.value,
+      key: option.value
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "slds-listbox__option slds-listbox__option_plain",
       role: "option"
@@ -27432,13 +37574,13 @@ const ComboBoxComponent = ({
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right",
     role: "none"
-  }, console.log(selectedOption), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: "slds-input slds-combobox__input",
     "aria-controls": "",
-    autocomplete: "off",
+    autoComplete: "off",
     role: "textbox",
     placeholder: selectedOption.label,
-    readonly: "readonly",
+    readOnly: "readonly",
     type: "text",
     value: selectedOption.label
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_input_icon__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -27497,7 +37639,7 @@ const ProductAutoCompleteComponent = ({
     className: "slds-input slds-combobox__input cbds-inventoryline__input_name",
     "aria-autocomplete": "list",
     "aria-controls": "listbox-unique-id",
-    autocomplete: "off",
+    autoComplete: "off",
     role: "textbox",
     placeholder: "Type om te zoeken",
     value: val,
@@ -27546,6 +37688,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductAutoCompleteComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductAutoCompleteComponent */ "./src/ProductAutoCompleteComponent.js");
 /* harmony import */ var _ComboBoxComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ComboBoxComponent */ "./src/ComboBoxComponent.js");
 /* harmony import */ var _WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./WorkAssignmentLineActions */ "./src/WorkAssignmentLineActions.js");
+/* harmony import */ var _WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./WorkAssignmentLineAssets */ "./src/WorkAssignmentLineAssets.js");
+
 
 
 
@@ -27558,13 +37702,34 @@ const WorkAssignmentLine = () => {
   const [qtyDelivered, setQtyDelivered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const [productId, setProductId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const [productType, setProductType] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Products');
+  const [workshopStatus, setWorkshopStatus] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
+    value: 'not_prepared',
+    label: 'Geen voorbereiding',
+    selected: false
+  }, {
+    value: 'being_prepared',
+    label: 'Wordt voorbereid',
+    selected: true
+  }, {
+    value: 'ready',
+    label: 'Ligt klaar',
+    selected: false
+  }]);
+
+  const updateWorkshopStatus = val => {
+    const newStatus = workshopStatus.filter(status => {
+      status.selected = status.value === val;
+      return status;
+    });
+    setWorkshopStatus(newStatus);
+  };
 
   const handleProductSelection = data => {
     console.log(data);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slds-grid slds-gutters_x-small"
+    className: "slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_1-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_input__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -27605,25 +37770,13 @@ const WorkAssignmentLine = () => {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_2-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ComboBoxComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    options: [{
-      value: 'not_prepared',
-      label: 'Geen voorbereiding',
-      selected: false
-    }, {
-      value: 'being_prepared',
-      label: 'Wordt voorbereid',
-      selected: true
-    }, {
-      value: 'ready',
-      label: 'Ligt klaar',
-      selected: false
-    }],
-    onSelect: val => {
-      console.log(val);
-    }
+    options: workshopStatus,
+    onSelect: updateWorkshopStatus
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_2-of-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-col slds-size_4-of-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLine);
@@ -27644,6 +37797,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _salesforce_design_system_react_components_button_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @salesforce/design-system-react/components/button-group */ "./node_modules/@salesforce/design-system-react/components/button-group/index.jsx");
 /* harmony import */ var _salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @salesforce/design-system-react/components/button */ "./node_modules/@salesforce/design-system-react/components/button/index.jsx");
 /* harmony import */ var _salesforce_design_system_react_components_menu_dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @salesforce/design-system-react/components/menu-dropdown */ "./node_modules/@salesforce/design-system-react/components/menu-dropdown/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_icons_utility_drag_and_drop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @salesforce/design-system-react/icons/utility/drag_and_drop */ "./node_modules/@salesforce/design-system-react/icons/utility/drag_and_drop.js");
+
+
 
 
 
@@ -27655,19 +37812,12 @@ const WorkAssignmentLineActions = () => {
     className: "slds-float_right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     assistiveText: {
-      icon: 'Verplaats volgorde'
-    },
-    buttonVariant: "icon",
-    iconName: "drag_and_drop",
-    iconVariant: "border",
-    variant: "icon"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    assistiveText: {
       icon: 'Verwijder deze rij'
     },
     iconName: "delete",
     iconVariant: "border",
-    variant: "destructive"
+    variant: "destructive",
+    iconCategory: "utility"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_menu_dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
     assistiveText: {
       icon: 'Settings'
@@ -27690,10 +37840,136 @@ const WorkAssignmentLineActions = () => {
     }],
     value: "A0",
     variant: "icon"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    category: "utility",
+    className: "linehandle slds-m-top_xx-small",
+    icon: _salesforce_design_system_react_icons_utility_drag_and_drop__WEBPACK_IMPORTED_MODULE_5__["default"],
+    size: "small",
+    style: {
+      "cursor": "move"
+    }
   }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLineActions);
+
+/***/ }),
+
+/***/ "./src/WorkAssignmentLineAssets.js":
+/*!*****************************************!*\
+  !*** ./src/WorkAssignmentLineAssets.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @salesforce/design-system-react/components/button */ "./node_modules/@salesforce/design-system-react/components/button/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @salesforce/design-system-react/components/card */ "./node_modules/@salesforce/design-system-react/components/card/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_card_empty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @salesforce/design-system-react/components/card/empty */ "./node_modules/@salesforce/design-system-react/components/card/empty.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_card_filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @salesforce/design-system-react/components/card/filter */ "./node_modules/@salesforce/design-system-react/components/card/filter.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table */ "./node_modules/@salesforce/design-system-react/components/data-table/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/column */ "./node_modules/@salesforce/design-system-react/components/data-table/column.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+
+
+
+
+
+
+
+
+
+const WorkAssignmentLineAssets = () => {
+  const defaultItems = [];
+
+  const openAssetCapture = () => {
+    const accId = document.getElementsByName('account_id')[0].value;
+
+    if (accId === '') {
+      ldsPrompt.show('Fout', 'Kies eerst een klant voor je activa gaat koppelen');
+      return;
+    }
+
+    var searchConditions = [{
+      "groupid": "1",
+      "columnname": "vtiger_assets:account:account:Assets_Customer_name:I",
+      "comparator": "e",
+      "value": accId,
+      "columncondition": ""
+    }];
+    var advSearch = '&query=true&searchtype=advance&advft_criteria=' + convertArrayOfJsonObjectsToString(searchConditions);
+    var SpecialSearch = encodeURI(advSearch);
+    window.open(`index.php?
+				module=Assets&
+				action=Popup&
+				html=Popup_picker&
+				form=vtlibPopupView&
+				srcmodule=WorkAssignment&
+				forrecord=${0}&
+				forfield=DontCare
+				${SpecialSearch}`, "vtlibui10", "width=680,height=602,resizable=0,scrollbars=0,top=150,left=200");
+  };
+
+  const [items, setItems] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(defaultItems);
+  const [isFiltering, setIsFiltering] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+
+  const handleFilterChange = event => {
+    const filteredItems = items.filter(item => RegExp(event.target.value, 'i').test(item.assetname));
+    setIsFiltering(true);
+    setItems(filteredItems.length === 0 ? defaultItems : filteredItems);
+  };
+
+  const handleDeleteAllItems = () => {
+    undefined.setState({
+      isFiltering: false,
+      items: []
+    });
+  };
+
+  const handleAddItem = () => {
+    setItems(items);
+  };
+
+  const isEmpty = items.length === 0;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-grid slds-grid_vertical slds-m-top_small"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    filter: (!isEmpty || isFiltering) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card_filter__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      onChange: handleFilterChange
+    }),
+    headerActions: !isEmpty && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      label: "Delete All Items",
+      onClick: handleDeleteAllItems
+    }),
+    heading: "Activa",
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      category: "standard",
+      name: "asset_relationship",
+      size: "small"
+    }),
+    empty: isEmpty ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card_empty__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      heading: "Nog geen activa gekoppeld"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      label: "Koppel activa",
+      onClick: openAssetCapture
+    })) : null
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    items: items
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    label: "Activa naam",
+    property: "assetname",
+    truncate: true
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    label: "Serienummer",
+    property: "serial_number",
+    truncate: true
+  }))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLineAssets);
 
 /***/ }),
 
@@ -27713,32 +37989,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _salesforce_design_system_react_components_icon_settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon-settings */ "./node_modules/@salesforce/design-system-react/components/icon-settings/index.jsx");
 /* harmony import */ var _WorkAssignmentLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./WorkAssignmentLine */ "./src/WorkAssignmentLine.js");
-/* harmony import */ var react_sortablejs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-sortablejs */ "./node_modules/react-sortablejs/dist/index.es.js");
+/* harmony import */ var react_sortablejs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-sortablejs */ "./node_modules/react-sortablejs/dist/index.js");
+/* harmony import */ var react_sortablejs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 
 const WorkAssignmentLines = () => {
-  const [lines, setLines] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{}, {}, {}]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_settings__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    iconPath: "/include/LD/assets/icons"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__["ReactSortable"], {
+  const [lines, setLines] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
+    id: 1
+  }, {
+    id: 2
+  }, {
+    id: 3
+  }]);
+  const renderedLines = lines.map(line => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLine__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      key: line.id
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__["ReactSortable"], {
     list: lines,
-    setList: setLines
-  }, lines.map(line => {
-    /*#__PURE__*/
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLine__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-  })));
+    setList: setLines,
+    animation: 200,
+    handle: ".linehandle"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_settings__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    iconPath: "/include/LD/assets/icons"
+  }, renderedLines));
 };
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WorkAssignmentLines, null), document.getElementById('workassignmentlines'));
 
 /***/ }),
 
 /***/ 0:
-/*!**************************************************************************************************************************************************************************!*\
-  !*** multi ./src/ComboBoxComponent.js ./src/ProductAutoCompleteComponent.js ./src/WorkAssignmentLine.js ./src/WorkAssignmentLineActions.js ./src/WorkAssignmentLines.js ***!
-  \**************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./src/ComboBoxComponent.js ./src/ProductAutoCompleteComponent.js ./src/WorkAssignmentLine.js ./src/WorkAssignmentLineActions.js ./src/WorkAssignmentLineAssets.js ./src/WorkAssignmentLines.js ***!
+  \************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27746,6 +38033,7 @@ __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment
 __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/ProductAutoCompleteComponent.js */"./src/ProductAutoCompleteComponent.js");
 __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLine.js */"./src/WorkAssignmentLine.js");
 __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLineActions.js */"./src/WorkAssignmentLineActions.js");
+__webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLineAssets.js */"./src/WorkAssignmentLineAssets.js");
 module.exports = __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLines.js */"./src/WorkAssignmentLines.js");
 
 

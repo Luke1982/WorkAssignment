@@ -6,18 +6,25 @@ import {ReactSortable} from 'react-sortablejs'
 
 export const WorkAssignmentLines = () => {
 	const [lines, setLines] = useState([
-		{},
-		{},
-		{}
+		{id: 1},
+		{id: 2},
+		{id: 3}
 	])
+
+	const renderedLines = lines.map(line => {
+		return <WorkAssignmentLine key={line.id} />
+	})
 	return (
-		<IconSettings iconPath='/include/LD/assets/icons'>
-			<ReactSortable list={lines} setList={setLines}>
-				{lines.map(line => {
-					<WorkAssignmentLine />
-				})}
-			</ReactSortable>
-		</IconSettings>
+		<ReactSortable
+			list={lines}
+			setList={setLines}
+			animation={200}
+			handle=".linehandle"
+		>
+			<IconSettings iconPath='/include/LD/assets/icons'>
+				{renderedLines}
+			</IconSettings>
+		</ReactSortable>
 	)
 }
 

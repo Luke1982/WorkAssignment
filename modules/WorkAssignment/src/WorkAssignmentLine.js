@@ -5,20 +5,45 @@ import InputIcon from '@salesforce/design-system-react/components/icon/input-ico
 import ProductAutoCompleteComponent from './ProductAutoCompleteComponent'
 import ComboBoxComponent from './ComboBoxComponent'
 import WorkAssignmentLineActions from './WorkAssignmentLineActions'
+import WorkAssignmentLineAssets from './WorkAssignmentLineAssets'
 
 const WorkAssignmentLine = () => {
 	const [qty, setQty] = useState(0)
 	const [qtyDelivered, setQtyDelivered] = useState(0)
 	const [productId, setProductId] = useState(0)
 	const [productType, setProductType] = useState('Products')
+	const [workshopStatus, setWorkshopStatus] = useState([
+		{
+			value: 'not_prepared',
+			label: 'Geen voorbereiding',
+			selected: false
+		},
+		{
+			value: 'being_prepared',
+			label: 'Wordt voorbereid',
+			selected: true
+		},
+		{
+			value: 'ready',
+			label: 'Ligt klaar',
+			selected: false
+		}
+	])
 	
+	const updateWorkshopStatus = val => {
+		const newStatus = workshopStatus.filter(status => {
+			status.selected = status.value === val
+			return status
+		})
+		setWorkshopStatus(newStatus)
+	}
 
 	const handleProductSelection = data => {
 		console.log(data)
 	}
 
 	return (
-		<div className="slds-grid slds-gutters_x-small">
+		<div className="slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap">
 			<div className="slds-col slds-size_1-of-12">
 				<Input
 					iconLeft={
@@ -68,30 +93,15 @@ const WorkAssignmentLine = () => {
 			</div>
 			<div className="slds-col slds-size_2-of-12">
 				<ComboBoxComponent
-					options={
-						[
-							{
-								value: 'not_prepared',
-								label: 'Geen voorbereiding',
-								selected: false
-							},
-							{
-								value: 'being_prepared',
-								label: 'Wordt voorbereid',
-								selected: true
-							},
-							{
-								value: 'ready',
-								label: 'Ligt klaar',
-								selected: false
-							}
-						]
-					}
-					onSelect={(val) => {console.log(val)}}
+					options={workshopStatus}
+					onSelect={updateWorkshopStatus}
 				/>
 			</div>
 			<div className="slds-col slds-size_2-of-12">
 				<WorkAssignmentLineActions />
+			</div>
+			<div className="slds-col slds-size_4-of-12">
+				<WorkAssignmentLineAssets />
 			</div>
 		</div>
 	)

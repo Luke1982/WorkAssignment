@@ -23,7 +23,7 @@ const ProductAutoCompleteComponent = ({onSelect}) => {
 						className="slds-input slds-combobox__input cbds-inventoryline__input_name"
 						aria-autocomplete="list"
 						aria-controls="listbox-unique-id"
-						autocomplete="off"
+						autoComplete="off"
 						role="textbox"
 						placeholder="Type om te zoeken"
 						value={val}

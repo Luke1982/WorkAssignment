@@ -7,7 +7,7 @@ const ComboBoxComponent = ({options, onSelect}) => {
 
 	const renderedOptions = options.map(option => {
 		return (
-			<li role="presentation" className="slds-listbox__item" data-value={option.value}>
+			<li role="presentation" className="slds-listbox__item" data-value={option.value} key={option.value}>
 				<div className="slds-listbox__option slds-listbox__option_plain" role="option">
 					<span className="slds-media__body">
 						<span className="slds-truncate" title={option.value}>{option.label}</span>
@@ -36,14 +36,13 @@ const ComboBoxComponent = ({options, onSelect}) => {
 					className="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
 					role="none"
 				>
-					{console.log(selectedOption)}
 					<input
 						className="slds-input slds-combobox__input"
 						aria-controls=""
-						autocomplete="off"
+						autoComplete="off"
 						role="textbox"
 						placeholder={selectedOption.label}
-						readonly="readonly"
+						readOnly="readonly"
 						type="text"
 						value={selectedOption.label}
 					/>
