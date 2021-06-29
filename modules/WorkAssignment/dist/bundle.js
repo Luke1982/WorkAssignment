@@ -746,92 +746,6 @@ CardEmpty.defaultProps = {
 
 /***/ }),
 
-/***/ "./node_modules/@salesforce/design-system-react/components/card/filter.jsx":
-/*!*********************************************************************************!*\
-  !*** ./node_modules/@salesforce/design-system-react/components/card/filter.jsx ***!
-  \*********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../input */ "./node_modules/@salesforce/design-system-react/components/input/index.jsx");
-/* harmony import */ var _icon_input_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../icon/input-icon */ "./node_modules/@salesforce/design-system-react/components/icon/input-icon/index.jsx");
-/* harmony import */ var _utilities_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utilities/constants */ "./node_modules/@salesforce/design-system-react/utilities/constants.js");
-const _excluded = ["id", "placeholder", "onChange"];
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-/* Copyright (c) 2015-present, salesforce.com, inc. All rights reserved */
-
-/* Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license */
-// ### React
-
-
-
-
-
-/**
- * A default filter or search input for Cards that contain items.
- */
-
-const Filter = props => {
-  const {
-    id,
-    placeholder,
-    onChange
-  } = props,
-        rest = _objectWithoutProperties(props, _excluded);
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_input__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, rest, {
-    assistiveText: {
-      label: placeholder
-    },
-    iconLeft: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_icon_input_icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "search",
-      category: "utility"
-    }),
-    id: id,
-    onChange: onChange,
-    placeholder: placeholder
-  }));
-}; // ### Display Name
-// Always use the canonical component name as the React display name.
-
-
-Filter.displayName = _utilities_constants__WEBPACK_IMPORTED_MODULE_4__["CARD_FILTER"]; // ### Prop Types
-
-Filter.propTypes = {
-  /**
-   * The HTML `id` from the card with a suffixe.
-   */
-  id: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
-
-  /**
-   * This callback fires when the input changes.
-   */
-  onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
-
-  /**
-   * Text present in input until the user enters text. This text will also be used for a visually hidden label on the filter `input` element for accessibility.
-   */
-  placeholder: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired
-};
-Filter.defaultProps = {
-  placeholder: 'Find in List'
-};
-/* harmony default export */ __webpack_exports__["default"] = (Filter);
-
-/***/ }),
-
 /***/ "./node_modules/@salesforce/design-system-react/components/card/index.jsx":
 /*!********************************************************************************!*\
   !*** ./node_modules/@salesforce/design-system-react/components/card/index.jsx ***!
@@ -37619,8 +37533,14 @@ const ProductAutoCompleteComponent = ({
 }) => {
   const thisNode = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   const [val, setVal] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+
+  const onProductSelect = data => {
+    setVal(data.result.meta.name);
+    onSelect(data);
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    new window.ProductAutocomplete(thisNode.current, {}, onSelect);
+    new window.ProductAutocomplete(thisNode.current, {}, onProductSelect);
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-combobox_container slds-has-inline-listbox cbds-product-search-component",
@@ -37643,8 +37563,8 @@ const ProductAutoCompleteComponent = ({
     role: "textbox",
     placeholder: "Type om te zoeken",
     value: val,
-    onChange: input => {
-      setVal(input.value);
+    onChange: e => {
+      setVal(e.target.value);
     },
     type: "text"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -37689,6 +37609,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ComboBoxComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ComboBoxComponent */ "./src/ComboBoxComponent.js");
 /* harmony import */ var _WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./WorkAssignmentLineActions */ "./src/WorkAssignmentLineActions.js");
 /* harmony import */ var _WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./WorkAssignmentLineAssets */ "./src/WorkAssignmentLineAssets.js");
+/* harmony import */ var _WorkAssignmentLineSubProducts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./WorkAssignmentLineSubProducts */ "./src/WorkAssignmentLineSubProducts.js");
+
 
 
 
@@ -37702,6 +37624,8 @@ const WorkAssignmentLine = () => {
   const [qtyDelivered, setQtyDelivered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const [productId, setProductId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const [productType, setProductType] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('Products');
+  const [assets, setAssets] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [subProducts, setSubProducts] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [workshopStatus, setWorkshopStatus] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
     value: 'not_prepared',
     label: 'Geen voorbereiding',
@@ -37724,12 +37648,14 @@ const WorkAssignmentLine = () => {
     setWorkshopStatus(newStatus);
   };
 
-  const handleProductSelection = data => {
-    console.log(data);
+  const handleProductSelection = async data => {
+    const response = await fetch(`index.php?action=WorkAssignmentAjax&module=WorkAssignment&file=WorkAssignmentAPI&function=getPartsForProduct&productid=${data.result.meta.id}`);
+    const collectedParts = await response.json();
+    setSubProducts(collectedParts);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap"
+    className: "slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap slds-box slds-box_xx-small slds-theme_shade"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_1-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_input__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -37776,7 +37702,14 @@ const WorkAssignmentLine = () => {
     className: "slds-col slds-size_2-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_4-of-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    assets: assets,
+    setAssets: setAssets
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-col slds-size_4-of-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineSubProducts__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    parts: subProducts
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLine);
@@ -37868,11 +37801,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @salesforce/design-system-react/components/button */ "./node_modules/@salesforce/design-system-react/components/button/index.jsx");
 /* harmony import */ var _salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @salesforce/design-system-react/components/card */ "./node_modules/@salesforce/design-system-react/components/card/index.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_card_empty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @salesforce/design-system-react/components/card/empty */ "./node_modules/@salesforce/design-system-react/components/card/empty.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_card_filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @salesforce/design-system-react/components/card/filter */ "./node_modules/@salesforce/design-system-react/components/card/filter.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table */ "./node_modules/@salesforce/design-system-react/components/data-table/index.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/column */ "./node_modules/@salesforce/design-system-react/components/data-table/column.jsx");
-/* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table */ "./node_modules/@salesforce/design-system-react/components/data-table/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table_cell__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/cell */ "./node_modules/@salesforce/design-system-react/components/data-table/cell.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/column */ "./node_modules/@salesforce/design-system-react/components/data-table/column.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+const _excluded = ["children"];
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
 
@@ -37882,8 +37819,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const WorkAssignmentLineAssets = () => {
-  const defaultItems = [];
+const WorkAssignmentLineAssets = ({
+  setAssets,
+  assets
+}) => {
+  const whenAssetSelected = (recordid, value, target_fieldname) => {
+    assets.push({
+      classNameRow: `asset-row-id-${recordid.toString()}`,
+      id: recordid.toString(),
+      assetname: value
+    });
+    setAssets([...assets]);
+    window.currentWorkAssignmentAssetSelector = undefined;
+  };
 
   const openAssetCapture = () => {
     const accId = document.getElementsByName('account_id')[0].value;
@@ -37911,65 +37859,122 @@ const WorkAssignmentLineAssets = () => {
 				forrecord=${0}&
 				forfield=DontCare
 				${SpecialSearch}`, "vtlibui10", "width=680,height=602,resizable=0,scrollbars=0,top=150,left=200");
+    window.currentWorkAssignmentAssetSelector = whenAssetSelected;
   };
 
-  const [items, setItems] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(defaultItems);
-  const [isFiltering, setIsFiltering] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-
-  const handleFilterChange = event => {
-    const filteredItems = items.filter(item => RegExp(event.target.value, 'i').test(item.assetname));
-    setIsFiltering(true);
-    setItems(filteredItems.length === 0 ? defaultItems : filteredItems);
-  };
-
-  const handleDeleteAllItems = () => {
-    undefined.setState({
-      isFiltering: false,
-      items: []
+  const removeAssetRelation = e => {
+    const tr = e.target.parentElement.parentElement.parentElement;
+    const assetid = tr.className.match(/asset-row-id-([0-9]{1,})/)[1];
+    const newAssets = assets.filter(asset => {
+      return asset.id !== assetid;
     });
+    setAssets(newAssets);
   };
 
-  const handleAddItem = () => {
-    setItems(items);
+  const TrashDataTableCell = _ref => {
+    let {
+      children
+    } = _ref,
+        props = _objectWithoutProperties(_ref, _excluded);
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_cell__WEBPACK_IMPORTED_MODULE_4__["default"], props, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      assistiveText: {
+        icon: 'Verwijder activa'
+      },
+      iconCategory: "utility",
+      iconName: "delete",
+      iconSize: "x-small",
+      iconVariant: "bare",
+      onClick: e => {
+        removeAssetRelation(e);
+      },
+      variant: "icon"
+    }));
   };
 
-  const isEmpty = items.length === 0;
+  TrashDataTableCell.displayName = _salesforce_design_system_react_components_data_table_cell__WEBPACK_IMPORTED_MODULE_4__["default"].displayName;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-grid slds-grid_vertical slds-m-top_small"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    filter: (!isEmpty || isFiltering) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card_filter__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      onChange: handleFilterChange
-    }),
-    headerActions: !isEmpty && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      label: "Delete All Items",
-      onClick: handleDeleteAllItems
+    headerActions: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      label: "Kies activa",
+      onClick: openAssetCapture
     }),
     heading: "Activa",
-    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_6__["default"], {
       category: "standard",
       name: "asset_relationship",
       size: "small"
-    }),
-    empty: isEmpty ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card_empty__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      heading: "Nog geen activa gekoppeld"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      label: "Koppel activa",
-      onClick: openAssetCapture
-    })) : null
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    items: items
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    })
+  }, assets.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    items: assets
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: "Activa naam",
-    property: "assetname",
-    truncate: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    label: "Serienummer",
-    property: "serial_number",
-    truncate: true
-  }))));
+    property: "assetname"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TrashDataTableCell, null)))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLineAssets);
+
+/***/ }),
+
+/***/ "./src/WorkAssignmentLineSubProducts.js":
+/*!**********************************************!*\
+  !*** ./src/WorkAssignmentLineSubProducts.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @salesforce/design-system-react/components/button */ "./node_modules/@salesforce/design-system-react/components/button/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @salesforce/design-system-react/components/card */ "./node_modules/@salesforce/design-system-react/components/card/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table */ "./node_modules/@salesforce/design-system-react/components/data-table/index.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table_cell__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/cell */ "./node_modules/@salesforce/design-system-react/components/data-table/cell.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @salesforce/design-system-react/components/data-table/column */ "./node_modules/@salesforce/design-system-react/components/data-table/column.jsx");
+/* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
+
+
+
+
+
+
+
+
+const WorkAssignmentLineSubProducts = ({
+  parts
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-grid slds-grid_vertical slds-m-top_small"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_card__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    heading: "Onderdelen",
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      category: "standard",
+      name: "strategy",
+      size: "small"
+    })
+  }, parts.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    items: parts,
+    fixedLayout: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: "Product",
+    property: "productname",
+    truncate: true,
+    width: "70%"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: "Nodig",
+    property: "quantity",
+    width: "15%"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_data_table_column__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    label: "Voorraad",
+    property: "qtyinstock",
+    width: "15%"
+  }))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLineSubProducts);
 
 /***/ }),
 
@@ -38023,9 +38028,9 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEB
 /***/ }),
 
 /***/ 0:
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./src/ComboBoxComponent.js ./src/ProductAutoCompleteComponent.js ./src/WorkAssignmentLine.js ./src/WorkAssignmentLineActions.js ./src/WorkAssignmentLineAssets.js ./src/WorkAssignmentLines.js ***!
-  \************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./src/ComboBoxComponent.js ./src/ProductAutoCompleteComponent.js ./src/WorkAssignmentLine.js ./src/WorkAssignmentLineActions.js ./src/WorkAssignmentLineAssets.js ./src/WorkAssignmentLineSubProducts.js ./src/WorkAssignmentLines.js ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38034,6 +38039,7 @@ __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment
 __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLine.js */"./src/WorkAssignmentLine.js");
 __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLineActions.js */"./src/WorkAssignmentLineActions.js");
 __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLineAssets.js */"./src/WorkAssignmentLineAssets.js");
+__webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLineSubProducts.js */"./src/WorkAssignmentLineSubProducts.js");
 module.exports = __webpack_require__(/*! /home/guido/public_html/cbdevelop/modules/WorkAssignment/src/WorkAssignmentLines.js */"./src/WorkAssignmentLines.js");
 
 

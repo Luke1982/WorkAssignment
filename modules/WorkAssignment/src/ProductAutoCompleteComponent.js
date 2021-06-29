@@ -5,8 +5,13 @@ const ProductAutoCompleteComponent = ({onSelect}) => {
 	const thisNode = useRef(null)
 	const [val, setVal] = useState('')
 
+	const onProductSelect = data => {
+		setVal(data.result.meta.name)
+		onSelect(data)
+	}
+
 	useEffect(() => {
-		new window.ProductAutocomplete(thisNode.current, {}, onSelect)
+		new window.ProductAutocomplete(thisNode.current, {}, onProductSelect)
 	}, [])
 
 	return(
@@ -27,7 +32,7 @@ const ProductAutoCompleteComponent = ({onSelect}) => {
 						role="textbox"
 						placeholder="Type om te zoeken"
 						value={val}
-						onChange={(input) => {setVal(input.value)}}
+						onChange={e => {setVal(e.target.value)}}
 						type="text"
 					/>
 					<span className="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">

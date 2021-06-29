@@ -6,12 +6,15 @@ import ProductAutoCompleteComponent from './ProductAutoCompleteComponent'
 import ComboBoxComponent from './ComboBoxComponent'
 import WorkAssignmentLineActions from './WorkAssignmentLineActions'
 import WorkAssignmentLineAssets from './WorkAssignmentLineAssets'
+import WorkAssignmentLineSubProducts from './WorkAssignmentLineSubProducts'
 
 const WorkAssignmentLine = () => {
 	const [qty, setQty] = useState(0)
 	const [qtyDelivered, setQtyDelivered] = useState(0)
 	const [productId, setProductId] = useState(0)
 	const [productType, setProductType] = useState('Products')
+	const [assets, setAssets] = useState([])
+	const [subProducts, setSubProducts] = useState([])
 	const [workshopStatus, setWorkshopStatus] = useState([
 		{
 			value: 'not_prepared',
@@ -38,12 +41,16 @@ const WorkAssignmentLine = () => {
 		setWorkshopStatus(newStatus)
 	}
 
-	const handleProductSelection = data => {
-		console.log(data)
+	const handleProductSelection = async data => {
+		const response = await fetch(
+			`index.php?action=WorkAssignmentAjax&module=WorkAssignment&file=WorkAssignmentAPI&function=getPartsForProduct&productid=${data.result.meta.id}`
+		)
+		const collectedParts = await response.json();
+		setSubProducts(collectedParts)
 	}
 
 	return (
-		<div className="slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap">
+		<div className="slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap slds-box slds-box_xx-small slds-theme_shade">
 			<div className="slds-col slds-size_1-of-12">
 				<Input
 					iconLeft={
@@ -101,7 +108,15 @@ const WorkAssignmentLine = () => {
 				<WorkAssignmentLineActions />
 			</div>
 			<div className="slds-col slds-size_4-of-12">
-				<WorkAssignmentLineAssets />
+				<WorkAssignmentLineAssets
+					assets={assets}
+					setAssets={setAssets}
+				/>
+			</div>
+			<div className="slds-col slds-size_4-of-12">
+				<WorkAssignmentLineSubProducts
+					parts={subProducts}
+				/>
 			</div>
 		</div>
 	)
