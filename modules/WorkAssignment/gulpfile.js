@@ -3,7 +3,7 @@ const webpack = require('webpack-stream')
 const webpackConfig = require('./webpack.config')
 
 gulp.task('copy-files', () => {
-	gulp.watch('./*').on('change', () => {
+	gulp.watch('./**').on('change', () => {
 		gulp.src([
 			'./*',
 			'./**',

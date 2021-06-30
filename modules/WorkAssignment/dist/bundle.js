@@ -38090,9 +38090,22 @@ const WorkAssignmentLine = () => {
   const handleProductSelection = async data => {
     const response = await fetch(`index.php?action=WorkAssignmentAjax&module=WorkAssignment&file=WorkAssignmentAPI&function=getPartsForProduct&productid=${data.result.meta.id}`);
     const collectedParts = await response.json();
-    setSubProducts(collectedParts);
+    const preparedParts = collectedParts.map(part => {
+      part.originalQty = part.quantity;
+      return part;
+    });
+    setSubProducts(preparedParts);
     setProductId(data.result.meta.id);
     setProductType(data.result.meta.type);
+  };
+
+  const updateQty = e => {
+    setQty(e.target.value);
+    const newSubProducts = subProducts.map(subProduct => {
+      subProduct.quantity = Number(subProduct.originalQty) * Number(e.target.value);
+      return subProduct;
+    });
+    setSubProducts(newSubProducts);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -38110,7 +38123,7 @@ const WorkAssignmentLine = () => {
     id: "qty",
     label: "Aantal",
     value: qty,
-    onChange: e => setQty(e.target.value)
+    onChange: updateQty
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_3-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductAutoCompleteComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {

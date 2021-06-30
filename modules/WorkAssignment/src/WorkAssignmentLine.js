@@ -50,9 +50,22 @@ const WorkAssignmentLine = () => {
 			`index.php?action=WorkAssignmentAjax&module=WorkAssignment&file=WorkAssignmentAPI&function=getPartsForProduct&productid=${data.result.meta.id}`
 		)
 		const collectedParts = await response.json();
-		setSubProducts(collectedParts)
+		const preparedParts = collectedParts.map(part => {
+			part.originalQty = part.quantity
+			return part
+		})
+		setSubProducts(preparedParts)
 		setProductId(data.result.meta.id)
 		setProductType(data.result.meta.type)
+	}
+
+	const updateQty = e => {
+		setQty(e.target.value)
+		const newSubProducts = subProducts.map(subProduct => {
+			subProduct.quantity = Number(subProduct.originalQty) * Number(e.target.value)
+			return subProduct
+		})
+		setSubProducts(newSubProducts)
 	}
 
 	return (
@@ -71,7 +84,7 @@ const WorkAssignmentLine = () => {
 					id="qty"
 					label="Aantal"
 					value={qty}
-					onChange={e => setQty(e.target.value)}
+					onChange={updateQty}
 				/>
 			</div>
 			<div className="slds-col slds-size_3-of-12">
