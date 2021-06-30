@@ -37898,8 +37898,8 @@ const ComboBoxComponent = ({
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-form-element"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    class: "slds-form-element__label",
-    for: "workshop-state"
+    className: "slds-form-element__label",
+    htmlFor: "workshop-state"
   }, "Werkplaats status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-form-element__control"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -37970,8 +37970,8 @@ const ProductAutoCompleteComponent = ({
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-form-element"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    class: "slds-form-element__label",
-    for: "product"
+    className: "slds-form-element__label",
+    htmlFor: "product"
   }, "Product"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-form-element__control"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -38091,6 +38091,8 @@ const WorkAssignmentLine = () => {
     const response = await fetch(`index.php?action=WorkAssignmentAjax&module=WorkAssignment&file=WorkAssignmentAPI&function=getPartsForProduct&productid=${data.result.meta.id}`);
     const collectedParts = await response.json();
     setSubProducts(collectedParts);
+    setProductId(data.result.meta.id);
+    setProductType(data.result.meta.type);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -38106,7 +38108,9 @@ const WorkAssignmentLine = () => {
       category: "utility"
     }),
     id: "qty",
-    label: "Aantal"
+    label: "Aantal",
+    value: qty,
+    onChange: e => setQty(e.target.value)
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_3-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductAutoCompleteComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -38122,7 +38126,9 @@ const WorkAssignmentLine = () => {
       category: "utility"
     }),
     id: "qty-delivered",
-    label: "Aantal geleverd"
+    label: "Aantal geleverd",
+    value: qtyDelivered,
+    onChange: e => setQtyDelivered(e.target.value)
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_3-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_input__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -38168,7 +38174,8 @@ const WorkAssignmentLine = () => {
     },
     onChange: e => {
       setRemarks(e.target.value);
-    }
+    },
+    value: remarks
   }, remarks))));
 };
 

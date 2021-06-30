@@ -51,6 +51,8 @@ const WorkAssignmentLine = () => {
 		)
 		const collectedParts = await response.json();
 		setSubProducts(collectedParts)
+		setProductId(data.result.meta.id)
+		setProductType(data.result.meta.type)
 	}
 
 	return (
@@ -68,6 +70,8 @@ const WorkAssignmentLine = () => {
 					}
 					id="qty"
 					label="Aantal"
+					value={qty}
+					onChange={e => setQty(e.target.value)}
 				/>
 			</div>
 			<div className="slds-col slds-size_3-of-12">
@@ -88,6 +92,8 @@ const WorkAssignmentLine = () => {
 					}
 					id="qty-delivered"
 					label="Aantal geleverd"
+					value={qtyDelivered}
+					onChange={e => setQtyDelivered(e.target.value)}
 				/>
 			</div>
 			<div className="slds-col slds-size_3-of-12">
@@ -135,6 +141,7 @@ const WorkAssignmentLine = () => {
 						className="slds-textarea slds-m-around_small"
 						style={{width: 'calc(100% - 1.5rem)'}}
 						onChange={e => {setRemarks(e.target.value)}}
+						value={remarks}
 					>{remarks}</textarea>
 				</Card>
 			</div>

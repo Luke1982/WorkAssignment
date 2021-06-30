@@ -25,7 +25,7 @@ const ComboBoxComponent = ({options, onSelect}) => {
 
 	return(
 		<div className="slds-form-element">
-			<label class="slds-form-element__label" for="workshop-state">Werkplaats status</label>
+			<label className="slds-form-element__label" htmlFor="workshop-state">Werkplaats status</label>
 			<div className="slds-form-element__control"></div>
 				<div
 					className="slds-combobox_container" ref={thisNode}>

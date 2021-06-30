@@ -16,7 +16,7 @@ const ProductAutoCompleteComponent = ({onSelect}) => {
 
 	return(
 		<div className="slds-form-element">
-			<label class="slds-form-element__label" for="product">Product</label>
+			<label className="slds-form-element__label" htmlFor="product">Product</label>
 			<div className="slds-form-element__control">
 				<div className="slds-combobox_container slds-has-inline-listbox cbds-product-search-component" ref={thisNode}>
 					<div 
