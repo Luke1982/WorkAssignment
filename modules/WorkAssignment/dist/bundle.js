@@ -38056,8 +38056,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-const WorkAssignmentLine = () => {
+const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(({
+  id
+}, ref) => {
   const [qty, setQty] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const [qtyDelivered, setQtyDelivered] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const [productId, setProductId] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
@@ -38109,6 +38110,8 @@ const WorkAssignmentLine = () => {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    ref: ref,
+    id: `workassignmentline-${id}`,
     className: "slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap slds-box slds-box_xx-small slds-theme_shade"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_1-of-12"
@@ -38190,8 +38193,7 @@ const WorkAssignmentLine = () => {
     },
     value: remarks
   }, remarks))));
-};
-
+});
 /* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLine);
 
 /***/ }),
@@ -38479,23 +38481,46 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const WorkAssignmentLines = () => {
+  const thisNode = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   const [lines, setLines] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
-    id: 1
+    id: 1,
+    ref: Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null),
+    seq: 1
   }, {
-    id: 2
+    id: 2,
+    ref: Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null),
+    seq: 2
   }, {
-    id: 3
+    id: 3,
+    ref: Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null),
+    seq: 3
   }]);
   const renderedLines = lines.map(line => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLine__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      key: line.id
+      key: line.id,
+      id: line.id,
+      ref: line.ref
     });
   });
+
+  const onDragEnd = e => {
+    const newLines = lines.map(line => {
+      const lineNodes = [...thisNode.current.ref.current.childNodes];
+      const lineSeq = lineNodes.indexOf(line.ref.current) + 1;
+      return Object.assign({}, line, {
+        seq: lineSeq
+      });
+    });
+    setLines(newLines);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__["ReactSortable"], {
     list: lines,
     setList: setLines,
     animation: 200,
-    handle: ".linehandle"
+    handle: ".linehandle",
+    onEnd: onDragEnd,
+    ref: thisNode
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_settings__WEBPACK_IMPORTED_MODULE_2__["default"], {
     iconPath: "/include/LD/assets/icons"
   }, renderedLines));
