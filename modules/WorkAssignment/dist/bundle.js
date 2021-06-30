@@ -38247,10 +38247,13 @@ const WorkAssignmentLineActions = () => {
     },
     openOn: "click",
     options: [{
-      label: 'Doe iets met deze rij',
+      label: 'Maak rijen voor vereiste onderdelen',
       value: 'A0'
     }, {
-      label: 'Doe iets anders met deze rij',
+      label: 'Maak rijen voor onderdelen en verwijder deze rij',
+      value: 'B0'
+    }, {
+      label: 'Maak rijen voor optionele producten',
       value: 'B0'
     }],
     value: "A0",
