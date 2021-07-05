@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 
-const ProductAutoCompleteComponent = ({onSelect}) => {
+const ProductAutoCompleteComponent = ({onSelect, disabled}) => {
 
 	const thisNode = useRef(null)
 	const [val, setVal] = useState('')
@@ -37,6 +37,7 @@ const ProductAutoCompleteComponent = ({onSelect}) => {
 								value={val}
 								onChange={e => {setVal(e.target.value)}}
 								type="text"
+								disabled
 							/>
 							<span className="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
 								<svg className="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">

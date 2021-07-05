@@ -5,15 +5,23 @@ import Dropdown from '@salesforce/design-system-react/components/menu-dropdown';
 import Icon from '@salesforce/design-system-react/components/icon'
 import DragAndDropIcon from '@salesforce/design-system-react/icons/utility/drag_and_drop'
 
-const WorkAssignmentLineActions = () => {
+const WorkAssignmentLineActions = ({expanded, setExpanded}) => {
 	return (
 		<ButtonGroup id="" className="slds-float_right">
 			<Button
 				assistiveText={{ icon: 'Verwijder deze rij' }}
 				iconName="delete"
 				iconVariant="border"
-				variant="destructive"
+				style={{backgroundColor: '#c23934', color: '#ffffff'}}
 				iconCategory="utility"
+			/>
+			<Button
+				assistiveText={{ icon: 'Verwijder deze rij' }}
+				iconName={expanded ? 'collapse_all' : 'expand_all'}
+				iconVariant="border"
+				iconCategory="utility"
+				style={{backgroundColor: '#ffffff'}}
+				onClick={() => setExpanded(!expanded)}
 			/>
 			<Dropdown
 				assistiveText={{ icon: 'Settings' }}

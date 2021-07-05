@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react'
 import InputIcon from '@salesforce/design-system-react/components/icon/input-icon';
 
-const ComboBoxComponent = ({options, onSelect}) => {
+const ComboBoxComponent = ({options, onSelect, disabled}) => {
 	const thisNode = useRef(null)
 	const selectedOption = options.find(option => option.selected)
 
@@ -48,6 +48,7 @@ const ComboBoxComponent = ({options, onSelect}) => {
 								readOnly="readonly"
 								type="text"
 								value={selectedOption.label}
+								disabled
 							/>
 							<InputIcon
 									assistiveText={{

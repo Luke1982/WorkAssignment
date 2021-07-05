@@ -19,6 +19,8 @@ const WorkAssignmentLine = React.forwardRef(({id}, ref) => {
 	const [assets, setAssets] = useState([])
 	const [subProducts, setSubProducts] = useState([])
 	const [remarks, setRemarks] = useState('')
+	const [disabled, setDisabled] = useState(true)
+	const [expanded, setExpanded] = useState(false)
 	const [workshopStatus, setWorkshopStatus] = useState([
 		{
 			value: 'not_prepared',
@@ -85,11 +87,13 @@ const WorkAssignmentLine = React.forwardRef(({id}, ref) => {
 					label="Aantal"
 					value={qty}
 					onChange={updateQty}
+					disabled={disabled}
 				/>
 			</div>
 			<div className="slds-col slds-size_3-of-12">
 				<ProductAutoCompleteComponent
 					onSelect={handleProductSelection}
+					disabled={disabled}
 				/>
 			</div>
 			<div className="slds-col slds-size_1-of-12">
@@ -107,6 +111,7 @@ const WorkAssignmentLine = React.forwardRef(({id}, ref) => {
 					label="Aantal geleverd"
 					value={qtyDelivered}
 					onChange={e => setQtyDelivered(e.target.value)}
+					disabled
 				/>
 			</div>
 			<div className="slds-col slds-size_3-of-12">
@@ -122,42 +127,51 @@ const WorkAssignmentLine = React.forwardRef(({id}, ref) => {
 					}
 					id="workshop-location"
 					label="Locatie in werkplaats"
+					disabled
 				/>
 			</div>
 			<div className="slds-col slds-size_2-of-12">
 				<ComboBoxComponent
 					options={workshopStatus}
 					onSelect={updateWorkshopStatus}
+					disabled
 				/>
 			</div>
 			<div className="slds-col slds-size_2-of-12">
-				<WorkAssignmentLineActions />
-			</div>
-			<div className="slds-col slds-size_4-of-12">
-				<WorkAssignmentLineAssets
-					assets={assets}
-					setAssets={setAssets}
+				<WorkAssignmentLineActions
+					expanded={expanded}
+					setExpanded={setExpanded}
 				/>
 			</div>
-			<div className="slds-col slds-size_4-of-12">
-				<WorkAssignmentLineSubProducts
-					parts={subProducts}
-				/>
-			</div>
-			<div className="slds-col slds-size_4-of-12">
-				<Card
-					heading="Opmerkingen"
-					icon={<Icon category="standard" name="display_text" size="small" />}
-					className="slds-m-top_small"
-				>
-					<textarea
-						className="slds-textarea slds-m-around_small"
-						style={{width: 'calc(100% - 1.5rem)'}}
-						onChange={e => {setRemarks(e.target.value)}}
-						value={remarks}
-					>{remarks}</textarea>
-				</Card>
-			</div>
+			{expanded &&
+				<>
+					<div className="slds-col slds-size_4-of-12">
+						<WorkAssignmentLineAssets
+							assets={assets}
+							setAssets={setAssets}
+						/>
+					</div>
+					<div className="slds-col slds-size_4-of-12">
+						<WorkAssignmentLineSubProducts
+							parts={subProducts}
+						/>
+					</div>
+					<div className="slds-col slds-size_4-of-12">
+						<Card
+							heading="Opmerkingen"
+							icon={<Icon category="standard" name="display_text" size="small" />}
+							className="slds-m-top_small"
+						>
+							<textarea
+								className="slds-textarea slds-m-around_small"
+								style={{width: 'calc(100% - 1.5rem)'}}
+								onChange={e => {setRemarks(e.target.value)}}
+								value={remarks}
+							>{remarks}</textarea>
+						</Card>
+					</div>
+				</>
+			}
 		</div>
 	)
 })

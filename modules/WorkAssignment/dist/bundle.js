@@ -37870,7 +37870,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const ComboBoxComponent = ({
   options,
-  onSelect
+  onSelect,
+  disabled
 }) => {
   const thisNode = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   const selectedOption = options.find(option => option.selected);
@@ -37921,7 +37922,8 @@ const ComboBoxComponent = ({
     placeholder: selectedOption.label,
     readOnly: "readonly",
     type: "text",
-    value: selectedOption.label
+    value: selectedOption.label,
+    disabled: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_input_icon__WEBPACK_IMPORTED_MODULE_1__["default"], {
     assistiveText: {
       icon: 'Maak een keuze'
@@ -37954,7 +37956,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const ProductAutoCompleteComponent = ({
-  onSelect
+  onSelect,
+  disabled
 }) => {
   const thisNode = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   const [val, setVal] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
@@ -37998,7 +38001,8 @@ const ProductAutoCompleteComponent = ({
     onChange: e => {
       setVal(e.target.value);
     },
-    type: "text"
+    type: "text",
+    disabled: true
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -38066,6 +38070,8 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
   const [assets, setAssets] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [subProducts, setSubProducts] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const [remarks, setRemarks] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  const [disabled, setDisabled] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
+  const [expanded, setExpanded] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [workshopStatus, setWorkshopStatus] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
     value: 'not_prepared',
     label: 'Geen voorbereiding',
@@ -38126,11 +38132,13 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     id: "qty",
     label: "Aantal",
     value: qty,
-    onChange: updateQty
+    onChange: updateQty,
+    disabled: disabled
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_3-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductAutoCompleteComponent__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    onSelect: handleProductSelection
+    onSelect: handleProductSelection,
+    disabled: disabled
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_1-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_input__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -38144,7 +38152,8 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     id: "qty-delivered",
     label: "Aantal geleverd",
     value: qtyDelivered,
-    onChange: e => setQtyDelivered(e.target.value)
+    onChange: e => setQtyDelivered(e.target.value),
+    disabled: true
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_3-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_input__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -38156,15 +38165,20 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
       category: "utility"
     }),
     id: "workshop-location",
-    label: "Locatie in werkplaats"
+    label: "Locatie in werkplaats",
+    disabled: true
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_2-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ComboBoxComponent__WEBPACK_IMPORTED_MODULE_4__["default"], {
     options: workshopStatus,
-    onSelect: updateWorkshopStatus
+    onSelect: updateWorkshopStatus,
+    disabled: true
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_2-of-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    expanded: expanded,
+    setExpanded: setExpanded
+  })), expanded && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_4-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__["default"], {
     assets: assets,
@@ -38192,7 +38206,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
       setRemarks(e.target.value);
     },
     value: remarks
-  }, remarks))));
+  }, remarks)))));
 });
 /* harmony default export */ __webpack_exports__["default"] = (WorkAssignmentLine);
 
@@ -38221,7 +38235,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const WorkAssignmentLineActions = () => {
+const WorkAssignmentLineActions = ({
+  expanded,
+  setExpanded
+}) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button_group__WEBPACK_IMPORTED_MODULE_1__["default"], {
     id: "",
     className: "slds-float_right"
@@ -38231,8 +38248,22 @@ const WorkAssignmentLineActions = () => {
     },
     iconName: "delete",
     iconVariant: "border",
-    variant: "destructive",
+    style: {
+      backgroundColor: '#c23934',
+      color: '#ffffff'
+    },
     iconCategory: "utility"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    assistiveText: {
+      icon: 'Verwijder deze rij'
+    },
+    iconName: expanded ? 'collapse_all' : 'expand_all',
+    iconVariant: "border",
+    iconCategory: "utility",
+    style: {
+      backgroundColor: '#ffffff'
+    },
+    onClick: () => setExpanded(!expanded)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_menu_dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
     assistiveText: {
       icon: 'Settings'
