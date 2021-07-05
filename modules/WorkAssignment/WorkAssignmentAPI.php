@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 /**
  * Get the parts for a given product
  *
@@ -33,6 +36,62 @@ function getPartsForProduct($productid) {
 }
 
 /**
+ * Gets the existing inventorylines for a specific parent
+ * ('master') ID. Orders by sequence no., joins on products
+ * and services.
+ *
+ * @param Int The parent module ID
+ * @param Bool A flag that should be true when these lines
+ * 			   need to be duplicates (e.g. for converting
+ * 			   from another module or duplication)
+ *
+ * @throws None
+ * @author MajorLabel <info@majorlabel.nl>
+ * @return Array $lines is an array that follows the model
+ *               as can be seen in 'getSkeletonLine'. Field
+ *               values are converted to user format.
+ */
+function getInventoryLines($id, $fornew = false) {
+	global $adb, $current_user;
+	$lines = array();
+	$invlnesid_selector = $fornew ? '0' : 'id.inventorydetailsid';
+	$q = "SELECT {$invlnesid_selector} AS 'inventorydetailsid',
+					{$invlnesid_selector} AS id,
+					CASE
+					WHEN p.productname IS NULL THEN s.servicename
+					ELSE p.productname
+					END AS 'productname',
+					id.productid AS 'productid',
+					id.quantity AS 'quantity',
+					c.description AS 'description',
+					id.units_delivered_received AS 'units_delivered_received',
+					id.total_stock AS 'total_stock',
+					id.sequence_no AS seq,
+					p.qtyinstock AS 'qtyinstock',
+					p.qtyindemand AS 'qtyindemand',
+					CASE
+					WHEN p.productname IS NULL THEN s.service_usageunit
+					ELSE p.usageunit
+					END AS 'usageunit',
+					CASE
+					WHEN p.productname IS NULL THEN 'Services'
+					ELSE 'Products'
+					END AS 'lineproducttype'
+			FROM vtiger_inventorydetails AS id
+			LEFT JOIN vtiger_products AS p ON id.productid = p.productid
+			LEFT JOIN vtiger_service AS s ON id.productid = s.serviceid
+			INNER JOIN vtiger_crmentity AS c ON id.inventorydetailsid = c.crmid
+			WHERE c.deleted = 0
+			AND id.related_to = {$id}
+			ORDER BY id.sequence_no ASC";
+	$r = $adb->query($q);
+	foreach (rowGenerator($r) as $line) {
+		$lines[] = $line;
+	}
+	return $lines;
+}
+
+/**
  * Create a row generator to loop database results
  *
  * @param Object $r (result)
@@ -63,6 +122,12 @@ function handleIncomingWorkAssignmentRequests() {
 			$parts = $function($productid);
 			header('Content-Type: application/json');
 			echo json_encode($parts);
+			break;
+		case 'getInventoryLines':
+			$productid = vtlib_purify($_REQUEST['sourcerecord']);
+			$lines = $function($productid);
+			header('Content-Type: application/json');
+			echo json_encode($lines);
 			break;
 	}
 }

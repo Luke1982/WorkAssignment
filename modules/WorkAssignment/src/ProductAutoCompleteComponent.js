@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 
-const ProductAutoCompleteComponent = ({onSelect, disabled}) => {
+const ProductAutoCompleteComponent = ({onSelect, disabled, value}) => {
 
 	const thisNode = useRef(null)
 	const [val, setVal] = useState('')
@@ -13,6 +13,10 @@ const ProductAutoCompleteComponent = ({onSelect, disabled}) => {
 	useEffect(() => {
 		new window.ProductAutocomplete(thisNode.current, {}, onProductSelect)
 	}, [])
+
+	useEffect(() => {
+		setVal(value)
+	}, [value])
 
 	return(
 		<div className="slds-form-element">

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import Input from '@salesforce/design-system-react/components/input'; 
 import InputIcon from '@salesforce/design-system-react/components/icon/input-icon';
@@ -8,13 +8,13 @@ import WorkAssignmentLineActions from './WorkAssignmentLineActions'
 import WorkAssignmentLineAssets from './WorkAssignmentLineAssets'
 import WorkAssignmentLineSubProducts from './WorkAssignmentLineSubProducts'
 import Card from '@salesforce/design-system-react/components/card';
-import Textarea from '@salesforce/design-system-react/components/textarea';
 import Icon from '@salesforce/design-system-react/components/icon';
 
-const WorkAssignmentLine = React.forwardRef(({id}, ref) => {
-	const [qty, setQty] = useState(0)
-	const [qtyDelivered, setQtyDelivered] = useState(0)
-	const [productId, setProductId] = useState(0)
+const WorkAssignmentLine = React.forwardRef((props, ref) => {
+	const [qty, setQty] = useState('0')
+	const [qtyDelivered, setQtyDelivered] = useState('0')
+	const [productName, setProductName] = useState('')
+	const [productId, setProductId] = useState('')
 	const [productType, setProductType] = useState('Products')
 	const [assets, setAssets] = useState([])
 	const [subProducts, setSubProducts] = useState([])
@@ -70,8 +70,17 @@ const WorkAssignmentLine = React.forwardRef(({id}, ref) => {
 		setSubProducts(newSubProducts)
 	}
 
+	useEffect(() => {
+		setQty(props.quantity ? props.quantity : '0')
+		setQtyDelivered(props.delivered ? props.delivered : '0')
+		setProductName(props.productname ? props.productname : '')
+		setRemarks(props.description ? props.description : '')
+		setProductId(props.productid ? props.productid : '')
+		setProductType(props.producttype ? props.producttype : '')
+	}, [])
+
 	return (
-		<div ref={ref} id={`workassignmentline-${id}`} className="slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap slds-box slds-box_xx-small slds-theme_shade">
+		<div ref={ref} id={`workassignmentline-${props.id}`} className="slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap slds-box slds-box_xx-small slds-theme_shade">
 			<div className="slds-col slds-size_1-of-12">
 				<Input
 					iconLeft={
@@ -94,6 +103,7 @@ const WorkAssignmentLine = React.forwardRef(({id}, ref) => {
 				<ProductAutoCompleteComponent
 					onSelect={handleProductSelection}
 					disabled={disabled}
+					value={productName}
 				/>
 			</div>
 			<div className="slds-col slds-size_1-of-12">
