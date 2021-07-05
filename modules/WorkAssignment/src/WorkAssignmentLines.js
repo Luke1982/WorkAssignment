@@ -29,6 +29,7 @@ export const WorkAssignmentLines = () => {
 				productid={line.productid}
 				producttype={line.lineproducttype}
 				ref={lineRefs.current[lineId]}
+				qtyinstock={line.qtyinstock}
 			/>
 		)
 	})
