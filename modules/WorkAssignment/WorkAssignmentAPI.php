@@ -76,7 +76,8 @@ function getInventoryLines($id, $fornew = false) {
 					CASE
 					WHEN p.productname IS NULL THEN 'Services'
 					ELSE 'Products'
-					END AS 'lineproducttype'
+					END AS 'lineproducttype',
+					'InventoryDetails' AS detailstype
 			FROM vtiger_inventorydetails AS id
 			LEFT JOIN vtiger_products AS p ON id.productid = p.productid
 			LEFT JOIN vtiger_service AS s ON id.productid = s.serviceid

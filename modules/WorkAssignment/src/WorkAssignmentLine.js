@@ -23,6 +23,7 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 	const [expanded, setExpanded] = useState(false)
 	const [qtyInStock, setQtyInStock] = useState(0)
 	const [enoughParts, setEnoughParts] = useState(true)
+	const [detailsType, setDetailsType] = useState(props.detailstype)
 	const [workshopStatus, setWorkshopStatus] = useState([
 		{
 			value: 'not_prepared',
@@ -105,6 +106,10 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 		const deficitParts = subProducts.find(p => p.quantity > Number(p.qtyinstock))
 		setEnoughParts(deficitParts === undefined)
 	}, [subProducts])
+
+	const deleteMe = () => {
+		props.deleteLine(props.id, detailsType)
+	}
 
 	const stockIconInfo = {
 		label: qty > qtyInStock ? 'Er is niet genoeg op voorraad' : 'Er is genoeg op voorraad',
@@ -244,6 +249,7 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 					<WorkAssignmentLineActions
 						expanded={expanded}
 						setExpanded={setExpanded}
+						deleteLine={deleteMe}
 					/>
 				</div>
 				{expanded &&

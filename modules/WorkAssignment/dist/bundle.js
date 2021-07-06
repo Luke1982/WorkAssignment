@@ -37691,6 +37691,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
   const [expanded, setExpanded] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [qtyInStock, setQtyInStock] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
   const [enoughParts, setEnoughParts] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
+  const [detailsType, setDetailsType] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.detailstype);
   const [workshopStatus, setWorkshopStatus] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
     value: 'not_prepared',
     label: 'Geen voorbereiding',
@@ -37771,6 +37772,11 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     const deficitParts = subProducts.find(p => p.quantity > Number(p.qtyinstock));
     setEnoughParts(deficitParts === undefined);
   }, [subProducts]);
+
+  const deleteMe = () => {
+    props.deleteLine(props.id, detailsType);
+  };
+
   const stockIconInfo = {
     label: qty > qtyInStock ? 'Er is niet genoeg op voorraad' : 'Er is genoeg op voorraad',
     color: qty > qtyInStock ? '#c23934' : '#3bd308',
@@ -37891,7 +37897,8 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     className: "slds-col slds-size_2-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__["default"], {
     expanded: expanded,
-    setExpanded: setExpanded
+    setExpanded: setExpanded,
+    deleteLine: deleteMe
   })), expanded && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_4-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -37951,7 +37958,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const WorkAssignmentLineActions = ({
   expanded,
-  setExpanded
+  setExpanded,
+  deleteLine
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button_group__WEBPACK_IMPORTED_MODULE_1__["default"], {
     id: "",
@@ -37966,7 +37974,8 @@ const WorkAssignmentLineActions = ({
       backgroundColor: '#c23934',
       color: '#ffffff'
     },
-    iconCategory: "utility"
+    iconCategory: "utility",
+    onClick: deleteLine
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     assistiveText: {
       icon: 'Verwijder deze rij'
@@ -38237,6 +38246,15 @@ const WorkAssignmentLines = () => {
   const [lines, setLines] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
     id: 0
   }]);
+
+  const deleteLine = (lineId, detailsType) => {
+    if (detailsType === 'WorkAssignmentLine') {
+      markForDeletion(lineId);
+    } else if (detailsType === 'InventoryDetails') {
+      unMarkForSave(lineId);
+    }
+  };
+
   const renderedLines = lines.map(line => {
     const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLine__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -38250,7 +38268,9 @@ const WorkAssignmentLines = () => {
       productid: line.productid,
       producttype: line.lineproducttype,
       ref: lineRefs.current[lineId],
-      qtyinstock: line.qtyinstock
+      qtyinstock: line.qtyinstock,
+      detailstype: line.detailstype,
+      deleteLine: deleteLine
     });
   });
 
@@ -38263,6 +38283,11 @@ const WorkAssignmentLines = () => {
       });
     });
     setLines(newLines);
+  };
+
+  const unMarkForSave = lineId => {
+    const remainingLines = lines.filter(line => line.id !== lineId);
+    setLines(remainingLines);
   };
 
   const getLines = () => {

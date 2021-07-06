@@ -15,6 +15,14 @@ export const WorkAssignmentLines = () => {
 		}
 	])
 
+	const deleteLine = (lineId, detailsType) => {
+		if (detailsType === 'WorkAssignmentLine') {
+			markForDeletion(lineId)
+		} else if (detailsType === 'InventoryDetails') {
+			unMarkForSave(lineId)
+		}
+	}
+
 	const renderedLines = lines.map(line => {
 		const lineId = line.id === '0' ? line.inventorydetailsid : line.id
 		return(
@@ -30,6 +38,8 @@ export const WorkAssignmentLines = () => {
 				producttype={line.lineproducttype}
 				ref={lineRefs.current[lineId]}
 				qtyinstock={line.qtyinstock}
+				detailstype={line.detailstype}
+				deleteLine={deleteLine}
 			/>
 		)
 	})
@@ -41,6 +51,11 @@ export const WorkAssignmentLines = () => {
 			return Object.assign({}, line, {seq: lineSeq})
 		})
 		setLines(newLines)
+	}
+
+	const unMarkForSave = lineId => {
+		const remainingLines = lines.filter(line => line.id !== lineId)
+		setLines(remainingLines)
 	}
 
 	const getLines = () => {
