@@ -22,6 +22,7 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 	const [disabled, setDisabled] = useState(true)
 	const [expanded, setExpanded] = useState(false)
 	const [qtyInStock, setQtyInStock] = useState(0)
+	const [enoughParts, setEnoughParts] = useState(true)
 	const [workshopStatus, setWorkshopStatus] = useState([
 		{
 			value: 'not_prepared',
@@ -81,6 +82,7 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 	}
 
 	useEffect(() => {
+		let mounted = true
 		setQty(props.quantity ? Number(props.quantity) : 0)
 		setQtyDelivered(props.delivered ? Number(props.delivered) : 0)
 		setProductName(props.productname ? props.productname : '')
@@ -88,13 +90,21 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 		setProductId(props.productid ? props.productid : '')
 		setProductType(props.producttype ? props.producttype : '')
 		setQtyInStock(props.qtyinstock ? Number(props.qtyinstock) : 0)
-		const getProductParts = async () => {
+		const setProductParts = async () => {
 			const preparedParts = await getProductPartsById(props.productid)
 			const adjustedPartsList = getRelativeSubQtys(props.quantity, preparedParts)
-			setSubProducts(adjustedPartsList)
+			if (mounted) {
+				setSubProducts(adjustedPartsList)
+			}
 		}
-		getProductParts()
+		setProductParts()
+		return () => {mounted = false}
 	}, [])
+
+	useEffect(() => {
+		const deficitParts = subProducts.find(p => p.quantity > Number(p.qtyinstock))
+		setEnoughParts(deficitParts === undefined)
+	}, [subProducts])
 
 	const stockIconInfo = {
 		label: qty > qtyInStock ? 'Er is niet genoeg op voorraad' : 'Er is genoeg op voorraad',
@@ -103,28 +113,36 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 		message: qty > qtyInStock ? `Er ${qtyInStock > 1 ? 'zijn' : 'is'} er maar ${qtyInStock} op voorraad` : `Er zijn er ${qtyInStock} op voorraad`
 	}
 
+	const partsIconInfo = {
+		label: enoughParts ? 'Er zijn genoeg onderdelen op voorraad' : 'Er zijn niet genoeg onderdelen op voorraad',
+		color: enoughParts ? '#3bd308' : '#c23934',
+		icon: enoughParts ? 'check' : 'warning',
+	}
+
 	return (
 		<div ref={ref} id={`workassignmentline-${props.id}`} className="slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-box slds-box_xx-small slds-theme_shade">
 			<div className="slds-col slds-size_1-of-12">
-				<div className="slds-grid slds-m-top_small">
-					<div className="slds-col slds-size_10-of-12">
-						<div className="slds-text-title">Genoeg?</div>
+				{productType === 'Products' &&
+					<div className="slds-grid slds-m-top_small">
+						<div className="slds-col slds-size_10-of-12">
+							<div className="slds-text-title">Genoeg?</div>
+						</div>
+						<div 
+							className="slds-col"
+							onClick={() => {ldsPrompt.show('Voorraad', stockIconInfo.message)}}
+							style={{cursor: 'pointer'}}
+						>
+							<Icon
+								assistiveText={{ label: stockIconInfo.label }}
+								category="utility"
+								style={{fill: stockIconInfo.color}}
+								name={stockIconInfo.icon}
+								size="x-small"
+							/>
+						</div>
 					</div>
-					<div 
-						className="slds-col"
-						onClick={() => {ldsPrompt.show('Voorraad', stockIconInfo.message)}}
-						style={{cursor: 'pointer'}}
-					>
-						<Icon
-							assistiveText={{ label: stockIconInfo.label }}
-							category="utility"
-							style={{fill: stockIconInfo.color}}
-							name={stockIconInfo.icon}
-							size="x-small"
-						/>
-					</div>
-				</div>
-				<div className="slds-grid slds-m-top_x-small">
+				}
+				{/* <div className="slds-grid slds-m-top_x-small">
 					<div className="slds-col slds-size_10-of-12">
 						<div className="slds-text-title">Gereserveerd?</div>
 					</div>
@@ -137,21 +155,23 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 							size="x-small"
 						/>
 					</div>
-				</div>
-				<div className="slds-grid slds-m-top_x-small">
-					<div className="slds-col slds-size_10-of-12">
-						<div className="slds-text-title">Genoeg onderdelen?</div>
+				</div> */}
+				{productType === 'Products' && subProducts.length > 0 &&
+					<div className="slds-grid slds-m-top_x-small">
+						<div className="slds-col slds-size_10-of-12">
+							<div className="slds-text-title">Genoeg onderdelen?</div>
+						</div>
+						<div className="slds-col">
+							<Icon
+								assistiveText={{ label: partsIconInfo.label }}
+								category="utility"
+								style={{fill: partsIconInfo.color}}
+								name={partsIconInfo.icon}
+								size="x-small"
+							/>
+						</div>
 					</div>
-					<div className="slds-col">
-						<Icon
-							assistiveText={{ label: 'Warning' }}
-							category="utility"
-							style={{fill: '#3bd308'}}
-							name="check"
-							size="x-small"
-						/>
-					</div>
-				</div>
+				}
 			</div>
 			<div className="slds-col slds-grid slds-wrap slds-size_11-of-12">
 				<div className="slds-col slds-size_1-of-12">

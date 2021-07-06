@@ -37690,6 +37690,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
   const [disabled, setDisabled] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
   const [expanded, setExpanded] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
   const [qtyInStock, setQtyInStock] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const [enoughParts, setEnoughParts] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
   const [workshopStatus, setWorkshopStatus] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
     value: 'not_prepared',
     label: 'Geen voorbereiding',
@@ -37743,6 +37744,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    let mounted = true;
     setQty(props.quantity ? Number(props.quantity) : 0);
     setQtyDelivered(props.delivered ? Number(props.delivered) : 0);
     setProductName(props.productname ? props.productname : '');
@@ -37751,19 +37753,34 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     setProductType(props.producttype ? props.producttype : '');
     setQtyInStock(props.qtyinstock ? Number(props.qtyinstock) : 0);
 
-    const getProductParts = async () => {
+    const setProductParts = async () => {
       const preparedParts = await getProductPartsById(props.productid);
       const adjustedPartsList = getRelativeSubQtys(props.quantity, preparedParts);
-      setSubProducts(adjustedPartsList);
+
+      if (mounted) {
+        setSubProducts(adjustedPartsList);
+      }
     };
 
-    getProductParts();
+    setProductParts();
+    return () => {
+      mounted = false;
+    };
   }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const deficitParts = subProducts.find(p => p.quantity > Number(p.qtyinstock));
+    setEnoughParts(deficitParts === undefined);
+  }, [subProducts]);
   const stockIconInfo = {
     label: qty > qtyInStock ? 'Er is niet genoeg op voorraad' : 'Er is genoeg op voorraad',
     color: qty > qtyInStock ? '#c23934' : '#3bd308',
     icon: qty > qtyInStock ? 'warning' : 'check',
     message: qty > qtyInStock ? `Er ${qtyInStock > 1 ? 'zijn' : 'is'} er maar ${qtyInStock} op voorraad` : `Er zijn er ${qtyInStock} op voorraad`
+  };
+  const partsIconInfo = {
+    label: enoughParts ? 'Er zijn genoeg onderdelen op voorraad' : 'Er zijn niet genoeg onderdelen op voorraad',
+    color: enoughParts ? '#3bd308' : '#c23934',
+    icon: enoughParts ? 'check' : 'warning'
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     ref: ref,
@@ -37771,7 +37788,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     className: "slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-box slds-box_xx-small slds-theme_shade"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_1-of-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, productType === 'Products' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-grid slds-m-top_small"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_10-of-12"
@@ -37795,25 +37812,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     },
     name: stockIconInfo.icon,
     size: "x-small"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slds-grid slds-m-top_x-small"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slds-col slds-size_10-of-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slds-text-title"
-  }, "Gereserveerd?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slds-col"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    assistiveText: {
-      label: 'Warning'
-    },
-    category: "utility",
-    style: {
-      fill: '#3bd308'
-    },
-    name: "check",
-    size: "x-small"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), productType === 'Products' && subProducts.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-grid slds-m-top_x-small"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_10-of-12"
@@ -37823,13 +37822,13 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     className: "slds-col"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_9__["default"], {
     assistiveText: {
-      label: 'Warning'
+      label: partsIconInfo.label
     },
     category: "utility",
     style: {
-      fill: '#3bd308'
+      fill: partsIconInfo.color
     },
-    name: "check",
+    name: partsIconInfo.icon,
     size: "x-small"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-grid slds-wrap slds-size_11-of-12"
