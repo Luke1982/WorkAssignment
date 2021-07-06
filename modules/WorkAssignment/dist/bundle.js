@@ -37693,9 +37693,13 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
   const [enoughParts, setEnoughParts] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
   const [detailsType, setDetailsType] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.detailstype);
   const [workshopStatus, setWorkshopStatus] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
+    value: '--None--',
+    label: 'Geen',
+    selected: true
+  }, {
     value: 'not_prepared',
     label: 'Geen voorbereiding',
-    selected: true
+    selected: false
   }, {
     value: 'being_prepared',
     label: 'Wordt voorbereid',
@@ -37711,6 +37715,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
       status.selected = status.value === val;
       return status;
     });
+    props.updateLineProp(props.id, 'workshopstatus', val);
     setWorkshopStatus(newStatus);
   };
 
@@ -37775,6 +37780,11 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
 
   const deleteMe = () => {
     props.deleteLine(props.id, detailsType);
+  };
+
+  const updateRemarks = value => {
+    props.updateLineProp(props.id, 'description', value);
+    setRemarks(value);
   };
 
   const stockIconInfo = {
@@ -37924,7 +37934,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
       width: 'calc(100% - 1.5rem)'
     },
     onChange: e => {
-      setRemarks(e.target.value);
+      updateRemarks(e.target.value);
     },
     value: remarks
   }, remarks))))));
@@ -38253,6 +38263,25 @@ const WorkAssignmentLines = () => {
     } else if (detailsType === 'InventoryDetails') {
       unMarkForSave(lineId);
     }
+
+    writeLinesToDom();
+  };
+
+  const updateLineProperty = (id, prop, value) => {
+    const newLines = lines.map(line => {
+      if (line.id === id) {
+        line[prop] = value;
+      }
+
+      return line;
+    });
+    setLines(newLines);
+    writeLinesToDom();
+  };
+
+  const writeLinesToDom = (linesArg = false) => {
+    const domInput = document.getElementById('workassignmentlinestosave');
+    domInput.value = JSON.stringify(linesArg ? linesArg : lines);
   };
 
   const renderedLines = lines.map(line => {
@@ -38270,7 +38299,8 @@ const WorkAssignmentLines = () => {
       ref: lineRefs.current[lineId],
       qtyinstock: line.qtyinstock,
       detailstype: line.detailstype,
-      deleteLine: deleteLine
+      deleteLine: deleteLine,
+      updateLineProp: updateLineProperty
     });
   });
 
@@ -38283,6 +38313,7 @@ const WorkAssignmentLines = () => {
       });
     });
     setLines(newLines);
+    writeLinesToDom();
   };
 
   const unMarkForSave = lineId => {
@@ -38307,6 +38338,7 @@ const WorkAssignmentLines = () => {
             lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();
           });
           setLines(lines);
+          writeLinesToDom(lines);
           break;
       }
     };

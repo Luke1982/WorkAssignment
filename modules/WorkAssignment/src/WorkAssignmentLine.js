@@ -26,9 +26,14 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 	const [detailsType, setDetailsType] = useState(props.detailstype)
 	const [workshopStatus, setWorkshopStatus] = useState([
 		{
+			value: '--None--',
+			label: 'Geen',
+			selected: true
+		},
+		{
 			value: 'not_prepared',
 			label: 'Geen voorbereiding',
-			selected: true
+			selected: false
 		},
 		{
 			value: 'being_prepared',
@@ -47,6 +52,7 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 			status.selected = status.value === val
 			return status
 		})
+		props.updateLineProp(props.id, 'workshopstatus', val)
 		setWorkshopStatus(newStatus)
 	}
 
@@ -109,6 +115,11 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 
 	const deleteMe = () => {
 		props.deleteLine(props.id, detailsType)
+	}
+
+	const updateRemarks = value => {
+		props.updateLineProp(props.id, 'description', value)
+		setRemarks(value)
 	}
 
 	const stockIconInfo = {
@@ -274,7 +285,7 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 								<textarea
 									className="slds-textarea slds-m-around_small"
 									style={{width: 'calc(100% - 1.5rem)'}}
-									onChange={e => {setRemarks(e.target.value)}}
+									onChange={e => {updateRemarks(e.target.value)}}
 									value={remarks}
 								>{remarks}</textarea>
 							</Card>

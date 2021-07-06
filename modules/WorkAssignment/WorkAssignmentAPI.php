@@ -58,8 +58,8 @@ function getInventoryLines($id, $fornew = false) {
 	$q = "SELECT {$invlnesid_selector} AS 'inventorydetailsid',
 					{$invlnesid_selector} AS id,
 					CASE
-					WHEN p.productname IS NULL THEN s.servicename
-					ELSE p.productname
+						WHEN p.productname IS NULL THEN s.servicename
+						ELSE p.productname
 					END AS 'productname',
 					id.productid AS 'productid',
 					id.quantity AS 'quantity',
@@ -70,13 +70,14 @@ function getInventoryLines($id, $fornew = false) {
 					p.qtyinstock AS 'qtyinstock',
 					p.qtyindemand AS 'qtyindemand',
 					CASE
-					WHEN p.productname IS NULL THEN s.service_usageunit
-					ELSE p.usageunit
+						WHEN p.productname IS NULL THEN s.service_usageunit
+						ELSE p.usageunit
 					END AS 'usageunit',
 					CASE
-					WHEN p.productname IS NULL THEN 'Services'
-					ELSE 'Products'
+						WHEN p.productname IS NULL THEN 'Services'
+						ELSE 'Products'
 					END AS 'lineproducttype',
+					'--None--' AS 'workshopstatus',
 					'InventoryDetails' AS detailstype
 			FROM vtiger_inventorydetails AS id
 			LEFT JOIN vtiger_products AS p ON id.productid = p.productid

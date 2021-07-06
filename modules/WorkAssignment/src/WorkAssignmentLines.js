@@ -21,6 +21,23 @@ export const WorkAssignmentLines = () => {
 		} else if (detailsType === 'InventoryDetails') {
 			unMarkForSave(lineId)
 		}
+		writeLinesToDom()
+	}
+
+	const updateLineProperty = (id, prop, value) => {
+		const newLines = lines.map(line => {
+			if (line.id === id) {
+				line[prop] = value
+			}
+			return line
+		})
+		setLines(newLines)
+		writeLinesToDom()
+	}
+
+	const writeLinesToDom = (linesArg = false) => {
+		const domInput = document.getElementById('workassignmentlinestosave')
+		domInput.value = JSON.stringify(linesArg ? linesArg : lines)
 	}
 
 	const renderedLines = lines.map(line => {
@@ -40,6 +57,7 @@ export const WorkAssignmentLines = () => {
 				qtyinstock={line.qtyinstock}
 				detailstype={line.detailstype}
 				deleteLine={deleteLine}
+				updateLineProp={updateLineProperty}
 			/>
 		)
 	})
@@ -51,6 +69,7 @@ export const WorkAssignmentLines = () => {
 			return Object.assign({}, line, {seq: lineSeq})
 		})
 		setLines(newLines)
+		writeLinesToDom()
 	}
 
 	const unMarkForSave = lineId => {
@@ -76,6 +95,7 @@ export const WorkAssignmentLines = () => {
 						lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : createRef()
 					})
 					setLines(lines)
+					writeLinesToDom(lines)
 					break
 			}
 		}
