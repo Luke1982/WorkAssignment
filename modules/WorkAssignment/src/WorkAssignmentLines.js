@@ -108,8 +108,10 @@ export const WorkAssignmentLines = () => {
 
 	const unMarkForSave = (lineId, currentSeq) => {
 		const remainingLines = lines.map(line => {
-			if (Number(line.id) !== Number(lineId) && (Number(line.seq) > Number(currentSeq))) {
-				line.seq = Number(line.seq) - 1
+			if (Number(line.id) !== Number(lineId)) {
+				if (Number(line.seq) > Number(currentSeq)) {
+					line.seq = Number(line.seq) - 1
+				}
 				return line
 			} else {
 				line.deleted = true
