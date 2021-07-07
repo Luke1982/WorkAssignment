@@ -105,46 +105,20 @@ function getInventoryLines($id, $fornew = false) {
  */
 function getCandidateLines($id) {
 	global $adb;
-	$lines = array();
-	$q = "SELECT
-			id.inventorydetailsid AS id,
-			CASE
-				WHEN p.productname IS NULL THEN s.servicename
-				ELSE p.productname
-			END AS 'productname',
-			id.productid AS 'productid',
-			id.quantity AS 'quantity',
-			e.description AS 'description',
-			id.units_delivered_received AS 'units_delivered_received',
-			id.total_stock AS 'total_stock',
-			id.sequence_no AS seq,
-			p.qtyinstock AS 'qtyinstock',
-			p.qtyindemand AS 'qtyindemand',
-			CASE
-				WHEN p.productname IS NULL THEN s.service_usageunit
-				ELSE p.usageunit
-			END AS 'usageunit',
-			CASE
-				WHEN p.productname IS NULL THEN 'Services'
-				ELSE 'Products'
-			END AS 'lineproducttype',
-			'--None--' AS 'workshopstatus',
-			'InventoryDetails' AS detailstype,
-			'candidate' AS conceptstatus
-			FROM vtiger_inventorydetails AS id
-			LEFT JOIN vtiger_workassignmentlines AS wal ON wal.originline = id.inventorydetailsid
-			LEFT JOIN vtiger_crmentity AS wal_e ON (wal.workassignmentlinesid = wal_e.crmid AND wal_e.deleted = 0)
-			LEFT JOIN vtiger_products AS p ON id.productid = p.productid
-			LEFT JOIN vtiger_service AS s ON id.productid = s.serviceid
-			INNER JOIN vtiger_crmentity AS e ON e.crmid = id.inventorydetailsid
-			WHERE id.related_to = {$id}
-			AND e.deleted = 0
-			AND wal_e.crmid IS NULL";
-	$r = $adb->query($q);
-	foreach (rowGenerator($r) as $line) {
-		$lines[] = $line;
+	$q = "SELECT wal.workassignmentlinesid FROM vtiger_workassignmentlines AS wal INNER JOIN";
+	$q .= " vtiger_crmentity AS e ON wal.workassignmentlinesid = e.crmid INNER JOIN";
+	$q .= " vtiger_inventorydetails AS id ON id.inventorydetailsid = wal.originline WHERE";
+	$q .= " wal.originline = ? AND e.deleted = ? AND id.related_to = ?";
+	$lines = getInventoryLines($id);
+	$candidates = [];
+	foreach ($lines as $line) {
+		$r = $adb->pquery($q, array($line['id'], 0, $id));
+		if ($adb->num_rows($r) === 0) {
+			$line['conceptstatus'] = 'candidate';
+			$candidates[] = $line;
+		}
 	}
-	return $lines;
+	return $candidates;
 }
 
 

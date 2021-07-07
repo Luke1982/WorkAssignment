@@ -38341,6 +38341,7 @@ const WorkAssignmentLines = () => {
   const convertCandidate = id => {
     const lineToConvert = candidateLines.find(line => line.id === id);
     lineToConvert.seq = lines.length + 1;
+    lineToConvert.originline = id;
     const newCandidateLines = candidateLines.filter(line => line.id !== id);
     const newLines = [...lines];
     newLines.push(lineToConvert);
