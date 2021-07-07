@@ -8,15 +8,27 @@ export const getMode = () => {
 	{
 		mode = 'create'
 	} else if (document.EditView
-		&& returnModuleInput.value !== '')
+		&& returnModuleInput.value !== ''
+		&& recordInput.value === '')
 	{
 		mode = 'conversion'
+	} else if (document.DetailView)
+	{
+		mode = 'detailview'
+	} else if (document.EditView
+		&& recordInput.value !== '')
+	{
+		mode = 'edit'
 	}
 	return mode
 }
 
 export const getReturnId = () => {
 	return document.getElementsByName('return_id')[0].value
+}
+
+export const getRecordId = () => {
+	return document.getElementsByName('record')[0].value
 }
 
 export const api = {

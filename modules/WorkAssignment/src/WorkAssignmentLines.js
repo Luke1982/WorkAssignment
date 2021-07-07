@@ -3,7 +3,7 @@ import ReactDom from 'react-dom'
 import IconSettings from '@salesforce/design-system-react/components/icon-settings'
 import WorkAssignmentLine from './WorkAssignmentLine'
 import {ReactSortable} from 'react-sortablejs'
-import {getMode, getReturnId, api} from '../lib/js/utilities'
+import {getMode, getReturnId, api, getRecordId} from '../lib/js/utilities'
 
 export const WorkAssignmentLines = () => {
 	const thisNode = useRef(null)
@@ -21,7 +21,6 @@ export const WorkAssignmentLines = () => {
 		} else if (detailsType === 'InventoryDetails') {
 			unMarkForSave(lineId)
 		}
-		writeLinesToDom()
 	}
 
 	const updateLineProperty = (id, prop, value) => {
@@ -32,7 +31,6 @@ export const WorkAssignmentLines = () => {
 			return line
 		})
 		setLines(newLines)
-		writeLinesToDom()
 	}
 
 	const writeLinesToDom = (linesArg = false) => {
@@ -69,7 +67,6 @@ export const WorkAssignmentLines = () => {
 			return Object.assign({}, line, {seq: lineSeq})
 		})
 		setLines(newLines)
-		writeLinesToDom()
 	}
 
 	const unMarkForSave = lineId => {
@@ -81,7 +78,7 @@ export const WorkAssignmentLines = () => {
 		const getLinesAsync = async () => {
 			switch (mode) {
 				case 'conversion':
-					const response = await fetch(`${api.loc}&function=getInventoryLines&sourcerecord=${getReturnId()}`)
+					var response = await fetch(`${api.loc}&function=getInventoryLines&sourcerecord=${getReturnId()}`)
 					if (response.status !== 200) {
 						ldsPrompt.show(
 							'Niet gelukt regels te laden',
@@ -89,13 +86,29 @@ export const WorkAssignmentLines = () => {
 						)
 						return
 					}
-					const lines = await response.json()
+					var lines = await response.json()
 					lines.forEach(line => {
 						const lineId = line.id === '0' ? line.inventorydetailsid : line.id
 						lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : createRef()
 					})
 					setLines(lines)
-					writeLinesToDom(lines)
+					break
+				case 'detailview':
+				case 'edit':
+					var response = await fetch(`${api.loc}&function=getLines&sourcerecord=${getRecordId()}`)
+					if (response.status !== 200) {
+						ldsPrompt.show(
+							'Niet gelukt regels te laden',
+							'Het is niet gelukt om de regels van de werkbon op te halen.'
+						)
+						return
+					}
+					var lines = await response.json()
+					lines.forEach(line => {
+						const lineId = line.id === '0' ? line.inventorydetailsid : line.id
+						lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : createRef()
+					})
+					setLines(lines)
 					break
 			}
 		}
@@ -103,6 +116,10 @@ export const WorkAssignmentLines = () => {
 	}
 
 	useEffect(getLines, [])
+
+	useEffect(() => {
+		writeLinesToDom()
+	}, [lines])
 
 	return (
 		<ReactSortable

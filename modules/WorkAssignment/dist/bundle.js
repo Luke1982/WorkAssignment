@@ -90,13 +90,14 @@
 /*!*****************************!*\
   !*** ./lib/js/utilities.js ***!
   \*****************************/
-/*! exports provided: getMode, getReturnId, api */
+/*! exports provided: getMode, getReturnId, getRecordId, api */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMode", function() { return getMode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReturnId", function() { return getReturnId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRecordId", function() { return getRecordId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "api", function() { return api; });
 const getMode = () => {
   let mode = '';
@@ -105,14 +106,21 @@ const getMode = () => {
 
   if (document.EditView && recordInput.value === '' && returnModuleInput.value === '') {
     mode = 'create';
-  } else if (document.EditView && returnModuleInput.value !== '') {
+  } else if (document.EditView && returnModuleInput.value !== '' && recordInput.value === '') {
     mode = 'conversion';
+  } else if (document.DetailView) {
+    mode = 'detailview';
+  } else if (document.EditView && recordInput.value !== '') {
+    mode = 'edit';
   }
 
   return mode;
 };
 const getReturnId = () => {
   return document.getElementsByName('return_id')[0].value;
+};
+const getRecordId = () => {
+  return document.getElementsByName('record')[0].value;
 };
 const api = {
   loc: 'index.php?action=WorkAssignmentAjax&module=WorkAssignment&file=WorkAssignmentAPI'
@@ -38263,8 +38271,6 @@ const WorkAssignmentLines = () => {
     } else if (detailsType === 'InventoryDetails') {
       unMarkForSave(lineId);
     }
-
-    writeLinesToDom();
   };
 
   const updateLineProperty = (id, prop, value) => {
@@ -38276,7 +38282,6 @@ const WorkAssignmentLines = () => {
       return line;
     });
     setLines(newLines);
-    writeLinesToDom();
   };
 
   const writeLinesToDom = (linesArg = false) => {
@@ -38313,7 +38318,6 @@ const WorkAssignmentLines = () => {
       });
     });
     setLines(newLines);
-    writeLinesToDom();
   };
 
   const unMarkForSave = lineId => {
@@ -38325,20 +38329,36 @@ const WorkAssignmentLines = () => {
     const getLinesAsync = async () => {
       switch (mode) {
         case 'conversion':
-          const response = await fetch(`${_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["api"].loc}&function=getInventoryLines&sourcerecord=${Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getReturnId"])()}`);
+          var response = await fetch(`${_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["api"].loc}&function=getInventoryLines&sourcerecord=${Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getReturnId"])()}`);
 
           if (response.status !== 200) {
             ldsPrompt.show('Niet gelukt regels te laden', 'Het is niet gelukt om de regels van de verkooporder op te halen.');
             return;
           }
 
-          const lines = await response.json();
+          var lines = await response.json();
           lines.forEach(line => {
             const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
             lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();
           });
           setLines(lines);
-          writeLinesToDom(lines);
+          break;
+
+        case 'detailview':
+        case 'edit':
+          var response = await fetch(`${_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["api"].loc}&function=getLines&sourcerecord=${Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getRecordId"])()}`);
+
+          if (response.status !== 200) {
+            ldsPrompt.show('Niet gelukt regels te laden', 'Het is niet gelukt om de regels van de werkbon op te halen.');
+            return;
+          }
+
+          var lines = await response.json();
+          lines.forEach(line => {
+            const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
+            lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();
+          });
+          setLines(lines);
           break;
       }
     };
@@ -38347,6 +38367,9 @@ const WorkAssignmentLines = () => {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(getLines, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    writeLinesToDom();
+  }, [lines]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__["ReactSortable"], {
     list: lines,
     setList: setLines,

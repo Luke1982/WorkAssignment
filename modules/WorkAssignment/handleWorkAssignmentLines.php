@@ -18,12 +18,14 @@ class handleWorkAssignmentLines extends VTEventHandler {
 				case 'InventoryDetails':
 					self::saveNewLine($line, $entityData->getId());
 					break;
+				case 'WorkAssignmentLine':
+					self::saveExistingLine($line);
+					break;
 			}
 		}
 	}
 
 	private static function saveNewLine($line, $wa_id) {
-		global $current_user;
 		require_once 'modules/WorkAssignmentLines/WorkAssignmentLines.php';
 		$wal = new WorkAssignmentLines();
 		$wal->mode = 'create';
@@ -36,10 +38,30 @@ class handleWorkAssignmentLines extends VTEventHandler {
 		$wal->column_fields['originline'] = $line['inventorydetailsid'];
 		$wal->column_fields['seq'] = $line['seq'];
 
+		self::saveFocus($wal);
+	}
+
+	private static function saveExistingLine($line) {
+		require_once 'modules/WorkAssignmentLines/WorkAssignmentLines.php';
+		$wal = new WorkAssignmentLines();
+		$wal->mode = 'edit';
+		$wal->id = $line['id'];
+		$wal->retrieve_entity_info($line['id'], 'WorkAssignmentLines');
+
+		$wal->column_fields['qty'] = $line['quantity'];
+		$wal->column_fields['product'] = $line['productid'];
+		$wal->column_fields['qtydelivered'] = $line['units_delivered_received'];
+		$wal->column_fields['workshopstatus'] = $line['workshopstatus'];
+		$wal->column_fields['seq'] = $line['seq'];
+
+		self::saveFocus($wal);
+	}
+
+	private static function saveFocus($focus) {
+		global $current_user;
 		$handler = vtws_getModuleHandlerFromName('WorkAssignmentLines', $current_user);
 		$meta = $handler->getMeta();
-		$wal->column_fields = DataTransform::sanitizeRetrieveEntityInfo($wal->column_fields, $meta);
-
-		$wal->save('WorkAssignmentLines');
+		$focus->column_fields = DataTransform::sanitizeRetrieveEntityInfo($focus->column_fields, $meta);
+		$focus->save('WorkAssignmentLines');
 	}
 }
