@@ -9,17 +9,13 @@ export const WorkAssignmentLines = () => {
 	const thisNode = useRef(null)
 	const lineRefs = useRef({})
 	const [mode, setMode] = useState(getMode())
-	const [lines, setLines] = useState([
-		{
-			id: 0,
-		}
-	])
+	const [lines, setLines] = useState([])
 
-	const deleteLine = (lineId, detailsType) => {
+	const deleteLine = (lineId, detailsType, currentSeq) => {
 		if (detailsType === 'WorkAssignmentLine') {
-			markForDeletion(lineId)
+			markForDeletion(lineId, currentSeq)
 		} else if (detailsType === 'InventoryDetails') {
-			unMarkForSave(lineId)
+			unMarkForSave(lineId, currentSeq)
 		}
 	}
 
@@ -41,26 +37,30 @@ export const WorkAssignmentLines = () => {
 	const renderedLines = lines.map(line => {
 		const lineId = line.id === '0' ? line.inventorydetailsid : line.id
 		return(
-			<WorkAssignmentLine 
-				key={lineId}
-				id={lineId}
-				seq={line.seq}
-				quantity={line.quantity}
-				productname={line.productname}
-				delivered={line.units_delivered_received}
-				description={line.description}
-				productid={line.productid}
-				producttype={line.lineproducttype}
-				ref={lineRefs.current[lineId]}
-				qtyinstock={line.qtyinstock}
-				detailstype={line.detailstype}
-				deleteLine={deleteLine}
-				updateLineProp={updateLineProperty}
-			/>
+			<React.Fragment key={lineId}>
+			{line.deleted !== true &&
+				<WorkAssignmentLine 
+					key={lineId}
+					id={lineId}
+					seq={line.seq}
+					quantity={line.quantity}
+					productname={line.productname}
+					delivered={line.units_delivered_received}
+					description={line.description}
+					productid={line.productid}
+					producttype={line.lineproducttype}
+					ref={lineRefs.current[lineId]}
+					qtyinstock={line.qtyinstock}
+					detailstype={line.detailstype}
+					deleteLine={deleteLine}
+					updateLineProp={updateLineProperty}
+				/>
+			}
+			</React.Fragment>
 		)
 	})
 
-	const onDragEnd = e => {
+	const updateSeq = () => {
 		const newLines = lines.map(line => {
 			const lineNodes = [...thisNode.current.ref.current.childNodes]
 			const lineSeq = lineNodes.indexOf(lineRefs.current[line.id].current) + 1
@@ -69,10 +69,35 @@ export const WorkAssignmentLines = () => {
 		setLines(newLines)
 	}
 
-	const unMarkForSave = lineId => {
-		const remainingLines = lines.filter(line => line.id !== lineId)
+	const unMarkForSave = (lineId, currentSeq) => {
+		const remainingLines = lines.map(line => {
+			if (line.id !== lineId) {
+				if (Number(line.seq) > Number(currentSeq)) {
+					line.seq = Number(line.seq) - 1
+				}
+				return line
+			}
+		})
 		setLines(remainingLines)
 	}
+
+	const markForDeletion = (lineId, currentSeq) => {
+		const newLines = lines.map(line => {
+			if (line.id === lineId) {
+				line.deleted = true
+				line.seq = 0
+			}
+			if (Number(line.seq) > Number(currentSeq)) {
+				line.seq = Number(line.seq) - 1
+			}
+			return line
+		})
+		setLines(newLines)
+	}
+
+	useEffect(() => {
+		writeLinesToDom()
+	}, [lines])
 
 	const getLines = () => {
 		const getLinesAsync = async () => {
@@ -117,23 +142,23 @@ export const WorkAssignmentLines = () => {
 
 	useEffect(getLines, [])
 
-	useEffect(() => {
-		writeLinesToDom()
-	}, [lines])
-
 	return (
-		<ReactSortable
-			list={lines}
-			setList={setLines}
-			animation={200}
-			handle=".linehandle"
-			onEnd={onDragEnd}
-			ref={thisNode}
-		>
-			<IconSettings iconPath='/include/LD/assets/icons'>
-				{renderedLines}
-			</IconSettings>
-		</ReactSortable>
+		<>
+			{renderedLines.length > 0 &&
+				<ReactSortable
+					list={lines}
+					setList={setLines}
+					animation={200}
+					handle=".linehandle"
+					onEnd={updateSeq}
+					ref={thisNode}
+				>
+					<IconSettings iconPath='/include/LD/assets/icons'>
+						{renderedLines}
+					</IconSettings>
+				</ReactSortable>
+			}
+		</>
 	)
 }
 

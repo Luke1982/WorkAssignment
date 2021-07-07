@@ -114,7 +114,7 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 	}, [subProducts])
 
 	const deleteMe = () => {
-		props.deleteLine(props.id, detailsType)
+		props.deleteLine(props.id, detailsType, props.seq)
 	}
 
 	const updateRemarks = value => {

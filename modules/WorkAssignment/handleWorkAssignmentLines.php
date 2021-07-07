@@ -19,7 +19,11 @@ class handleWorkAssignmentLines extends VTEventHandler {
 					self::saveNewLine($line, $entityData->getId());
 					break;
 				case 'WorkAssignmentLine':
-					self::saveExistingLine($line);
+					if ($line['deleted'] === true || $line['deleted'] === 'true') {
+						self::trashExistingLine($line);
+					} else {
+						self::saveExistingLine($line);
+					}
 					break;
 			}
 		}
@@ -55,6 +59,13 @@ class handleWorkAssignmentLines extends VTEventHandler {
 		$wal->column_fields['seq'] = $line['seq'];
 
 		self::saveFocus($wal);
+	}
+
+	private static function trashExistingLine($line) {
+		require_once 'modules/WorkAssignmentLines/WorkAssignmentLines.php';
+		$wal = new WorkAssignmentLines();
+		$wal->id = $line['id'];
+		$wal->trash('WorkAssignmentLines', $line['id']);
 	}
 
 	private static function saveFocus($focus) {

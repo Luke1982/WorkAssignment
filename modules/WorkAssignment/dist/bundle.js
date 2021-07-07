@@ -37787,7 +37787,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
   }, [subProducts]);
 
   const deleteMe = () => {
-    props.deleteLine(props.id, detailsType);
+    props.deleteLine(props.id, detailsType, props.seq);
   };
 
   const updateRemarks = value => {
@@ -38261,15 +38261,13 @@ const WorkAssignmentLines = () => {
   const thisNode = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   const lineRefs = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])({});
   const [mode, setMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getMode"])());
-  const [lines, setLines] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{
-    id: 0
-  }]);
+  const [lines, setLines] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
 
-  const deleteLine = (lineId, detailsType) => {
+  const deleteLine = (lineId, detailsType, currentSeq) => {
     if (detailsType === 'WorkAssignmentLine') {
-      markForDeletion(lineId);
+      markForDeletion(lineId, currentSeq);
     } else if (detailsType === 'InventoryDetails') {
-      unMarkForSave(lineId);
+      unMarkForSave(lineId, currentSeq);
     }
   };
 
@@ -38291,7 +38289,9 @@ const WorkAssignmentLines = () => {
 
   const renderedLines = lines.map(line => {
     const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLine__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+      key: lineId
+    }, line.deleted !== true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLine__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: lineId,
       id: lineId,
       seq: line.seq,
@@ -38306,10 +38306,10 @@ const WorkAssignmentLines = () => {
       detailstype: line.detailstype,
       deleteLine: deleteLine,
       updateLineProp: updateLineProperty
-    });
+    }));
   });
 
-  const onDragEnd = e => {
+  const updateSeq = () => {
     const newLines = lines.map(line => {
       const lineNodes = [...thisNode.current.ref.current.childNodes];
       const lineSeq = lineNodes.indexOf(lineRefs.current[line.id].current) + 1;
@@ -38320,10 +38320,38 @@ const WorkAssignmentLines = () => {
     setLines(newLines);
   };
 
-  const unMarkForSave = lineId => {
-    const remainingLines = lines.filter(line => line.id !== lineId);
+  const unMarkForSave = (lineId, currentSeq) => {
+    const remainingLines = lines.map(line => {
+      if (line.id !== lineId) {
+        if (Number(line.seq) > Number(currentSeq)) {
+          line.seq = Number(line.seq) - 1;
+        }
+
+        return line;
+      }
+    });
     setLines(remainingLines);
   };
+
+  const markForDeletion = (lineId, currentSeq) => {
+    const newLines = lines.map(line => {
+      if (line.id === lineId) {
+        line.deleted = true;
+        line.seq = 0;
+      }
+
+      if (Number(line.seq) > Number(currentSeq)) {
+        line.seq = Number(line.seq) - 1;
+      }
+
+      return line;
+    });
+    setLines(newLines);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    writeLinesToDom();
+  }, [lines]);
 
   const getLines = () => {
     const getLinesAsync = async () => {
@@ -38367,19 +38395,16 @@ const WorkAssignmentLines = () => {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(getLines, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    writeLinesToDom();
-  }, [lines]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__["ReactSortable"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, renderedLines.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__["ReactSortable"], {
     list: lines,
     setList: setLines,
     animation: 200,
     handle: ".linehandle",
-    onEnd: onDragEnd,
+    onEnd: updateSeq,
     ref: thisNode
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_settings__WEBPACK_IMPORTED_MODULE_2__["default"], {
     iconPath: "/include/LD/assets/icons"
-  }, renderedLines));
+  }, renderedLines)));
 };
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WorkAssignmentLines, null), document.getElementById('workassignmentlines'));
 

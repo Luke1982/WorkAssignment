@@ -131,7 +131,8 @@ function getLines($id) {
 					END AS 'lineproducttype',
 					wal.workshopstatus AS 'workshopstatus',
 					wal.workshoplocation AS 'workshoplocation',
-					'WorkAssignmentLine' AS detailstype
+					'WorkAssignmentLine' AS detailstype,
+					'false' AS 'deleted'
 			FROM vtiger_workassignmentlines AS wal
 			LEFT JOIN vtiger_products AS p ON wal.product = p.productid
 			LEFT JOIN vtiger_service AS s ON wal.product = s.serviceid
