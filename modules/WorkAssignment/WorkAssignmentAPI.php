@@ -47,9 +47,7 @@ function getPartsForProduct($productid) {
  *
  * @throws None
  * @author MajorLabel <info@majorlabel.nl>
- * @return Array $lines is an array that follows the model
- *               as can be seen in 'getSkeletonLine'. Field
- *               values are converted to user format.
+ * @return Array $lines is an array
  */
 function getInventoryLines($id, $fornew = false) {
 	global $adb, $current_user;
@@ -78,7 +76,8 @@ function getInventoryLines($id, $fornew = false) {
 						ELSE 'Products'
 					END AS 'lineproducttype',
 					'--None--' AS 'workshopstatus',
-					'InventoryDetails' AS detailstype
+					'InventoryDetails' AS detailstype,
+					'converted' AS conceptstatus
 			FROM vtiger_inventorydetails AS id
 			LEFT JOIN vtiger_products AS p ON id.productid = p.productid
 			LEFT JOIN vtiger_service AS s ON id.productid = s.serviceid
@@ -94,6 +93,62 @@ function getInventoryLines($id, $fornew = false) {
 }
 
 /**
+ * Gets candidate lines, which are inventorydetails lines
+ * that have not been listed on a different WorkAssignment
+ * yet
+ *
+ * @param Int The parent module ID
+ *
+ * @throws None
+ * @author MajorLabel <info@majorlabel.nl>
+ * @return Array $lines is an array
+ */
+function getCandidateLines($id) {
+	global $adb;
+	$lines = array();
+	$q = "SELECT
+			id.inventorydetailsid AS id,
+			CASE
+				WHEN p.productname IS NULL THEN s.servicename
+				ELSE p.productname
+			END AS 'productname',
+			id.productid AS 'productid',
+			id.quantity AS 'quantity',
+			e.description AS 'description',
+			id.units_delivered_received AS 'units_delivered_received',
+			id.total_stock AS 'total_stock',
+			id.sequence_no AS seq,
+			p.qtyinstock AS 'qtyinstock',
+			p.qtyindemand AS 'qtyindemand',
+			CASE
+				WHEN p.productname IS NULL THEN s.service_usageunit
+				ELSE p.usageunit
+			END AS 'usageunit',
+			CASE
+				WHEN p.productname IS NULL THEN 'Services'
+				ELSE 'Products'
+			END AS 'lineproducttype',
+			'--None--' AS 'workshopstatus',
+			'InventoryDetails' AS detailstype,
+			'candidate' AS conceptstatus
+			FROM vtiger_inventorydetails AS id
+			LEFT JOIN vtiger_workassignmentlines AS wal ON wal.originline = id.inventorydetailsid
+			LEFT JOIN vtiger_crmentity AS wal_e ON (wal.workassignmentlinesid = wal_e.crmid AND wal_e.deleted = 0)
+			LEFT JOIN vtiger_products AS p ON id.productid = p.productid
+			LEFT JOIN vtiger_service AS s ON id.productid = s.serviceid
+			INNER JOIN vtiger_crmentity AS e ON e.crmid = id.inventorydetailsid
+			WHERE id.related_to = {$id}
+			AND e.deleted = 0
+			AND wal_e.crmid IS NULL";
+	$r = $adb->query($q);
+	foreach (rowGenerator($r) as $line) {
+		$lines[] = $line;
+	}
+	return $lines;
+}
+
+
+/**
  * Gets the existing workassignmentlines for a specific parent
  * ('master') ID. Orders by sequence no., joins on products
  * and services.
@@ -102,9 +157,7 @@ function getInventoryLines($id, $fornew = false) {
 
  * @throws None
  * @author MajorLabel <info@majorlabel.nl>
- * @return Array $lines is an array that follows the model
- *               as can be seen in 'getSkeletonLine'. Field
- *               values are converted to user format.
+ * @return Array $lines is an array
  */
 function getLines($id) {
 	global $adb;
@@ -132,7 +185,8 @@ function getLines($id) {
 					wal.workshopstatus AS 'workshopstatus',
 					wal.workshoplocation AS 'workshoplocation',
 					'WorkAssignmentLine' AS detailstype,
-					'false' AS 'deleted'
+					'false' AS 'deleted',
+					'established' AS conceptstatus
 			FROM vtiger_workassignmentlines AS wal
 			LEFT JOIN vtiger_products AS p ON wal.product = p.productid
 			LEFT JOIN vtiger_service AS s ON wal.product = s.serviceid
@@ -180,12 +234,8 @@ function handleIncomingWorkAssignmentRequests() {
 			echo json_encode($parts);
 			break;
 		case 'getInventoryLines':
-			$productid = vtlib_purify($_REQUEST['sourcerecord']);
-			$lines = $function($productid);
-			header('Content-Type: application/json');
-			echo json_encode($lines);
-			break;
 		case 'getLines':
+		case 'getCandidateLines':
 			$productid = vtlib_purify($_REQUEST['sourcerecord']);
 			$lines = $function($productid);
 			header('Content-Type: application/json');

@@ -90,7 +90,7 @@
 /*!*****************************!*\
   !*** ./lib/js/utilities.js ***!
   \*****************************/
-/*! exports provided: getMode, getReturnId, getRecordId, api */
+/*! exports provided: getMode, getReturnId, getRecordId, getSoId, api */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,6 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMode", function() { return getMode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReturnId", function() { return getReturnId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRecordId", function() { return getRecordId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSoId", function() { return getSoId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "api", function() { return api; });
 const getMode = () => {
   let mode = '';
@@ -121,6 +122,9 @@ const getReturnId = () => {
 };
 const getRecordId = () => {
   return document.getElementsByName('record')[0].value;
+};
+const getSoId = () => {
+  return document.getElementsByName('salesorder')[0].value;
 };
 const api = {
   loc: 'index.php?action=WorkAssignmentAjax&module=WorkAssignment&file=WorkAssignmentAPI'
@@ -37795,6 +37799,10 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     setRemarks(value);
   };
 
+  const convertCandidate = () => {
+    props.convertCandidate(props.id);
+  };
+
   const stockIconInfo = {
     label: qty > qtyInStock ? 'Er is niet genoeg op voorraad' : 'Er is genoeg op voorraad',
     color: qty > qtyInStock ? '#c23934' : '#3bd308',
@@ -37806,10 +37814,21 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
     color: enoughParts ? '#3bd308' : '#c23934',
     icon: enoughParts ? 'check' : 'warning'
   };
+  const lineOpacity = props.conceptstatus === 'candidate' ? '0.9' : '1';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     ref: ref,
     id: `workassignmentline-${props.id}`,
-    className: "slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-box slds-box_xx-small slds-theme_shade"
+    className: `
+			slds-grid
+			slds-gutters_x-small
+			slds-m-bottom_x-small
+			slds-box
+			slds-box_xx-small
+			slds-theme_shade
+		`,
+    style: {
+      opacity: lineOpacity
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_1-of-12"
   }, productType === 'Products' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -37916,7 +37935,9 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineActions__WEBPACK_IMPORTED_MODULE_5__["default"], {
     expanded: expanded,
     setExpanded: setExpanded,
-    deleteLine: deleteMe
+    deleteLine: deleteMe,
+    isCandidate: props.conceptstatus === 'candidate',
+    convertCandidate: convertCandidate
   })), expanded && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-col slds-size_4-of-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLineAssets__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -37979,10 +38000,12 @@ __webpack_require__.r(__webpack_exports__);
 const WorkAssignmentLineActions = ({
   expanded,
   setExpanded,
-  deleteLine
+  deleteLine,
+  isCandidate,
+  convertCandidate
 }) => {
   const mode = Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_6__["getMode"])();
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, mode !== 'detailview' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button_group__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, mode !== 'detailview' && !isCandidate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button_group__WEBPACK_IMPORTED_MODULE_1__["default"], {
     id: "",
     className: "slds-float_right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -38041,7 +38064,7 @@ const WorkAssignmentLineActions = ({
     style: {
       "cursor": "move"
     }
-  })), mode === 'detailview' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })), mode === 'detailview' && !isCandidate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     assistiveText: {
       icon: 'Klap deze rij in of uit'
     },
@@ -38052,6 +38075,15 @@ const WorkAssignmentLineActions = ({
       backgroundColor: '#ffffff'
     },
     onClick: () => setExpanded(!expanded),
+    className: "slds-float_right"
+  }), isCandidate && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    assistiveText: {
+      icon: 'Converteer naar een werkbonregel'
+    },
+    iconName: "lead_convert",
+    iconVariant: "border",
+    iconCategory: "action",
+    onClick: convertCandidate,
     className: "slds-float_right"
   }));
 };
@@ -38266,6 +38298,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_sortablejs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-sortablejs */ "./node_modules/react-sortablejs/dist/index.js");
 /* harmony import */ var react_sortablejs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lib/js/utilities */ "./lib/js/utilities.js");
+/* harmony import */ var _salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @salesforce/design-system-react/components/button */ "./node_modules/@salesforce/design-system-react/components/button/index.jsx");
+
 
 
 
@@ -38277,6 +38311,8 @@ const WorkAssignmentLines = () => {
   const lineRefs = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])({});
   const [mode, setMode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getMode"])());
   const [lines, setLines] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [candidateLines, setCandidateLines] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [candidatesExpanded, setCandidatesExpanded] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
 
   const deleteLine = (lineId, detailsType, currentSeq) => {
     if (detailsType === 'WorkAssignmentLine') {
@@ -38302,6 +38338,16 @@ const WorkAssignmentLines = () => {
     domInput.value = JSON.stringify(linesArg ? linesArg : lines);
   };
 
+  const convertCandidate = id => {
+    const lineToConvert = candidateLines.find(line => line.id === id);
+    lineToConvert.seq = lines.length + 1;
+    const newCandidateLines = candidateLines.filter(line => line.id !== id);
+    const newLines = [...lines];
+    newLines.push(lineToConvert);
+    setLines(newLines);
+    setCandidateLines(newCandidateLines);
+  };
+
   const renderedLines = lines.map(line => {
     const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
@@ -38322,6 +38368,27 @@ const WorkAssignmentLines = () => {
       deleteLine: deleteLine,
       updateLineProp: updateLineProperty
     }));
+  });
+  const renderedCandidateLines = candidateLines.map(line => {
+    const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_WorkAssignmentLine__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      key: lineId,
+      id: lineId,
+      seq: line.seq,
+      quantity: line.quantity,
+      productname: line.productname,
+      delivered: line.units_delivered_received,
+      description: line.description,
+      productid: line.productid,
+      producttype: line.lineproducttype,
+      ref: lineRefs.current[lineId],
+      qtyinstock: line.qtyinstock,
+      detailstype: line.detailstype,
+      deleteLine: deleteLine,
+      updateLineProp: updateLineProperty,
+      conceptstatus: line.conceptstatus,
+      convertCandidate: convertCandidate
+    });
   });
 
   const updateSeq = () => {
@@ -38395,6 +38462,8 @@ const WorkAssignmentLines = () => {
         case 'detailview':
         case 'edit':
           var lines = await fetchLines('getLines', Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getRecordId"])(), 'Niet gelukt regels te laden', 'Het is niet gelukt om de regels van de werkbon op te halen.');
+          const candidateLines = await fetchLines('getCandidateLines', Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getSoId"])(), 'Niet gelukt kandidaatregels te laden', 'Het is niet gelukt om de kandidaatregels van de order op te halen.');
+          setCandidateLines(candidateLines);
           setLines(lines);
           break;
       }
@@ -38431,7 +38500,25 @@ const WorkAssignmentLines = () => {
     className: "slds-spinner__dot-a"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slds-spinner__dot-b"
-  })))));
+  })))), candidateLines.length > 0 && mode !== 'detailview' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_settings__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    iconPath: "/include/LD/assets/icons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-box slds-theme_warning slds-theme_alert-texture"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    assistiveText: {
+      icon: 'Klap deze rij in of uit'
+    },
+    iconName: candidatesExpanded ? 'collapse_all' : 'expand_all',
+    iconVariant: "border",
+    iconCategory: "utility",
+    style: {
+      backgroundColor: '#ffffff'
+    },
+    onClick: () => setCandidatesExpanded(!candidatesExpanded),
+    className: "slds-float_right"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-text-heading_small slds-text-align_center slds-m-bottom_medium"
+  }, "Kandidaat regels"), candidatesExpanded && renderedCandidateLines)));
 };
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WorkAssignmentLines, null), document.getElementById('workassignmentlines'));
 

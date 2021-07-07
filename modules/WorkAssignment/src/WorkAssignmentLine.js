@@ -122,6 +122,10 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 		setRemarks(value)
 	}
 
+	const convertCandidate = () => {
+		props.convertCandidate(props.id)
+	}
+
 	const stockIconInfo = {
 		label: qty > qtyInStock ? 'Er is niet genoeg op voorraad' : 'Er is genoeg op voorraad',
 		color: qty > qtyInStock ? '#c23934' : '#3bd308',
@@ -135,8 +139,19 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 		icon: enoughParts ? 'check' : 'warning',
 	}
 
+	const lineOpacity = props.conceptstatus === 'candidate' ? '0.9' : '1'
+
 	return (
-		<div ref={ref} id={`workassignmentline-${props.id}`} className="slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-box slds-box_xx-small slds-theme_shade">
+		<div ref={ref} id={`workassignmentline-${props.id}`} className={`
+			slds-grid
+			slds-gutters_x-small
+			slds-m-bottom_x-small
+			slds-box
+			slds-box_xx-small
+			slds-theme_shade
+		`}
+		style={{opacity: lineOpacity}}
+		>
 			<div className="slds-col slds-size_1-of-12">
 				{productType === 'Products' &&
 					<div className="slds-grid slds-m-top_small">
@@ -261,6 +276,8 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 						expanded={expanded}
 						setExpanded={setExpanded}
 						deleteLine={deleteMe}
+						isCandidate={props.conceptstatus === 'candidate'}
+						convertCandidate={convertCandidate}
 					/>
 				</div>
 				{expanded &&

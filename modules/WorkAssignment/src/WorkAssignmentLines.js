@@ -3,13 +3,16 @@ import ReactDom, { render } from 'react-dom'
 import IconSettings from '@salesforce/design-system-react/components/icon-settings'
 import WorkAssignmentLine from './WorkAssignmentLine'
 import { ReactSortable } from 'react-sortablejs'
-import { getMode, getReturnId, api, getRecordId } from '../lib/js/utilities'
+import { getMode, getReturnId, api, getRecordId, getSoId } from '../lib/js/utilities'
+import Button from '@salesforce/design-system-react/components/button';
 
 export const WorkAssignmentLines = () => {
 	const thisNode = useRef(null)
 	const lineRefs = useRef({})
 	const [mode, setMode] = useState(getMode())
 	const [lines, setLines] = useState([])
+	const [candidateLines, setCandidateLines] = useState([])
+	const [candidatesExpanded, setCandidatesExpanded] = useState(false)
 
 	const deleteLine = (lineId, detailsType, currentSeq) => {
 		if (detailsType === 'WorkAssignmentLine') {
@@ -32,6 +35,16 @@ export const WorkAssignmentLines = () => {
 	const writeLinesToDom = (linesArg = false) => {
 		const domInput = document.getElementById('workassignmentlinestosave')
 		domInput.value = JSON.stringify(linesArg ? linesArg : lines)
+	}
+
+	const convertCandidate = id => {
+		const lineToConvert = candidateLines.find(line => line.id === id)
+		lineToConvert.seq = lines.length + 1
+		const newCandidateLines = candidateLines.filter(line => line.id !== id)
+		const newLines = [...lines]
+		newLines.push(lineToConvert)
+		setLines(newLines)
+		setCandidateLines(newCandidateLines)
 	}
 
 	const renderedLines = lines.map(line => {
@@ -57,6 +70,30 @@ export const WorkAssignmentLines = () => {
 					/>
 				}
 			</React.Fragment>
+		)
+	})
+
+	const renderedCandidateLines = candidateLines.map(line => {
+		const lineId = line.id === '0' ? line.inventorydetailsid : line.id
+		return (
+			<WorkAssignmentLine
+				key={lineId}
+				id={lineId}
+				seq={line.seq}
+				quantity={line.quantity}
+				productname={line.productname}
+				delivered={line.units_delivered_received}
+				description={line.description}
+				productid={line.productid}
+				producttype={line.lineproducttype}
+				ref={lineRefs.current[lineId]}
+				qtyinstock={line.qtyinstock}
+				detailstype={line.detailstype}
+				deleteLine={deleteLine}
+				updateLineProp={updateLineProperty}
+				conceptstatus={line.conceptstatus}
+				convertCandidate={convertCandidate}
+			/>
 		)
 	})
 
@@ -134,6 +171,13 @@ export const WorkAssignmentLines = () => {
 						'Niet gelukt regels te laden',
 						'Het is niet gelukt om de regels van de werkbon op te halen.'
 						)
+					const candidateLines = await fetchLines(
+						'getCandidateLines',
+						getSoId(),
+						'Niet gelukt kandidaatregels te laden',
+						'Het is niet gelukt om de kandidaatregels van de order op te halen.'
+					)
+					setCandidateLines(candidateLines)
 					setLines(lines)
 					break
 			}
@@ -174,6 +218,25 @@ export const WorkAssignmentLines = () => {
 						</div>
 					</div>
 				</div>
+			}
+			{candidateLines.length > 0 && mode !== 'detailview' &&
+				<IconSettings iconPath='/include/LD/assets/icons'>
+					<div className="slds-box slds-theme_warning slds-theme_alert-texture">
+						<Button
+							assistiveText={{ icon: 'Klap deze rij in of uit' }}
+							iconName={candidatesExpanded ? 'collapse_all' : 'expand_all'}
+							iconVariant="border"
+							iconCategory="utility"
+							style={{backgroundColor: '#ffffff'}}
+							onClick={() => setCandidatesExpanded(!candidatesExpanded)}
+							className="slds-float_right"
+						/>
+						<div className="slds-text-heading_small slds-text-align_center slds-m-bottom_medium">Kandidaat regels</div>
+						{candidatesExpanded && 
+							renderedCandidateLines
+						}
+					</div>
+				</IconSettings>
 			}
 		</>
 	)

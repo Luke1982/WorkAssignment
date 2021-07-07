@@ -31,6 +31,10 @@ export const getRecordId = () => {
 	return document.getElementsByName('record')[0].value
 }
 
+export const getSoId = () => {
+	return document.getElementsByName('salesorder')[0].value
+}
+
 export const api = {
 	loc: 'index.php?action=WorkAssignmentAjax&module=WorkAssignment&file=WorkAssignmentAPI'
 }

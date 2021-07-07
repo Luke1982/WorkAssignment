@@ -6,11 +6,11 @@ import Icon from '@salesforce/design-system-react/components/icon'
 import DragAndDropIcon from '@salesforce/design-system-react/icons/utility/drag_and_drop'
 import {getMode} from '../lib/js/utilities'
 
-const WorkAssignmentLineActions = ({expanded, setExpanded, deleteLine}) => {
+const WorkAssignmentLineActions = ({expanded, setExpanded, deleteLine, isCandidate, convertCandidate}) => {
 	const mode = getMode()
 	return (
 		<>
-		{mode !== 'detailview' &&
+		{mode !== 'detailview' && !isCandidate &&
 			<ButtonGroup id="" className="slds-float_right">
 				<Button
 					assistiveText={{ icon: 'Verwijder deze rij' }}
@@ -59,14 +59,24 @@ const WorkAssignmentLineActions = ({expanded, setExpanded, deleteLine}) => {
 				/>
 			</ButtonGroup>
 		}
-		{mode === 'detailview' &&
-				<Button
+		{mode === 'detailview' && !isCandidate &&
+			<Button
 				assistiveText={{ icon: 'Klap deze rij in of uit' }}
 				iconName={expanded ? 'collapse_all' : 'expand_all'}
 				iconVariant="border"
 				iconCategory="utility"
 				style={{backgroundColor: '#ffffff'}}
 				onClick={() => setExpanded(!expanded)}
+				className="slds-float_right"
+			/>
+		}
+		{isCandidate &&
+			<Button
+				assistiveText={{ icon: 'Converteer naar een werkbonregel' }}
+				iconName='lead_convert'
+				iconVariant="border"
+				iconCategory="action"
+				onClick={convertCandidate}
 				className="slds-float_right"
 			/>
 		}
