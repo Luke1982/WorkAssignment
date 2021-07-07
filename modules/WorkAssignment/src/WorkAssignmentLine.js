@@ -227,7 +227,7 @@ const WorkAssignmentLine = React.forwardRef((props, ref) => {
 							/>
 						}
 						id="qty-delivered"
-						label="Aantal geleverd"
+						label="Geleverd"
 						value={qtyDelivered}
 						onChange={e => setQtyDelivered(e.target.value)}
 						disabled

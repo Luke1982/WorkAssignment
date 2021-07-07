@@ -37888,7 +37888,7 @@ const WorkAssignmentLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defau
       category: "utility"
     }),
     id: "qty-delivered",
-    label: "Aantal geleverd",
+    label: "Geleverd",
     value: qtyDelivered,
     onChange: e => setQtyDelivered(e.target.value),
     disabled: true
@@ -37967,6 +37967,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _salesforce_design_system_react_components_menu_dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @salesforce/design-system-react/components/menu-dropdown */ "./node_modules/@salesforce/design-system-react/components/menu-dropdown/index.jsx");
 /* harmony import */ var _salesforce_design_system_react_components_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @salesforce/design-system-react/components/icon */ "./node_modules/@salesforce/design-system-react/components/icon/index.jsx");
 /* harmony import */ var _salesforce_design_system_react_icons_utility_drag_and_drop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @salesforce/design-system-react/icons/utility/drag_and_drop */ "./node_modules/@salesforce/design-system-react/icons/utility/drag_and_drop.js");
+/* harmony import */ var _lib_js_utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lib/js/utilities */ "./lib/js/utilities.js");
+
 
 
 
@@ -37979,7 +37981,8 @@ const WorkAssignmentLineActions = ({
   setExpanded,
   deleteLine
 }) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button_group__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  const mode = Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_6__["getMode"])();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, mode !== 'detailview' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button_group__WEBPACK_IMPORTED_MODULE_1__["default"], {
     id: "",
     className: "slds-float_right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -37996,7 +37999,7 @@ const WorkAssignmentLineActions = ({
     onClick: deleteLine
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     assistiveText: {
-      icon: 'Verwijder deze rij'
+      icon: 'Klap deze rij in of uit'
     },
     iconName: expanded ? 'collapse_all' : 'expand_all',
     iconVariant: "border",
@@ -38038,6 +38041,18 @@ const WorkAssignmentLineActions = ({
     style: {
       "cursor": "move"
     }
+  })), mode === 'detailview' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    assistiveText: {
+      icon: 'Klap deze rij in of uit'
+    },
+    iconName: expanded ? 'collapse_all' : 'expand_all',
+    iconVariant: "border",
+    iconCategory: "utility",
+    style: {
+      backgroundColor: '#ffffff'
+    },
+    onClick: () => setExpanded(!expanded),
+    className: "slds-float_right"
   }));
 };
 
@@ -38322,11 +38337,11 @@ const WorkAssignmentLines = () => {
 
   const unMarkForSave = (lineId, currentSeq) => {
     const remainingLines = lines.map(line => {
-      if (line.id !== lineId) {
-        if (Number(line.seq) > Number(currentSeq)) {
-          line.seq = Number(line.seq) - 1;
-        }
-
+      if (Number(line.id) !== Number(lineId) && Number(line.seq) > Number(currentSeq)) {
+        line.seq = Number(line.seq) - 1;
+        return line;
+      } else {
+        line.deleted = true;
         return line;
       }
     });
@@ -38395,7 +38410,7 @@ const WorkAssignmentLines = () => {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(getLines, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, renderedLines.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__["ReactSortable"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, mode !== 'detailview' && renderedLines.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_sortablejs__WEBPACK_IMPORTED_MODULE_4__["ReactSortable"], {
     list: lines,
     setList: setLines,
     animation: 200,
@@ -38404,7 +38419,25 @@ const WorkAssignmentLines = () => {
     ref: thisNode
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_settings__WEBPACK_IMPORTED_MODULE_2__["default"], {
     iconPath: "/include/LD/assets/icons"
-  }, renderedLines)));
+  }, renderedLines)), mode === 'detailview' && renderedLines.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_salesforce_design_system_react_components_icon_settings__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    iconPath: "/include/LD/assets/icons"
+  }, renderedLines), renderedLines.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      'height': '6rem',
+      'position': 'relative'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-spinner_container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    role: "status",
+    className: "slds-spinner slds-spinner_medium slds-spinner_brand"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "slds-assistive-text"
+  }, "Loading"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-spinner__dot-a"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slds-spinner__dot-b"
+  })))));
 };
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WorkAssignmentLines, null), document.getElementById('workassignmentlines'));
 
