@@ -100,40 +100,40 @@ export const WorkAssignmentLines = () => {
 		writeLinesToDom()
 	}, [lines])
 
+	const fetchLines = async (func, source, promptHead, promptText) => {
+		const response = await fetch(`${api.loc}&function=${func}&sourcerecord=${source}`)
+		if (response.status !== 200) {
+			ldsPrompt.show(promptHead,promptText)
+			return
+		}
+		const lines = await response.json()
+		lines.forEach(line => {
+			const lineId = line.id === '0' ? line.inventorydetailsid : line.id
+			lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : createRef()
+		})
+		return lines
+	}
+
 	const getLines = () => {
 		const getLinesAsync = async () => {
 			switch (mode) {
 				case 'conversion':
-					var response = await fetch(`${api.loc}&function=getInventoryLines&sourcerecord=${getReturnId()}`)
-					if (response.status !== 200) {
-						ldsPrompt.show(
-							'Niet gelukt regels te laden',
-							'Het is niet gelukt om de regels van de verkooporder op te halen.'
+					var lines = await fetchLines(
+						'getInventoryLines',
+						getReturnId(),
+						'Niet gelukt regels te laden',
+						'Het is niet gelukt om de regels van de verkooporder op te halen.'
 						)
-						return
-					}
-					var lines = await response.json()
-					lines.forEach(line => {
-						const lineId = line.id === '0' ? line.inventorydetailsid : line.id
-						lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : createRef()
-					})
 					setLines(lines)
 					break
 				case 'detailview':
 				case 'edit':
-					var response = await fetch(`${api.loc}&function=getLines&sourcerecord=${getRecordId()}`)
-					if (response.status !== 200) {
-						ldsPrompt.show(
-							'Niet gelukt regels te laden',
-							'Het is niet gelukt om de regels van de werkbon op te halen.'
+					var lines = await fetchLines(
+						'getLines',
+						getRecordId(),
+						'Niet gelukt regels te laden',
+						'Het is niet gelukt om de regels van de werkbon op te halen.'
 						)
-						return
-					}
-					var lines = await response.json()
-					lines.forEach(line => {
-						const lineId = line.id === '0' ? line.inventorydetailsid : line.id
-						lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : createRef()
-					})
 					setLines(lines)
 					break
 			}

@@ -38368,39 +38368,33 @@ const WorkAssignmentLines = () => {
     writeLinesToDom();
   }, [lines]);
 
+  const fetchLines = async (func, source, promptHead, promptText) => {
+    const response = await fetch(`${_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["api"].loc}&function=${func}&sourcerecord=${source}`);
+
+    if (response.status !== 200) {
+      ldsPrompt.show(promptHead, promptText);
+      return;
+    }
+
+    const lines = await response.json();
+    lines.forEach(line => {
+      const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
+      lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();
+    });
+    return lines;
+  };
+
   const getLines = () => {
     const getLinesAsync = async () => {
       switch (mode) {
         case 'conversion':
-          var response = await fetch(`${_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["api"].loc}&function=getInventoryLines&sourcerecord=${Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getReturnId"])()}`);
-
-          if (response.status !== 200) {
-            ldsPrompt.show('Niet gelukt regels te laden', 'Het is niet gelukt om de regels van de verkooporder op te halen.');
-            return;
-          }
-
-          var lines = await response.json();
-          lines.forEach(line => {
-            const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
-            lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();
-          });
+          var lines = await fetchLines('getInventoryLines', Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getReturnId"])(), 'Niet gelukt regels te laden', 'Het is niet gelukt om de regels van de verkooporder op te halen.');
           setLines(lines);
           break;
 
         case 'detailview':
         case 'edit':
-          var response = await fetch(`${_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["api"].loc}&function=getLines&sourcerecord=${Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getRecordId"])()}`);
-
-          if (response.status !== 200) {
-            ldsPrompt.show('Niet gelukt regels te laden', 'Het is niet gelukt om de regels van de werkbon op te halen.');
-            return;
-          }
-
-          var lines = await response.json();
-          lines.forEach(line => {
-            const lineId = line.id === '0' ? line.inventorydetailsid : line.id;
-            lineRefs.current[lineId] = lineRefs.current[lineId] ? lineRefs.current[lineId] : /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["createRef"])();
-          });
+          var lines = await fetchLines('getLines', Object(_lib_js_utilities__WEBPACK_IMPORTED_MODULE_5__["getRecordId"])(), 'Niet gelukt regels te laden', 'Het is niet gelukt om de regels van de werkbon op te halen.');
           setLines(lines);
           break;
       }
