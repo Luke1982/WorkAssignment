@@ -56,6 +56,7 @@ class handleWorkAssignmentLines extends VTEventHandler {
 		$wal->column_fields['product'] = $line['productid'];
 		$wal->column_fields['qtydelivered'] = $line['units_delivered_received'];
 		$wal->column_fields['workshopstatus'] = $line['workshopstatus'];
+		$wal->column_fields['description'] = $line['description'];
 		$wal->column_fields['seq'] = $line['seq'];
 
 		self::saveFocus($wal);
