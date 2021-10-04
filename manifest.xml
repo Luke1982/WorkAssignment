@@ -148,6 +148,44 @@
                 <masseditable>0</masseditable>
               </field>
               <field>
+                <fieldname>workshop_startdate</fieldname>
+                <uitype>50</uitype>
+                <columnname>workshop_startdate</columnname>
+                <tablename>vtiger_workassignment</tablename>
+                <generatedtype>1</generatedtype>
+                <fieldlabel>workshop_startdate</fieldlabel>
+                <readonly>1</readonly>
+                <presence>0</presence>
+                <selected>0</selected>
+                <sequence>5</sequence>
+                <typeofdata>DT~O</typeofdata>
+                <quickcreate>0</quickcreate>
+                <quickcreatesequence>0</quickcreatesequence>
+                <displaytype>1</displaytype>
+                <info_type>BAS</info_type>
+                <helpinfo><![CDATA[]]></helpinfo>
+                <masseditable>0</masseditable>
+              </field>
+              <field>
+                <fieldname>workshop_enddate</fieldname>
+                <uitype>50</uitype>
+                <columnname>workshop_enddate</columnname>
+                <tablename>vtiger_workassignment</tablename>
+                <generatedtype>1</generatedtype>
+                <fieldlabel>workshop_enddate</fieldlabel>
+                <readonly>1</readonly>
+                <presence>0</presence>
+                <selected>0</selected>
+                <sequence>6</sequence>
+                <typeofdata>DT~O~OTH~GE~workshop_startdate</typeofdata>
+                <quickcreate>0</quickcreate>
+                <quickcreatesequence>0</quickcreatesequence>
+                <displaytype>1</displaytype>
+                <info_type>BAS</info_type>
+                <helpinfo><![CDATA[]]></helpinfo>
+                <masseditable>0</masseditable>
+              </field>
+              <field>
                 <fieldname>account_id</fieldname>
                 <uitype>10</uitype>
                 <columnname>account_id</columnname>
@@ -157,7 +195,7 @@
                 <readonly>1</readonly>
                 <presence>0</presence>
                 <selected>0</selected>
-                <sequence>5</sequence>
+                <sequence>7</sequence>
                 <typeofdata>I~M</typeofdata>
                 <quickcreate>0</quickcreate>
                 <quickcreatesequence>0</quickcreatesequence>
@@ -179,7 +217,7 @@
                 <readonly>1</readonly>
                 <presence>0</presence>
                 <selected>0</selected>
-                <sequence>6</sequence>
+                <sequence>8</sequence>
                 <typeofdata>I~O</typeofdata>
                 <quickcreate>0</quickcreate>
                 <quickcreatesequence>0</quickcreatesequence>
@@ -201,7 +239,7 @@
                 <readonly>1</readonly>
                 <presence>0</presence>
                 <selected>0</selected>
-                <sequence>7</sequence>
+                <sequence>9</sequence>
                 <typeofdata>I~M</typeofdata>
                 <quickcreate>0</quickcreate>
                 <quickcreatesequence>0</quickcreatesequence>
@@ -223,7 +261,7 @@
                 <readonly>1</readonly>
                 <presence>0</presence>
                 <selected>0</selected>
-                <sequence>8</sequence>
+                <sequence>10</sequence>
                 <typeofdata>V~O</typeofdata>
                 <quickcreate>0</quickcreate>
                 <quickcreatesequence>0</quickcreatesequence>
@@ -252,7 +290,7 @@
                 <readonly>1</readonly>
                 <presence>0</presence>
                 <selected>0</selected>
-                <sequence>10</sequence>
+                <sequence>11</sequence>
                 <maximumlength>100</maximumlength>
                 <typeofdata>V~M</typeofdata>
                 <quickcreate>1</quickcreate>
