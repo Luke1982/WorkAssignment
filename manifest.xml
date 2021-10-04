@@ -272,10 +272,12 @@
                 <picklistvalues>
                    <picklistvalue>--None--</picklistvalue>
                   <picklistvalue>Created</picklistvalue>
+                  <picklistvalue>Being prepared</picklistvalue>
+                  <picklistvalue>Partially prepared</picklistvalue>
+                  <picklistvalue>Prepared</picklistvalue>
                   <picklistvalue>Planned</picklistvalue>
                   <picklistvalue>In progress</picklistvalue>
                   <picklistvalue>Partially completed</picklistvalue>
-                  <picklistvalue>In workshop</picklistvalue>
                   <picklistvalue>Cancelled</picklistvalue>
                   <picklistvalue>Completed</picklistvalue>
                 </picklistvalues>
