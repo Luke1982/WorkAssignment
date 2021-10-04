@@ -114,7 +114,7 @@
                 <uitype>5</uitype>
                 <columnname>startdate</columnname>
                 <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
+                <generatedtype>2</generatedtype>
                 <fieldlabel>startdate</fieldlabel>
                 <readonly>1</readonly>
                 <presence>0</presence>
@@ -133,7 +133,7 @@
                 <uitype>5</uitype>
                 <columnname>enddate</columnname>
                 <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
+                <generatedtype>2</generatedtype>
                 <fieldlabel>enddate</fieldlabel>
                 <readonly>1</readonly>
                 <presence>0</presence>
@@ -152,7 +152,7 @@
                 <uitype>50</uitype>
                 <columnname>workshop_startdate</columnname>
                 <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
+                <generatedtype>2</generatedtype>
                 <fieldlabel>workshop_startdate</fieldlabel>
                 <readonly>1</readonly>
                 <presence>0</presence>
@@ -171,7 +171,7 @@
                 <uitype>50</uitype>
                 <columnname>workshop_enddate</columnname>
                 <tablename>vtiger_workassignment</tablename>
-                <generatedtype>1</generatedtype>
+                <generatedtype>2</generatedtype>
                 <fieldlabel>workshop_enddate</fieldlabel>
                 <readonly>1</readonly>
                 <presence>0</presence>
