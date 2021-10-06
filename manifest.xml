@@ -276,6 +276,7 @@
                   <picklistvalue>Created</picklistvalue>
                   <picklistvalue>Being prepared</picklistvalue>
                   <picklistvalue>Partially prepared</picklistvalue>
+                  <picklistvalue>Preparation cancelled</picklistvalue>
                   <picklistvalue>Prepared</picklistvalue>
                   <picklistvalue>Planned</picklistvalue>
                   <picklistvalue>In progress</picklistvalue>
