@@ -16,7 +16,7 @@ class handleWorkAssignmentLines extends VTEventHandler {
 		foreach ($lines as $line) {
 			switch ($line['detailstype']) {
 				case 'InventoryDetails':
-					if ($line['deleted'] !== true && $line['deleted'] !== 'true') {
+					if (!isset($line['deleted']) || ($line['deleted'] !== true && $line['deleted'] !== 'true')) {
 						self::saveNewLine($line, $entityData->getId());
 					}
 					break;
